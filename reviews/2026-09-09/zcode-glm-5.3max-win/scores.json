@@ -1,0 +1,110 @@
+{
+  "schema": "cr3bp-review/1",
+  "date": "2026-09-09",
+  "reviewed_commit": "ac5a306be9b29978ad6787903821b4a6a181ff01",
+  "reviewer_id": "zcode-glm-5.3max-win",
+  "reviewer": "zcode-glm-5.3max-win（单一评阅者；未盲审）",
+  "review_format": "10+4",
+  "ranking_method": "十项等权求和，再应用 README 封顶；单项和总分均采用竞赛排名，同分并列且跳号。",
+  "criteria": ["物理模型", "数学方程", "单位与坐标", "拉格朗日点", "数值积分器", "收敛与精度", "守恒量表现", "稳定性与边界", "验证与工程质量", "交互与科学可视化"],
+  "method": "静态逐行审查 + Python 独立真值（L1=0.836915125772357, L2=1.155682165444884, L3=-1.005062645810277, C(L1)=3.188341117749240, μ=0.012150585609624）+ 无头 Chromium 实际加载运行并复跑页面内自检 + 提交材料核验。",
+  "submissions": [
+    {
+      "id": "codex",
+      "directory": "codex--6astra-xhigh--2026-09-09",
+      "label": "codex-6astra-xhigh",
+      "scores": [10,10,10,10,10,10,10,10,10,10],
+      "caps": [],
+      "self_tests_rerun": "23/23",
+      "source": "index.html",
+      "final": 100,
+      "rank": 1,
+      "notes": "L1–L5 与评审真值差 ≤1.1e-15；辛映射 Jacobian 1.5e-10；提示词带战役模式前缀（已披露，Harness 条件差异）；单位取 JPL 示例系统（DU=389703.26 km），全场唯一读数离群者。"
+    },
+    {
+      "id": "gptweb",
+      "directory": "gptweb--gpt-6pro--2026-09-09",
+      "label": "gptweb-gpt-6pro",
+      "scores": [10,10,10,10,10,10,10,10,10,10],
+      "caps": [],
+      "self_tests_rerun": "25/25",
+      "source": "earth_moon_lab.html",
+      "final": 100,
+      "rank": 1,
+      "notes": "DE440 μ + 单位闭合检验；ZVC 临界拓扑全档（C0/L1/L2/L3/L4/手动）；dC/dt≡0 5.6e-17；辛性 5.7e-11；飞越惯性系增速 0.3459 km/s。"
+    },
+    {
+      "id": "ds4",
+      "directory": "harnessL--ds-4.1flashmax--2026-09-09",
+      "label": "harnessL-ds-4.1flashmax",
+      "scores": [10,10,9,10,10,10,10,10,10,9],
+      "caps": [],
+      "self_tests_rerun": "14/14",
+      "source": "lab.html",
+      "final": 98,
+      "rank": 3,
+      "notes": "唯一 3D 内核与 Routh 稳定性分类；九种积分器含 GBS（k=4 实测阶 8.95）；无运行时惯性系显示；绕地预设 vy 漏乘 (1−μ)（~0.6%）。"
+    },
+    {
+      "id": "glmwin",
+      "directory": "zcode--glm-5.3max--2026-09-09",
+      "label": "zcode-glm-5.3max（Windows）",
+      "scores": [10,10,9,10,10,10,10,10,9,10],
+      "caps": [],
+      "self_tests_rerun": "20/20",
+      "source": "index.html",
+      "final": 98,
+      "rank": 3,
+      "notes": "解析 Jacobian 隐式中点 + Yoshida 复合（可证辛）；M&D γ 文献对照；T=1000 长期 secular vs 有界；无运行时惯性系显示。"
+    },
+    {
+      "id": "glmlin",
+      "directory": "zcode--glm-5.3maxlinux--2026-09-09",
+      "label": "zcode-glm-5.3maxlinux",
+      "scores": [9,9,9,9,9,9,9,9,9,9],
+      "caps": [],
+      "self_tests_rerun": "7/7",
+      "source": "index.html",
+      "final": 90,
+      "rank": 5,
+      "notes": "GL4（Gauss–Legendre 二级四阶）系数正确，不动点迭代大步长有守卫；ZVC 多边形裁剪填充；μ 10 位截断、TU 惯例差 0.13%。"
+    },
+    {
+      "id": "qwen",
+      "directory": "harnessL--qwen-3.8flashxhigh--2026-09-09",
+      "label": "harnessL-qwen-3.8flashxhigh",
+      "scores": [9,9,8,10,9,9,9,8,8,8],
+      "caps": [],
+      "self_tests_rerun": "7/7（归档记录 6/7，T4b 复跑通过）",
+      "source": "cr3bp_lab.html",
+      "final": 87,
+      "rank": 6,
+      "notes": "RK4+隐式中点（2 阶辛，诚实标注）+DOPRI5；JPL+3D 晕轨道双锚点；reset 语义瑕疵；无惯性系转换。"
+    },
+    {
+      "id": "kimi",
+      "directory": "kimiweb--k3swarm-max--2026-09-09",
+      "label": "kimiweb-k3swarm-max",
+      "scores": [9,9,8,9,8,9,9,8,8,8],
+      "caps": [],
+      "self_tests_rerun": "5/5（自动执行）",
+      "source": "Kimi_Agent_地月三体实验室.zip 内 cr3bp-lab/index.html",
+      "final": 85,
+      "rank": 7,
+      "notes": "自检自动执行全过+页面级错误捕获条；『辛 Verlet』严格辛性存疑（500 TU 有界实测通过）；奇点阈值 1e-6 DU 过小；提交内无验证记录或截图。"
+    }
+  ],
+  "science_final": {
+    "selected": ["codex", "gptweb", "ds4", "glmwin"],
+    "tie_handling": "十项总榜第 3–4 名 ds4 与 glmwin 同为 98 分，双双入选；第 5 名 90 分在边界外。",
+    "indicators": "10 项等权（每项 10 分，允许 0.5）：第 1–8 项沿用 README 科学八项；第 9 项=页面内科学验证；第 10 项=经典动力学深度（稳定性分析/ZVC 临界拓扑/参考系物理）。与样例专家 20/15/25/25/15 加权不同尺度，不混用。",
+    "scores": {
+      "gptweb": {"items": [10,10,10,10,10,10,10,10,10,10], "total": 100, "rank": 1},
+      "codex":  {"items": [10,10,10,10,10,10,10,10,10,9],  "total": 99,  "rank": 2},
+      "ds4":    {"items": [10,10,9,10,10,10,10,10,10,10],  "total": 99,  "rank": 2},
+      "glmwin": {"items": [10,10,9,10,10,10,10,10,9.5,9.5],"total": 99,  "rank": 2}
+    },
+    "recommendation": "gptweb--gpt-6pro（old-school 专家团队认可度第一）；若评审团更重经典动力学分析广度（Routh 稳定性、3D、Bulirsch–Stoer），则 ds4 第一。",
+    "inconsistency_adjudication": "四强读数互不一致主因是单位约定：codex 取 JPL 示例系统 DU=389703.26 km（km 读数 +1.38%、天数 +2.08%），TU 惯例分三派（4.4327/4.3425/4.3484 天）；无量纲物理四家一致（与各自 μ 真值差 ≤6e-9，L1 差约 2 毫米物理距离）；速度读数含惯性系/旋转系语义差异（两家均正确标注，codex 惯性速度读数经评审手算精确）。"
+  }
+}

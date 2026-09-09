@@ -80,6 +80,7 @@ submissions/<harness>--<model>--<date>/
 | **codex-gpt-6-astra-xhigh** | 2026-09-09 | [十项单项排名与总榜](reviews/2026-09-09/codex-gpt-6-astra-xhigh/README.md) · [逐项依据](reviews/2026-09-09/README.md) | [四强终评与证据](reviews/2026-09-09/science-final/README.md) | 已记录为 10+4 样例；[原结果快照 fe815c2](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/fe815c262397496d63d9ffbe928e61e49714b0b8) |
 | **gptweb-gpt-6-astra-pro** | 2026-09-09 | [十项单项排名与综合总榜](reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md#gptweb-gpt-6-astra-pro-ten) | [四强终评与证据](reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md#gptweb-gpt-6-astra-pro-four) | 10+4 已完整收录；十项为既有评分的独立复核，四强为新科学评分；[原始材料与来源](reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md#原始材料与导入核对) |
 | 待登记评审者 ID（648dcc3） | 2026-09-09 | [独立评分记录](SCOREBOARD.md) | 尚未提供独立四强终评 | 待补齐署名与 10+4；[归档版本](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/648dcc3) |
+| **zcode-glm-5.3max-win** | 2026-09-09 | [十项单项排名与总榜](reviews/2026-09-09/zcode-glm-5.3max-win/README.md) · [机器可读评分](reviews/2026-09-09/zcode-glm-5.3max-win/scores.json) | [四强纯科学终评](reviews/2026-09-09/zcode-glm-5.3max-win/science-final/README.md) | 已完成 10+4；被评快照 [ac5a306](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/ac5a306be9b29978ad6787903821b4a6a181ff01) |
 
 以下依次展示各专家的 10+4 记录，原有分数与并列关系保持不变。并行提交 648dcc3 的 SCOREBOARD.md 及其提交说明均保留，其评审者身份尚待登记。各份记录分别注明评分来源与复核关系；其他专家可作出不同判断。
 
