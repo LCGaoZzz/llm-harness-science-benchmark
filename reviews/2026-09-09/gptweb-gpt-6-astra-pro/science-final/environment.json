@@ -1,0 +1,15 @@
+{
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "playwright": "1.57.0",
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "chromium": "Chromium 144.0.7559.96 built on Debian GNU/Linux 13 (trixie)",
+  "originals_verified_sha256": {
+    "harnessL_ds-4.1flashmax": "2092ed57f0bf0b21f9aff27e72de0f01e1098ecf49885f667cc844b90f692bb6",
+    "gptweb_gpt-6pro": "e47703cc377ef47a5c1b3f356bcdbac2b555946e0e95c598b9197fe4a5ed8a75",
+    "codex_6astra-xhigh": "03f3b6c7011d7f2c757cd2265bf664256f86c8135cb5d1ae33862630cd67af92",
+    "zcode_glm-5.3max": "760b0f6e0cdee3028313adf5af875e4b1b69a83342757ea3622db87a5163d906"
+  },
+  "browser_loading": "complete original HTML via set_content, external requests aborted; not a new file:// audit"
+}

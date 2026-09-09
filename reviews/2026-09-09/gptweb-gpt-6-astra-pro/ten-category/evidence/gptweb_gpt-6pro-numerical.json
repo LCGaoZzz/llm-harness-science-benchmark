@@ -1,0 +1,861 @@
+{
+  "key": "gptweb_gpt-6pro",
+  "html_sha256": "e47703cc377ef47a5c1b3f356bcdbac2b555946e0e95c598b9197fe4a5ed8a75",
+  "api": {
+    "mu": 0.012150584395829193,
+    "L": [
+      {
+        "name": "L1",
+        "x": 0.8369151317448633,
+        "y": 0,
+        "iterations": 51,
+        "residual": 4.440892098500626e-16,
+        "C": 3.188341106556305
+      },
+      {
+        "name": "L2",
+        "x": 1.1556821607765202,
+        "y": 0,
+        "iterations": 52,
+        "residual": 1.1102230246251565e-15,
+        "C": 3.1721604513884247
+      },
+      {
+        "name": "L3",
+        "x": -1.0050626453045601,
+        "y": 0,
+        "iterations": 49,
+        "residual": 1.9984014443252818e-15,
+        "C": 3.012147149467432
+      },
+      {
+        "name": "L4",
+        "x": 0.48784941560416845,
+        "y": 0.8660254037844399,
+        "iterations": 7,
+        "residual": 3.1401849173675503e-16,
+        "C": 2.987997052305331
+      },
+      {
+        "name": "L5",
+        "x": 0.48784941560416845,
+        "y": -0.8660254037844399,
+        "iterations": 7,
+        "residual": 3.1401849173675503e-16,
+        "C": 2.987997052305331
+      }
+    ],
+    "methods": [
+      "rk4",
+      "yoshida4"
+    ]
+  },
+  "reference": {
+    "solver": "scipy.integrate.solve_ivp DOP853",
+    "rtol": 2.3e-14,
+    "atol": 1e-15,
+    "state": [
+      0.47893003151741936,
+      0.31874771003523356,
+      -0.5374931822025267,
+      0.2570924130661675
+    ],
+    "reference_refinement_difference": 4.861575859007327e-14
+  },
+  "physics": [
+    {
+      "s": [
+        0.6,
+        0.2,
+        -0.1,
+        0.35
+      ],
+      "rhs": [
+        -0.1,
+        0.35,
+        -0.907429941260697,
+        -0.3689771104751658
+      ],
+      "C": 3.3910718060342546,
+      "rhs_max_error": 2.220446049250313e-16,
+      "C_error": 0.0
+    },
+    {
+      "s": [
+        0.2,
+        -0.4,
+        0.7,
+        -0.9
+      ],
+      "rhs": [
+        0.7,
+        -0.9,
+        -3.8438898835919892,
+        2.463960312230623
+      ],
+      "C": 3.2910081766115327,
+      "rhs_max_error": 4.440892098500626e-16,
+      "C_error": 0.0
+    },
+    {
+      "s": [
+        1.1,
+        0.3,
+        -0.2,
+        0.1
+      ],
+      "rhs": [
+        -0.2,
+        0.1,
+        0.539723001175421,
+        0.3951527957377868
+      ],
+      "C": 3.041037124927998,
+      "rhs_max_error": 4.440892098500626e-16,
+      "C_error": 0.0
+    },
+    {
+      "s": [
+        -0.7,
+        0.4,
+        0.11,
+        -0.22
+      ],
+      "rhs": [
+        0.11,
+        -0.22,
+        0.2126990523771557,
+        -0.6052712720791704
+      ],
+      "C": 3.0864824482899422,
+      "rhs_max_error": 6.38378239159465e-16,
+      "C_error": 8.881784197001252e-16
+    },
+    {
+      "s": [
+        0.48784941560417083,
+        0.8660254037844386,
+        0,
+        0
+      ],
+      "rhs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "C": 2.9879970523053307,
+      "rhs_max_error": 2.7755575615628914e-17,
+      "C_error": 0.0
+    }
+  ],
+  "methods": {
+    "rk4": {
+      "convergence": [
+        {
+          "h": 0.02,
+          "T": 0.4,
+          "state": [
+            0.4789300397874335,
+            0.3187477064235552,
+            -0.5374931568161418,
+            0.25709240555951046
+          ],
+          "error": null,
+          "independent_error_l2": 2.7968836068114768e-08,
+          "observed_order": null
+        },
+        {
+          "h": 0.01,
+          "T": 0.4,
+          "state": [
+            0.47893003205010914,
+            0.31874770980491607,
+            -0.5374931806054115,
+            0.2570924125675571
+          ],
+          "error": null,
+          "independent_error_l2": 1.7709302282408414e-09,
+          "observed_order": 3.981240938363339
+        },
+        {
+          "h": 0.005,
+          "T": 0.4,
+          "state": [
+            0.4789300315512126,
+            0.318747710020689,
+            -0.5374931821023786,
+            0.25709241303408975
+          ],
+          "error": null,
+          "independent_error_l2": 1.1140983778520628e-10,
+          "observed_order": 3.9905588361532027
+        },
+        {
+          "h": 0.0025,
+          "T": 0.4,
+          "state": [
+            0.4789300315195483,
+            0.31874771003432134,
+            -0.5374931821962561,
+            0.2570924130641292
+          ],
+          "error": null,
+          "independent_error_l2": 6.988574915073173e-12,
+          "observed_order": 3.9947345254541085
+        }
+      ],
+      "long_runs": [
+        {
+          "name": "L4_shared",
+          "s": [
+            0.49784941560417084,
+            0.8660254037844386,
+            0,
+            0
+          ],
+          "T": 500,
+          "h": 0.01,
+          "state": [
+            0.3965131838233056,
+            0.9016424217429131,
+            -0.020865377232630294,
+            0.0019143054352304893
+          ],
+          "steps": 50000,
+          "first_half_max_abs_dC": 1.1901590823981678e-13,
+          "second_half_max_abs_dC": 2.0872192862952943e-13,
+          "max_abs_dC": 2.0872192862952943e-13,
+          "final_dC": 1.532107773982716e-13,
+          "min_primary_distance": 0.8542175746089443,
+          "error": null
+        },
+        {
+          "name": "Earth_shared",
+          "s": [
+            0.1678494156041708,
+            0,
+            0,
+            2.162659238752418
+          ],
+          "T": 50,
+          "h": 0.001,
+          "state": [
+            -0.13843576055237075,
+            -0.1281964953252989,
+            1.5405517409426808,
+            -1.518560034666019
+          ],
+          "steps": 50000,
+          "first_half_max_abs_dC": 1.0595874400110006e-08,
+          "second_half_max_abs_dC": 2.119086772722767e-08,
+          "max_abs_dC": 2.119086772722767e-08,
+          "final_dC": 2.119086772722767e-08,
+          "min_primary_distance": 0.17992508573174867,
+          "error": null
+        }
+      ],
+      "symplectic": [
+        {
+          "h": 0.02,
+          "eps": 1e-05,
+          "canonical_defect_maxnorm": 3.929264674046307e-09,
+          "reversal_error": 8.8797115562037e-11
+        },
+        {
+          "h": 0.02,
+          "eps": 2e-06,
+          "canonical_defect_maxnorm": 3.924406678096348e-09,
+          "reversal_error": 8.8797115562037e-11
+        },
+        {
+          "h": 0.01,
+          "eps": 1e-05,
+          "canonical_defect_maxnorm": 1.2024992704058948e-10,
+          "reversal_error": 1.3885669985427993e-12
+        },
+        {
+          "h": 0.01,
+          "eps": 2e-06,
+          "canonical_defect_maxnorm": 1.3352088607931217e-10,
+          "reversal_error": 1.3885669985427993e-12
+        }
+      ]
+    },
+    "yoshida4": {
+      "convergence": [
+        {
+          "h": 0.02,
+          "T": 0.4,
+          "state": [
+            0.47893002517085087,
+            0.3187475485732854,
+            -0.537494186924762,
+            0.2570921671017851
+          ],
+          "error": null,
+          "independent_error_l2": 1.0469362383276218e-06,
+          "observed_order": null
+        },
+        {
+          "h": 0.01,
+          "T": 0.4,
+          "state": [
+            0.4789300311408172,
+            0.3187476999439799,
+            -0.5374932449238352,
+            0.25709239768949843
+          ],
+          "error": null,
+          "independent_error_l2": 6.53634432863591e-08,
+          "observed_order": 4.00154578476529
+        },
+        {
+          "h": 0.005,
+          "T": 0.4,
+          "state": [
+            0.4789300314941971,
+            0.31874770940453295,
+            -0.5374931861214538,
+            0.25709241210505607
+          ],
+          "error": null,
+          "independent_error_l2": 4.084121333275266e-09,
+          "observed_order": 4.000386353013612
+        },
+        {
+          "h": 0.0025,
+          "T": 0.4,
+          "state": [
+            0.4789300315159633,
+            0.3187477099958122,
+            -0.537493182447454,
+            0.2570924130060844
+          ],
+          "error": null,
+          "independent_error_l2": 2.5525580399773325e-10,
+          "observed_order": 4.00001005667422
+        }
+      ],
+      "long_runs": [
+        {
+          "name": "L4_shared",
+          "s": [
+            0.49784941560417084,
+            0.8660254037844386,
+            0,
+            0
+          ],
+          "T": 500,
+          "h": 0.01,
+          "state": [
+            0.3965135968507441,
+            0.9016424848611813,
+            -0.020865054943739136,
+            0.0019140226455579001
+          ],
+          "steps": 50000,
+          "first_half_max_abs_dC": 4.888041083006556e-10,
+          "second_half_max_abs_dC": 4.904294748087068e-10,
+          "max_abs_dC": 4.904294748087068e-10,
+          "final_dC": -1.3318013358798453e-10,
+          "min_primary_distance": 0.8542175768747667,
+          "error": null
+        },
+        {
+          "name": "Earth_shared",
+          "s": [
+            0.1678494156041708,
+            0,
+            0,
+            2.162659238752418
+          ],
+          "T": 50,
+          "h": 0.001,
+          "state": [
+            -0.13843381391105394,
+            -0.12819840811306313,
+            1.5405747929075104,
+            -1.5185367189427246
+          ],
+          "steps": 50000,
+          "first_half_max_abs_dC": 8.600142820114343e-11,
+          "second_half_max_abs_dC": 1.0320100329863635e-10,
+          "max_abs_dC": 1.0320100329863635e-10,
+          "final_dC": -7.764988652070315e-11,
+          "min_primary_distance": 0.17992508114605155,
+          "error": null
+        }
+      ],
+      "symplectic": [
+        {
+          "h": 0.02,
+          "eps": 1e-05,
+          "canonical_defect_maxnorm": 1.604048261878428e-11,
+          "reversal_error": 1.7772239894833365e-16
+        },
+        {
+          "h": 0.02,
+          "eps": 2e-06,
+          "canonical_defect_maxnorm": 1.0605116784745405e-10,
+          "reversal_error": 1.7772239894833365e-16
+        },
+        {
+          "h": 0.01,
+          "eps": 1e-05,
+          "canonical_defect_maxnorm": 1.8559466585647312e-11,
+          "reversal_error": 1.6883057536160649e-16
+        },
+        {
+          "h": 0.01,
+          "eps": 2e-06,
+          "canonical_defect_maxnorm": 8.784328081625739e-11,
+          "reversal_error": 1.6883057536160649e-16
+        }
+      ]
+    }
+  },
+  "selftest_result": {
+    "schema": "cr3bp-selftest/1",
+    "generatedAt": "2026-09-09T08:27:27.490Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/144.0.0.0 Safari/537.36",
+    "constants": {
+      "mu": 0.012150584395829193,
+      "DU": 384400,
+      "TU": 375190.2618944357,
+      "VU": 1.0245468474023336
+    },
+    "total": 25,
+    "passed": 25,
+    "failed": 0,
+    "pass": true,
+    "durationMs": 363.30000000004657,
+    "results": [
+      {
+        "id": "root_L1",
+        "name": "L1 平衡点残差",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "name": "L1",
+          "x": 0.8369151317448633,
+          "y": 0,
+          "iterations": 51,
+          "residual": 4.440892098500626e-16,
+          "C": 3.188341106556305
+        },
+        "criterion": "norm(∇Ω) < 1e-11",
+        "display": "4.4409e-16 < 1e-11; 51 iterations",
+        "durationMs": 0.5999999999767169
+      },
+      {
+        "id": "root_L2",
+        "name": "L2 平衡点残差",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "name": "L2",
+          "x": 1.1556821607765202,
+          "y": 0,
+          "iterations": 52,
+          "residual": 1.1102230246251565e-15,
+          "C": 3.1721604513884247
+        },
+        "criterion": "norm(∇Ω) < 1e-11",
+        "display": "1.1102e-15 < 1e-11; 52 iterations",
+        "durationMs": 0
+      },
+      {
+        "id": "root_L3",
+        "name": "L3 平衡点残差",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "name": "L3",
+          "x": -1.0050626453045601,
+          "y": 0,
+          "iterations": 49,
+          "residual": 1.9984014443252818e-15,
+          "C": 3.012147149467432
+        },
+        "criterion": "norm(∇Ω) < 1e-11",
+        "display": "1.9984e-15 < 1e-11; 49 iterations",
+        "durationMs": 0.10000000009313226
+      },
+      {
+        "id": "root_L4",
+        "name": "L4 平衡点残差",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "name": "L4",
+          "x": 0.48784941560416845,
+          "y": 0.8660254037844399,
+          "iterations": 7,
+          "residual": 3.1401849173675503e-16,
+          "C": 2.987997052305331
+        },
+        "criterion": "norm(∇Ω) < 1e-11",
+        "display": "3.1402e-16 < 1e-11; 7 iterations",
+        "durationMs": 0.09999999997671694
+      },
+      {
+        "id": "root_L5",
+        "name": "L5 平衡点残差",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "name": "L5",
+          "x": 0.48784941560416845,
+          "y": -0.8660254037844399,
+          "iterations": 7,
+          "residual": 3.1401849173675503e-16,
+          "C": 2.987997052305331
+        },
+        "criterion": "norm(∇Ω) < 1e-11",
+        "display": "3.1402e-16 < 1e-11; 7 iterations",
+        "durationMs": 0.2000000000698492
+      },
+      {
+        "id": "triangular",
+        "name": "三角点与解析几何一致",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "error": 2.7336071744532854e-15
+        },
+        "criterion": "position error < 1e-12",
+        "display": "2.7336e-15 < 1e-12",
+        "durationMs": 0.5
+      },
+      {
+        "id": "units",
+        "name": "单位与 n=1 归一化闭合",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "normalization": 0,
+          "velocityUnitError": 1.5142471621609628e-16,
+          "mu": 0.012150584395829193,
+          "TU_s": 375190.2618944357
+        },
+        "criterion": "both residuals < 1e-14",
+        "display": "n² residual 0.0000e+0; VU residual 1.5142e-16",
+        "durationMs": 0.19999999995343387
+      },
+      {
+        "id": "gradient",
+        "name": "有效势的独立差分梯度",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "error": 9.915823128970196e-11,
+          "epsilon": 1e-06
+        },
+        "criterion": "gradient norm error < 1e-8",
+        "display": "9.9158e-11 < 1e-8",
+        "durationMs": 0.6999999999534339
+      },
+      {
+        "id": "Cdot",
+        "name": "Jacobi 导数为零",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "maxResidual": 5.551115123125783e-17
+        },
+        "criterion": "max |dC/dt| < 1e-13",
+        "display": "5.5511e-17 < 1e-13",
+        "durationMs": 0.10000000009313226
+      },
+      {
+        "id": "hamiltonian",
+        "name": "正则动量与 C = −2H",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "identity": 0,
+          "roundtrip": 2.7755575615628914e-17
+        },
+        "criterion": "|C+2H| < 1e-13; canonical roundtrip < 1e-14",
+        "display": "C+2H: 0.0000e+0; roundtrip 2.7756e-17",
+        "durationMs": 0.10000000009313226
+      },
+      {
+        "id": "convergence_rk4",
+        "name": "RK4 步长收敛阶",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "method": "rk4",
+          "T": 2,
+          "h": 0.01,
+          "d1": 1.5860614716753244e-06,
+          "d2": 8.933635452406376e-08,
+          "ratio": 17.753819037333795,
+          "order": 4.150057492100818,
+          "drifts": [
+            5.128100513118738e-07,
+            2.0382603160840063e-08,
+            9.092553376888191e-10
+          ]
+        },
+        "criterion": "3.5 < log2(||u_h−u_h/2|| / ||u_h/2−u_h/4||) < 4.5",
+        "display": "p = 4.15006; h=.01, T=2; d₁=1.5861e-6; d₂=8.9336e-8",
+        "durationMs": 18.099999999976717
+      },
+      {
+        "id": "convergence_sy4",
+        "name": "SY4 步长收敛阶",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "method": "sy4",
+          "T": 2,
+          "h": 0.01,
+          "d1": 5.810782819759994e-05,
+          "d2": 3.653360107505663e-06,
+          "ratio": 15.90531086114945,
+          "order": 3.991436663775543,
+          "drifts": [
+            2.1629269406631124e-05,
+            1.3593952203905246e-06,
+            8.508018733976996e-08
+          ]
+        },
+        "criterion": "3.5 < log2(||u_h−u_h/2|| / ||u_h/2−u_h/4||) < 4.5",
+        "display": "p = 3.99144; h=.01, T=2; d₁=5.8108e-5; d₂=3.6534e-6",
+        "durationMs": 6.899999999906868
+      },
+      {
+        "id": "conservation_rk4",
+        "name": "RK4 长时守恒量",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "state": [
+            -0.014618075319395346,
+            0.1799832656518137,
+            -2.1621363394846935,
+            -0.030149450075933452
+          ],
+          "maxDrift": 4.23814316974358e-08,
+          "C0": 6.356818632878737,
+          "steps": 100000,
+          "time": 100,
+          "threshold": 1e-06
+        },
+        "criterion": "Earth preset, T=100, h=.001; max|ΔC| < 0.000001",
+        "display": "T=100; N=100000; max|ΔC|=4.2381e-8 < 1.0000e-6",
+        "durationMs": 145.70000000006985
+      },
+      {
+        "id": "conservation_sy4",
+        "name": "SY4 长时守恒量",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "state": [
+            -0.014622787242331734,
+            0.17998320065627496,
+            -2.1621355647177225,
+            -0.030206101189175827
+          ],
+          "maxDrift": 1.3569589896178513e-10,
+          "C0": 6.356818632878737,
+          "steps": 100000,
+          "time": 100,
+          "threshold": 1e-07
+        },
+        "criterion": "Earth preset, T=100, h=.001; max|ΔC| < 1e-7",
+        "display": "T=100; N=100000; max|ΔC|=1.3570e-10 < 1.0000e-7",
+        "durationMs": 48.800000000046566
+      },
+      {
+        "id": "reversible",
+        "name": "SY4 时间可逆性",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "error": 1.2476322646257644e-12,
+          "h": 0.002,
+          "stepsEachWay": 500
+        },
+        "criterion": "forward/back norm < 1e-9",
+        "display": "1.2476e-12 < 1e-9; 500 + 500 steps",
+        "durationMs": 0.7999999999301508
+      },
+      {
+        "id": "symplectic",
+        "name": "SY4 正则坐标辛性",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "maxDefect": 5.6710527821055706e-11,
+          "finiteDifferenceEpsilon": 1e-06
+        },
+        "criterion": "max|DΦᵀ J DΦ−J| < 1e-7",
+        "display": "max defect = 5.6711e-11; FD ε=1e-6",
+        "durationMs": 0.2999999999301508
+      },
+      {
+        "id": "L4_bounded",
+        "name": "L4 扰动有界性",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "maxDistance": 0.12187824123224095,
+          "maxDrift": 5.808686864838819e-13,
+          "T": 100,
+          "h": 0.002
+        },
+        "criterion": "T=100; max distance from L4 < .2 DU, max|ΔC| < 1e-8",
+        "display": "max distance=1.2188e-1 DU; max|ΔC|=5.8087e-13",
+        "durationMs": 26.599999999976717
+      },
+      {
+        "id": "L1_unstable",
+        "name": "L1 微扰增长",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "distance": 1.3345606400073975,
+          "initialOffset": 0.0001,
+          "T": 4
+        },
+        "criterion": "T=4; .1 < distance from L1 < 10 DU",
+        "display": "10⁻⁴ DU → 1.3346e+0 DU at T=4",
+        "durationMs": 4.5
+      },
+      {
+        "id": "flyby",
+        "name": "近月飞越与参考系",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "method": "sy4",
+          "h": 0.0005,
+          "T": 1.5,
+          "minR": 0.03915513558048126,
+          "minAltitudeKm": 13313.834117136998,
+          "entry": {
+            "t": 0.12267107377017243,
+            "state": [
+              0.8081324943288369,
+              -0.010090995472670563,
+              0.551216282137282,
+              0.013281853409679427
+            ],
+            "speed": 0.9948805911106059
+          },
+          "exit": {
+            "t": 0.7255203146134042,
+            "state": [
+              1.1666820741443946,
+              0.020466563928472167,
+              0.5246898632483977,
+              0.06673566330606485
+            ],
+            "speed": 1.332501576222138
+          },
+          "deltaInertialSpeed": 0.33762098511153205,
+          "maxDrift": 2.14546158616713e-10
+        },
+        "criterion": "r_min > lunar radius, < .08 DU; matched r=.18 DU speed gain >0; |ΔC|<1e-7",
+        "display": "min altitude=13313.83 km; Δ|vᴵ|=0.345909 km/s",
+        "durationMs": 2.599999999976717
+      },
+      {
+        "id": "finite_guard",
+        "name": "NaN / Infinity 防护",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "rejected": [
+            "0:rk4",
+            "0:sy4",
+            "1:rk4",
+            "1:sy4",
+            "2:rk4",
+            "2:sy4"
+          ]
+        },
+        "criterion": "6/6 invalid inputs rejected before commit",
+        "display": "6/6 rejected",
+        "durationMs": 0.7999999999301508
+      },
+      {
+        "id": "steps_guard",
+        "name": "非法与近场步长防护",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "rejected": 6
+        },
+        "criterion": "6/6 invalid or unresolved steps rejected",
+        "display": "6/6 rejected",
+        "durationMs": 0.40000000002328306
+      },
+      {
+        "id": "surfaces",
+        "name": "奇点与天体表面防护",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "rejected": 4,
+          "crossingDistance": 1.734723475976807e-18
+        },
+        "criterion": "4/4 body states rejected; crossing distance <1e-14",
+        "display": "4/4 rejected; segment d=1.7347e-18",
+        "durationMs": 1.6999999999534339
+      },
+      {
+        "id": "transaction",
+        "name": "成功/失败均不修改输入",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "inputChange": 0,
+          "largeStepRejected": true,
+          "infiniteLoopRejected": true
+        },
+        "criterion": "exact unchanged input; step and infinite count rejected",
+        "display": "input change 0; invalid count rejected=true",
+        "durationMs": 1.6999999999534339
+      },
+      {
+        "id": "zvc_sign",
+        "name": "禁止区方向与零速度根",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "rootResidual": 1.7763568394002505e-15,
+          "atL4": -0.2003440542509738,
+          "nearEarth": 16.603366024006505
+        },
+        "criterion": "root <1e-10; F(L4)<0; F(nearEarth)>0",
+        "display": "root residual 1.7764e-15; sign -2.0034e-1 / 1.6603e+1",
+        "durationMs": 0.40000000002328306
+      },
+      {
+        "id": "render_contour",
+        "name": "当前画面边交点残差",
+        "status": "PASS",
+        "pass": true,
+        "metrics": {
+          "count": 1194,
+          "maxEndpointResidual": 1.5279333354101254e-11
+        },
+        "criterion": "sampled contour edge roots < 1e-4; no-curve case is valid",
+        "display": "1194 segments; max residual=1.5279e-11",
+        "durationMs": 1.400000000023283
+      }
+    ],
+    "simulationStateUnchanged": true
+  },
+  "selftest_seconds": 0.38898591299994223,
+  "selftest_body_after": "LAGRANGE / CELESTIAL MECHANICS\n地月限制性三体问题实验室\nPLANAR CR3BP · OFFLINE\n模型与方法\n⌁ 数值自检\n选择实验\n01 / INITIALIZE\n◈L4 扰动\n平衡附近的有界振荡\n⌁L1 不稳定\n微小扰动的增长\n◎绕地轨道\n含月球摄动的近圆轨道\n↗月球引力辅助\n近月飞越与速率变化\n\nL1 向地球侧偏移 10⁻⁴ DU，旋转系初速为零。偏离会增长；这不是经微分校正的周期轨道。\n\nx₀\nDU\ny₀\nDU\nvₓ₀\nDU / TU\nvᵧ₀\nDU / TU\n应用初值并重置\n数值传播\n02 / PROPAGATE\n积分器\nSY4 · 四阶辛分裂\nRK4 · 四阶 Runge–Kutta\n\n解析旋转流 + Yoshida 复合。固定步长下保留辛结构，不强制修正 Jacobi 常数。\n\n积分步长 h / TU\n÷2\n×2\n播放速率 TU/s\n0.02\n0.08\n0.15\n0.50\n1.50\n5.00\n▶ 运行\n单步\n重置\n势场与边界\n03 / INSPECT\n零速度曲线\n禁止区域\nL1–L5\n速度方向\n边界参考 Jacobi 常数\n锁定本轨迹初始 C₀\n临界 C(L1)\n临界 C(L2)\n临界 C(L3)\n临界 C(L4/L5)\n自定义边界 C\n清空显示轨迹（保留仿真状态）\n\n拖拽平移 · 滚轮缩放 · Space 暂停\nN 单步 · R 重置 · F 全局\n\n已暂停 / 地月共转系\n全局\n地球\n月球\n航天器\nBARYCENTRIC · n = 1 · z = 0\nC₀ = 3.188341219\n禁止区域满足 2Ω − C < 0\n+\n−\n⌂\n实时积分轨迹\n零速度曲线\n禁止区\n0.50 DU / 192,200 km\n仅绘制已积分状态 · 天体标记设有最小可见尺寸\nx →   y ↑\n状态观测\nSY4\n仿真时间\n0.0000TU\n0.000 天 · 0.000 月轨道周期\nx / DU\n0.8368151\ny / DU\n0.0000000\nvₓ / DU·TU⁻¹\n0.0000000\nvᵧ / DU·TU⁻¹\n0.0000000\n旋转系速率 |v|\n0.00000 km/s\n质心惯性速率 |vᴵ|\n0.85736 km/s\nJACOBI CONSTANT · C(t)\n3.18834121947\nΔC = C(t) − C₀\n+0.000e+0\n± 1.1e-15\n相对零线 · 线性\nmax |ΔC|\n0.000e+0\n|ΔC| / max(1, |C₀|)\n0.00e+0\n地心距离\n326,342 km\n月心距离\n58,058 km\n本次最小月面高度\n56,320 km\n数值平衡点\n∇Ω = 0\n点\tx / DU\ty / DU\nL1\t0.836915\t0.000000\nL2\t1.155682\t0.000000\nL3\t-1.005063\t0.000000\nL4\t0.487849\t0.866025\nL5\t0.487849\t-0.866025\nmax |∇Ω| = 1.998e-15\n数值自检：25/25 通过；当前仿真状态未改变。\n导出已存储轨迹 CSV查看方程、单位与数值局限\nμ = 0.012150584396   |   1 DU = 384,400 km\nh = 0.0005 · 0 steps\n28 FPS",
+  "console": [],
+  "page_errors": [],
+  "complete": true
+}

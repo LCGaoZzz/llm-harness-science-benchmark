@@ -1,0 +1,104 @@
+{
+  "key": "gptweb_gpt-6pro",
+  "guards": [
+    {
+      "test": {
+        "name": "NaN_input",
+        "s": [
+          "NaN",
+          0.2,
+          0,
+          0
+        ],
+        "h": 0.001
+      },
+      "rejected": true,
+      "error": "SafetyError: 状态含 NaN / Infinity；未提交此步。",
+      "input_after": [
+        "NaN",
+        0.2,
+        0,
+        0
+      ]
+    },
+    {
+      "test": {
+        "name": "inside_physical_Earth",
+        "s": [
+          -0.002150584395829193,
+          0,
+          0,
+          0
+        ],
+        "h": 1e-06
+      },
+      "rejected": true,
+      "error": "SafetyError: 状态进入地球表面保护区。",
+      "input_after": [
+        -0.002150584395829193,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "test": {
+        "name": "Earth_center",
+        "s": [
+          -0.012150584395829193,
+          0,
+          0,
+          0
+        ],
+        "h": 0.001
+      },
+      "rejected": true,
+      "error": "SafetyError: 状态进入地球表面保护区。",
+      "input_after": [
+        -0.012150584395829193,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "test": {
+        "name": "cross_Earth_fast",
+        "s": [
+          0.007849415604170807,
+          0,
+          -100,
+          0
+        ],
+        "h": 0.001
+      },
+      "rejected": true,
+      "error": "SafetyError: 近场步长过大：建议 h ≤ 1.60e-5 TU；未自动变步。",
+      "input_after": [
+        0.007849415604170807,
+        0,
+        -100,
+        0
+      ]
+    },
+    {
+      "test": {
+        "name": "escape_R31",
+        "s": [
+          31,
+          0,
+          0,
+          0
+        ],
+        "h": 0.001
+      },
+      "state": [
+        31.000015499475815,
+        -1.03329864588596e-08,
+        0.03099894387744599,
+        -3.099895421017229e-05
+      ],
+      "committed": true
+    }
+  ]
+}

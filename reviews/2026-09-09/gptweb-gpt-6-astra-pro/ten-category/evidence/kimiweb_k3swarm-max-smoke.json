@@ -1,0 +1,240 @@
+{
+  "entry": {
+    "submission": "kimiweb--k3swarm-max--2026-09-09",
+    "html": "/mnt/data/audit/extracted/kimiweb_k3swarm-max/app/index.html",
+    "sha256": "4ef48f6019bb7bd8e6bfde44b8189155d1e859cb8ef951645de4491161d001ba"
+  },
+  "page_errors": [],
+  "console": [
+    {
+      "type": "log",
+      "text": "%c[SELFTEST] ====== CR3BP 自检开始 ====== color:#4fc3f7"
+    },
+    {
+      "type": "log",
+      "text": "[SELFTEST] L1–L5 残差: PASS | max|Ωx|+|Ωy| = 3.92e-13 (阈值1e-10); L1=0.8369151258 残差6.7e-16; L2=1.1556821654 残差3.9e-13; L3=-1.0050626458 残差4.3e-19; L4=0.4878494144 残差3.9e-17; L5=0.4878494144 残差3.9e-17"
+    },
+    {
+      "type": "log",
+      "text": "[SELFTEST] 步长收敛: PASS | e(h=0.01)=4.79e-9 e(h=0.005)=2.96e-10 比值=16.17 (期望≈16, 允许8–32)"
+    },
+    {
+      "type": "log",
+      "text": "[SELFTEST] RK4 守恒 50TU: PASS | h=0.002, max|ΔC| = 1.78e-15 (阈值1e-8)"
+    },
+    {
+      "type": "log",
+      "text": "[SELFTEST] 辛守恒 500TU: PASS | h=0.005, 前半段 max|ΔC|=6.52e-8 后半段=6.55e-8 (有界<1e-3 且无线性增长)"
+    },
+    {
+      "type": "log",
+      "text": "[SELFTEST] NaN/奇点防护: PASS | NaN检出:true Inf检出:true 地球奇点:true 月球奇点:true 正常不误报:true (主循环共用 checkState)"
+    },
+    {
+      "type": "log",
+      "text": "[SELFTEST] 汇总: ALL PASS | L1=0.8369151258 L2=1.1556821654 L3=-1.0050626458 C(L1)=3.1883411177 C(L2)=3.1721604610 C(L3)=3.0121471507 C(L4,5)=2.9879970511"
+    },
+    {
+      "type": "log",
+      "text": "%c[SELFTEST] ====== 全部通过 ====== color:#4caf7d"
+    }
+  ],
+  "external_requests": [],
+  "title": "地月限制性三体问题实验室 (CR3BP Lab)",
+  "body": "地月 CR3BP 实验室\n圆型限制性三体问题 · 旋转坐标系 · μ=0.012150585609624\n仿真控制\n▶ 开始\n单步\n重置\n清空拖尾\nRK4\n辛 Verlet\n(切换不清轨迹)\n步长 dt\n1.05e-3\n每帧步数\n20\n初始条件\nx₀\ny₀\nvx₀\nvy₀\n应用初始条件 (重置轨迹)\n预设轨道\nL4 扰动\n稳定天平动\nL1 不稳定\n快速发散逃逸\n绕地圆轨道\nr₀=0.1 顺行\n月球引力辅助\n椭圆拱线转移\n视图\n放大 +\n缩小 −\n重置视图\n滚轮缩放 · 左键拖拽平移\n实时状态\nx  = 0.49784941\ny  = 0.86602540\nvx = 0.00000000\nvy = 0.00000000\nt  = 0.0000\nC  = 2.9880728989\nΔC = 0\n积分器: RK4   dt = 1.05e-3\n拖尾点: 0 / 20000\n自检\n重新运行\nL1–L5 残差\nPASS\nmax|Ωx|+|Ωy| = 3.92e-13 (阈值1e-10); L1=0.8369151258 残差6.7e-16; L2=1.1556821654 残差3.9e-13; L3=-1.0050626458 残差4.3e-19; L4=0.4878494144 残差3.9e-17; L5=0.4878494144 残差3.9e-17\n步长收敛\nPASS\ne(h=0.01)=4.79e-9 e(h=0.005)=2.96e-10 比值=16.17 (期望≈16, 允许8–32)\nRK4 守恒 50TU\nPASS\nh=0.002, max|ΔC| = 1.78e-15 (阈值1e-8)\n辛守恒 500TU\nPASS\nh=0.005, 前半段 max|ΔC|=6.52e-8 后半段=6.55e-8 (有界<1e-3 且无线性增长)\nNaN/奇点防护\nPASS\nNaN检出:true Inf检出:true 地球奇点:true 月球奇点:true 正常不误报:true (主循环共用 checkState)\n汇总\nALL PASS\nL1=0.8369151258 L2=1.1556821654 L3=-1.0050626458 C(L1)=3.1883411177 C(L2)=3.1721604610 C(L3)=3.0121471507 C(L4,5)=2.9879970511\n旋转坐标系 (地-月连线固定) · 长度单位=地月距离 · 时间单位=1/ω\nZVC @ C(航天器)\nZVC @ C(L1)\nZVC @ C(L2)\nZVC @ C(L3)\n轨迹拖尾\n✔ 无错误\n▾ 错误日志 (点击展开)",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "btnRun",
+      "type": "submit",
+      "text": "▶ 开始",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnStep",
+      "type": "submit",
+      "text": "单步",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnReset",
+      "type": "submit",
+      "text": "重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnClearTrail",
+      "type": "submit",
+      "text": "清空拖尾",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "intRK4",
+      "type": "submit",
+      "text": "RK4",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "intVerlet",
+      "type": "submit",
+      "text": "辛 Verlet",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "dtSlider",
+      "type": "range",
+      "text": "",
+      "value": "600",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "spfSlider",
+      "type": "range",
+      "text": "",
+      "value": "20",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "icX",
+      "type": "number",
+      "text": "",
+      "value": "0.49784941",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "icY",
+      "type": "number",
+      "text": "",
+      "value": "0.8660254",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "icVX",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "icVY",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnApplyIC",
+      "type": "submit",
+      "text": "应用初始条件 (重置轨迹)",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "pL4",
+      "type": "submit",
+      "text": "L4 扰动\n稳定天平动",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "pL1",
+      "type": "submit",
+      "text": "L1 不稳定\n快速发散逃逸",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "pEarth",
+      "type": "submit",
+      "text": "绕地圆轨道\nr₀=0.1 顺行",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "pMoon",
+      "type": "submit",
+      "text": "月球引力辅助\n椭圆拱线转移",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "zoomIn",
+      "type": "submit",
+      "text": "放大 +",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "zoomOut",
+      "type": "submit",
+      "text": "缩小 −",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "viewReset",
+      "type": "submit",
+      "text": "重置视图",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnRerun",
+      "type": "submit",
+      "text": "重新运行",
+      "value": "",
+      "disabled": false
+    }
+  ],
+  "globals": [],
+  "viewport": {
+    "innerWidth": 1440,
+    "innerHeight": 1000,
+    "scrollWidth": 1440,
+    "scrollHeight": 1000,
+    "canvases": [
+      {
+        "id": "cv",
+        "width": 1118,
+        "height": 1000,
+        "rect": {
+          "x": 322,
+          "y": 0,
+          "width": 1118,
+          "height": 1000,
+          "top": 0,
+          "right": 1440,
+          "bottom": 1000,
+          "left": 322
+        }
+      }
+    ]
+  },
+  "loaded": true
+}

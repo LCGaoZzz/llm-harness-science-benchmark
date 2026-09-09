@@ -1,0 +1,267 @@
+{
+  "entry": {
+    "submission": "codex--6astra-xhigh--2026-09-09",
+    "html": "/mnt/data/benchmark/submissions/codex--6astra-xhigh--2026-09-09/index.html",
+    "sha256": "03f3b6c7011d7f2c757cd2265bf664256f86c8135cb5d1ae33862630cd67af92"
+  },
+  "page_errors": [],
+  "console": [],
+  "external_requests": [],
+  "title": "地月限制性三体问题实验室",
+  "body": "☾\nCELESTIAL MECHANICS / 01\n地月限制性三体问题实验室\n平面 · 圆型 · 共旋转坐标系\n无量纲数值实验 / 单文件离线运行\n▶ 开始模拟\n单步 +h\n↺ 重置\n已暂停\nμ = 0.01215058560962404\n轨迹工作区 / L4 微扰\n视野 4.10 DU · 共旋转系\n计算轨迹\n2Ω = C₀\n不可达域\n+\n−\n⌂\n就绪。点击开始；拖动平移，滚轮缩放。\n仿真时间 / TU\n0.0000\n0.000 天\n旋转系速度 / DU·TU⁻¹\n0.000000\n0.000000 km/s\nJacobi 常数 C\n2.988072899\nC₀ = 2.988072899\n守恒漂移 ΔC = C − C₀\n+0.00e+0\n相对漂移 0.00e+0\nx / DU\n0.49784941\ny / DU\n0.86602540\nvₓ / DU·TU⁻¹\n0.00000000\nvᵧ / DU·TU⁻¹\n0.00000000\nJacobi 漂移历史 / ±1.0e-14\nmax |ΔC| = 0.00e+0\n质心惯性系速度 1.01646 km/s · 月心距离 387769 km · 已计算 0 步\n实验预设\n01\nL4 微扰\nL1 不稳定运动\n绕地轨道\n月球引力辅助\n\n从 L4 向 +x 扰动 0.01 DU。观察稳定三角点附近的长、短周期叠加。\n\n初始条件\n02\nx₀ / DU\ny₀ / DU\nvₓ₀ / DU·TU⁻¹\nvᵧ₀ / DU·TU⁻¹\n应用初值并重置\n\n预设初值已载入；可修改后重新应用。\n\n积分与显示\n03\n积分器\nYoshida 四阶辛积分 · 长期\n经典 RK4 · 四阶\n时间步长 h / TU\n每步 3829.81 秒（物理时间）\n播放速率 1.00 TU/s\n视野宽度 4.10 DU\n 零速度曲线\n 网格\n\n固定步长；速率只改变每秒步数。切换算法保留当前状态与 C₀。近遇时步长过大会暂停。\n\n模型、平衡点与数值边界\n可执行数值自检\n运行自检\n\n尚未运行。直接调用页面使用的积分器，每次重新计算。\n\n检验平衡残差、外部锚点、收敛阶、守恒量、辛结构与非法输入。运行自检会暂停主模拟；测试不改动轨迹。\n\n操作：空格 开始/暂停 · . 单步 · R 重置 · 方向键 平移\n浏览器本地计算 · 无网络依赖 · IEEE 754 双精度",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "play",
+      "type": "submit",
+      "text": "▶ 开始模拟",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "step",
+      "type": "submit",
+      "text": "单步 +h",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "reset",
+      "type": "submit",
+      "text": "↺ 重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "zoomIn",
+      "type": "submit",
+      "text": "+",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "zoomOut",
+      "type": "submit",
+      "text": "−",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "home",
+      "type": "submit",
+      "text": "⌂",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L4 微扰",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L1 不稳定运动",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "绕地轨道",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "月球引力辅助",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "x0",
+      "type": "number",
+      "text": "",
+      "value": "0.4978494143904",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "y0",
+      "type": "number",
+      "text": "",
+      "value": "0.8660254037844",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "vx0",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "vy0",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "apply",
+      "type": "submit",
+      "text": "应用初值并重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "integrator",
+      "type": "select-one",
+      "text": "Yoshida 四阶辛积分 · 长期\n经典 RK4 · 四阶",
+      "value": "yoshida",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "dt",
+      "type": "number",
+      "text": "",
+      "value": "0.01",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "rate",
+      "type": "range",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "zoom",
+      "type": "range",
+      "text": "",
+      "value": "0.61",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "showZVC",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "showGrid",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "runTests",
+      "type": "submit",
+      "text": "运行自检",
+      "value": "",
+      "disabled": false
+    }
+  ],
+  "globals": [
+    {
+      "key": "CR3BP",
+      "keys": [
+        "MU",
+        "DU",
+        "TU",
+        "EARTH",
+        "MOON",
+        "L",
+        "presets",
+        "field",
+        "omega",
+        "gradient",
+        "rhs",
+        "jacobi",
+        "canonical",
+        "velocity",
+        "hamiltonian",
+        "rk4",
+        "yoshida",
+        "methods",
+        "checkedStep",
+        "integrate",
+        "clearance",
+        "segmentDistance",
+        "contourValue",
+        "triangleContour",
+        "edgeRoot",
+        "selfTests",
+        "distance"
+      ]
+    },
+    {
+      "key": "labSnapshot",
+      "keys": []
+    }
+  ],
+  "viewport": {
+    "innerWidth": 1440,
+    "innerHeight": 1000,
+    "scrollWidth": 1440,
+    "scrollHeight": 1400,
+    "canvases": [
+      {
+        "id": "orbitCanvas",
+        "width": 1054,
+        "height": 610,
+        "rect": {
+          "x": 24,
+          "y": 166.6875,
+          "width": 1054,
+          "height": 610,
+          "top": 166.6875,
+          "right": 1078,
+          "bottom": 776.6875,
+          "left": 24
+        }
+      },
+      {
+        "id": "driftCanvas",
+        "width": 1020,
+        "height": 90,
+        "rect": {
+          "x": 41,
+          "y": 1043.28125,
+          "width": 1020,
+          "height": 90,
+          "top": 1043.28125,
+          "right": 1061,
+          "bottom": 1133.28125,
+          "left": 41
+        }
+      }
+    ]
+  },
+  "loaded": true
+}

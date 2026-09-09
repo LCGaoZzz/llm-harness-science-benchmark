@@ -1,0 +1,143 @@
+{
+  "schema": "cr3bp-expert-review-import/v1",
+  "reviewer_id": "gptweb-gpt-6-astra-pro",
+  "reviewer_attribution": "Identity supplied by the repository owner in the import request.",
+  "date": "2026-09-09",
+  "reviewed_source_commit": "ac5a306be9b29978ad6787903821b4a6a181ff01",
+  "review_format": "10+4",
+  "status": "complete",
+  "ten_category_review": {
+    "status": "imported",
+    "scores": "ten-category/repo/evaluations/2026-09-09-independent/scores.json",
+    "report": "ten-category/repo/evaluations/2026-09-09-independent/REVIEW.md",
+    "leaderboard": "ten-category/repo/LEADERBOARD.md",
+    "assessment_type": "existing_scores_retained_after_independent_cross_check",
+    "score_source_commit": "faef8de83fd70487b8986fe58c972dd403eb2176",
+    "independent_new_point_estimates": false
+  },
+  "top_four_science_review": {
+    "status": "imported",
+    "scores": "science-final/scores.json",
+    "report": "science-final/SCIENCE_REVIEW.md",
+    "weights": [
+      30,
+      35,
+      25,
+      10
+    ],
+    "assessment_type": "new_science_only_assessment"
+  },
+  "interpretation": "The supplied ten-category package retains the prior unified scores after an independent execution cross-check; it is not a second independent set of score estimates. The top-four package provides a new science-only assessment. Both original packages are preserved without rescoring.",
+  "original_archives": [
+    {
+      "path": "source/CR3BP_top4_science_only_final_review.zip",
+      "sha256": "9c193726027628510f28e8705842249d06378e6224250fe9d8208163c1898f8f",
+      "bytes": 121172,
+      "part": "4",
+      "extracted_to": "science-final",
+      "validation": {
+        "manifest_files_verified": 17,
+        "archive_members_preserved": 18,
+        "source_html_verified": [
+          {
+            "id": "harnessL_ds-4.1flashmax",
+            "sha256": "2092ed57f0bf0b21f9aff27e72de0f01e1098ecf49885f667cc844b90f692bb6",
+            "source_paths": [
+              "submissions/harnessL--ds-4.1flashmax--2026-09-09/lab.html"
+            ]
+          },
+          {
+            "id": "gptweb_gpt-6pro",
+            "sha256": "e47703cc377ef47a5c1b3f356bcdbac2b555946e0e95c598b9197fe4a5ed8a75",
+            "source_paths": [
+              "submissions/gptweb--gpt-6pro--2026-09-09/earth_moon_lab.html"
+            ]
+          },
+          {
+            "id": "codex_6astra-xhigh",
+            "sha256": "03f3b6c7011d7f2c757cd2265bf664256f86c8135cb5d1ae33862630cd67af92",
+            "source_paths": [
+              "submissions/codex--6astra-xhigh--2026-09-09/index.html"
+            ]
+          },
+          {
+            "id": "zcode_glm-5.3max",
+            "sha256": "760b0f6e0cdee3028313adf5af875e4b1b69a83342757ea3622db87a5163d906",
+            "source_paths": [
+              "submissions/zcode--glm-5.3max--2026-09-09/index.html"
+            ]
+          }
+        ],
+        "numerical_experiments_rerun_on_import": false
+      }
+    },
+    {
+      "part": "10",
+      "path": "source/CR3BP_seven_submission_review_2026-09-09.zip",
+      "extracted_to": "ten-category",
+      "sha256": "287537b7c7ac55935af99434fdc8135f4ddcd9fcd06b62d97174c1069be01917",
+      "bytes": 3146964,
+      "validation": {
+        "manifest_files_verified": 81,
+        "archive_members_preserved": 82,
+        "source_html_verified": [
+          {
+            "id": "codex_6astra-xhigh",
+            "sha256": "03f3b6c7011d7f2c757cd2265bf664256f86c8135cb5d1ae33862630cd67af92",
+            "source_paths": [
+              "submissions/codex--6astra-xhigh--2026-09-09/index.html"
+            ]
+          },
+          {
+            "id": "gptweb_gpt-6pro",
+            "sha256": "e47703cc377ef47a5c1b3f356bcdbac2b555946e0e95c598b9197fe4a5ed8a75",
+            "source_paths": [
+              "submissions/gptweb--gpt-6pro--2026-09-09/earth_moon_lab.html",
+              "submissions/gptweb--gpt-6pro--2026-09-09/earth_moon_lab_source_and_validation.zip!earth_moon_lab_source/earth_moon_lab.html",
+              "submissions/gptweb--gpt-6pro--2026-09-09/earth_moon_lab_source_and_validation.zip!earth_moon_lab_source/snapshots/11/earth_moon_lab.html",
+              "submissions/gptweb--gpt-6pro--2026-09-09/earth_moon_lab_source_and_validation.zip!earth_moon_lab_source/snapshots/12/earth_moon_lab.html"
+            ]
+          },
+          {
+            "id": "harnessL_ds-4.1flashmax",
+            "sha256": "2092ed57f0bf0b21f9aff27e72de0f01e1098ecf49885f667cc844b90f692bb6",
+            "source_paths": [
+              "submissions/harnessL--ds-4.1flashmax--2026-09-09/lab.html"
+            ]
+          },
+          {
+            "id": "harnessL_qwen-3.8flashxhigh",
+            "sha256": "c496e3bde81beb685d321e3e2aefbaa6949a0846c0d4634e3603f389fd4663eb",
+            "source_paths": [
+              "submissions/harnessL--qwen-3.8flashxhigh--2026-09-09/cr3bp_lab.html"
+            ]
+          },
+          {
+            "id": "kimiweb_k3swarm-max",
+            "sha256": "4ef48f6019bb7bd8e6bfde44b8189155d1e859cb8ef951645de4491161d001ba",
+            "source_paths": [
+              "submissions/kimiweb--k3swarm-max--2026-09-09/Kimi_Agent_地月三体实验室.zip!cr3bp-lab/index.html",
+              "submissions/kimiweb--k3swarm-max--2026-09-09/Kimi_Agent_地月三体实验室.zip!app/index.html"
+            ]
+          },
+          {
+            "id": "zcode_glm-5.3max",
+            "sha256": "760b0f6e0cdee3028313adf5af875e4b1b69a83342757ea3622db87a5163d906",
+            "source_paths": [
+              "submissions/zcode--glm-5.3max--2026-09-09/index.html"
+            ]
+          },
+          {
+            "id": "zcode_glm-5.3maxlinux",
+            "sha256": "fe76f3a5dec68e4a6c921793af74750b6bacaddab3401220f0dc2ab981d0e65a",
+            "source_paths": [
+              "submissions/zcode--glm-5.3maxlinux--2026-09-09/index.html"
+            ]
+          }
+        ],
+        "numerical_experiments_rerun_on_import": false
+      }
+    }
+  ],
+  "top_four_selection_verified": true
+}

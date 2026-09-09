@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="可离线运行的地月平面圆型限制性三体问题数值实验室。"><link rel="icon" href="data:,"><title>地月限制性三体问题实验室</title>
+<style id="theme">
+:root{color-scheme:light;--ink:#172d35;--muted:#62747b;--line:#dbe3e6;--teal:#067b78;--mint:#60e1c2;--amber:#f4be68;--panel:#fff;--bg:#f2f5f6}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:wait}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,canvas:focus-visible{outline:3px solid #19a4a0;outline-offset:3px}button{border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);padding:8px 12px;transition:background .15s}button:hover{background:#edf4f5}input,select{width:100%;min-width:0;border:1px solid #cbd6da;border-radius:6px;padding:8px 9px;color:var(--ink);background:#fff}input[type=checkbox]{width:auto;accent-color:var(--teal)}input[type=range]{padding:0;accent-color:var(--teal)}header{padding:22px 30px 18px;display:flex;align-items:center;gap:15px;background:white;border-bottom:1px solid var(--line)}.mark{width:42px;height:42px;display:grid;place-items:center;border:1px solid #aecacb;border-radius:50%;color:var(--teal);font-size:29px}.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--teal);font-weight:700}.title{font-size:24px;font-weight:650;letter-spacing:.015em;margin:2px 0 0;line-height:1.3}.header-note{margin-left:auto;color:var(--muted);font-size:13px;text-align:right}.header-note b{color:var(--ink);font-weight:500}.shell{padding:20px 24px;max-width:1800px;margin:auto}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.transport{display:flex;gap:8px;align-items:center}.primary{background:var(--teal);color:white;border-color:var(--teal)}.primary:hover{background:#056461}.transport .primary{min-width:118px}.status{font-size:13px;color:var(--muted);display:flex;gap:7px;align-items:center;margin-left:8px}.dot{width:7px;height:7px;background:#94a5ac;border-radius:50%}.running .dot{background:#0a9d79;box-shadow:0 0 0 4px #e2f5ed}.tag{font-size:13px;border:1px solid #cfdde0;border-radius:20px;padding:5px 10px;color:var(--muted)}.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}.stage{position:relative;background:#0c1b25;border-radius:10px;overflow:hidden;height:clamp(490px,61vh,770px);box-shadow:0 8px 24px #24384416}.stage canvas{width:100%;height:100%;display:block;touch-action:none}.stage-head{position:absolute;top:16px;left:18px;right:18px;display:flex;justify-content:space-between;pointer-events:none;color:#b2c9d3;font-size:12px;letter-spacing:.06em}.stage-head b{color:#edf7fb;font-size:14px;letter-spacing:.01em}.stage-foot{position:absolute;bottom:13px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:end;pointer-events:none;gap:10px}.legend{display:flex;gap:14px;flex-wrap:wrap;color:#9db7c3;font-size:12px}.legend i{display:inline-block;width:13px;height:2px;vertical-align:middle;margin-right:5px;background:var(--mint)}.legend .gold{background:var(--amber)}.legend .shade{height:8px;background:#7d688842}.plot-tools{display:flex;gap:5px;pointer-events:auto}.plot-tools button{background:#182d3a;border-color:#334954;color:#dcecf2;padding:5px 10px;min-width:32px}.notice{min-height:36px;padding:9px 2px 0;color:var(--muted);font-size:13px}.notice.error{color:#a93926}.telemetry{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:white;border:1px solid var(--line);border-radius:9px;margin-top:12px}.metric{padding:15px 18px;border-right:1px solid var(--line)}.metric:last-child{border:0}.label{color:var(--muted);font-size:12px;margin-bottom:5px}.value{font:20px/1.3 ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.04em}.sub{color:var(--muted);font-size:12px;margin-top:5px;font-variant-numeric:tabular-nums}.coordinates{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:12px 4px;color:#5c7079;font-size:13px}.coordinates b{display:block;font:16px/1.6 ui-monospace,Consolas,monospace;color:var(--ink)}.panel{background:white;border:1px solid var(--line);border-radius:9px;padding:18px}.panel+.panel{margin-top:14px}.panel h2{font-size:15px;margin:0 0 13px;display:flex;align-items:center;justify-content:space-between}.section-number{color:#899ba1;font:12px ui-monospace,Consolas,monospace}.presets{display:grid;grid-template-columns:1fr 1fr;gap:7px}.preset{padding:9px 4px;font-size:13px}.preset.active{background:#eaf7f3;border-color:#75b9a9;color:#056662}.description{font-size:13px;color:var(--muted);margin:12px 0 0;min-height:58px}.row{display:flex;align-items:center;gap:10px;justify-content:space-between}.control{display:block;font-size:13px;color:#4b626c;margin-top:12px}.control>span{display:block;margin-bottom:5px}.inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px}.inputs .control{margin-top:8px}.mono{font-family:ui-monospace,Consolas,monospace}.apply{width:100%;margin-top:12px}.hint{font-size:12px;color:var(--muted);margin:9px 0 0}.switches{display:flex;gap:15px;margin-top:12px;font-size:13px}.drift{background:white;border:1px solid var(--line);border-radius:9px;padding:13px 16px;margin-top:12px}.drift-heading{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted)}#driftCanvas{width:100%;height:90px;display:block}.details{display:grid;grid-template-columns:1.05fr 1fr;gap:18px;margin-top:18px}.details .panel{margin:0}details summary{cursor:pointer;font-weight:600;padding:4px 0}details p,details li{font-size:14px;color:#546b75}.equation{font-family:ui-monospace,Consolas,monospace;background:#f1f6f7;padding:10px 12px;border-radius:6px;line-height:1.9;font-size:14px;overflow:auto}table{width:100%;border-collapse:collapse;margin-top:12px;font-size:12px;font-variant-numeric:tabular-nums}th{text-align:left;color:var(--muted);font-weight:500}td,th{padding:6px 3px;border-bottom:1px solid #e7edef}td:not(:first-child){font-family:ui-monospace,Consolas,monospace}.tests-head{display:flex;gap:8px;align-items:center;justify-content:space-between}.tests-head h2{margin:0}.test-summary{font-size:13px;color:var(--muted);margin:12px 0}.test-list{max-height:285px;overflow:auto}.test-row{border-top:1px solid #e9eeef;padding:8px 0;display:grid;grid-template-columns:40px 1fr;gap:6px;font-size:13px}.test-row .pass{color:#08775e}.test-row .fail{color:#b23825}.test-detail{display:block;font-size:12px;color:var(--muted);overflow-wrap:anywhere}a{color:#057c7a}footer{display:flex;justify-content:space-between;gap:12px;margin-top:18px;color:var(--muted);font-size:12px;padding-bottom:7px}.warning-value{color:#b75424}@media(min-width:1500px){.layout{grid-template-columns:minmax(0,1fr) 350px}.stage{height:690px}}@media(max-width:1100px){.layout{grid-template-columns:minmax(0,1fr) 290px}.shell{padding:16px}.metric{padding:12px 10px}.value{font-size:17px}.coordinates{gap:8px}.coordinates b{font-size:14px}}@media(max-width:800px){header{padding:17px}.title{font-size:20px}.header-note{display:none}.shell{padding:12px}.layout{grid-template-columns:1fr}.stage{height:520px}.sidebar{display:grid;grid-template-columns:1fr 1fr;gap:12px}.panel+.panel{margin:0}.sidebar .panel:last-child{grid-column:1/-1}.details{grid-template-columns:1fr}.tag{display:none}.telemetry{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}}@media(max-width:480px){.sidebar{grid-template-columns:1fr}.sidebar .panel:last-child{grid-column:auto}.stage{height:440px}.status{display:none}.transport{width:100%}.transport button{flex:1;padding:9px 5px}.coordinates{grid-template-columns:repeat(2,1fr)}.legend{gap:7px;font-size:11px}.stage-head{left:12px;right:12px}.stage-head>span{max-width:45%;text-align:right}.description{min-height:0}.panel{padding:15px}footer{display:block}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<header><div class="mark" aria-hidden="true">☾</div><div><div class="eyebrow">CELESTIAL MECHANICS / 01</div><h1 class="title">地月限制性三体问题实验室</h1></div><div class="header-note"><b>平面 · 圆型 · 共旋转坐标系</b><br>无量纲数值实验 / 单文件离线运行</div></header>
+<main class="shell">
+<div class="toolbar"><div class="transport"><button id="play" class="primary">▶ 开始模拟</button><button id="step">单步 +h</button><button id="reset">↺ 重置</button><span id="runStatus" class="status"><i class="dot"></i><span>已暂停</span></span></div><span class="tag">μ = 0.01215058560962404</span></div>
+<div class="layout"><section aria-label="轨迹与实时数据">
+<div class="stage" id="stage"><canvas id="orbitCanvas" tabindex="0" aria-label="地月共旋转轨迹图；拖动平移，滚轮缩放，方向键平移"></canvas><div class="stage-head"><b>轨迹工作区 <span id="plotPreset">/ L4 微扰</span></b><span id="viewLabel">1 DU = 地月距离</span></div><div class="stage-foot"><div class="legend"><span><i></i>计算轨迹</span><span><i class="gold"></i>2Ω = C₀</span><span><i class="shade"></i>不可达域</span></div><div class="plot-tools"><button id="zoomIn" aria-label="放大">+</button><button id="zoomOut" aria-label="缩小">−</button><button id="home" aria-label="恢复预设视野">⌂</button></div></div></div>
+<div id="notice" class="notice" role="status" aria-live="polite">就绪。点击开始；拖动平移，滚轮缩放。</div>
+<div class="telemetry"><div class="metric"><div class="label">仿真时间 / TU</div><div class="value" id="time">0.0000</div><div class="sub" id="days">0.000 天</div></div><div class="metric"><div class="label">旋转系速度 / DU·TU⁻¹</div><div class="value" id="speed">0.000000</div><div class="sub" id="speedKm">0.000000 km/s</div></div><div class="metric"><div class="label">Jacobi 常数 C</div><div class="value" id="jacobi">—</div><div class="sub" id="c0">C₀ = —</div></div><div class="metric"><div class="label">守恒漂移 ΔC = C − C₀</div><div class="value" id="delta">0.00e+0</div><div class="sub" id="relative">相对漂移 0.00e+0</div></div></div>
+<div class="coordinates"><div>x / DU<b id="xLive">—</b></div><div>y / DU<b id="yLive">—</b></div><div>vₓ / DU·TU⁻¹<b id="vxLive">—</b></div><div>vᵧ / DU·TU⁻¹<b id="vyLive">—</b></div></div>
+<div class="drift"><div class="drift-heading"><span>Jacobi 漂移历史 <span id="driftScale"></span></span><span id="maxDrift">max |ΔC| = 0</span></div><canvas id="driftCanvas" aria-label="Jacobi 常数相对初始值的带符号误差历史"></canvas><div class="sub" id="encounter">惯性系速度 — · 月心距离 —</div></div>
+</section>
+<aside class="sidebar"><section class="panel"><h2>实验预设 <span class="section-number">01</span></h2><div class="presets"><button class="preset active" data-preset="l4">L4 微扰</button><button class="preset" data-preset="l1">L1 不稳定运动</button><button class="preset" data-preset="earth">绕地轨道</button><button class="preset" data-preset="flyby">月球引力辅助</button></div><p id="presetDescription" class="description"></p></section>
+<section class="panel"><h2>初始条件 <span class="section-number">02</span></h2><div class="inputs"><label class="control"><span>x₀ / DU</span><input id="x0" class="mono" type="number" step="any" required></label><label class="control"><span>y₀ / DU</span><input id="y0" class="mono" type="number" step="any" required></label><label class="control"><span>vₓ₀ / DU·TU⁻¹</span><input id="vx0" class="mono" type="number" step="any" required></label><label class="control"><span>vᵧ₀ / DU·TU⁻¹</span><input id="vy0" class="mono" type="number" step="any" required></label></div><button id="apply" class="apply">应用初值并重置</button><p id="initialHint" class="hint">速度在旋转系中定义。修改后点击应用。</p></section>
+<section class="panel"><h2>积分与显示 <span class="section-number">03</span></h2><label class="control"><span>积分器</span><select id="integrator"><option value="yoshida">Yoshida 四阶辛积分 · 长期</option><option value="rk4">经典 RK4 · 四阶</option></select></label><label class="control"><span>时间步长 h / TU</span><input id="dt" type="number" min="0.000001" max="0.05" step="any" value="0.01" class="mono"></label><div class="hint" id="dtHint"></div><label class="control"><span class="row">播放速率 <output id="rateLabel">1 TU/s</output></span><input id="rate" type="range" min="-2" max="1" step="0.05" value="0"></label><label class="control"><span class="row">视野宽度 <output id="zoomLabel">2.90 DU</output></span><input id="zoom" type="range" min="-1.2" max="1.3" step="0.01" value="0.46"></label><div class="switches"><label><input id="showZVC" type="checkbox" checked> 零速度曲线</label><label><input id="showGrid" type="checkbox" checked> 网格</label></div><p class="hint">固定步长；速率只改变每秒步数。切换算法保留当前状态与 C₀。近遇时步长过大会暂停。</p></section></aside></div>
+<div class="details"><section class="panel"><details><summary>模型、平衡点与数值边界</summary><p>质心为原点，地球在 (−μ, 0)，月球在 (1−μ, 0)。坐标轴以角速度 1 逆时针旋转；一圈为 2π TU。</p><div class="equation">Ω = (x² + y²)/2 + (1−μ)/r₁ + μ/r₂<br>ẍ = 2ẏ + ∂Ω/∂x<br>ÿ = −2ẋ + ∂Ω/∂y<br>C = 2Ω − (ẋ² + ẏ²)</div><p>零速度曲线使用初始 C₀，阴影表示 2Ω−C₀ &lt; 0。曲线由当前视野网格计算，边界有像素离散误差；窄通道需放大查看。天体标记有最小显示半径，碰撞判定使用真实尺度半径。</p><table><thead><tr><th>平衡点</th><th>x</th><th>y</th><th>|∇Ω|</th></tr></thead><tbody id="lagrangeTable"></tbody></table><p>L1–L3 由区间二分求根；L4、L5 由二维 Newton 迭代求根。Yoshida 方法在 pₓ=vₓ−y、pᵧ=vᵧ+x 下对 H=|p|²/2+y pₓ−x pᵧ−U 做精确子流的对称四阶复合，含负子步。</p><p>本模型忽略太阳、月球偏心率、轨道倾角、非球形引力与航天器质量。无碰撞正则化、无误差自适应；近遇守卫是保守筛查，不是精确碰撞时刻求解。长时间保持小 Jacobi 漂移不代表轨迹相位始终准确。中途改变 h 会改变对应的修正 Hamiltonian。轨迹最多保留最近 40,000 点。</p><p>参数与外部锚点：<a href="https://ssd-api.jpl.nasa.gov/doc/periodic_orbits.html" target="_blank" rel="noreferrer">NASA/JPL</a>；四阶对称复合：<a href="https://doi.org/10.1016/0375-9601(90)90092-3" target="_blank" rel="noreferrer">Yoshida (1990)</a>。1 DU = 389,703.265 km，1 TU = 382,981.289 s，采用该 JPL 示例系统的整套单位。</p></details></section>
+<section class="panel"><div class="tests-head"><h2>可执行数值自检</h2><button id="runTests">运行自检</button></div><p class="test-summary" id="testSummary">尚未运行。直接调用页面使用的积分器，每次重新计算。</p><div class="test-list" id="testResults" aria-live="polite"></div><p class="hint">检验平衡残差、外部锚点、收敛阶、守恒量、辛结构与非法输入。运行自检会暂停主模拟；测试不改动轨迹。</p></section></div>
+<footer><span>操作：空格 开始/暂停 · . 单步 · R 重置 · 方向键 平移</span><span>浏览器本地计算 · 无网络依赖 · IEEE 754 双精度</span></footer>
+</main>
+<script id="physics">
+'use strict';
+/* Pure numerical core. Units: distance=1, total mass=1, angular rate=1.
+   State [x,y,vx,vy] is in the barycentric, counterclockwise rotating frame.
+   JPL system parameters: https://ssd-api.jpl.nasa.gov/doc/periodic_orbits.html */
+const CR3BP = (() => {
+  const MU=0.01215058560962404, DU=389703.2648292776, TU=382981.2891290545;
+  const EARTH=6378.137/DU, MOON=1737.1/DU, EPS=1e-10;
+  const norm=a=>Math.hypot(...a), distance=(a,b)=>norm(a.map((v,i)=>v-b[i]));
+  function finite(s) { if(!Array.isArray(s)||s.length!==4||!s.every(Number.isFinite)||s.some(v=>Math.abs(v)>1e8)) throw Error('状态包含非有限值或超出数值范围'); }
+  function field(x,y) {
+    if(!Number.isFinite(x)||!Number.isFinite(y)) throw Error('坐标必须为有限数');
+    const a=x+MU,b=x-1+MU,r1=Math.hypot(a,y),r2=Math.hypot(b,y);
+    if(r1<EPS||r2<EPS) throw Error('引力奇点：位置与天体中心重合');
+    const k1=(1-MU)/r1**3,k2=MU/r2**3;
+    return {gx:-k1*a-k2*b,gy:-(k1+k2)*y,u:(1-MU)/r1+MU/r2,r1,r2};
+  }
+  function omega(x,y) { const f=field(x,y); return .5*(x*x+y*y)+f.u; }
+  function gradient(x,y) {const f=field(x,y);return [x+f.gx,y+f.gy];}
+  function rhs(s) {finite(s);const [x,y,vx,vy]=s,g=gradient(x,y);return [vx,vy,2*vy+g[0],-2*vx+g[1]];}
+  function jacobi(s) {finite(s);return 2*omega(s[0],s[1])-s[2]**2-s[3]**2;}
+  function validH(h) {if(!Number.isFinite(h)||h===0||Math.abs(h)>.05) throw Error('步长必须非零、有限且 |h| ≤ 0.05');}
+  function rk4(s,h) {
+    finite(s);validH(h);
+    const add=(a,k,w)=>a.map((v,i)=>v+w*k[i]);
+    const a=rhs(s),b=rhs(add(s,a,h/2)),c=rhs(add(s,b,h/2)),d=rhs(add(s,c,h));
+    const out=s.map((v,i)=>v+h*(a[i]+2*b[i]+2*c[i]+d[i])/6);finite(out);return out;
+  }
+  function canonical(s) {return [s[0],s[1],s[2]-s[1],s[3]+s[0]];}
+  function velocity(z) {return [z[0],z[1],z[2]+z[1],z[3]-z[0]];}
+  function hamiltonian(z) {const [x,y,px,py]=z;return .5*(px*px+py*py)+y*px-x*py-field(x,y).u;}
+  /* H=A+B; A=|p|²/2 + y px - x py; B=-U.
+     Exact A flow rotates BOTH q+h p and p by -h. B is a gravity kick.
+     S2=B(h/2) A(h) B(h/2); Yoshida S4=S2(w1 h) S2(w0 h) S2(w1 h).
+     Negative internal substeps are essential; velocity Verlet on (x,v) is not used. */
+  function split2(z,h) {
+    let [x,y,px,py]=z,f=field(x,y);px+=h/2*f.gx;py+=h/2*f.gy;
+    const c=Math.cos(h),s=Math.sin(h),qx=x+h*px,qy=y+h*py;
+    x=c*qx+s*qy;y=-s*qx+c*qy;
+    const p=c*px+s*py;py=-s*px+c*py;px=p;
+    f=field(x,y);return [x,y,px+h/2*f.gx,py+h/2*f.gy];
+  }
+  const W1=1/(2-Math.cbrt(2)),W0=1-2*W1;
+  function yoshida(s,h) {
+    finite(s);validH(h);let z=canonical(s);
+    for(const w of [W1,W0,W1]) z=split2(z,w*h);
+    const out=velocity(z);finite(out);return out;
+  }
+  const methods={rk4,yoshida};
+  function bisect(fn,a,b,tol=2e-15) {
+    let fa=fn(a),fb=fn(b);if(!Number.isFinite(fa)||!Number.isFinite(fb)||fa*fb>0) throw Error('根未被区间包围');
+    for(let i=0;i<100;i++){const m=(a+b)/2,fm=fn(m);if(fm===0||b-a<tol)return m;if(fa*fm<=0){b=m;fb=fm;}else{a=m;fa=fm;}}
+    return (a+b)/2;
+  }
+  function triangular(sign) {
+    let x=.45,y=sign*.8;
+    for(let i=0;i<30;i++){
+      const f=field(x,y),g=gradient(x,y),a=x+MU,b=x-1+MU;
+      const k1=(1-MU)/f.r1**3,k2=MU/f.r2**3,q1=3*(1-MU)/f.r1**5,q2=3*MU/f.r2**5;
+      const xx=1-k1-k2+q1*a*a+q2*b*b,yy=1-k1-k2+(q1+q2)*y*y,xy=(q1*a+q2*b)*y,det=xx*yy-xy*xy;
+      if(Math.abs(det)<1e-15)throw Error('拉格朗日点 Newton 矩阵退化');
+      const dx=(yy*g[0]-xy*g[1])/det,dy=(-xy*g[0]+xx*g[1])/det;x-=dx;y-=dy;
+      if(Math.hypot(dx,dy)<1e-14) return [x,y];
+    }throw Error('三角点未收敛');
+  }
+  function lagrange() {
+    const fn=x=>gradient(x,0)[0];
+    return [[bisect(fn,-MU+1e-6,1-MU-1e-6),0],[bisect(fn,1-MU+1e-6,3),0],[bisect(fn,-3,-MU-1e-6),0],triangular(1),triangular(-1)].map((p,i)=>({name:'L'+(i+1),x:p[0],y:p[1],residual:norm(gradient(...p)),C:2*omega(...p)}));
+  }
+  const L=lagrange();
+  const presets={
+    l4:{name:'L4 微扰',state:[L[3].x+.01,L[3].y,0,0],h:.01,span:2.9,center:[.15,0],rate:1,description:'从 L4 向 +x 扰动 0.01 DU。观察稳定三角点附近的长、短周期叠加。'},
+    l1:{name:'L1 不稳定运动',state:[L[0].x+.0001,0,0,.0001],h:.001,span:1.65,center:[.65,0],rate:.3,description:'L1 附近只有微小位移与速度扰动，偏差仍会增长。曲线并非闭合光环轨道。'},
+    earth:{name:'绕地轨道',state:[.3-MU,0,0,Math.sqrt((1-MU)/.3)-.3],h:.001,span:1.25,center:[-MU,0],rate:.25,description:'以地心二体圆轨道速度起步，并转换为旋转系速度；月球摄动使其并非精确圆。'},
+    flyby:{name:'月球引力辅助',state:[.983023190751,.339530631148,.364091086118,-.756469092483],h:.0001,span:1.1,center:[.88,.1],rate:.08,description:'从月球前方入射，在近月弯折后提高质心惯性系速度。预设只有初值，飞掠轨迹由积分器实时计算。'}
+  };
+  function clearance(s) {const f=field(s[0],s[1]);return Math.min(f.r1-EARTH,f.r2-MOON);}
+  function segmentDistance(a,b,cx){const dx=b[0]-a[0],dy=b[1]-a[1],n=dx*dx+dy*dy;const t=n?Math.max(0,Math.min(1,((cx-a[0])*dx-a[1]*dy)/n)):0;return Math.hypot(a[0]+t*dx-cx,a[1]+t*dy);}
+  function checkedStep(s,h,method) {
+    finite(s);validH(h);if(h<=0)throw Error('界面步长必须大于 0');if(!methods[method])throw Error('未知积分器');
+    const f=field(s[0],s[1]);if(f.r1<=EARTH||f.r2<=MOON)throw Error('已触及天体表面，积分停止');
+    const v=Math.hypot(s[2],s[3]),scale=Math.min(Math.sqrt(f.r1**3/(1-MU)),Math.sqrt(f.r2**3/MU),f.r1/Math.max(v,1e-10),f.r2/Math.max(v,1e-10));
+    if(h>.06*scale) throw Error('近遇步长不足：请减小 h 后继续');
+    const out=methods[method](s,h);
+    if(segmentDistance(s,out,-MU)<=EARTH||segmentDistance(s,out,1-MU)<=MOON)throw Error('检测到天体表面穿越，保留最后有效状态');
+    if(!Number.isFinite(jacobi(out)))throw Error('Jacobi 常数非有限，积分停止');
+    return out;
+  }
+  function integrate(s,method,h,T) {
+    const n=Math.round(T/h);if(n<1||Math.abs(n*h-T)>1e-9)throw Error('测试时长必须为步长的整数倍');
+    let a=s.slice(),c0=jacobi(a),maxDrift=0,minMoon=Infinity;
+    for(let i=0;i<n;i++){a=methods[method](a,h);maxDrift=Math.max(maxDrift,Math.abs(jacobi(a)-c0));minMoon=Math.min(minMoon,Math.hypot(a[0]-1+MU,a[1]));}
+    return {state:a,maxDrift,finalDrift:jacobi(a)-c0,minMoon,steps:n};
+  }
+  function contourValue(x,y,C){return 2*omega(x,y)-C;}
+  function triangleContour(ps,vs) {
+    const hits=[];
+    for(let e=0;e<3;e++){const f=(e+1)%3;if((vs[e]>=0)===(vs[f]>=0))continue;const t=vs[e]/(vs[e]-vs[f]);hits.push([ps[e][0]+t*(ps[f][0]-ps[e][0]),ps[e][1]+t*(ps[f][1]-ps[e][1])]);}
+    return hits.length===2?hits:[];
+  }
+  function edgeRoot(a,b,C) {
+    let fa=contourValue(...a,C),fb=contourValue(...b,C);
+    if(fa*fb>0)throw Error('等值线边没有变号');
+    for(let i=0;i<35;i++){const m=[(a[0]+b[0])/2,(a[1]+b[1])/2],fm=contourValue(...m,C);if(fa*fm<=0){b=m;fb=fm;}else{a=m;fa=fm;}}
+    return [(a[0]+b[0])/2,(a[1]+b[1])/2];
+  }
+  async function selfTests(progress=()=>{}) {
+    const results=[];
+    async function test(name,fn){try{const r=await fn();results.push({name,pass:Boolean(r.pass),...r});}catch(e){results.push({name,pass:false,detail:e.message});}progress(results.slice());await new Promise(r=>setTimeout(r,0));}
+    const check=(value,limit,detail='')=>({pass:Number.isFinite(value)&&value<=limit,value,limit,detail});
+    await test('L1–L5 平衡残差',()=>check(Math.max(...L.map(p=>p.residual)),1e-12,'数值二分 + 二维 Newton，max |∇Ω|'));
+    await test('NASA/JPL 外部位置锚点',()=>{const ref=[[.8369151257723572,0],[1.155682165444884,0],[-1.005062645810278,0],[.4878494143903759,.8660254037844386],[.4878494143903759,-.8660254037844386]];return check(Math.max(...L.map((p,i)=>distance([p.x,p.y],ref[i]))),2e-13,'JPL 文档数值；只用于测试，轨迹和标记由方程生成');});
+    await test('势梯度独立差分核对',()=>{const x=.6,y=.2,d=1e-5,fd=[(omega(x+d,y)-omega(x-d,y))/(2*d),(omega(x,y+d)-omega(x,y-d))/(2*d)];return check(distance(fd,gradient(x,y)),1e-8);});
+    await test('正则变换与 C = −2H',()=>{const s=[.6,.2,-.1,.35];return check(Math.max(distance(s,velocity(canonical(s))),Math.abs(jacobi(s)+2*hamiltonian(canonical(s)))),1e-14);});
+    for(const method of ['rk4','yoshida']){
+      await test(method+' 四阶步长收敛',()=>{const s=[.6,.2,-.1,.35],T=.4;const a=integrate(s,method,.01,T).state,b=integrate(s,method,.005,T).state,c=integrate(s,method,.0025,T).state;const e1=distance(a,b),e2=distance(b,c),ratio=e1/e2;return {pass:ratio>12&&ratio<20,value:ratio,range:[12,20],detail:'‖s(h)−s(h/2)‖ / ‖s(h/2)−s(h/4)‖，预期约 16',e1,e2};});
+      await test(method+' 长时 Jacobi 误差',()=>{const r=integrate(presets.l4.state,method,.01,100);return {...check(r.maxDrift,1e-7,'L4 扰动，h=0.01，T=100 TU，10,000 步'),finalDrift:r.finalDrift};});
+      await test(method+' 绕地守恒误差',()=>check(integrate(presets.earth.state,method,.001,3).maxDrift,2e-7,'h=0.001，T=3 TU'));
+    }
+    await test('辛积分时间可逆性',()=>{let s=[.6,.2,-.1,.35],a=s.slice();for(let i=0;i<100;i++)a=yoshida(a,.002);for(let i=0;i<100;i++)a=yoshida(a,-.002);return check(distance(a,s),2e-11,'100 步正向 + 100 步反向');});
+    await test('辛映射 Jacobian',()=>{const z=canonical([.6,.2,-.1,.35]),d=1e-6,M=Array.from({length:4},()=>[]),J=[[0,0,1,0],[0,0,0,1],[-1,0,0,0],[0,-1,0,0]];for(let k=0;k<4;k++){const a=z.slice(),b=z.slice();a[k]+=d;b[k]-=d;const u=canonical(yoshida(velocity(a),.005)),v=canonical(yoshida(velocity(b),.005));for(let i=0;i<4;i++)M[i][k]=(u[i]-v[i])/(2*d);}let err=0;for(let i=0;i<4;i++)for(let j=0;j<4;j++){let sum=0;for(let k=0;k<4;k++)for(let l=0;l<4;l++)sum+=M[k][i]*J[k][l]*M[l][j];err=Math.max(err,Math.abs(sum-J[i][j]));}return check(err,2e-8,'正则变量有限差分：max |MᵀJM−J|');});
+    await test('NaN / Infinity / 溢出防护',()=>{let n=0;for(const method of ['rk4','yoshida'])for(const bad of [NaN,Infinity,1e300]){try{checkedStep([bad,0,0,0],.001,method);}catch{n++;}}return {pass:n===6,value:n,expected:6};});
+    await test('非法步长与未知算法拒绝',()=>{let n=0;for(const h of [NaN,Infinity,0,-.01,.1])try{checkedStep(presets.l4.state,h,'rk4');}catch{n++;}try{checkedStep(presets.l4.state,.01,'invalid');}catch{n++;}return {pass:n===6,value:n,expected:6};});
+    await test('奇点、表面与大步长防护',()=>{let n=0;for(const s of [[-MU,0,0,0],[1-MU,0,0,0],[-MU+EARTH/2,0,0,0],[1-MU+.01,0,0,5]])try{checkedStep(s,.01,'yoshida');}catch{n++;}return {pass:n===4,value:n,expected:4};});
+    await test('失败不污染原始状态',()=>{const s=[1-MU+.01,0,0,5],before=s.slice();let thrown=false;try{checkedStep(s,.01,'rk4');}catch{thrown=true;}return {pass:thrown&&distance(s,before)===0,value:distance(s,before)};});
+    await test('线段碰撞检测',()=>({pass:segmentDistance([-MU-.1,0],[-MU+.1,0],-MU)<EARTH,value:segmentDistance([-MU-.1,0],[-MU+.1,0],-MU)}));
+    await test('零速度边求根与允许域符号',()=>{const C=3.19,p=edgeRoot([.7,0],[L[0].x,0],C),s=presets.l4.state;return check(Math.max(Math.abs(contourValue(...p,C)),Math.abs(contourValue(s[0],s[1],jacobi(s))-s[2]**2-s[3]**2)),1e-10,'曲线 F=2Ω−C=0；F<0 为不可达域');});
+    for(const method of ['rk4','yoshida'])await test(method+' 月球飞掠与增速',()=>{
+      let s=presets.flyby.state.slice(),c0=jacobi(s),minR=Infinity,maxD=0;const v0=Math.hypot(s[2]-s[1],s[3]+s[0]);
+      for(let i=0;i<6000;i++){s=checkedStep(s,.0001,method);minR=Math.min(minR,field(s[0],s[1]).r2);maxD=Math.max(maxD,Math.abs(jacobi(s)-c0));}
+      const gain=Math.hypot(s[2]-s[1],s[3]+s[0])-v0;
+      return {pass:minR>MOON&&minR<.02&&gain>.5&&maxD<1e-7,value:gain,minMoon:minR,maxDrift:maxD,detail:`T=0.6，h=0.0001；惯性速率增量 >0.5；最近月心 ${minR.toFixed(6)} DU；max |ΔC|=${maxD.toExponential(3)}`};
+    });
+    await test('L1 扰动增长',()=>{const r=integrate(presets.l1.state,'rk4',.001,2),a=Math.hypot(presets.l1.state[0]-L[0].x,presets.l1.state[1]),b=Math.hypot(r.state[0]-L[0].x,r.state[1]);return {pass:b/a>30,value:b/a,detail:'T=2 TU，位置偏离放大 >30 倍；不等同于 Lyapunov 指数估计'};});
+    await test('L4 扰动保持有界',()=>{let s=presets.l4.state.slice(),maxR=0;for(let i=0;i<10000;i++){s=checkedStep(s,.01,'yoshida');maxR=Math.max(maxR,Math.hypot(s[0]-L[3].x,s[1]-L[3].y));}return check(maxR,.3,'T=100 TU；本初值的位置偏离上界');});
+    await test('零速度曲线网格收敛',()=>{
+      function error(N){let err=0,count=0;const C=3.19;
+        for(let j=0;j<N;j++)for(let i=0;i<N;i++){
+          const x=.65+i*.7/N,y=-.35+j*.7/N,d=.7/N,ps=[[x,y],[x+d,y],[x+d,y+d],[x,y+d]],vs=ps.map(p=>contourValue(...p,C)),mid=[x+d/2,y+d/2],f=contourValue(...mid,C);
+          for(let k=0;k<4;k++){const n=(k+1)%4,hits=triangleContour([ps[k],ps[n],mid],[vs[k],vs[n],f]);if(hits.length){const p=[(hits[0][0]+hits[1][0])/2,(hits[0][1]+hits[1][1])/2];err=Math.max(err,Math.abs(contourValue(...p,C)));count++;}}
+        }return {err,count};
+      }
+      const a=error(40),b=error(80);return {pass:a.count>0&&b.count>a.count&&b.err<a.err*.6&&b.err<.002,value:b.err,coarse:a,fine:b,detail:'与画布同一三角等值线算法；40→80 网格，最大 |2Ω−C| 应降低'};
+    });
+    return {timestamp:new Date().toISOString(),passed:results.filter(r=>r.pass).length,total:results.length,results};
+  }
+  return {MU,DU,TU,EARTH,MOON,L,presets,field,omega,gradient,rhs,jacobi,canonical,velocity,hamiltonian,rk4,yoshida,methods,checkedStep,integrate,clearance,segmentDistance,contourValue,triangleContour,edgeRoot,selfTests,distance};
+})();
+globalThis.CR3BP=CR3BP;
+</script>
+<script id="interface">
+'use strict';
+(() => {
+ const P=CR3BP,$=id=>document.getElementById(id),canvas=$('orbitCanvas'),ctx=canvas.getContext('2d'),dc=$('driftCanvas'),dctx=dc.getContext('2d');
+ const ids=['x0','y0','vx0','vy0'];
+ let preset='l4',initial=P.presets.l4.state.slice(),state=initial.slice(),time=0,C0=P.jacobi(state),running=false,h=.01,method='yoshida',rate=1;
+ let autoFit=true,center=[.15,0],span=2.9,W=800,H=600,dpr=1,bg=document.createElement('canvas'),bgDirty=true;
+ let trail=[state.slice(0,2)],history=[[0,0]],steps=0,maxDrift=0,last=0,accumulator=0,drag=null,testing=false,frameCost=0;
+ function tell(text,error=false){$('notice').textContent=text;$('notice').classList.toggle('error',error);}
+ function setRunning(value){running=value;$('play').textContent=value?'Ⅱ 暂停':'▶ 开始模拟';$('runStatus').classList.toggle('running',value);$('runStatus').lastElementChild.textContent=value?'计算中':'已暂停';accumulator=0;last=performance.now();}
+ function num(id){const e=$(id);if(!e.value.trim()||!Number.isFinite(e.valueAsNumber))throw Error('请输入有效有限数：'+id);return e.valueAsNumber;}
+ function readStep(){const v=num('dt');if(v<1e-6||v>.05)throw Error('h 的可用范围是 0.000001–0.05 TU');return v;}
+ function fittedSpan(p){const vertical=preset==='l4'?2.0:preset==='l1'?1.0:.85;return Math.max(p.span,vertical*W/Math.max(1,H-96));}
+ function loadPreset(key){preset=key;autoFit=true;const p=P.presets[key];initial=p.state.slice();h=p.h;rate=p.rate;center=p.center.slice();span=fittedSpan(p);$('dt').value=h;$('rate').value=Math.log10(rate);ids.forEach((id,i)=>$(id).value=Number(initial[i].toPrecision(13)));document.querySelectorAll('[data-preset]').forEach(b=>b.classList.toggle('active',b.dataset.preset===key));$('presetDescription').textContent=p.description;$('initialHint').textContent='预设初值已载入；可修改后重新应用。';$('plotPreset').textContent='/ '+p.name;reset();syncSettings();}
+ function reset(){setRunning(false);state=initial.slice();time=0;steps=0;C0=P.jacobi(state);maxDrift=0;trail=[state.slice(0,2)];history=[[0,0]];bgDirty=true;tell('就绪。点击开始；拖动平移，滚轮缩放。');updateData();draw();}
+ function syncSettings(){$('dtHint').textContent=`每步 ${(h*P.TU).toFixed(2)} 秒（物理时间）`;$('rateLabel').textContent=rate.toFixed(2)+' TU/s';$('zoom').value=Math.log10(span);$('zoomLabel').textContent=span.toFixed(2)+' DU';}
+ function advance(){try{const next=P.checkedStep(state,h,method);state=next;time+=h;steps++;const delta=P.jacobi(state)-C0;maxDrift=Math.max(maxDrift,Math.abs(delta));trail.push(state.slice(0,2));if(trail.length>40000)trail.splice(0,1000);history.push([time,delta]);if(history.length>2000)history=history.filter((_,i)=>i%2===0);return true;}catch(e){setRunning(false);tell(e.message+'。当前状态与时间已保留。',true);return false;}}
+ function updateData(){const c=P.jacobi(state),delta=c-C0,v=Math.hypot(state[2],state[3]);$('time').textContent=time.toFixed(4);$('days').textContent=(time*P.TU/86400).toFixed(3)+' 天';$('speed').textContent=v.toFixed(6);$('speedKm').textContent=(v*P.DU/P.TU).toFixed(6)+' km/s';$('jacobi').textContent=c.toFixed(9);$('c0').textContent='C₀ = '+C0.toFixed(9);$('delta').textContent=(delta>=0?'+':'')+delta.toExponential(2);$('delta').classList.toggle('warning-value',Math.abs(delta)>1e-6);$('relative').textContent='相对漂移 '+(Math.abs(delta)/Math.max(Math.abs(C0),1e-15)).toExponential(2);['xLive','yLive','vxLive','vyLive'].forEach((id,i)=>$(id).textContent=state[i].toFixed(8));$('maxDrift').textContent='max |ΔC| = '+maxDrift.toExponential(2);const inertial=Math.hypot(state[2]-state[1],state[3]+state[0]),rm=Math.hypot(state[0]-1+P.MU,state[1]);$('encounter').textContent=`质心惯性系速度 ${(inertial*P.DU/P.TU).toFixed(5)} km/s · 月心距离 ${(rm*P.DU).toFixed(0)} km · 已计算 ${steps.toLocaleString()} 步`;$('viewLabel').textContent=`视野 ${span.toFixed(2)} DU · 共旋转系`;}
+ function world(px,py){return [center[0]+(px-W/2)*span/W,center[1]-(py-H/2)*span/W];}
+ function screen(x,y){return [W/2+(x-center[0])*W/span,H/2-(y-center[1])*W/span];}
+ function resize(){const rect=canvas.getBoundingClientRect();W=Math.max(1,rect.width);H=Math.max(1,rect.height);if(autoFit){span=fittedSpan(P.presets[preset]);syncSettings();updateData();}dpr=Math.min(devicePixelRatio||1,2);for(const c of [canvas,bg]){c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);}const r=dc.getBoundingClientRect();dc.width=Math.round(r.width*dpr);dc.height=Math.round(r.height*dpr);bgDirty=true;draw();}
+ function background(){const g=bg.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.fillStyle='#0c1b25';g.fillRect(0,0,W,H);
+  if($('showZVC').checked){
+   const cell=7,nx=Math.ceil(W/cell),ny=Math.ceil(H/cell),values=new Float64Array((nx+1)*(ny+1));
+   const val=(px,py)=>{const [x,y]=world(px,py);try{return P.contourValue(x,y,C0);}catch{return 1e20;}};
+   for(let j=0;j<=ny;j++)for(let i=0;i<=nx;i++)values[j*(nx+1)+i]=val(i*cell,j*cell);
+   g.fillStyle='#342c3d';g.strokeStyle='#ddb775';g.lineWidth=1;g.beginPath();
+   for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){
+    const x=i*cell,y=j*cell,V=[values[j*(nx+1)+i],values[j*(nx+1)+i+1],values[(j+1)*(nx+1)+i+1],values[(j+1)*(nx+1)+i]],verts=[[x,y],[x+cell,y],[x+cell,y+cell],[x,y+cell]],mid=val(x+cell/2,y+cell/2);
+    if(mid<0)g.fillRect(x,y,cell,cell);
+    // Split each cell into four triangles around its sampled center. This
+    // resolves four-edge/saddle ambiguity from the actual potential at center.
+    for(let k=0;k<4;k++){
+     const n=(k+1)%4,hits=P.triangleContour([verts[k],verts[n],[x+cell/2,y+cell/2]],[V[k],V[n],mid]);
+     if(hits.length===2){g.moveTo(...hits[0]);g.lineTo(...hits[1]);}
+    }
+   }g.stroke();
+  }
+  if($('showGrid').checked){const raw=span/8,pow=10**Math.floor(Math.log10(raw)),s=raw/pow,spacing=(s<2?1:s<5?2:5)*pow,lo=world(0,H),hi=world(W,0);g.lineWidth=1;g.font='11px ui-monospace,Consolas,monospace';
+   for(let x=Math.ceil(lo[0]/spacing)*spacing;x<=hi[0];x+=spacing){const px=screen(x,0)[0];g.strokeStyle=Math.abs(x)<1e-10?'#314855':'#192e3b';g.beginPath();g.moveTo(px,0);g.lineTo(px,H);g.stroke();g.fillStyle='#607f90';g.fillText(x.toFixed(Math.max(1,-Math.floor(Math.log10(spacing)))),px+4,H-53);}
+   for(let y=Math.ceil(lo[1]/spacing)*spacing;y<=hi[1];y+=spacing){const py=screen(0,y)[1];g.strokeStyle=Math.abs(y)<1e-10?'#314855':'#192e3b';g.beginPath();g.moveTo(0,py);g.lineTo(W,py);g.stroke();if(py>50&&py<H-60){g.fillStyle='#607f90';g.fillText(y.toFixed(Math.max(1,-Math.floor(Math.log10(spacing)))),8,py-5);}}
+  }
+  for(const p of P.L){const [x,y]=screen(p.x,p.y);g.strokeStyle='#81949d';g.lineWidth=1;g.beginPath();g.moveTo(x-4,y);g.lineTo(x+4,y);g.moveTo(x,y-4);g.lineTo(x,y+4);g.stroke();g.fillStyle='#c2d2d9';g.font='12px ui-monospace,Consolas,monospace';g.fillText(p.name,x+8,y-8);}
+  for(const body of [{x:-P.MU,r:P.EARTH,c:'#66b8de',name:'地球'},{x:1-P.MU,r:P.MOON,c:'#d7d9d3',name:'月球'}]){const [x,y]=screen(body.x,0),r=Math.max(body.r*W/span,body.name==='地球'?7:4);const halo=g.createRadialGradient(x,y,r,x,y,r*3);halo.addColorStop(0,body.name==='地球'?'#66b8de24':'#d7d9d315');halo.addColorStop(1,'transparent');g.fillStyle=halo;g.beginPath();g.arc(x,y,r*3,0,Math.PI*2);g.fill();g.fillStyle=body.c;g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.fill();g.fillStyle='#b6cbd4';g.font='13px system-ui';g.fillText(body.name,x+12,y+23);}
+  const [bx,by]=screen(0,0);g.strokeStyle='#637b89';g.beginPath();g.arc(bx,by,3,0,Math.PI*2);g.stroke();bgDirty=false;
+ }
+ function draw(){if(bgDirty)background();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(bg,0,0);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.strokeStyle='#60e1c2';ctx.lineWidth=1.5;ctx.beginPath();trail.forEach((p,i)=>{const a=screen(...p);if(i===0)ctx.moveTo(...a);else ctx.lineTo(...a);});ctx.stroke();const start=screen(...initial);ctx.strokeStyle='#60e1c280';ctx.beginPath();ctx.arc(start[0],start[1],4,0,Math.PI*2);ctx.stroke();const [x,y]=screen(state[0],state[1]);ctx.fillStyle='#73f5d2';ctx.shadowColor='#50d9be';ctx.shadowBlur=12;ctx.beginPath();ctx.arc(x,y,3.6,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;if(steps===0){ctx.fillStyle='#9dc7bd';ctx.font='12px system-ui';ctx.fillText('初始位置',x+12,y+17);}if(x<0||x>W||y<0||y>H){ctx.fillStyle='#f4be68';ctx.font='13px system-ui';ctx.fillText('航天器已离开视野 · 缩小或平移查看',18,68);}drawDrift();}
+ function drawDrift(){const w=dc.width/dpr,hh=dc.height/dpr;dctx.setTransform(dpr,0,0,dpr,0,0);dctx.clearRect(0,0,w,hh);const max=Math.max(1e-14,...history.map(p=>Math.abs(p[1])));$('driftScale').textContent=' / ±'+max.toExponential(1);dctx.strokeStyle='#e0e8e9';dctx.beginPath();dctx.moveTo(0,hh/2);dctx.lineTo(w,hh/2);dctx.stroke();dctx.strokeStyle='#098b80';dctx.lineWidth=1.25;dctx.beginPath();const t0=history[0][0],range=Math.max(1e-9,time-t0);history.forEach((p,i)=>{const x=(p[0]-t0)/range*w,y=hh/2-p[1]/max*(hh/2-9);if(i===0)dctx.moveTo(x,y);else dctx.lineTo(x,y);});dctx.stroke();}
+ function zoomAt(factor,px=W/2,py=H/2){autoFit=false;const before=world(px,py);span=Math.min(20,Math.max(.064,span*factor));const after=world(px,py);center[0]+=before[0]-after[0];center[1]+=before[1]-after[1];bgDirty=true;syncSettings();updateData();draw();}
+ $('play').onclick=()=>{if(testing)return;if(running){setRunning(false);tell('已暂停。可单步推进或继续模拟。');return;}try{h=readStep();syncSettings();P.checkedStep(state,h,method);tell('实时积分中。轨迹只包含已经计算的状态。');setRunning(true);}catch(e){setRunning(false);tell(e.message,true);}};
+ $('step').onclick=()=>{if(testing)return;setRunning(false);try{h=readStep();syncSettings();if(advance())tell('已推进一个固定步长 h；当前保持暂停。');updateData();draw();}catch(e){tell(e.message,true);}};
+ $('reset').onclick=()=>reset();
+ $('apply').onclick=()=>{try{const next=ids.map(num);P.rhs(next);if(P.clearance(next)<=0)throw Error('初始位置必须位于地球和月球表面之外');initial=next;$('initialHint').textContent='已应用当前初值。';$('plotPreset').textContent='/ 自定义初值';document.querySelectorAll('[data-preset]').forEach(b=>b.classList.remove('active'));reset();}catch(e){setRunning(false);tell(e.message,true);}};
+ ids.forEach(id=>$(id).addEventListener('input',()=>{$('initialHint').textContent='初值已修改，点击“应用初值并重置”生效。';}));
+ document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>loadPreset(b.dataset.preset));
+ $('integrator').onchange=()=>{method=$('integrator').value;tell('已切换积分器，保留轨迹、仿真时间与初始 C₀。');};
+ $('dt').onchange=()=>{try{h=readStep();accumulator=0;syncSettings();tell('已更新固定步长；守恒漂移仍相对原始 C₀。');}catch(e){setRunning(false);tell(e.message,true);}};
+ $('rate').oninput=()=>{rate=10**Number($('rate').value);syncSettings();};$('zoom').oninput=()=>zoomAt(10**Number($('zoom').value)/span);
+ for(const id of ['showZVC','showGrid'])$(id).onchange=()=>{bgDirty=true;draw();};
+ $('zoomIn').onclick=()=>zoomAt(.8);$('zoomOut').onclick=()=>zoomAt(1.25);$('home').onclick=()=>{autoFit=true;center=P.presets[preset].center.slice();span=fittedSpan(P.presets[preset]);bgDirty=true;syncSettings();updateData();draw();};
+ canvas.addEventListener('wheel',e=>{e.preventDefault();const r=canvas.getBoundingClientRect();zoomAt(Math.exp(Math.max(-300,Math.min(300,e.deltaY))*.001),e.clientX-r.left,e.clientY-r.top);},{passive:false});
+ canvas.addEventListener('pointerdown',e=>{if(e.button!==0)return;autoFit=false;drag={x:e.clientX,y:e.clientY,center:center.slice()};canvas.setPointerCapture(e.pointerId);canvas.focus();});
+ canvas.addEventListener('pointermove',e=>{if(!drag)return;center=[drag.center[0]-(e.clientX-drag.x)*span/W,drag.center[1]+(e.clientY-drag.y)*span/W];bgDirty=true;draw();});
+ for(const type of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(type,()=>drag=null);
+ document.addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA|BUTTON|SUMMARY/.test(e.target.tagName)||e.ctrlKey||e.altKey||e.metaKey)return;if(e.code==='Space'){e.preventDefault();$('play').click();}if(e.key==='.')$('step').click();if(e.key.toLowerCase()==='r')$('reset').click();const moves={ArrowLeft:[-.08,0],ArrowRight:[.08,0],ArrowUp:[0,.08],ArrowDown:[0,-.08]};if(moves[e.key]){e.preventDefault();autoFit=false;center[0]+=moves[e.key][0]*span;center[1]+=moves[e.key][1]*span;bgDirty=true;draw();}});
+ document.addEventListener('visibilitychange',()=>{last=performance.now();accumulator=0;});
+ function testRows(rows){$('testResults').replaceChildren(...rows.map(r=>{const div=document.createElement('div');div.className='test-row';const mark=document.createElement('span');mark.className=r.pass?'pass':'fail';mark.textContent=r.pass?'通过':'失败';const text=document.createElement('span');text.textContent=r.name;const small=document.createElement('span');small.className='test-detail';small.textContent=(Number.isFinite(r.value)?`实测 ${r.value.toExponential(5)}`:'')+(r.limit!==undefined?` ≤ ${r.limit.toExponential(2)}`:'')+(r.range?`；范围 ${r.range.join('–')}`:'')+(r.detail?' · '+r.detail:'');text.appendChild(small);div.append(mark,text);return div;}));}
+ $('runTests').onclick=async()=>{if(testing)return;setRunning(false);testing=true;const controls=[...document.querySelectorAll('button,input,select')];controls.forEach(e=>e.disabled=true);$('testSummary').textContent='正在调用数值核心重新计算…';try{const result=await P.selfTests(rows=>{testRows(rows);$('testSummary').textContent=`已完成 ${rows.length} 项检查…`;});window.lastSelfTest=result;$('testSummary').textContent=`${result.passed} / ${result.total} 通过 · ${new Date(result.timestamp).toLocaleTimeString()} 实测`;console.info('CR3BP self-tests',result);if(result.passed!==result.total)tell('自检发现失败项，请查看结果。',true);}catch(e){$('testSummary').textContent='自检执行失败：'+e.message;console.error(e);}finally{testing=false;controls.forEach(e=>e.disabled=false);}};
+ $('lagrangeTable').innerHTML=P.L.map(p=>`<tr><td>${p.name}</td><td>${p.x.toFixed(9)}</td><td>${p.y.toFixed(9)}</td><td>${p.residual.toExponential(1)}</td></tr>`).join('');
+ function frame(now){const elapsed=Math.min(.1,Math.max(0,(now-last)/1000));last=now;if(running&&!document.hidden){accumulator+=elapsed*rate;let count=0,start=performance.now();while(accumulator>=h&&count<2000&&performance.now()-start<10){if(!advance())break;accumulator-=h;count++;}frameCost=performance.now()-start;if(accumulator>rate*.5){accumulator=Math.min(accumulator,rate*.5);tell('计算负载较高：已放慢播放，固定步长保持不变。');}updateData();draw();}else if(steps===0&&!document.hidden){draw();}requestAnimationFrame(frame);}
+ // Read-only snapshot supports repeatable browser QA without altering the simulation.
+ window.labSnapshot=()=>({state:state.slice(),initial:initial.slice(),time,C0,C:P.jacobi(state),running,h,method,steps,span,center:center.slice(),trailLength:trail.length,maxDrift,frameCost,testing});
+ loadPreset('l4');new ResizeObserver(resize).observe($('stage'));new ResizeObserver(()=>{const r=dc.getBoundingClientRect();dc.width=Math.round(r.width*dpr);dc.height=Math.round(r.height*dpr);drawDrift();}).observe(dc);requestAnimationFrame(frame);
+})();
+</script>
+</body></html>

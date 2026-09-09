@@ -1,0 +1,451 @@
+{
+  "entry": {
+    "submission": "gptweb--gpt-6pro--2026-09-09",
+    "html": "/mnt/data/benchmark/submissions/gptweb--gpt-6pro--2026-09-09/earth_moon_lab.html",
+    "sha256": "e47703cc377ef47a5c1b3f356bcdbac2b555946e0e95c598b9197fe4a5ed8a75"
+  },
+  "page_errors": [],
+  "console": [],
+  "external_requests": [],
+  "title": "地月限制性三体问题实验室 · LAGRANGE",
+  "body": "LAGRANGE / CELESTIAL MECHANICS\n地月限制性三体问题实验室\nPLANAR CR3BP · OFFLINE\n模型与方法\n⌁ 数值自检\n选择实验\n01 / INITIALIZE\n◈L4 扰动\n平衡附近的有界振荡\n⌁L1 不稳定\n微小扰动的增长\n◎绕地轨道\n含月球摄动的近圆轨道\n↗月球引力辅助\n近月飞越与速率变化\n\nL1 向地球侧偏移 10⁻⁴ DU，旋转系初速为零。偏离会增长；这不是经微分校正的周期轨道。\n\nx₀\nDU\ny₀\nDU\nvₓ₀\nDU / TU\nvᵧ₀\nDU / TU\n应用初值并重置\n数值传播\n02 / PROPAGATE\n积分器\nSY4 · 四阶辛分裂\nRK4 · 四阶 Runge–Kutta\n\n解析旋转流 + Yoshida 复合。固定步长下保留辛结构，不强制修正 Jacobi 常数。\n\n积分步长 h / TU\n÷2\n×2\n播放速率 TU/s\n0.02\n0.08\n0.15\n0.50\n1.50\n5.00\n▶ 运行\n单步\n重置\n势场与边界\n03 / INSPECT\n零速度曲线\n禁止区域\nL1–L5\n速度方向\n边界参考 Jacobi 常数\n锁定本轨迹初始 C₀\n临界 C(L1)\n临界 C(L2)\n临界 C(L3)\n临界 C(L4/L5)\n自定义边界 C\n清空显示轨迹（保留仿真状态）\n\n拖拽平移 · 滚轮缩放 · Space 暂停\nN 单步 · R 重置 · F 全局\n\n已暂停 / 地月共转系\n全局\n地球\n月球\n航天器\nBARYCENTRIC · n = 1 · z = 0\nC₀ = 3.188341219\n禁止区域满足 2Ω − C < 0\n+\n−\n⌂\n实时积分轨迹\n零速度曲线\n禁止区\n0.50 DU / 192,200 km\n仅绘制已积分状态 · 天体标记设有最小可见尺寸\nx →   y ↑\n状态观测\nSY4\n仿真时间\n0.0000TU\n0.000 天 · 0.000 月轨道周期\nx / DU\n0.8368151\ny / DU\n0.0000000\nvₓ / DU·TU⁻¹\n0.0000000\nvᵧ / DU·TU⁻¹\n0.0000000\n旋转系速率 |v|\n0.00000 km/s\n质心惯性速率 |vᴵ|\n0.85736 km/s\nJACOBI CONSTANT · C(t)\n3.18834121947\nΔC = C(t) − C₀\n+0.000e+0\n± 1.1e-15\n相对零线 · 线性\nmax |ΔC|\n0.000e+0\n|ΔC| / max(1, |C₀|)\n0.00e+0\n地心距离\n326,342 km\n月心距离\n58,058 km\n本次最小月面高度\n56,320 km\n数值平衡点\n∇Ω = 0\n点\tx / DU\ty / DU\nL1\t0.836915\t0.000000\nL2\t1.155682\t0.000000\nL3\t-1.005063\t0.000000\nL4\t0.487849\t0.866025\nL5\t0.487849\t-0.866025\nmax |∇Ω| = 1.998e-15\n准备就绪。点击运行，从给定初值开始数值积分。\n导出已存储轨迹 CSV查看方程、单位与数值局限\nμ = 0.012150584396   |   1 DU = 384,400 km\nh = 0.0005 · 0 steps\n60 FPS",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "methodOpen",
+      "type": "submit",
+      "text": "模型与方法",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "testOpen",
+      "type": "submit",
+      "text": "⌁ 数值自检",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "轨迹视图",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "实验参数",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "状态与诊断",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "◈L4 扰动\n平衡附近的有界振荡",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "⌁L1 不稳定\n微小扰动的增长",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "◎绕地轨道\n含月球摄动的近圆轨道",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "↗月球引力辅助\n近月飞越与速率变化",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "x0",
+      "type": "number",
+      "text": "",
+      "value": "0.8368151317448633",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "y0",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "vx0",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "vy0",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "apply",
+      "type": "submit",
+      "text": "应用初值并重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "method",
+      "type": "select-one",
+      "text": "SY4 · 四阶辛分裂\nRK4 · 四阶 Runge–Kutta",
+      "value": "sy4",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "dt",
+      "type": "number",
+      "text": "",
+      "value": "0.0005",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "halfStep",
+      "type": "submit",
+      "text": "÷2",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "doubleStep",
+      "type": "submit",
+      "text": "×2",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "rate",
+      "type": "select-one",
+      "text": "0.02\n0.08\n0.15\n0.50\n1.50\n5.00",
+      "value": "0.5",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "play",
+      "type": "submit",
+      "text": "▶ 运行",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "step",
+      "type": "submit",
+      "text": "单步",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "reset",
+      "type": "submit",
+      "text": "重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "zvc",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "forbidden",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "showLP",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "showVelocity",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "boundaryMode",
+      "type": "select-one",
+      "text": "锁定本轨迹初始 C₀\n临界 C(L1)\n临界 C(L2)\n临界 C(L3)\n临界 C(L4/L5)\n自定义边界 C",
+      "value": "initial",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "boundaryValue",
+      "type": "number",
+      "text": "",
+      "value": "3.18834121947",
+      "disabled": true
+    },
+    {
+      "tag": "BUTTON",
+      "id": "clearTrail",
+      "type": "submit",
+      "text": "清空显示轨迹（保留仿真状态）",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "全局",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "地球",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "月球",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "航天器",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "zoomIn",
+      "type": "submit",
+      "text": "+",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "zoomOut",
+      "type": "submit",
+      "text": "−",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "home",
+      "type": "submit",
+      "text": "⌂",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "exportCSV",
+      "type": "submit",
+      "text": "导出已存储轨迹 CSV",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "methodOpenMobile",
+      "type": "submit",
+      "text": "查看方程、单位与数值局限",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "×",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "×",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "runTests",
+      "type": "submit",
+      "text": "运行全部测试",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "downloadTests",
+      "type": "submit",
+      "text": "导出 JSON",
+      "value": "",
+      "disabled": true
+    }
+  ],
+  "globals": [
+    {
+      "key": "CR3BP",
+      "keys": [
+        "SafetyError",
+        "validateState",
+        "validateStep",
+        "guardedStep",
+        "segmentDistance",
+        "presets",
+        "flybyMetrics",
+        "sy4",
+        "canonical",
+        "velocity",
+        "symplecticDefect",
+        "W1",
+        "W0",
+        "rk4",
+        "integrate",
+        "normDiff",
+        "convergence",
+        "bisect",
+        "lagrangePoints",
+        "GM_E",
+        "GM_M",
+        "DU",
+        "MU",
+        "A",
+        "TU",
+        "VU",
+        "RE",
+        "RM",
+        "gravity",
+        "rhs",
+        "omega",
+        "jacobi",
+        "gradient",
+        "hessian"
+      ]
+    },
+    {
+      "key": "Lab",
+      "keys": [
+        "runSelfTests",
+        "getTestReport",
+        "physics",
+        "lagrange",
+        "getSnapshot",
+        "render",
+        "screenToWorld",
+        "worldToScreen",
+        "contourSegments",
+        "advanceN",
+        "loadPreset",
+        "pause",
+        "csv",
+        "getError",
+        "getChanges",
+        "contourDiagnostics"
+      ]
+    }
+  ],
+  "viewport": {
+    "innerWidth": 1440,
+    "innerHeight": 1000,
+    "scrollWidth": 1440,
+    "scrollHeight": 1000,
+    "canvases": [
+      {
+        "id": "scene",
+        "width": 882,
+        "height": 803,
+        "rect": {
+          "x": 284,
+          "y": 128,
+          "width": 882,
+          "height": 803,
+          "top": 128,
+          "right": 1166,
+          "bottom": 931,
+          "left": 284
+        }
+      },
+      {
+        "id": "driftChart",
+        "width": 207,
+        "height": 76,
+        "rect": {
+          "x": 1200,
+          "y": 482.78125,
+          "width": 207,
+          "height": 76,
+          "top": 482.78125,
+          "right": 1407,
+          "bottom": 558.78125,
+          "left": 1200
+        }
+      }
+    ]
+  },
+  "loaded": true
+}

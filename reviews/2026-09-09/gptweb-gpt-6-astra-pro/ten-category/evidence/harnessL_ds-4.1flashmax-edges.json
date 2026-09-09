@@ -1,0 +1,125 @@
+{
+  "key": "harnessL_ds-4.1flashmax",
+  "guards": [
+    {
+      "test": {
+        "name": "NaN_input",
+        "s": [
+          "NaN",
+          0.2,
+          0,
+          0
+        ],
+        "h": 0.001
+      },
+      "state": {
+        "x": "NaN",
+        "y": 0.2,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "t": 0,
+      "status": "nonfinite",
+      "message": "state is not finite (NaN/Inf)",
+      "steps": 0
+    },
+    {
+      "test": {
+        "name": "inside_physical_Earth",
+        "s": [
+          -0.0021505856096240006,
+          0,
+          0,
+          0
+        ],
+        "h": 1e-06
+      },
+      "state": {
+        "x": -0.0021505856096240006,
+        "y": 0,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "t": 0,
+      "status": "impact-earth",
+      "message": "impact with Earth (r1 < R_earth)",
+      "steps": 0
+    },
+    {
+      "test": {
+        "name": "Earth_center",
+        "s": [
+          -0.012150585609624,
+          0,
+          0,
+          0
+        ],
+        "h": 0.001
+      },
+      "state": {
+        "x": -0.012150585609624,
+        "y": 0,
+        "z": 0,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0
+      },
+      "t": 0,
+      "status": "singularity",
+      "message": "singularity: r < 0.0001 DU",
+      "steps": 0
+    },
+    {
+      "test": {
+        "name": "cross_Earth_fast",
+        "s": [
+          0.007849414390376,
+          0,
+          -100,
+          0
+        ],
+        "h": 0.001
+      },
+      "state": {
+        "x": -0.09220356331944994,
+        "y": 9.994182982785712e-05,
+        "z": 0,
+        "vx": -99.66822085929527,
+        "vy": 0.19949912445129606,
+        "vz": 0
+      },
+      "t": 0.001,
+      "status": "ok",
+      "message": "",
+      "steps": 1
+    },
+    {
+      "test": {
+        "name": "escape_R31",
+        "s": [
+          31,
+          0,
+          0,
+          0
+        ],
+        "h": 0.001
+      },
+      "state": {
+        "x": 31.000015499475815,
+        "y": -1.03329864588596e-08,
+        "z": 0,
+        "vx": 0.030998943877445985,
+        "vy": -3.0998954210172286e-05,
+        "vz": 0
+      },
+      "t": 0.001,
+      "status": "ok",
+      "message": "",
+      "steps": 1
+    }
+  ]
+}

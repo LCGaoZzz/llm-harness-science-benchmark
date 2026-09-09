@@ -1,0 +1,276 @@
+{
+  "codex_6astra-xhigh": {
+    "root_max_acceleration_residual": 3.0531133177191805e-15,
+    "root_max_difference_from_independent_brent": 9.43689570931383e-16
+  },
+  "gptweb_gpt-6pro": {
+    "root_max_acceleration_residual": 2.0252896582029223e-15,
+    "root_max_difference_from_independent_brent": 2.7336071744532854e-15
+  },
+  "harnessL_ds-4.1flashmax": {
+    "root_max_acceleration_residual": 5.551115123125783e-16,
+    "root_max_difference_from_independent_brent": 1.1102230246251565e-16,
+    "all_nine_methods": [
+      {
+        "method": "rk4",
+        "state": {
+          "x": 0.47893003335746076,
+          "y": 0.31874770980469114,
+          "z": 0,
+          "vx": -0.5374931737612028,
+          "vy": 0.2570924126184813,
+          "vz": 0
+        },
+        "t": 0.4,
+        "steps": 40,
+        "evals": 160,
+        "rejects": 0,
+        "driftMax": 1.5411664626853681e-10,
+        "status": "ok",
+        "finished": true,
+        "independent_error_l2": 1.7709296933938965e-09
+      },
+      {
+        "method": "verlet",
+        "state": {
+          "x": 0.478936146544375,
+          "y": 0.31877245119468006,
+          "z": 0,
+          "vx": -0.5374359550905068,
+          "vy": 0.2570578291780029,
+          "vz": 0
+        },
+        "t": 0.4,
+        "steps": 40,
+        "evals": 80,
+        "rejects": 0,
+        "driftMax": 2.0105723517526367e-06,
+        "status": "ok",
+        "finished": true,
+        "independent_error_l2": 7.155215189306323e-05
+      },
+      {
+        "method": "yoshida4",
+        "state": {
+          "x": 0.4789300335623114,
+          "y": 0.31874769740960396,
+          "z": 0,
+          "vx": -0.537493238850948,
+          "vy": 0.2570923915875449,
+          "vz": 0
+        },
+        "t": 0.4,
+        "steps": 40,
+        "evals": 240,
+        "rejects": 0,
+        "driftMax": 8.250112684800269e-09,
+        "status": "ok",
+        "finished": true,
+        "independent_error_l2": 6.822595064136193e-08
+      },
+      {
+        "method": "yoshida6",
+        "state": {
+          "x": 0.47893003282473195,
+          "y": 0.3187477100352458,
+          "z": 0,
+          "vx": -0.537493175357493,
+          "vy": 0.25709241311705483,
+          "vz": 0
+        },
+        "t": 0.4,
+        "steps": 40,
+        "evals": 560,
+        "rejects": 0,
+        "driftMax": 1.3527998830373155e-13,
+        "status": "ok",
+        "finished": true,
+        "independent_error_l2": 8.596587035596809e-13
+      },
+      {
+        "method": "dopri5",
+        "state": {
+          "x": 0.4789300328247143,
+          "y": 0.3187477100350118,
+          "z": 0,
+          "vx": -0.5374931753584055,
+          "vy": 0.25709241311718795,
+          "vz": 0
+        },
+        "t": 0.4,
+        "steps": 66,
+        "evals": 469,
+        "rejects": 1,
+        "driftMax": 2.0822379613062262e-14,
+        "status": "ok",
+        "finished": true,
+        "independent_error_l2": 1.4219129105669807e-13
+      },
+      {
+        "method": "gbs",
+        "state": {
+          "x": 0.4789300328247763,
+          "y": 0.3187477100350054,
+          "z": 0,
+          "vx": -0.5374931753582964,
+          "vy": 0.2570924131170998,
+          "vz": 0
+        },
+        "t": 0.4,
+        "steps": 6,
+        "evals": 222,
+        "rejects": 0,
+        "driftMax": 3.6668341456964984e-15,
+        "status": "ok",
+        "finished": true,
+        "independent_error_l2": 2.3153008443327354e-14
+      },
+      {
+        "method": "gbsfix",
+        "state": {
+          "x": 0.47893003282477387,
+          "y": 0.31874771003501046,
+          "z": 0,
+          "vx": -0.5374931753583136,
+          "vy": 0.2570924131170871,
+          "vz": 0
+        },
+        "t": 0.4,
+        "steps": 40,
+        "evals": 1480,
+        "rejects": 0,
+        "driftMax": 1.1786252611167317e-15,
+        "status": "ok",
+        "finished": true,
+        "independent_error_l2": 7.009807859643386e-15
+      },
+      {
+        "method": "ark4",
+        "state": {
+          "x": 0.4789300328333272,
+          "y": 0.31874771003116253,
+          "z": 0,
+          "vx": -0.5374931753337289,
+          "vy": 0.25709241310939257,
+          "vz": 0
+        },
+        "t": 0.4,
+        "steps": 57,
+        "evals": 696,
+        "rejects": 1,
+        "driftMax": 2.2024577379401326e-12,
+        "status": "ok",
+        "finished": true,
+        "independent_error_l2": 2.742029123829136e-11
+      },
+      {
+        "method": "symadapt",
+        "state": {
+          "x": 0.47893003282460955,
+          "y": 0.31874771002506014,
+          "z": 0,
+          "vx": -0.5374931754072281,
+          "vy": 0.25709241310253605,
+          "vz": 0
+        },
+        "t": 0.4,
+        "steps": 121,
+        "evals": 2196,
+        "rejects": 1,
+        "driftMax": 5.673116256841869e-12,
+        "status": "ok",
+        "finished": true,
+        "independent_error_l2": 5.1991544459121325e-11
+      }
+    ]
+  },
+  "harnessL_qwen-3.8flashxhigh": {
+    "root_max_acceleration_residual": 4.3298697960381105e-15,
+    "root_max_difference_from_independent_brent": 6.661338147750939e-16,
+    "dopri_outside_Earth_failure": {
+      "input": {
+        "s": [
+          0.005849414399599998,
+          0,
+          -100000,
+          0.1
+        ],
+        "h": 0.001
+      },
+      "dopri": {
+        "s": [
+          0.005849414399599998,
+          0,
+          -100000,
+          0.1
+        ],
+        "steps": 0,
+        "ok": false
+      },
+      "ui": {
+        "state": [
+          0.005849414399599998,
+          0,
+          -100000,
+          0.1
+        ],
+        "t": 0.001,
+        "bad": false
+      },
+      "R_EARTH": 0.0165738813735692
+    },
+    "method_switching": [
+      {
+        "label": "RK4",
+        "method": "rk4",
+        "advances": true
+      },
+      {
+        "label": "辛(隐式中点)",
+        "method": "sympl",
+        "advances": true
+      },
+      {
+        "label": "DOPRI5",
+        "method": "dopri",
+        "advances": true
+      }
+    ]
+  },
+  "kimiweb_k3swarm-max": {
+    "root_max_acceleration_residual": 3.9218628344883655e-13,
+    "root_max_difference_from_independent_brent": 5.306866057708248e-14,
+    "method_switching": [
+      {
+        "id": "intRK4",
+        "method": "rk4",
+        "advances": true
+      },
+      {
+        "id": "intVerlet",
+        "method": "verlet",
+        "advances": true
+      }
+    ]
+  },
+  "zcode_glm-5.3max": {
+    "root_max_acceleration_residual": 1.4432899320127035e-15,
+    "root_max_difference_from_independent_brent": 2.220446049250313e-16
+  },
+  "zcode_glm-5.3maxlinux": {
+    "root_max_acceleration_residual": 2.886579864025407e-15,
+    "root_max_difference_from_independent_brent": 4.440892098500626e-16,
+    "independently_solved_GL4_same_step": {
+      "root_success": true,
+      "stage_residual_max": 1.1368683772161603e-11,
+      "state": [
+        -0.011881365718510287,
+        0.02845095077049662,
+        -6.0251347022624175,
+        -0.30023669823533794
+      ],
+      "submitted_vs_converged_GL4_error": 3.521826137454903e-05,
+      "note": "DOP853 difference also includes large fixed-step truncation error; do not attribute its whole error to the nonlinear stopping condition."
+    }
+  }
+}
