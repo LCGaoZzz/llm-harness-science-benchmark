@@ -1,0 +1,3011 @@
+{
+  "browser": "152.0.4191.66",
+  "node": "v24.13.0",
+  "platform": "win32",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "generatedAt": "2026-09-09T08:14:03.686Z",
+  "submissions": [
+    {
+      "id": "codex",
+      "dir": "codex--6astra-xhigh--2026-09-09",
+      "entry": "index.html",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "console": [
+        {
+          "type": "info",
+          "text": "CR3BP self-tests {timestamp: 2026-09-09T08:14:05.311Z, passed: 23, total: 23, results: Array(23)}"
+        }
+      ],
+      "requests": [],
+      "loadedOffline": true,
+      "selfTestReturn": {
+        "timestamp": "2026-09-09T08:14:05.311Z",
+        "passed": 23,
+        "total": 23,
+        "results": [
+          {
+            "name": "L1–L5 平衡残差",
+            "pass": true,
+            "value": 3.1086244689504383e-15,
+            "limit": 1e-12,
+            "detail": "数值二分 + 二维 Newton，max |∇Ω|"
+          },
+          {
+            "name": "NASA/JPL 外部位置锚点",
+            "pass": true,
+            "value": 8.95090418262362e-16,
+            "limit": 2e-13,
+            "detail": "JPL 文档数值；只用于测试，轨迹和标记由方程生成"
+          },
+          {
+            "name": "势梯度独立差分核对",
+            "pass": true,
+            "value": 4.760428113380865e-10,
+            "limit": 1e-8,
+            "detail": ""
+          },
+          {
+            "name": "正则变换与 C = −2H",
+            "pass": true,
+            "value": 2.7755575615628914e-17,
+            "limit": 1e-14,
+            "detail": ""
+          },
+          {
+            "name": "rk4 四阶步长收敛",
+            "pass": true,
+            "value": 15.892943234169138,
+            "range": [
+              12,
+              20
+            ],
+            "detail": "‖s(h)−s(h/2)‖ / ‖s(h/2)−s(h/4)‖，预期约 16",
+            "e1": 1.6595230402456457e-9,
+            "e2": 1.0441886161637721e-10
+          },
+          {
+            "name": "rk4 长时 Jacobi 误差",
+            "pass": true,
+            "value": 7.638334409421077e-14,
+            "limit": 1e-7,
+            "detail": "L4 扰动，h=0.01，T=100 TU，10,000 步",
+            "finalDrift": 3.6415315207705135e-14
+          },
+          {
+            "name": "rk4 绕地守恒误差",
+            "pass": true,
+            "value": 4.001243780749064e-12,
+            "limit": 2e-7,
+            "detail": "h=0.001，T=3 TU"
+          },
+          {
+            "name": "yoshida 四阶步长收敛",
+            "pass": true,
+            "value": 16.004566445229386,
+            "range": [
+              12,
+              20
+            ],
+            "detail": "‖s(h)−s(h/2)‖ / ‖s(h/2)−s(h/4)‖，预期约 16",
+            "e1": 6.127932168403419e-8,
+            "e2": 3.828864836404252e-9
+          },
+          {
+            "name": "yoshida 长时 Jacobi 误差",
+            "pass": true,
+            "value": 4.885620796812873e-10,
+            "limit": 1e-7,
+            "detail": "L4 扰动，h=0.01，T=100 TU，10,000 步",
+            "finalDrift": -6.330225232886733e-11
+          },
+          {
+            "name": "yoshida 绕地守恒误差",
+            "pass": true,
+            "value": 1.2647660696529783e-11,
+            "limit": 2e-7,
+            "detail": "h=0.001，T=3 TU"
+          },
+          {
+            "name": "辛积分时间可逆性",
+            "pass": true,
+            "value": 2.1426028012206378e-14,
+            "limit": 2e-11,
+            "detail": "100 步正向 + 100 步反向"
+          },
+          {
+            "name": "辛映射 Jacobian",
+            "pass": true,
+            "value": 1.458679525807177e-10,
+            "limit": 2e-8,
+            "detail": "正则变量有限差分：max |MᵀJM−J|"
+          },
+          {
+            "name": "NaN / Infinity / 溢出防护",
+            "pass": true,
+            "value": 6,
+            "expected": 6
+          },
+          {
+            "name": "非法步长与未知算法拒绝",
+            "pass": true,
+            "value": 6,
+            "expected": 6
+          },
+          {
+            "name": "奇点、表面与大步长防护",
+            "pass": true,
+            "value": 4,
+            "expected": 4
+          },
+          {
+            "name": "失败不污染原始状态",
+            "pass": true,
+            "value": 0
+          },
+          {
+            "name": "线段碰撞检测",
+            "pass": true,
+            "value": 3.469446951953614e-18
+          },
+          {
+            "name": "零速度边求根与允许域符号",
+            "pass": true,
+            "value": 2.5979218776228663e-13,
+            "limit": 1e-10,
+            "detail": "曲线 F=2Ω−C=0；F<0 为不可达域"
+          },
+          {
+            "name": "rk4 月球飞掠与增速",
+            "pass": true,
+            "value": 1.4115771990522548,
+            "minMoon": 0.0071993505692369685,
+            "maxDrift": 4.51543069601712e-9,
+            "detail": "T=0.6，h=0.0001；惯性速率增量 >0.5；最近月心 0.007199 DU；max |ΔC|=4.515e-9"
+          },
+          {
+            "name": "yoshida 月球飞掠与增速",
+            "pass": true,
+            "value": 1.4115772426118973,
+            "minMoon": 0.0071993505406199206,
+            "maxDrift": 4.655696717037472e-8,
+            "detail": "T=0.6，h=0.0001；惯性速率增量 >0.5；最近月心 0.007199 DU；max |ΔC|=4.656e-8"
+          },
+          {
+            "name": "L1 扰动增长",
+            "pass": true,
+            "value": 273.27324820853255,
+            "detail": "T=2 TU，位置偏离放大 >30 倍；不等同于 Lyapunov 指数估计"
+          },
+          {
+            "name": "L4 扰动保持有界",
+            "pass": true,
+            "value": 0.1689851169267175,
+            "limit": 0.3,
+            "detail": "T=100 TU；本初值的位置偏离上界"
+          },
+          {
+            "name": "零速度曲线网格收敛",
+            "pass": true,
+            "value": 0.00023571710297387583,
+            "coarse": {
+              "err": 0.0008964137316720411,
+              "count": 384
+            },
+            "fine": {
+              "err": 0.00023571710297387583,
+              "count": 772
+            },
+            "detail": "与画布同一三角等值线算法；40→80 网格，最大 |2Ω−C| 应降低"
+          }
+        ]
+      },
+      "text": "☾\nCELESTIAL MECHANICS / 01\n地月限制性三体问题实验室\n平面 · 圆型 · 共旋转坐标系\n无量纲数值实验 / 单文件离线运行\n▶ 开始模拟\n单步 +h\n↺ 重置\n已暂停\nμ = 0.01215058560962404\n轨迹工作区 / L4 微扰\n视野 4.10 DU · 共旋转系\n计算轨迹\n2Ω = C₀\n不可达域\n+\n−\n⌂\n就绪。点击开始；拖动平移，滚轮缩放。\n仿真时间 / TU\n0.0000\n0.000 天\n旋转系速度 / DU·TU⁻¹\n0.000000\n0.000000 km/s\nJacobi 常数 C\n2.988072899\nC₀ = 2.988072899\n守恒漂移 ΔC = C − C₀\n+0.00e+0\n相对漂移 0.00e+0\nx / DU\n0.49784941\ny / DU\n0.86602540\nvₓ / DU·TU⁻¹\n0.00000000\nvᵧ / DU·TU⁻¹\n0.00000000\nJacobi 漂移历史 / ±1.0e-14\nmax |ΔC| = 0.00e+0\n质心惯性系速度 1.01646 km/s · 月心距离 387769 km · 已计算 0 步\n实验预设\n01\nL4 微扰\nL1 不稳定运动\n绕地轨道\n月球引力辅助\n\n从 L4 向 +x 扰动 0.01 DU。观察稳定三角点附近的长、短周期叠加。\n\n初始条件\n02\nx₀ / DU\ny₀ / DU\nvₓ₀ / DU·TU⁻¹\nvᵧ₀ / DU·TU⁻¹\n应用初值并重置\n\n预设初值已载入；可修改后重新应用。\n\n积分与显示\n03\n积分器\nYoshida 四阶辛积分 · 长期\n经典 RK4 · 四阶\n时间步长 h / TU\n每步 3829.81 秒（物理时间）\n播放速率 1.00 TU/s\n视野宽度 4.10 DU\n 零速度曲线\n 网格\n\n固定步长；速率只改变每秒步数。切换算法保留当前状态与 C₀。近遇时步长过大会暂停。\n\n模型、平衡点与数值边界\n可执行数值自检\n运行自检\n\n23 / 23 通过 · 16:14:05 实测\n\n通过\nL1–L5 平衡残差\n实测 3.10862e-15 ≤ 1.00e-12 · 数值二分 + 二维 Newton，max |∇Ω|\n通过\nNASA/JPL 外部位置锚点\n实测 8.95090e-16 ≤ 2.00e-13 · JPL 文档数值；只用于测试，轨迹和标记由方程生成\n通过\n势梯度独立差分核对\n实测 4.76043e-10 ≤ 1.00e-8\n通过\n正则变换与 C = −2H\n实测 2.77556e-17 ≤ 1.00e-14\n通过\nrk4 四阶步长收敛\n实测 1.58929e+1；范围 12–20 · ‖s(h)−s(h/2)‖ / ‖s(h/2)−s(h/4)‖，预期约 16\n通过\nrk4 长时 Jacobi 误差\n实测 7.63833e-14 ≤ 1.00e-7 · L4 扰动，h=0.01，T=100 TU，10,000 步\n通过\nrk4 绕地守恒误差\n实测 4.00124e-12 ≤ 2.00e-7 · h=0.001，T=3 TU\n通过\nyoshida 四阶步长收敛\n实测 1.60046e+1；范围 12–20 · ‖s(h)−s(h/2)‖ / ‖s(h/2)−s(h/4)‖，预期约 16\n通过\nyoshida 长时 Jacobi 误差\n实测 4.88562e-10 ≤ 1.00e-7 · L4 扰动，h=0.01，T=100 TU，10,000 步\n通过\nyoshida 绕地守恒误差\n实测 1.26477e-11 ≤ 2.00e-7 · h=0.001，T=3 TU\n通过\n辛积分时间可逆性\n实测 2.14260e-14 ≤ 2.00e-11 · 100 步正向 + 100 步反向\n通过\n辛映射 Jacobian\n实测 1.45868e-10 ≤ 2.00e-8 · 正则变量有限差分：max |MᵀJM−J|\n通过\nNaN / Infinity / 溢出防护\n实测 6.00000e+0\n通过\n非法步长与未知算法拒绝\n实测 6.00000e+0\n通过\n奇点、表面与大步长防护\n实测 4.00000e+0\n通过\n失败不污染原始状态\n实测 0.00000e+0\n通过\n线段碰撞检测\n实测 3.46945e-18\n通过\n零速度边求根与允许域符号\n实测 2.59792e-13 ≤ 1.00e-10 · 曲线 F=2Ω−C=0；F<0 为不可达域\n通过\nrk4 月球飞掠与增速\n实测 1.41158e+0 · T=0.6，h=0.0001；惯性速率增量 >0.5；最近月心 0.007199 DU；max |ΔC|=4.515e-9\n通过\nyoshida 月球飞掠与增速\n实测 1.41158e+0 · T=0.6，h=0.0001；惯性速率增量 >0.5；最近月心 0.007199 DU；max |ΔC|=4.656e-8\n通过\nL1 扰动增长\n实测 2.73273e+2 · T=2 TU，位置偏离放大 >30 倍；不等同于 Lyapunov 指数估计\n通过\nL4 扰动保持有界\n实测 1.68985e-1 ≤ 3.00e-1 · T=100 TU；本初值的位置偏离上界\n通过\n零速度曲线网格收敛\n实测 2.35717e-4 · 与画布同一三角等值线算法；40→80 网格，最大 |2Ω−C| 应降低\n\n检验平衡残差、外部锚点、收敛阶、守恒量、辛结构与非法输入。运行自检会暂停主模拟；测试不改动轨迹。\n\n操作：空格 开始/暂停 · . 单步 · R 重置 · 方向键 平移\n浏览器本地计算 · 无网络依赖 · IEEE 754 双精度",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "id": "play",
+          "type": "submit",
+          "text": "▶ 开始模拟",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "step",
+          "type": "submit",
+          "text": "单步 +h",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "reset",
+          "type": "submit",
+          "text": "↺ 重置",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "zoomIn",
+          "type": "submit",
+          "text": "+",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "zoomOut",
+          "type": "submit",
+          "text": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "home",
+          "type": "submit",
+          "text": "⌂",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L4 微扰",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L1 不稳定运动",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "绕地轨道",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "月球引力辅助",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "x0",
+          "type": "number",
+          "text": "",
+          "value": "0.4978494143904"
+        },
+        {
+          "tag": "INPUT",
+          "id": "y0",
+          "type": "number",
+          "text": "",
+          "value": "0.8660254037844"
+        },
+        {
+          "tag": "INPUT",
+          "id": "vx0",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "vy0",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "apply",
+          "type": "submit",
+          "text": "应用初值并重置",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "id": "integrator",
+          "type": "select-one",
+          "text": "Yoshida 四阶辛积分 · 长期经典 RK4 · 四阶",
+          "value": "yoshida",
+          "options": [
+            {
+              "value": "yoshida",
+              "text": "Yoshida 四阶辛积分 · 长期"
+            },
+            {
+              "value": "rk4",
+              "text": "经典 RK4 · 四阶"
+            }
+          ]
+        },
+        {
+          "tag": "INPUT",
+          "id": "dt",
+          "type": "number",
+          "text": "",
+          "value": "0.01"
+        },
+        {
+          "tag": "INPUT",
+          "id": "rate",
+          "type": "range",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "zoom",
+          "type": "range",
+          "text": "",
+          "value": "0.61"
+        },
+        {
+          "tag": "INPUT",
+          "id": "showZVC",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "showGrid",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "runTests",
+          "type": "submit",
+          "text": "运行自检",
+          "value": ""
+        }
+      ],
+      "layout": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "scrollHeight": 1685,
+        "canvases": [
+          {
+            "id": "orbitCanvas",
+            "width": 1054,
+            "height": 610,
+            "rect": {
+              "x": 24,
+              "y": -233.3125,
+              "width": 1054,
+              "height": 610,
+              "top": -233.3125,
+              "right": 1078,
+              "bottom": 376.6875,
+              "left": 24
+            }
+          },
+          {
+            "id": "driftCanvas",
+            "width": 1020,
+            "height": 90,
+            "rect": {
+              "x": 41,
+              "y": 643.28125,
+              "width": 1020,
+              "height": 90,
+              "top": 643.28125,
+              "right": 1061,
+              "bottom": 733.28125,
+              "left": 41
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "gptweb",
+      "dir": "gptweb--gpt-6pro--2026-09-09",
+      "entry": "earth_moon_lab.html",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "console": [],
+      "requests": [],
+      "loadedOffline": true,
+      "selfTestReturn": {
+        "schema": "cr3bp-selftest/1",
+        "generatedAt": "2026-09-09T08:14:08.074Z",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0",
+        "constants": {
+          "mu": 0.012150584395829193,
+          "DU": 384400,
+          "TU": 375190.2618944357,
+          "VU": 1.0245468474023336
+        },
+        "total": 25,
+        "passed": 25,
+        "failed": 0,
+        "pass": true,
+        "durationMs": 164.69999998807907,
+        "results": [
+          {
+            "id": "root_L1",
+            "name": "L1 平衡点残差",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "name": "L1",
+              "x": 0.8369151317448633,
+              "y": 0,
+              "iterations": 51,
+              "residual": 4.440892098500626e-16,
+              "C": 3.188341106556305
+            },
+            "criterion": "norm(∇Ω) < 1e-11",
+            "display": "4.4409e-16 < 1e-11; 51 iterations",
+            "durationMs": 0.09999996423721313
+          },
+          {
+            "id": "root_L2",
+            "name": "L2 平衡点残差",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "name": "L2",
+              "x": 1.1556821607765202,
+              "y": 0,
+              "iterations": 52,
+              "residual": 1.1102230246251565e-15,
+              "C": 3.1721604513884247
+            },
+            "criterion": "norm(∇Ω) < 1e-11",
+            "display": "1.1102e-15 < 1e-11; 52 iterations",
+            "durationMs": 0.10000002384185791
+          },
+          {
+            "id": "root_L3",
+            "name": "L3 平衡点残差",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "name": "L3",
+              "x": -1.0050626453045601,
+              "y": 0,
+              "iterations": 49,
+              "residual": 1.9984014443252818e-15,
+              "C": 3.012147149467432
+            },
+            "criterion": "norm(∇Ω) < 1e-11",
+            "display": "1.9984e-15 < 1e-11; 49 iterations",
+            "durationMs": 0
+          },
+          {
+            "id": "root_L4",
+            "name": "L4 平衡点残差",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "name": "L4",
+              "x": 0.48784941560416845,
+              "y": 0.8660254037844399,
+              "iterations": 7,
+              "residual": 3.1401849173675503e-16,
+              "C": 2.987997052305331
+            },
+            "criterion": "norm(∇Ω) < 1e-11",
+            "display": "3.1402e-16 < 1e-11; 7 iterations",
+            "durationMs": 0.10000002384185791
+          },
+          {
+            "id": "root_L5",
+            "name": "L5 平衡点残差",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "name": "L5",
+              "x": 0.48784941560416845,
+              "y": -0.8660254037844399,
+              "iterations": 7,
+              "residual": 3.1401849173675503e-16,
+              "C": 2.987997052305331
+            },
+            "criterion": "norm(∇Ω) < 1e-11",
+            "display": "3.1402e-16 < 1e-11; 7 iterations",
+            "durationMs": 0
+          },
+          {
+            "id": "triangular",
+            "name": "三角点与解析几何一致",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "error": 2.7336071744532854e-15
+            },
+            "criterion": "position error < 1e-12",
+            "display": "2.7336e-15 < 1e-12",
+            "durationMs": 0.19999998807907104
+          },
+          {
+            "id": "units",
+            "name": "单位与 n=1 归一化闭合",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "normalization": 0,
+              "velocityUnitError": 1.5142471621609628e-16,
+              "mu": 0.012150584395829193,
+              "TU_s": 375190.2618944357
+            },
+            "criterion": "both residuals < 1e-14",
+            "display": "n² residual 0.0000e+0; VU residual 1.5142e-16",
+            "durationMs": 0
+          },
+          {
+            "id": "gradient",
+            "name": "有效势的独立差分梯度",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "error": 9.915823128970196e-11,
+              "epsilon": 0.000001
+            },
+            "criterion": "gradient norm error < 1e-8",
+            "display": "9.9158e-11 < 1e-8",
+            "durationMs": 0.19999998807907104
+          },
+          {
+            "id": "Cdot",
+            "name": "Jacobi 导数为零",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "maxResidual": 5.551115123125783e-17
+            },
+            "criterion": "max |dC/dt| < 1e-13",
+            "display": "5.5511e-17 < 1e-13",
+            "durationMs": 0.09999996423721313
+          },
+          {
+            "id": "hamiltonian",
+            "name": "正则动量与 C = −2H",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "identity": 0,
+              "roundtrip": 2.7755575615628914e-17
+            },
+            "criterion": "|C+2H| < 1e-13; canonical roundtrip < 1e-14",
+            "display": "C+2H: 0.0000e+0; roundtrip 2.7756e-17",
+            "durationMs": 0
+          },
+          {
+            "id": "convergence_rk4",
+            "name": "RK4 步长收敛阶",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "method": "rk4",
+              "T": 2,
+              "h": 0.01,
+              "d1": 0.0000015860614716753244,
+              "d2": 8.933635452406376e-8,
+              "ratio": 17.753819037333795,
+              "order": 4.150057492100818,
+              "drifts": [
+                5.128100513118738e-7,
+                2.0382603160840063e-8,
+                9.092553376888191e-10
+              ]
+            },
+            "criterion": "3.5 < log2(||u_h−u_h/2|| / ||u_h/2−u_h/4||) < 4.5",
+            "display": "p = 4.15006; h=.01, T=2; d₁=1.5861e-6; d₂=8.9336e-8",
+            "durationMs": 1.5
+          },
+          {
+            "id": "convergence_sy4",
+            "name": "SY4 步长收敛阶",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "method": "sy4",
+              "T": 2,
+              "h": 0.01,
+              "d1": 0.00005810782819759994,
+              "d2": 0.000003653360107505663,
+              "ratio": 15.90531086114945,
+              "order": 3.991436663775543,
+              "drifts": [
+                0.000021629269406631124,
+                0.0000013593952203905246,
+                8.508018733976996e-8
+              ]
+            },
+            "criterion": "3.5 < log2(||u_h−u_h/2|| / ||u_h/2−u_h/4||) < 4.5",
+            "display": "p = 3.99144; h=.01, T=2; d₁=5.8108e-5; d₂=3.6534e-6",
+            "durationMs": 1.199999988079071
+          },
+          {
+            "id": "conservation_rk4",
+            "name": "RK4 长时守恒量",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "state": [
+                -0.014618075319395346,
+                0.1799832656518137,
+                -2.1621363394846935,
+                -0.030149450075933452
+              ],
+              "maxDrift": 4.23814316974358e-8,
+              "C0": 6.356818632878737,
+              "steps": 100000,
+              "time": 100,
+              "threshold": 0.000001
+            },
+            "criterion": "Earth preset, T=100, h=.001; max|ΔC| < 0.000001",
+            "display": "T=100; N=100000; max|ΔC|=4.2381e-8 < 1.0000e-6",
+            "durationMs": 35.39999997615814
+          },
+          {
+            "id": "conservation_sy4",
+            "name": "SY4 长时守恒量",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "state": [
+                -0.014622787242331734,
+                0.17998320065627496,
+                -2.1621355647177225,
+                -0.030206101189175827
+              ],
+              "maxDrift": 1.3569589896178513e-10,
+              "C0": 6.356818632878737,
+              "steps": 100000,
+              "time": 100,
+              "threshold": 1e-7
+            },
+            "criterion": "Earth preset, T=100, h=.001; max|ΔC| < 1e-7",
+            "display": "T=100; N=100000; max|ΔC|=1.3570e-10 < 1.0000e-7",
+            "durationMs": 18
+          },
+          {
+            "id": "reversible",
+            "name": "SY4 时间可逆性",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "error": 1.2476322646257644e-12,
+              "h": 0.002,
+              "stepsEachWay": 500
+            },
+            "criterion": "forward/back norm < 1e-9",
+            "display": "1.2476e-12 < 1e-9; 500 + 500 steps",
+            "durationMs": 0.19999998807907104
+          },
+          {
+            "id": "symplectic",
+            "name": "SY4 正则坐标辛性",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "maxDefect": 5.6710527821055706e-11,
+              "finiteDifferenceEpsilon": 0.000001
+            },
+            "criterion": "max|DΦᵀ J DΦ−J| < 1e-7",
+            "display": "max defect = 5.6711e-11; FD ε=1e-6",
+            "durationMs": 0.19999998807907104
+          },
+          {
+            "id": "L4_bounded",
+            "name": "L4 扰动有界性",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "maxDistance": 0.12187824123224095,
+              "maxDrift": 5.808686864838819e-13,
+              "T": 100,
+              "h": 0.002
+            },
+            "criterion": "T=100; max distance from L4 < .2 DU, max|ΔC| < 1e-8",
+            "display": "max distance=1.2188e-1 DU; max|ΔC|=5.8087e-13",
+            "durationMs": 8.700000047683716
+          },
+          {
+            "id": "L1_unstable",
+            "name": "L1 微扰增长",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "distance": 1.3345606400073975,
+              "initialOffset": 0.0001,
+              "T": 4
+            },
+            "criterion": "T=4; .1 < distance from L1 < 10 DU",
+            "display": "10⁻⁴ DU → 1.3346e+0 DU at T=4",
+            "durationMs": 1.5999999642372131
+          },
+          {
+            "id": "flyby",
+            "name": "近月飞越与参考系",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "method": "sy4",
+              "h": 0.0005,
+              "T": 1.5,
+              "minR": 0.03915513558048126,
+              "minAltitudeKm": 13313.834117136998,
+              "entry": {
+                "t": 0.12267107377017243,
+                "state": [
+                  0.8081324943288369,
+                  -0.010090995472670563,
+                  0.551216282137282,
+                  0.013281853409679427
+                ],
+                "speed": 0.9948805911106059
+              },
+              "exit": {
+                "t": 0.7255203146134042,
+                "state": [
+                  1.1666820741443946,
+                  0.020466563928472167,
+                  0.5246898632483977,
+                  0.06673566330606485
+                ],
+                "speed": 1.332501576222138
+              },
+              "deltaInertialSpeed": 0.33762098511153205,
+              "maxDrift": 2.14546158616713e-10
+            },
+            "criterion": "r_min > lunar radius, < .08 DU; matched r=.18 DU speed gain >0; |ΔC|<1e-7",
+            "display": "min altitude=13313.83 km; Δ|vᴵ|=0.345909 km/s",
+            "durationMs": 1.199999988079071
+          },
+          {
+            "id": "finite_guard",
+            "name": "NaN / Infinity 防护",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "rejected": [
+                "0:rk4",
+                "0:sy4",
+                "1:rk4",
+                "1:sy4",
+                "2:rk4",
+                "2:sy4"
+              ]
+            },
+            "criterion": "6/6 invalid inputs rejected before commit",
+            "display": "6/6 rejected",
+            "durationMs": 0.30000001192092896
+          },
+          {
+            "id": "steps_guard",
+            "name": "非法与近场步长防护",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "rejected": 6
+            },
+            "criterion": "6/6 invalid or unresolved steps rejected",
+            "display": "6/6 rejected",
+            "durationMs": 0.19999998807907104
+          },
+          {
+            "id": "surfaces",
+            "name": "奇点与天体表面防护",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "rejected": 4,
+              "crossingDistance": 1.734723475976807e-18
+            },
+            "criterion": "4/4 body states rejected; crossing distance <1e-14",
+            "display": "4/4 rejected; segment d=1.7347e-18",
+            "durationMs": 0.10000002384185791
+          },
+          {
+            "id": "transaction",
+            "name": "成功/失败均不修改输入",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "inputChange": 0,
+              "largeStepRejected": true,
+              "infiniteLoopRejected": true
+            },
+            "criterion": "exact unchanged input; step and infinite count rejected",
+            "display": "input change 0; invalid count rejected=true",
+            "durationMs": 0.19999998807907104
+          },
+          {
+            "id": "zvc_sign",
+            "name": "禁止区方向与零速度根",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "rootResidual": 1.7763568394002505e-15,
+              "atL4": -0.2003440542509738,
+              "nearEarth": 16.603366024006505
+            },
+            "criterion": "root <1e-10; F(L4)<0; F(nearEarth)>0",
+            "display": "root residual 1.7764e-15; sign -2.0034e-1 / 1.6603e+1",
+            "durationMs": 0
+          },
+          {
+            "id": "render_contour",
+            "name": "当前画面边交点残差",
+            "status": "PASS",
+            "pass": true,
+            "metrics": {
+              "count": 1194,
+              "maxEndpointResidual": 1.5279333354101254e-11
+            },
+            "criterion": "sampled contour edge roots < 1e-4; no-curve case is valid",
+            "display": "1194 segments; max residual=1.5279e-11",
+            "durationMs": 0.30000001192092896
+          }
+        ],
+        "simulationStateUnchanged": true
+      },
+      "text": "LAGRANGE / CELESTIAL MECHANICS\n地月限制性三体问题实验室\nPLANAR CR3BP · OFFLINE\n模型与方法\n⌁ 数值自检\n选择实验\n01 / INITIALIZE\n◈L4 扰动\n平衡附近的有界振荡\n⌁L1 不稳定\n微小扰动的增长\n◎绕地轨道\n含月球摄动的近圆轨道\n↗月球引力辅助\n近月飞越与速率变化\n\nL1 向地球侧偏移 10⁻⁴ DU，旋转系初速为零。偏离会增长；这不是经微分校正的周期轨道。\n\nx₀\nDU\ny₀\nDU\nvₓ₀\nDU / TU\nvᵧ₀\nDU / TU\n应用初值并重置\n数值传播\n02 / PROPAGATE\n积分器\nSY4 · 四阶辛分裂\nRK4 · 四阶 Runge–Kutta\n\n解析旋转流 + Yoshida 复合。固定步长下保留辛结构，不强制修正 Jacobi 常数。\n\n积分步长 h / TU\n÷2\n×2\n播放速率 TU/s\n0.02\n0.08\n0.15\n0.50\n1.50\n5.00\n▶ 运行\n单步\n重置\n势场与边界\n03 / INSPECT\n零速度曲线\n禁止区域\nL1–L5\n速度方向\n边界参考 Jacobi 常数\n锁定本轨迹初始 C₀\n临界 C(L1)\n临界 C(L2)\n临界 C(L3)\n临界 C(L4/L5)\n自定义边界 C\n清空显示轨迹（保留仿真状态）\n\n拖拽平移 · 滚轮缩放 · Space 暂停\nN 单步 · R 重置 · F 全局\n\n已暂停 / 地月共转系\n全局\n地球\n月球\n航天器\nBARYCENTRIC · n = 1 · z = 0\nC₀ = 3.188341219\n禁止区域满足 2Ω − C < 0\n+\n−\n⌂\n实时积分轨迹\n零速度曲线\n禁止区\n0.50 DU / 192,200 km\n仅绘制已积分状态 · 天体标记设有最小可见尺寸\nx →   y ↑\n状态观测\nSY4\n仿真时间\n0.0000TU\n0.000 天 · 0.000 月轨道周期\nx / DU\n0.8368151\ny / DU\n0.0000000\nvₓ / DU·TU⁻¹\n0.0000000\nvᵧ / DU·TU⁻¹\n0.0000000\n旋转系速率 |v|\n0.00000 km/s\n质心惯性速率 |vᴵ|\n0.85736 km/s\nJACOBI CONSTANT · C(t)\n3.18834121947\nΔC = C(t) − C₀\n+0.000e+0\n± 1.1e-15\n相对零线 · 线性\nmax |ΔC|\n0.000e+0\n|ΔC| / max(1, |C₀|)\n0.00e+0\n地心距离\n326,342 km\n月心距离\n58,058 km\n本次最小月面高度\n56,320 km\n数值平衡点\n∇Ω = 0\n点\tx / DU\ty / DU\nL1\t0.836915\t0.000000\nL2\t1.155682\t0.000000\nL3\t-1.005063\t0.000000\nL4\t0.487849\t0.866025\nL5\t0.487849\t-0.866025\nmax |∇Ω| = 1.998e-15\n数值自检：25/25 通过；当前仿真状态未改变。\n导出已存储轨迹 CSV查看方程、单位与数值局限\nμ = 0.012150584396   |   1 DU = 384,400 km\nh = 0.0005 · 0 steps\n60 FPS",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "id": "methodOpen",
+          "type": "submit",
+          "text": "模型与方法",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "testOpen",
+          "type": "submit",
+          "text": "⌁ 数值自检",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "轨迹视图",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "实验参数",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "状态与诊断",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "◈L4 扰动平衡附近的有界振荡",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "⌁L1 不稳定微小扰动的增长",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "◎绕地轨道含月球摄动的近圆轨道",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "↗月球引力辅助近月飞越与速率变化",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "x0",
+          "type": "number",
+          "text": "",
+          "value": "0.8368151317448633"
+        },
+        {
+          "tag": "INPUT",
+          "id": "y0",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "vx0",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "vy0",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "apply",
+          "type": "submit",
+          "text": "应用初值并重置",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "id": "method",
+          "type": "select-one",
+          "text": "SY4 · 四阶辛分裂RK4 · 四阶 Runge–Kutta",
+          "value": "sy4",
+          "options": [
+            {
+              "value": "sy4",
+              "text": "SY4 · 四阶辛分裂"
+            },
+            {
+              "value": "rk4",
+              "text": "RK4 · 四阶 Runge–Kutta"
+            }
+          ]
+        },
+        {
+          "tag": "INPUT",
+          "id": "dt",
+          "type": "number",
+          "text": "",
+          "value": "0.0005"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "halfStep",
+          "type": "submit",
+          "text": "÷2",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "doubleStep",
+          "type": "submit",
+          "text": "×2",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "id": "rate",
+          "type": "select-one",
+          "text": "0.020.080.150.501.505.00",
+          "value": "0.5",
+          "options": [
+            {
+              "value": "0.02",
+              "text": "0.02"
+            },
+            {
+              "value": "0.08",
+              "text": "0.08"
+            },
+            {
+              "value": "0.15",
+              "text": "0.15"
+            },
+            {
+              "value": "0.5",
+              "text": "0.50"
+            },
+            {
+              "value": "1.5",
+              "text": "1.50"
+            },
+            {
+              "value": "5",
+              "text": "5.00"
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "id": "play",
+          "type": "submit",
+          "text": "▶ 运行",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "step",
+          "type": "submit",
+          "text": "单步",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "reset",
+          "type": "submit",
+          "text": "重置",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "zvc",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "forbidden",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "showLP",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "showVelocity",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "SELECT",
+          "id": "boundaryMode",
+          "type": "select-one",
+          "text": "锁定本轨迹初始 C₀临界 C(L1)临界 C(L2)临界 C(L3)临界 C(L4/L5)自定义边界 C",
+          "value": "initial",
+          "options": [
+            {
+              "value": "initial",
+              "text": "锁定本轨迹初始 C₀"
+            },
+            {
+              "value": "L1",
+              "text": "临界 C(L1)"
+            },
+            {
+              "value": "L2",
+              "text": "临界 C(L2)"
+            },
+            {
+              "value": "L3",
+              "text": "临界 C(L3)"
+            },
+            {
+              "value": "L4",
+              "text": "临界 C(L4/L5)"
+            },
+            {
+              "value": "manual",
+              "text": "自定义边界 C"
+            }
+          ]
+        },
+        {
+          "tag": "INPUT",
+          "id": "boundaryValue",
+          "type": "number",
+          "text": "",
+          "value": "3.18834121947"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "clearTrail",
+          "type": "submit",
+          "text": "清空显示轨迹（保留仿真状态）",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "全局",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "地球",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "月球",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "航天器",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "zoomIn",
+          "type": "submit",
+          "text": "+",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "zoomOut",
+          "type": "submit",
+          "text": "−",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "home",
+          "type": "submit",
+          "text": "⌂",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "exportCSV",
+          "type": "submit",
+          "text": "导出已存储轨迹 CSV",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "methodOpenMobile",
+          "type": "submit",
+          "text": "查看方程、单位与数值局限",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "×",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "×",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "runTests",
+          "type": "submit",
+          "text": "运行全部测试",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "downloadTests",
+          "type": "submit",
+          "text": "导出 JSON",
+          "value": ""
+        }
+      ],
+      "layout": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "scrollHeight": 1000,
+        "canvases": [
+          {
+            "id": "scene",
+            "width": 882,
+            "height": 803,
+            "rect": {
+              "x": 284,
+              "y": 128,
+              "width": 882,
+              "height": 803,
+              "top": 128,
+              "right": 1166,
+              "bottom": 931,
+              "left": 284
+            }
+          },
+          {
+            "id": "driftChart",
+            "width": 207,
+            "height": 76,
+            "rect": {
+              "x": 1200,
+              "y": 481.78125,
+              "width": 207,
+              "height": 76,
+              "top": 481.78125,
+              "right": 1407,
+              "bottom": 557.78125,
+              "left": 1200
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ds",
+      "dir": "harnessL--ds-4.1flashmax--2026-09-09",
+      "entry": "lab.html",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "console": [],
+      "requests": [],
+      "loadedOffline": true,
+      "selfTestReturn": {
+        "mu": 0.012150585609624,
+        "tests": [
+          {
+            "id": "lagrange-residual",
+            "name": "拉格朗日点梯度残差 max|∇Ω|",
+            "value": 5.551115123125783e-16,
+            "threshold": 1e-10,
+            "pass": true,
+            "detail": "L1..L5: L1=4.44e-16 L2=5.55e-16 L3=4.34e-19 L4=2.21e-16 L5=2.21e-16",
+            "unit": ""
+          },
+          {
+            "id": "lagrange-C",
+            "name": "拉格朗日点 Jacobi 常数",
+            "value": 2.9879970511210328,
+            "threshold": 3,
+            "pass": true,
+            "detail": "L1 C=3.188341  L2 C=3.172160  L3 C=3.012147  L4 C=2.987997  L5 C=2.987997  (C_L4 analytic 3-mu+mu^2 = 2.987997)",
+            "unit": ""
+          },
+          {
+            "id": "lagrange-stability",
+            "name": "L 点线性稳定性分类",
+            "value": 1,
+            "threshold": 1,
+            "pass": true,
+            "detail": "collinear unstable (λmax>0): true; triangular stable: true; mu=0.012151 < mu_Routh=0.038521",
+            "unit": "bool"
+          },
+          {
+            "id": "order-verlet",
+            "name": "步长收敛阶 Verlet (symplectic, 2)",
+            "value": 1.9999998918917303,
+            "threshold": 2,
+            "pass": true,
+            "detail": "errors 2.8e-5, 6.9e-6, 1.7e-6, 4.3e-7",
+            "unit": ""
+          },
+          {
+            "id": "order-rk4",
+            "name": "步长收敛阶 RK4",
+            "value": 3.9935943423050784,
+            "threshold": 4,
+            "pass": true,
+            "detail": "errors 3.1e-11, 2.0e-12, 1.3e-13, 1.0e-14",
+            "unit": ""
+          },
+          {
+            "id": "order-yoshida4",
+            "name": "步长收敛阶 Yoshida-4 (symplectic, 4)",
+            "value": 4.0012732526560155,
+            "threshold": 4,
+            "pass": true,
+            "detail": "errors 7.9e-8, 4.9e-9, 3.1e-10, 1.9e-11",
+            "unit": ""
+          },
+          {
+            "id": "order-yoshida6",
+            "name": "步长收敛阶 Yoshida-6 (symplectic, 6)",
+            "value": 5.994178753718925,
+            "threshold": 6,
+            "pass": true,
+            "detail": "errors 4.7e-7, 7.7e-9, 1.2e-10, 1.9e-12",
+            "unit": ""
+          },
+          {
+            "id": "order-gbs",
+            "name": "GBS 外推单步收敛阶 (k=4 → 名义 8)",
+            "value": 8.952004413431727,
+            "threshold": 8,
+            "pass": true,
+            "detail": "errors 3.0e-9, 6.1e-12, 1.2e-14, 1.0e-15",
+            "unit": ""
+          },
+          {
+            "id": "conservation-bounded",
+            "name": "辛算法漂移有界：T=16π / T=4π 的最大漂移之比",
+            "value": 1.1496800987765181,
+            "threshold": 1.5,
+            "pass": true,
+            "detail": "yoshida4 6.09e-11 -> 7.00e-11 (dt=0.01, 4 倍时长)",
+            "unit": "ratio"
+          },
+          {
+            "id": "conservation-secular",
+            "name": "RK4 漂移随时长增长：T=16π / T=4π 的最大漂移之比",
+            "value": 2.3000000000000003,
+            "threshold": 1.5,
+            "pass": true,
+            "detail": "rk4 1.49e-15 -> 3.42e-15 (dt=0.01, 4 倍时长)",
+            "unit": "ratio"
+          },
+          {
+            "id": "nan-guard",
+            "name": "NaN / 奇点防护",
+            "value": 1,
+            "threshold": 1,
+            "pass": true,
+            "detail": "state at Moon centre=ok; NaN in state=ok; dt = 0 rejected=ok; dt = NaN rejected=ok; dt < 0 rejected=ok; integration at Moon flagged=ok; random ensemble: no NaN escape=ok; flagged runs=8/120",
+            "unit": "bool"
+          },
+          {
+            "id": "zvc-allowed",
+            "name": "轨迹不越出零速度曲线允许区 min(2Ω−C)",
+            "value": 2.179765079546314e-8,
+            "threshold": -1e-9,
+            "pass": true,
+            "detail": "min(2Ω−C) along trajectory (should be v² >= 0)",
+            "unit": ""
+          },
+          {
+            "id": "reversibility",
+            "name": "辛算法时间可逆性 |forward∘backward − IC|",
+            "value": 1.0658141036401503e-14,
+            "threshold": 1e-9,
+            "pass": true,
+            "detail": "after T=+1.0 then T=-1.0 with dt=±0.01 (backward reached t=-1.000)",
+            "unit": ""
+          },
+          {
+            "id": "presets",
+            "name": "预设轨道符合动力学预期",
+            "value": 1,
+            "threshold": 1,
+            "pass": true,
+            "detail": "l4=ok (max dist from L4 = 0.1602); l1=ok (final dist from L1 = 0.1481); earth=ok (r1 in [0.1000, 0.1025]); moon=ok (min dist to Moon = 0.0056)",
+            "unit": "bool"
+          }
+        ],
+        "orders": {
+          "verlet": {
+            "order": 1.9999998918917303,
+            "errs": [
+              0.0000275213085165725,
+              0.000006880330173594101,
+              0.0000017200826722928164,
+              4.300207446759907e-7
+            ],
+            "dts": [
+              0.01,
+              0.005,
+              0.0025,
+              0.00125
+            ]
+          },
+          "rk4": {
+            "order": 3.9935943423050784,
+            "errs": [
+              3.124496841810931e-11,
+              1.961500406544303e-12,
+              1.258958215455408e-13,
+              1.0179357357031904e-14
+            ],
+            "dts": [
+              0.02,
+              0.01,
+              0.005,
+              0.0025
+            ]
+          },
+          "yoshida4": {
+            "order": 4.0012732526560155,
+            "errs": [
+              7.857170292516202e-8,
+              4.911337451313225e-9,
+              3.0702107869928774e-10,
+              1.9171889770186468e-11
+            ],
+            "dts": [
+              0.02,
+              0.01,
+              0.005,
+              0.0025
+            ]
+          },
+          "yoshida6": {
+            "order": 5.994178753718925,
+            "errs": [
+              4.692808758220701e-7,
+              7.69417473830969e-9,
+              1.2070755159299118e-10,
+              1.908025820673842e-12
+            ],
+            "dts": [
+              0.15,
+              0.075,
+              0.0375,
+              0.01875
+            ]
+          }
+        },
+        "summary": {
+          "passed": 14,
+          "failed": 0,
+          "total": 14
+        },
+        "pass": true,
+        "generated_at": "2026-09-09T08:14:10.752Z"
+      },
+      "text": "地月限制性三体问题实验室Earth–Moon CR3BP · rotating frame\n暂停\nGBS\n预设轨道\nL4 稳定岛 / tadpole\nL1 不稳定鞍点\n绕地轨道\n月球引力辅助\n积分器\nGBS (adaptive extrapolation)\nDOPRI5 (adaptive, 5)\nGBS-fixed (order 8)\nAdaptive RK4 (step doubling)\nAdaptive symplectic-4 (step doubling)\nYoshida-4 (symplectic, 4)\nYoshida-6 (symplectic, 6)\nVerlet (symplectic, 2)\nRK4\nGragg-Bulirsch-Stoer, order 2k from the harmonic sequence · 阶数 8 · 自适应\ndt\nrtol\n外推行数 k\n序列\nBulirsch (2,4,6,8,12,…)\nHarmonic (2,4,6,8,10,…)\n自适应方法：dt 只是初始步长，控制器会按 rtol 调整。\n初始条件（旋转系，归一化）\nx₀\ny₀\nz₀\nvx₀\nvy₀\nvz₀\n应用初始条件并重置\n运行\n▶ 运行\n单步\n重置\n速度\n仿真速度 ≈ 0.60 TU/s（1 个月球周期 = 2π TU ≈ 10.5 s 真实时间）\n视图\n＋\n－\n适配\n跟随\n缩放\n 零速度曲线\n 轨迹尾迹\n 拉格朗日点\n滚轮缩放 · 拖拽平移\n实时状态\n时间 t\n0.000 TU · 0.00 d\n位置 (x,y,z)\n0.49785, 0.86603, 0.00000\n位置 (km)\n191373, 332900, 0\n速度 (vx,vy,vz)\n0.00000, 0.00000, 0.00000\n速率 |v|\n0.00000 VU · 0.000 km/s\nr₁ (地心距)\n1.00504 DU · 386336 km\nr₂ (月心距)\n0.99504 DU · 382492 km\nJacobi C\n2.988072899\nC₀\n2.988072899\nΔC / |C₀|\n0.000e+0\n步数 / 力评估\n0 / 0\n平均步长\n0.00000 TU\n最小步长\n0.00100 (当前)\nJACOBI 常数漂移 |ΔC|/|C₀|\n当前\n0.000e+0\n本次最大\n0.000e+0\n拉格朗日点（数值求解）\n点\tx\ty\tC\t|∇Ω|\nL1\t0.836915\t0.000000\t3.188341\t4.4e-16\nL2\t1.155682\t0.000000\t3.172160\t5.6e-16\nL3\t-1.005063\t0.000000\t3.012147\t4.3e-19\nL4\t0.487849\t0.866025\t2.987997\t2.2e-16\nL5\t0.487849\t-0.866025\t2.987997\t2.2e-16\n由 Ω 的梯度零点用二分 + 牛顿求得（L4/L5 为闭式解）。最大残差 5.55e-16，C(L4)=3−μ+μ²=2.987997。\n自检\n运行全部自检\n尚未运行。",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L4 稳定岛 / tadpole",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L1 不稳定鞍点",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "绕地轨道",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "月球引力辅助",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "id": "method",
+          "type": "select-one",
+          "text": "GBS (adaptive extrapolation)DOPRI5 (adaptive, 5)GBS-fixed (order 8)Adaptive RK4 (step doubling)Adaptive symplectic-4 (step doubling)Yoshida-4 (symplectic, 4)Yoshida-6 (symplectic, ",
+          "value": "gbs",
+          "options": [
+            {
+              "value": "gbs",
+              "text": "GBS (adaptive extrapolation)"
+            },
+            {
+              "value": "dopri5",
+              "text": "DOPRI5 (adaptive, 5)"
+            },
+            {
+              "value": "gbsfix",
+              "text": "GBS-fixed (order 8)"
+            },
+            {
+              "value": "ark4",
+              "text": "Adaptive RK4 (step doubling)"
+            },
+            {
+              "value": "symadapt",
+              "text": "Adaptive symplectic-4 (step doubling)"
+            },
+            {
+              "value": "yoshida4",
+              "text": "Yoshida-4 (symplectic, 4)"
+            },
+            {
+              "value": "yoshida6",
+              "text": "Yoshida-6 (symplectic, 6)"
+            },
+            {
+              "value": "verlet",
+              "text": "Verlet (symplectic, 2)"
+            },
+            {
+              "value": "rk4",
+              "text": "RK4"
+            }
+          ]
+        },
+        {
+          "tag": "INPUT",
+          "id": "dtNum",
+          "type": "number",
+          "text": "",
+          "value": "0.001"
+        },
+        {
+          "tag": "INPUT",
+          "id": "dt",
+          "type": "range",
+          "text": "",
+          "value": "-3"
+        },
+        {
+          "tag": "INPUT",
+          "id": "rtol",
+          "type": "number",
+          "text": "",
+          "value": "1e-13"
+        },
+        {
+          "tag": "INPUT",
+          "id": "gbsK",
+          "type": "number",
+          "text": "",
+          "value": "5"
+        },
+        {
+          "tag": "SELECT",
+          "id": "gbsSeq",
+          "type": "select-one",
+          "text": "Bulirsch (2,4,6,8,12,…)\n            Harmonic (2,4,6,8,10,…)",
+          "value": "bulirsch",
+          "options": [
+            {
+              "value": "bulirsch",
+              "text": "Bulirsch (2,4,6,8,12,…)"
+            },
+            {
+              "value": "harmonic",
+              "text": "Harmonic (2,4,6,8,10,…)"
+            }
+          ]
+        },
+        {
+          "tag": "INPUT",
+          "id": "ic-x",
+          "type": "number",
+          "text": "",
+          "value": "0.497849414390376"
+        },
+        {
+          "tag": "INPUT",
+          "id": "ic-y",
+          "type": "number",
+          "text": "",
+          "value": "0.8660254037844386"
+        },
+        {
+          "tag": "INPUT",
+          "id": "ic-z",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "ic-vx",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "ic-vy",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "ic-vz",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "applyIC",
+          "type": "submit",
+          "text": "应用初始条件并重置",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "play",
+          "type": "submit",
+          "text": "▶ 运行",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "stepBtn",
+          "type": "submit",
+          "text": "单步",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "reset",
+          "type": "submit",
+          "text": "重置",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "speed",
+          "type": "range",
+          "text": "",
+          "value": "0.6"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "zoomIn",
+          "type": "submit",
+          "text": "＋",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "zoomOut",
+          "type": "submit",
+          "text": "－",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "fit",
+          "type": "submit",
+          "text": "适配",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "follow",
+          "type": "submit",
+          "text": "跟随",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "zoom",
+          "type": "range",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "showZVC",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "showTrail",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "showL",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "runTests",
+          "type": "submit",
+          "text": "运行全部自检",
+          "value": ""
+        }
+      ],
+      "layout": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "scrollHeight": 1000,
+        "canvases": [
+          {
+            "id": "view",
+            "width": 834,
+            "height": 961,
+            "rect": {
+              "x": 286,
+              "y": 39.296875,
+              "width": 834,
+              "height": 961,
+              "top": 39.296875,
+              "right": 1120,
+              "bottom": 1000.296875,
+              "left": 286
+            }
+          },
+          {
+            "id": "driftCanvas",
+            "width": 293,
+            "height": 64,
+            "rect": {
+              "x": 1133,
+              "y": 373.8125,
+              "width": 295,
+              "height": 64,
+              "top": 373.8125,
+              "right": 1428,
+              "bottom": 437.8125,
+              "left": 1133
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "qwen",
+      "dir": "harnessL--qwen-3.8flashxhigh--2026-09-09",
+      "entry": "cr3bp_lab.html",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "console": [
+        {
+          "type": "log",
+          "text": "%c[CR3BP self-test] ALL PASS color:#3ddc97"
+        },
+        {
+          "type": "log",
+          "text": "[T1 拉格朗日点残差]  max|∇Ω| = 3.66e-15  (阈值1e-8)   L1=3.7e-15 L2=1.7e-16 L3=1.3e-15 L4=9.0e-17 L5=9.0e-17"
+        },
+        {
+          "type": "log",
+          "text": "[T2 RK4步长收敛] 误差 e(0.02)=1.31e-6 e(0.01)=7.92e-8 e(0.005)=4.85e-9  → 实测阶≈4.03 (理论4)"
+        },
+        {
+          "type": "log",
+          "text": "[T3 Jacobi守恒] T=40: RK4漂移=1.69e-10 辛漂移=8.67e-7  (C=2.97028→2.97028)"
+        },
+        {
+          "type": "log",
+          "text": "[T4 奇点防护] 地球中心→advance 捕获=true, 状态保持有限=true"
+        },
+        {
+          "type": "log",
+          "text": "[T4b 自适应DOPRI5] 正则轨道 完成=true 步数=1974 漂移=2.08e-12; 混沌俯冲 安全拒绝=false(步数=248976)"
+        },
+        {
+          "type": "log",
+          "text": "[T5 外部锚点(JPL SSD)] L点x与公布值偏差 L1Δ=4.5e-11 L2Δ=3.5e-11 L3Δ=3.8e-12  μ=1.21505856e-2"
+        },
+        {
+          "type": "log",
+          "text": "[T5b 晕轨道锚点(3D/JPL)] 本引擎C_J=3.1700803 vs 公布3.17008031499764 (Δ=7.1e-11); 积分1周期守恒漂移=1.68e-15"
+        }
+      ],
+      "requests": [],
+      "loadedOffline": true,
+      "selfTestReturn": {
+        "passes": 7,
+        "fails": 0
+      },
+      "text": "地月限制性三体问题实验室 CR3BP\n旋转坐标系 · RK4 / 辛积分 / 自适应DOPRI5 · 实时Jacobi守恒 · 真实自检\nμEM=0.0121506 · 距离单位=地月 384400 km · 时间单位=4.3486 d\n拖拽平移 · 滚轮缩放\n预设 PRESETS\nL1 周期轨道 (Lyapunov)L1 不稳定运动 (流形逃逸)L4 扰动 (蝌蚪摆动)绕地轨道 (有界)月球引力辅助 (飞越)L4 大振幅蝌蚪 (宽摆动)\n积分器 INTEGRATOR\nRK4\n辛(隐式中点)\nDOPRI5\n步长 h\n2.0e-3\n每帧子步\n40\nDOPRI容差\n1e-10\n运行 RUN\n⏸ 暂停\n单步\n重置\n清轨迹\n初始状态 STATE\nx\ny\nvx\nvy\n显示 VIEW\n缩放 px/单位\n330\n平移 X\n0.10\n平移 Y\n0.00\n零速度曲线\n拉格朗日点\n速度矢量\n轨迹\n遥测 TELEMETRY\nx (DU)\n0.92996\ny (DU)\n-0.13463\n|v| (DU/TD)\n0.3931\n仿真时间 T\n5.906 td\n≈ 天数\n25.68 d\nC_J (雅可比)\n2.970281\nC_J 漂移\n1.13e-12\n距地 / 距月\n0.952 / 0.147\n自检 SELF-TESTS\n运行 ▸\n[T1 拉格朗日点残差]  max|∇Ω| = 3.66e-15  (阈值1e-8)   L1=3.7e-15 L2=1.7e-16 L3=1.3e-15 L4=9.0e-17 L5=9.0e-17\n[T2 RK4步长收敛] 误差 e(0.02)=1.31e-6 e(0.01)=7.92e-8 e(0.005)=4.85e-9  → 实测阶≈4.03 (理论4)\n[T3 Jacobi守恒] T=40: RK4漂移=1.69e-10 辛漂移=8.67e-7  (C=2.97028→2.97028)\n[T4 奇点防护] 地球中心→advance 捕获=true, 状态保持有限=true\n[T4b 自适应DOPRI5] 正则轨道 完成=true 步数=1974 漂移=2.08e-12; 混沌俯冲 安全拒绝=false(步数=248976)\n[T5 外部锚点(JPL SSD)] L点x与公布值偏差 L1Δ=4.5e-11 L2Δ=3.5e-11 L3Δ=3.8e-12  μ=1.21505856e-2\n[T5b 晕轨道锚点(3D/JPL)] 本引擎C_J=3.1700803 vs 公布3.17008031499764 (Δ=7.1e-11); 积分1周期守恒漂移=1.68e-15\n数值局限：辛积分(隐式中点)为2阶、其误差随时间有界但幅度大于RK4；DOPRI5自适应按状态误差控步。靠近天体的近距离/混沌轨道误差被指数放大——此时固定步长不可靠，请缩小h或用自适应。",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L1 周期轨道 (Lyapunov)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L1 不稳定运动 (流形逃逸)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L4 扰动 (蝌蚪摆动)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "绕地轨道 (有界)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "月球引力辅助 (飞越)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L4 大振幅蝌蚪 (宽摆动)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "RK4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "辛(隐式中点)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "DOPRI5",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "h",
+          "type": "range",
+          "text": "",
+          "value": "-2.7"
+        },
+        {
+          "tag": "INPUT",
+          "id": "sub",
+          "type": "range",
+          "text": "",
+          "value": "40"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tol",
+          "type": "range",
+          "text": "",
+          "value": "-10"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "play",
+          "type": "submit",
+          "text": "⏸ 暂停",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "step",
+          "type": "submit",
+          "text": "单步",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "reset",
+          "type": "submit",
+          "text": "重置",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "clear",
+          "type": "submit",
+          "text": "清轨迹",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "sx",
+          "type": "number",
+          "text": "",
+          "value": "0.860000"
+        },
+        {
+          "tag": "INPUT",
+          "id": "sy",
+          "type": "number",
+          "text": "",
+          "value": "0.000000"
+        },
+        {
+          "tag": "INPUT",
+          "id": "svx",
+          "type": "number",
+          "text": "",
+          "value": "0.000000"
+        },
+        {
+          "tag": "INPUT",
+          "id": "svy",
+          "type": "number",
+          "text": "",
+          "value": "0.474040"
+        },
+        {
+          "tag": "INPUT",
+          "id": "zoom",
+          "type": "range",
+          "text": "",
+          "value": "330"
+        },
+        {
+          "tag": "INPUT",
+          "id": "panx",
+          "type": "range",
+          "text": "",
+          "value": "0.1"
+        },
+        {
+          "tag": "INPUT",
+          "id": "pany",
+          "type": "range",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tZvc",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tLp",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tVec",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tTrail",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "runtests",
+          "type": "submit",
+          "text": "运行 ▸",
+          "value": ""
+        }
+      ],
+      "layout": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "scrollHeight": 1000,
+        "canvases": [
+          {
+            "id": "cv",
+            "width": 1100,
+            "height": 953,
+            "rect": {
+              "x": 0,
+              "y": 43.890625,
+              "width": 1099,
+              "height": 953,
+              "top": 43.890625,
+              "right": 1099,
+              "bottom": 996.890625,
+              "left": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "kimi",
+      "dir": "kimiweb--k3swarm-max--2026-09-09",
+      "entry": "index.html",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "console": [
+        {
+          "type": "log",
+          "text": "%c[SELFTEST] ====== CR3BP 自检开始 ====== color:#4fc3f7"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] L1–L5 残差: PASS | max|Ωx|+|Ωy| = 3.92e-13 (阈值1e-10); L1=0.8369151258 残差6.7e-16; L2=1.1556821654 残差3.9e-13; L3=-1.0050626458 残差4.3e-19; L4=0.4878494144 残差3.9e-17; L5=0.4878494144 残差3.9e-17"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] 步长收敛: PASS | e(h=0.01)=4.79e-9 e(h=0.005)=2.96e-10 比值=16.17 (期望≈16, 允许8–32)"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] RK4 守恒 50TU: PASS | h=0.002, max|ΔC| = 1.78e-15 (阈值1e-8)"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] 辛守恒 500TU: PASS | h=0.005, 前半段 max|ΔC|=6.52e-8 后半段=6.55e-8 (有界<1e-3 且无线性增长)"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] NaN/奇点防护: PASS | NaN检出:true Inf检出:true 地球奇点:true 月球奇点:true 正常不误报:true (主循环共用 checkState)"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] 汇总: ALL PASS | L1=0.8369151258 L2=1.1556821654 L3=-1.0050626458 C(L1)=3.1883411177 C(L2)=3.1721604610 C(L3)=3.0121471507 C(L4,5)=2.9879970511"
+        },
+        {
+          "type": "log",
+          "text": "%c[SELFTEST] ====== 全部通过 ====== color:#4caf7d"
+        },
+        {
+          "type": "log",
+          "text": "%c[SELFTEST] ====== CR3BP 自检开始 ====== color:#4fc3f7"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] L1–L5 残差: PASS | max|Ωx|+|Ωy| = 3.92e-13 (阈值1e-10); L1=0.8369151258 残差6.7e-16; L2=1.1556821654 残差3.9e-13; L3=-1.0050626458 残差4.3e-19; L4=0.4878494144 残差3.9e-17; L5=0.4878494144 残差3.9e-17"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] 步长收敛: PASS | e(h=0.01)=4.79e-9 e(h=0.005)=2.96e-10 比值=16.17 (期望≈16, 允许8–32)"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] RK4 守恒 50TU: PASS | h=0.002, max|ΔC| = 1.78e-15 (阈值1e-8)"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] 辛守恒 500TU: PASS | h=0.005, 前半段 max|ΔC|=6.52e-8 后半段=6.55e-8 (有界<1e-3 且无线性增长)"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] NaN/奇点防护: PASS | NaN检出:true Inf检出:true 地球奇点:true 月球奇点:true 正常不误报:true (主循环共用 checkState)"
+        },
+        {
+          "type": "log",
+          "text": "[SELFTEST] 汇总: ALL PASS | L1=0.8369151258 L2=1.1556821654 L3=-1.0050626458 C(L1)=3.1883411177 C(L2)=3.1721604610 C(L3)=3.0121471507 C(L4,5)=2.9879970511"
+        },
+        {
+          "type": "log",
+          "text": "%c[SELFTEST] ====== 全部通过 ====== color:#4caf7d"
+        }
+      ],
+      "requests": [],
+      "loadedOffline": true,
+      "text": "地月 CR3BP 实验室\n圆型限制性三体问题 · 旋转坐标系 · μ=0.012150585609624\n仿真控制\n▶ 开始\n单步\n重置\n清空拖尾\nRK4\n辛 Verlet\n(切换不清轨迹)\n步长 dt\n1.05e-3\n每帧步数\n20\n初始条件\nx₀\ny₀\nvx₀\nvy₀\n应用初始条件 (重置轨迹)\n预设轨道\nL4 扰动\n稳定天平动\nL1 不稳定\n快速发散逃逸\n绕地圆轨道\nr₀=0.1 顺行\n月球引力辅助\n椭圆拱线转移\n视图\n放大 +\n缩小 −\n重置视图\n滚轮缩放 · 左键拖拽平移\n实时状态\nx  = 0.49784941\ny  = 0.86602540\nvx = 0.00000000\nvy = 0.00000000\nt  = 0.0000\nC  = 2.9880728989\nΔC = 0\n积分器: RK4   dt = 1.05e-3\n拖尾点: 0 / 20000\n自检\n重新运行\nL1–L5 残差\nPASS\nmax|Ωx|+|Ωy| = 3.92e-13 (阈值1e-10); L1=0.8369151258 残差6.7e-16; L2=1.1556821654 残差3.9e-13; L3=-1.0050626458 残差4.3e-19; L4=0.4878494144 残差3.9e-17; L5=0.4878494144 残差3.9e-17\n步长收敛\nPASS\ne(h=0.01)=4.79e-9 e(h=0.005)=2.96e-10 比值=16.17 (期望≈16, 允许8–32)\nRK4 守恒 50TU\nPASS\nh=0.002, max|ΔC| = 1.78e-15 (阈值1e-8)\n辛守恒 500TU\nPASS\nh=0.005, 前半段 max|ΔC|=6.52e-8 后半段=6.55e-8 (有界<1e-3 且无线性增长)\nNaN/奇点防护\nPASS\nNaN检出:true Inf检出:true 地球奇点:true 月球奇点:true 正常不误报:true (主循环共用 checkState)\n汇总\nALL PASS\nL1=0.8369151258 L2=1.1556821654 L3=-1.0050626458 C(L1)=3.1883411177 C(L2)=3.1721604610 C(L3)=3.0121471507 C(L4,5)=2.9879970511\n旋转坐标系 (地-月连线固定) · 长度单位=地月距离 · 时间单位=1/ω\nZVC @ C(航天器)\nZVC @ C(L1)\nZVC @ C(L2)\nZVC @ C(L3)\n轨迹拖尾\n✔ 无错误\n▾ 错误日志 (点击展开)",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "id": "btnRun",
+          "type": "submit",
+          "text": "▶ 开始",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnStep",
+          "type": "submit",
+          "text": "单步",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnReset",
+          "type": "submit",
+          "text": "重置",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnClearTrail",
+          "type": "submit",
+          "text": "清空拖尾",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "intRK4",
+          "type": "submit",
+          "text": "RK4",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "intVerlet",
+          "type": "submit",
+          "text": "辛 Verlet",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "dtSlider",
+          "type": "range",
+          "text": "",
+          "value": "600"
+        },
+        {
+          "tag": "INPUT",
+          "id": "spfSlider",
+          "type": "range",
+          "text": "",
+          "value": "20"
+        },
+        {
+          "tag": "INPUT",
+          "id": "icX",
+          "type": "number",
+          "text": "",
+          "value": "0.49784941"
+        },
+        {
+          "tag": "INPUT",
+          "id": "icY",
+          "type": "number",
+          "text": "",
+          "value": "0.8660254"
+        },
+        {
+          "tag": "INPUT",
+          "id": "icVX",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "icVY",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnApplyIC",
+          "type": "submit",
+          "text": "应用初始条件 (重置轨迹)",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "pL4",
+          "type": "submit",
+          "text": "L4 扰动稳定天平动",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "pL1",
+          "type": "submit",
+          "text": "L1 不稳定快速发散逃逸",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "pEarth",
+          "type": "submit",
+          "text": "绕地圆轨道r₀=0.1 顺行",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "pMoon",
+          "type": "submit",
+          "text": "月球引力辅助椭圆拱线转移",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "zoomIn",
+          "type": "submit",
+          "text": "放大 +",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "zoomOut",
+          "type": "submit",
+          "text": "缩小 −",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "viewReset",
+          "type": "submit",
+          "text": "重置视图",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnRerun",
+          "type": "submit",
+          "text": "重新运行",
+          "value": ""
+        }
+      ],
+      "layout": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "scrollHeight": 1000,
+        "canvases": [
+          {
+            "id": "cv",
+            "width": 1118,
+            "height": 1000,
+            "rect": {
+              "x": 322,
+              "y": 0,
+              "width": 1118,
+              "height": 1000,
+              "top": 0,
+              "right": 1440,
+              "bottom": 1000,
+              "left": 322
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "zwin",
+      "dir": "zcode--glm-5.3max--2026-09-09",
+      "entry": "index.html",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "console": [
+        {
+          "type": "table",
+          "text": "[Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        },
+        {
+          "type": "table",
+          "text": "[Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+        }
+      ],
+      "requests": [],
+      "loadedOffline": true,
+      "selfTestReturn": {
+        "passed": 20,
+        "total": 20,
+        "ms": 260,
+        "results": [
+          {
+            "name": "L1/L2/L3 二分法残差 |∇Ω|",
+            "ok": true,
+            "value": 1.6653345369377348e-15,
+            "limit": 1e-11,
+            "detail": "L1:6.7e-16 L2:1.7e-15 L3:6.1e-16 "
+          },
+          {
+            "name": "L4/L5 解析位置残差（r₁=r₂=1 及 |∇Ω|）",
+            "ok": true,
+            "value": 1.7577080805224762e-16,
+            "limit": 1e-12,
+            "detail": "L4=(½−μ,√3/2) 精确满足"
+          },
+          {
+            "name": "独立 Newton 法交叉验证 |Δx|",
+            "ok": true,
+            "value": 2.220446049250313e-16,
+            "limit": 1e-9,
+            "detail": "两种独立求根算法一致：L1:0.0e+0 L2:2.2e-16 L3:2.2e-16 "
+          },
+          {
+            "name": "文献对照 γ₁,γ₂,γ₃ (Murray & Dermott)",
+            "ok": true,
+            "value": 7.113458836138786e-7,
+            "limit": 0.002,
+            "detail": "γ=(0.150934, 0.167833, 0.992912) vs 文献 (0.150935, 0.167833, 0.992912)"
+          },
+          {
+            "name": "RK4 收敛阶 ≈ 4",
+            "ok": true,
+            "value": 4.8181122650887005,
+            "limit": "3.6–5.0",
+            "detail": "误差 5.1e-2 → 1.7e-3 → 6.5e-5（h, h/2, h/4 终点误差）"
+          },
+          {
+            "name": "隐式中点收敛阶 ≈ 2（辛）",
+            "ok": true,
+            "value": 2.067910351310349,
+            "limit": "1.7–2.3",
+            "detail": "误差 3.0e+0 → 6.7e-1 → 1.7e-1"
+          },
+          {
+            "name": "Yoshida 辛四阶收敛阶 ≈ 4",
+            "ok": true,
+            "value": 4.351511166748759,
+            "limit": "3.6–5.0",
+            "detail": "误差 6.4e-1 → 2.7e-2 → 1.5e-3"
+          },
+          {
+            "name": "隐式中点时间可逆性（自伴）",
+            "ok": true,
+            "value": 1.6839862837514374e-12,
+            "limit": 1e-8,
+            "detail": "前向 4 TU 后反向 4 TU，应回到起点（保辛自伴性）"
+          },
+          {
+            "name": "Jacobi 漂移 RK4（L4 蝌蚪 T=100, h=0.005）",
+            "ok": true,
+            "value": 2.4868995751603507e-14,
+            "limit": 1e-12,
+            "detail": "平滑轨道上 RK4 也高度守恒"
+          },
+          {
+            "name": "Jacobi 漂移 隐式中点（同上）",
+            "ok": true,
+            "value": 6.2472791384493576e-9,
+            "limit": 1e-7,
+            "detail": "保辛 ⇒ O(h²) 有界振荡"
+          },
+          {
+            "name": "Jacobi 漂移 Yoshida 辛4（同上）",
+            "ok": true,
+            "value": 5.88862292261183e-13,
+            "limit": 1e-10,
+            "detail": "四阶+保辛 ⇒ 漂移极小"
+          },
+          {
+            "name": "长期对比（绕地轨道 T=1000, h=0.005）：RK4 secular vs 辛4 有界",
+            "ok": true,
+            "value": 5.648073653219399e-8,
+            "limit": "辛4<1e-6 且 RK4>1e-3",
+            "detail": "高频绕地轨道上：RK4 漂移 9.50e-3（随 T 线性增长，secular），辛4 5.65e-8（有界振荡，与 T 无关）"
+          },
+          {
+            "name": "禁止区域一致性 min(2Ω−C₀) ≥ −tol",
+            "ok": true,
+            "value": 5.837105021107248,
+            "limit": "≥ −3.0e-8",
+            "detail": "轨迹全程未进入 2Ω<C₀ 的禁止区域（容差含积分漂移）"
+          },
+          {
+            "name": "Routh 判据与 L4 Hessian",
+            "ok": true,
+            "value": 4.440892098500626e-16,
+            "limit": 1e-12,
+            "detail": "Ωxx=3/4, Ωyy=9/4 精确；27μ(1−μ)=0.324080<1 ⇒ 稳定；ω短=0.9545, ω长=0.2982"
+          },
+          {
+            "name": "NaN/奇点防护（置于地心 / 月心）",
+            "ok": true,
+            "value": 0,
+            "limit": "全部捕获",
+            "detail": "earth/rk4:撞击地球 earth/sym4:撞击地球 moon/rk4:撞击月球 moon/sym4:撞击月球 · 仿真冻结、无 NaN 进入轨迹、幅值有界"
+          },
+          {
+            "name": "撞击检测（月心正上方自由落体）",
+            "ok": true,
+            "value": 0.0024636821555020652,
+            "limit": "< R月(4.52e-3)",
+            "detail": "t=0.028 时触发，状态=撞击月球"
+          },
+          {
+            "name": "确定性：同初值两次积分逐位一致",
+            "ok": true,
+            "value": 0,
+            "limit": "逐位一致",
+            "detail": "无共享暂存导致的隐式状态污染"
+          },
+          {
+            "name": "预设守恒（SY4）：平滑场景 l4/earth T=20",
+            "ok": true,
+            "value": 1.4864269815006992e-9,
+            "limit": 1e-8,
+            "detail": "l4:5.3e-15 earth:1.5e-9 （绕地轨道频率高，辛方法有界误差 ~1e-9 量级）"
+          },
+          {
+            "name": "预设守恒（SY4）：含近距离相遇 l1/flyby h=0.001",
+            "ok": true,
+            "value": 0.00004438308253984502,
+            "limit": 0.0001,
+            "detail": "l1:4.4e-5(T内无事件) flyby:2.3e-6(T内无事件)  近距离相遇处守恒误差自然增大"
+          },
+          {
+            "name": "绕地轨道近圆性（20 圈内 |r−a|/a）",
+            "ok": true,
+            "value": 0.0002228997801504799,
+            "limit": 0.05,
+            "detail": "月球潮汐摄动下的最大瞬时轨道半径偏差"
+          }
+        ]
+      },
+      "text": "地月限制性三体问题实验室CR3BP · 旋转坐标系 · RK4 / 辛积分器\nC₀ = 2.98829\nL1 颈道 开 · L2 颈道 开\n运行中\nt\t4.38 TU\t19.0 d\n位置 (LU)\t(0.20439, 0.95549)\tx,y = 79, 367 ×10³ km\n速度 (LU/TU)\t(-0.0206, 0.0478)\t|v| = 0.053 km/s\nr₁ 地 / r₂ 月\t0.9797 / 1.2356\t376605 / 474975 km\nJacobi C₀\t2.988290\t初始\n漂移 ΔC\t+5.33e-15\t1.8e-13 % 相对\n步数\t876\tRK4 · h=0.005\n航天器轨迹\n零速度曲线 2Ω=C₀\n禁止区域\n临界等值线 C₁ / C₂\n拉格朗日点 L1–L5\n网格 0.5 LU · 缩放 ×1.00 · 1 LU = 384 400 km\n运动控制\n⏸ 暂停\n⏭ 单步\n↺ 重置\n🧹 轨迹\n步长 h\n0.00500\n每帧步数\n×6\n空格运行/暂停 · S单步 · R重置 · 0适配视图 · 拖拽平移 · 滚轮缩放\n积分器\nRK4 —— 经典四阶 Runge–Kutta\n隐式中点 —— 辛 · 二阶 · Newton 迭代\nYoshida 辛四阶 —— 隐式中点三重复合\n经典显式四阶：每步 4 次导数求值。精度高但 Jacobi 常数存在长期漂移（自检可见）。\n预设场景\nL4 扰动 · 蝌蚪轨道\nL1 不稳定运动\n绕地圆轨道\n月球引力辅助\n从 L4 向地球方向偏移 0.02 LU、零初速。μ<μ_Routh≈0.0385 时 L4 线性稳定，扰动演化为绕 L4–L5 的蝌蚪形振动轨道（长周期 2π/ω_long ≈ 29.9 TU ≈ 130 天，短周期 ≈ 6.6 TU）。零速度曲线把运动束缚在内域。\n初始条件（修改后自动重置）\nx₀\ny₀\nvx₀\nvy₀\n质量参数 μ\n0.01215059\nμ = m₂/(m₁+m₂)。地月系 μ≈0.0121506。改变 μ 将重新求解拉格朗日点并重置仿真。\n显示\n 轨迹（\n8k\n30k\n60k\n120k\n 点）\n 拉格朗日点\n 零速度曲线\n 禁止区域着色\n 临界等值线\n 网格\n 速度矢量\n 数据面板\n数值自检（真实执行）\n▶ 运行自检套件\n20 / 20 通过 · 260 ms · 全部为实时计算\nL1/L2/L3 二分法残差 |∇Ω|\t1.665e-15\t1e-11\tPASS\nL4/L5 解析位置残差（r₁=r₂=1 及 |∇Ω|）\t1.758e-16\t1e-12\tPASS\n独立 Newton 法交叉验证 |Δx|\t2.220e-16\t1e-9\tPASS\n文献对照 γ₁,γ₂,γ₃ (Murray & Dermott)\t7.113e-7\t0.002\tPASS\nRK4 收敛阶 ≈ 4\t4.818e+0\t3.6–5.0\tPASS\n隐式中点收敛阶 ≈ 2（辛）\t2.068e+0\t1.7–2.3\tPASS\nYoshida 辛四阶收敛阶 ≈ 4\t4.352e+0\t3.6–5.0\tPASS\n隐式中点时间可逆性（自伴）\t1.684e-12\t1e-8\tPASS\nJacobi 漂移 RK4（L4 蝌蚪 T=100, h=0.005）\t2.487e-14\t1e-12\tPASS\nJacobi 漂移 隐式中点（同上）\t6.247e-9\t1e-7\tPASS\nJacobi 漂移 Yoshida 辛4（同上）\t5.889e-13\t1e-10\tPASS\n长期对比（绕地轨道 T=1000, h=0.005）：RK4 secular vs 辛4 有界\t5.648e-8\t辛4<1e-6 且 RK4>1e-3\tPASS\n禁止区域一致性 min(2Ω−C₀) ≥ −tol\t5.837e+0\t≥ −3.0e-8\tPASS\nRouth 判据与 L4 Hessian\t4.441e-16\t1e-12\tPASS\nNaN/奇点防护（置于地心 / 月心）\t0\t全部捕获\tPASS\n撞击检测（月心正上方自由落体）\t2.464e-3\t< R月(4.52e-3)\tPASS\n确定性：同初值两次积分逐位一致\t0\t逐位一致\tPASS\n预设守恒（SY4）：平滑场景 l4/earth T=20\t1.486e-9\t1e-8\tPASS\n预设守恒（SY4）：含近距离相遇 l1/flyby h=0.001\t4.438e-5\t0.0001\tPASS\n绕地轨道近圆性（20 圈内 |r−a|/a）\t2.229e-4\t0.05\tPASS\n自检在浏览器中实时执行：求解拉格朗日点并计算残差、用独立 Newton 法交叉验证、 以极小步长参考解测收敛阶、长时间积分测 Jacobi 守恒、检验禁止区域一致性、NaN/撞击防护。 无任何预制轨迹或写死结果。页面加载时自动运行一次。\n模型方程（无量纲旋转坐标系）\nẍ − 2ẏ = ∂Ω/∂x ,  ÿ + 2ẋ = ∂Ω/∂y\nΩ(x,y) = ½(x²+y²) + (1−μ)/r₁ + μ/r₂\nr₁² = (x+μ)² + y² ,  r₂² = (x−1+μ)² + y²\nC = 2Ω(x,y) − (vx²+vy²) (Jacobi 常数)\nL4/L5 = (½−μ, ±√3/2) ;  L1–L3: ∂Ω/∂x=0\n单位制：LU = 地月平均距离 384 400 km；TU = 4.3481 d（系统周期 2π）； 速度单位 = 1.0223 km/s。地球位于 (−μ, 0)，月球位于 (1−μ, 0)。\nLU = 384 400 km\nTU = 4.3481 d\nVU = 1.0223 km/s\nC(L1)=3.18834 · C(L2)=3.17216 · C(L4)=2.98800\nL1 x=0.836915 · L2 x=1.155682 · L3 x=-1.005063\n碰撞半径 = 真实天体半径 · NaN 防护常开",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "id": "btnRun",
+          "type": "submit",
+          "text": "⏸ 暂停",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnStep",
+          "type": "submit",
+          "text": "⏭ 单步",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnReset",
+          "type": "submit",
+          "text": "↺ 重置",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnClearTrail",
+          "type": "submit",
+          "text": "🧹 轨迹",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "rngH",
+          "type": "range",
+          "text": "",
+          "value": "-2.3"
+        },
+        {
+          "tag": "INPUT",
+          "id": "numH",
+          "type": "number",
+          "text": "",
+          "value": "0.005"
+        },
+        {
+          "tag": "INPUT",
+          "id": "rngSpd",
+          "type": "range",
+          "text": "",
+          "value": "6"
+        },
+        {
+          "tag": "SELECT",
+          "id": "selInt",
+          "type": "select-one",
+          "text": "RK4 —— 经典四阶 Runge–Kutta\n          隐式中点 —— 辛 · 二阶 · Newton 迭代\n          Yoshida 辛四阶 —— 隐式中点三重复合",
+          "value": "rk4",
+          "options": [
+            {
+              "value": "rk4",
+              "text": "RK4 —— 经典四阶 Runge–Kutta"
+            },
+            {
+              "value": "mid",
+              "text": "隐式中点 —— 辛 · 二阶 · Newton 迭代"
+            },
+            {
+              "value": "sym4",
+              "text": "Yoshida 辛四阶 —— 隐式中点三重复合"
+            }
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L4 扰动 · 蝌蚪轨道",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L1 不稳定运动",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "绕地圆轨道",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "月球引力辅助",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "icx",
+          "type": "number",
+          "text": "",
+          "value": "0.467849"
+        },
+        {
+          "tag": "INPUT",
+          "id": "icy",
+          "type": "number",
+          "text": "",
+          "value": "0.866025"
+        },
+        {
+          "tag": "INPUT",
+          "id": "icvx",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "icvy",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "numMu",
+          "type": "number",
+          "text": "",
+          "value": "0.01215059"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tgTrail",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "SELECT",
+          "id": "selTrail",
+          "type": "select-one",
+          "text": "8k30k\n          60k120k",
+          "value": "30000",
+          "options": [
+            {
+              "value": "8000",
+              "text": "8k"
+            },
+            {
+              "value": "30000",
+              "text": "30k"
+            },
+            {
+              "value": "60000",
+              "text": "60k"
+            },
+            {
+              "value": "120000",
+              "text": "120k"
+            }
+          ]
+        },
+        {
+          "tag": "INPUT",
+          "id": "tgL",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tgZvc",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tgFill",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tgCrit",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tgGrid",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tgVec",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "tgHud",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnTest",
+          "type": "submit",
+          "text": "▶ 运行自检套件",
+          "value": ""
+        }
+      ],
+      "layout": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "scrollHeight": 1000,
+        "canvases": [
+          {
+            "id": "sky",
+            "width": 1068,
+            "height": 924,
+            "rect": {
+              "x": 0,
+              "y": 46,
+              "width": 1068,
+              "height": 924,
+              "top": 46,
+              "right": 1068,
+              "bottom": 970,
+              "left": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "zlinux",
+      "dir": "zcode--glm-5.3maxlinux--2026-09-09",
+      "entry": "index.html",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "console": [
+        {
+          "type": "log",
+          "text": "[CR3BP] 就绪：μ=0.0121505856，TU=4.3425 天，L1 x=0.836915126，C(L1)=3.188341，自检将在 0.4s 后自动运行"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ 拉格朗日点定位（L1–L5 加速度残差） — max|a(Li)| = 2.89e-15（阈值 1e-8）；L1 x=0.836915"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ RK4 步长收敛阶（应为 4 阶） — 观测阶数 p ≈ 3.98（h 减半误差比 9.1e-11 → 5.7e-12 → 3.7e-13）"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ RK4 ↔ GL4 互检（同初值同步长） — t=4 后位置差 1.10e-12 DU（阈值 1e-6）"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ Jacobi 守恒 · RK4（线性漂移） — 绕地轨道 t=30 TU：max|C−C₀| = 5.88e-4（阈值 5e-3；RK4 误差随时间线性累积）"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ Jacobi 守恒 · GL4 辛积分（有界不增长） — t=30: 1.65e-7，t=300（×10 时长）: 1.65e-7 —— 有界不增长（阈值 1e-6 / 有界）"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ NaN 防护（奇点危害 + 守卫拦截 + 坠地） — f(地心) 非有限=true；注入 NaN → 状态 'nan'，状态有限=true；地球内部出发 → 'earth'；界面数据未泄漏 NaN"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ 零速度曲线完整性（marching squares） — C=C(L1)+0.002: 870 段；C=2.50（应全域允许）: 0 段；C=C(L4)+0.05: 746 段；坐标全部有限=true"
+        },
+        {
+          "type": "log",
+          "text": "%c[自检] 开始运行（页面内实时计算） color:#6ea8fe"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ 拉格朗日点定位（L1–L5 加速度残差） — max|a(Li)| = 2.89e-15（阈值 1e-8）；L1 x=0.836915"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ RK4 步长收敛阶（应为 4 阶） — 观测阶数 p ≈ 3.98（h 减半误差比 9.1e-11 → 5.7e-12 → 3.7e-13）"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ RK4 ↔ GL4 互检（同初值同步长） — t=4 后位置差 1.10e-12 DU（阈值 1e-6）"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ Jacobi 守恒 · RK4（线性漂移） — 绕地轨道 t=30 TU：max|C−C₀| = 5.88e-4（阈值 5e-3；RK4 误差随时间线性累积）"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ Jacobi 守恒 · GL4 辛积分（有界不增长） — t=30: 1.65e-7，t=300（×10 时长）: 1.65e-7 —— 有界不增长（阈值 1e-6 / 有界）"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ NaN 防护（奇点危害 + 守卫拦截 + 坠地） — f(地心) 非有限=true；注入 NaN → 状态 'nan'，状态有限=true；地球内部出发 → 'earth'；界面数据未泄漏 NaN"
+        },
+        {
+          "type": "log",
+          "text": "[自检] ✓ 零速度曲线完整性（marching squares） — C=C(L1)+0.002: 870 段；C=2.50（应全域允许）: 0 段；C=C(L4)+0.05: 746 段；坐标全部有限=true"
+        }
+      ],
+      "requests": [],
+      "loadedOffline": true,
+      "text": "地月 CR3BP 实验室\n旋转坐标系 · 圆型限制性三体问题 · 归一化单位（DU = 384 400 km，TU = 4.342 天）\n自检 7/7 ✓\n已复位 · 待运行\n视图宽 3.80 DU · 1,460,720 km\n＋\n－\n⌂\n地球\n月球\n航天器\n轨迹\nL1–L5\n零速度曲线\n禁止区域\n0.25 DU = 96,100 km\n数值自检全部通过（7/7）\n运行控制\n▶ 运行\n单步\n重置\n积分器\nGL4 · 隐式辛（长期推荐）\nRK4 · 经典四阶\n步长 dt\n0.0050 TU ≈ 0.022 天/步\n速度\n40 步/帧 ≈ 0.87 天/帧\n预设场景\nL4 扰动\n蝌蚪轨道\nL1 不稳定\n指数离开\n绕地轨道\n准圆 · 有界\n月球引力辅助\n绕月甩摆 · 逃逸\nL4 扰动（蝌蚪轨道） — 在 L4 三角点右侧偏移 0.02 DU、初速为零。μ < μ_Routh ≈ 0.0386 使 L4 线性稳定，航天器绕 L4 做蝌蚪形天平动（长周期项约 22 TU ≈ 3 个月量级），长期有界。\n初始条件（旋转系）\nx₀\ny₀\nvx₀\nvy₀\n应用初值并复位\n提示：按住 Shift 点击画布，可直接把初始位置设为点击处。\n显示\n零速度曲线（C 等值线）\n禁止区域填充（2Ω < C）\n轨迹\n速度矢量（旋转系）\n网格与坐标\n拉格朗日点标注\nZVC 的 C\n跟随当前航天器 C\n固定为初始 C₀\n手动设定\n手动 C 值\nC(L1)\nC(L2)\nC(L3)\nC(L4)=C(L5)\n实时数据\n仿真时间\n0.000 TU = 0.00 天\n位置 x, y\n0.50785 , 0.86603 DU\n速度 vx, vy\n0.00000 , 0.00000\n|v| 旋转系\n0.00000 DU/TU\n|v| 惯性系\n1.00395 DU/TU\n距地心\n388,301 km\n距月心\n380,614 km\nJacobi C\n2.98830379\n初始 C₀\n2.98830379\n漂移 |C−C₀|\n0.00e+0\n积分步数\n0\n积分器\nGL4（二级 Gauss–Legendre 隐式辛） · 迭代 0（δ=0.0e+0）\n数值自检（页面内实时计算）\n▶ 运行自检\n拉格朗日点定位（L1–L5 加速度残差）\n✓ 通过\nmax|a(Li)| = 2.89e-15（阈值 1e-8）；L1 x=0.836915\nRK4 步长收敛阶（应为 4 阶）\n✓ 通过\n观测阶数 p ≈ 3.98（h 减半误差比 9.1e-11 → 5.7e-12 → 3.7e-13）\nRK4 ↔ GL4 互检（同初值同步长）\n✓ 通过\nt=4 后位置差 1.10e-12 DU（阈值 1e-6）\nJacobi 守恒 · RK4（线性漂移）\n✓ 通过\n绕地轨道 t=30 TU：max|C−C₀| = 5.88e-4（阈值 5e-3；RK4 误差随时间线性累积）\nJacobi 守恒 · GL4 辛积分（有界不增长）\n✓ 通过\nt=30: 1.65e-7，t=300（×10 时长）: 1.65e-7 —— 有界不增长（阈值 1e-6 / 有界）\nNaN 防护（奇点危害 + 守卫拦截 + 坠地）\n✓ 通过\nf(地心) 非有限=true；注入 NaN → 状态 'nan'，状态有限=true；地球内部出发 → 'earth'；界面数据未泄漏 NaN\n零速度曲线完整性（marching squares）\n✓ 通过\nC=C(L1)+0.002: 870 段；C=2.50（应全域允许）: 0 段；C=C(L4)+0.05: 746 段；坐标全部有限=true\n关于模型\n方程、单位与数值说明\n\n质量参数 μ = m月/(m地+m月) = 0.0121505856；距离单位 DU = 半长轴 384 400 km；时间单位 TU 使轨道角速度 ω = 1（1 TU ≈ 4.342 天，周期 2π TU ≈ 27.28 天）。地球固定于 (−μ, 0)，月球固定于 (1−μ, 0)。\n\nẍ = 2ẏ + x − (1−μ)(x+μ)/r₁³ − μ(x−1+μ)/r₂³\nÿ = −2ẋ + y − (1−μ)·y/r₁³ − μ·y/r₂³\nC = 2Ω − v² ， Ω = ½(x²+y²) + (1−μ)/r₁ + μ/r₂\n\n积分器：RK4 为经典显式四阶，长期模拟中 Jacobi 常数存在系统性漂移；GL4 为二级 Gauss–Legendre 隐式辛积分器（不动点迭代求解），对这类含科里奥利项的哈密顿系统保持辛结构，Jacobi 误差有界不增长，适合长期模拟。两者均为四阶精度。\n\n防护：状态出现 NaN/Inf 或天体半径内碰撞（地球 6 378 km、月球 1 737 km）或 |r| > 30 DU 时自动停止积分。\n\n理想化假设：平面（二维）问题、主天体为质点且做严格圆运动、无太阳摄动 / 地月偏心率 / 太阳辐射压等，数值实验结论不应直接外推到真实任务设计。\n\n拖拽 平移 · 滚轮 缩放 · Shift+点击 设初始位置 · 空格 暂停/继续 · S 单步 · R 重置 · +/− 缩放",
+      "controls": [
+        {
+          "tag": "BUTTON",
+          "id": "btnZoomIn",
+          "type": "submit",
+          "text": "＋",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnZoomOut",
+          "type": "submit",
+          "text": "－",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnViewReset",
+          "type": "submit",
+          "text": "⌂",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnRun",
+          "type": "submit",
+          "text": "▶ 运行",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnStep",
+          "type": "submit",
+          "text": "单步",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnReset",
+          "type": "submit",
+          "text": "重置",
+          "value": ""
+        },
+        {
+          "tag": "SELECT",
+          "id": "selInteg",
+          "type": "select-one",
+          "text": "GL4 · 隐式辛（长期推荐）\n          RK4 · 经典四阶",
+          "value": "gl4",
+          "options": [
+            {
+              "value": "gl4",
+              "text": "GL4 · 隐式辛（长期推荐）"
+            },
+            {
+              "value": "rk4",
+              "text": "RK4 · 经典四阶"
+            }
+          ]
+        },
+        {
+          "tag": "INPUT",
+          "id": "rngDt",
+          "type": "range",
+          "text": "",
+          "value": "0.005"
+        },
+        {
+          "tag": "INPUT",
+          "id": "rngSpeed",
+          "type": "range",
+          "text": "",
+          "value": "40"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L4 扰动蝌蚪轨道",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "L1 不稳定指数离开",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "绕地轨道准圆 · 有界",
+          "value": ""
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "type": "submit",
+          "text": "月球引力辅助绕月甩摆 · 逃逸",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "inX0",
+          "type": "number",
+          "text": "",
+          "value": "0.507849414"
+        },
+        {
+          "tag": "INPUT",
+          "id": "inY0",
+          "type": "number",
+          "text": "",
+          "value": "0.866025404"
+        },
+        {
+          "tag": "INPUT",
+          "id": "inVx0",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "INPUT",
+          "id": "inVy0",
+          "type": "number",
+          "text": "",
+          "value": "0"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnApplyIC",
+          "type": "submit",
+          "text": "应用初值并复位",
+          "value": ""
+        },
+        {
+          "tag": "INPUT",
+          "id": "chkZvc",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "chkFill",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "chkTrail",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "chkVel",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "chkGrid",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "INPUT",
+          "id": "chkLpts",
+          "type": "checkbox",
+          "text": "",
+          "value": "on"
+        },
+        {
+          "tag": "SELECT",
+          "id": "selCMode",
+          "type": "select-one",
+          "text": "跟随当前航天器 C\n          固定为初始 C₀\n          手动设定",
+          "value": "follow",
+          "options": [
+            {
+              "value": "follow",
+              "text": "跟随当前航天器 C"
+            },
+            {
+              "value": "initial",
+              "text": "固定为初始 C₀"
+            },
+            {
+              "value": "manual",
+              "text": "手动设定"
+            }
+          ]
+        },
+        {
+          "tag": "INPUT",
+          "id": "inCManual",
+          "type": "number",
+          "text": "",
+          "value": "3.2"
+        },
+        {
+          "tag": "BUTTON",
+          "id": "btnSelfTest",
+          "type": "submit",
+          "text": "▶ 运行自检",
+          "value": ""
+        }
+      ],
+      "layout": {
+        "width": 1440,
+        "height": 1000,
+        "scrollWidth": 1440,
+        "scrollHeight": 1000,
+        "canvases": [
+          {
+            "id": "cv",
+            "width": 1096,
+            "height": 931,
+            "rect": {
+              "x": 0,
+              "y": 41.5,
+              "width": 1096,
+              "height": 931,
+              "top": 41.5,
+              "right": 1096,
+              "bottom": 972.5,
+              "left": 0
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

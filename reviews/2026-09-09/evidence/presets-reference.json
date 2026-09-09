@@ -1,0 +1,697 @@
+[
+  {
+    "id": "codex",
+    "presets": [
+      {
+        "name": "L4 微扰",
+        "initial": [
+          0.4978494143903751,
+          0.866025403784439,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.9778191854583853,
+        "minMoonTime": 2.0,
+        "earthDistanceRangeDU": [
+          1.0050373127401786,
+          1.0252796029275808
+        ],
+        "initialInertialSpeedDU": 0.9989264434425791,
+        "finalInertialSpeedDU": 0.9781777001152079
+      },
+      {
+        "name": "L1 不稳定运动",
+        "initial": [
+          0.837015125772357,
+          0,
+          0,
+          0.0001
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.12632850477647414,
+        "minMoonTime": 2.0,
+        "earthDistanceRangeDU": [
+          0.849165711381981,
+          0.8742072425177148
+        ],
+        "initialInertialSpeedDU": 0.837115125772357,
+        "finalInertialSpeedDU": 0.8356877060951927
+      },
+      {
+        "name": "绕地轨道",
+        "initial": [
+          0.2878494143903759,
+          0,
+          0,
+          1.5146160423905806
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.7000000000000001,
+        "minMoonTime": 0.0,
+        "earthDistanceRangeDU": [
+          0.2991891494953526,
+          0.3002345521638695
+        ],
+        "initialInertialSpeedDU": 1.8024654567809564,
+        "finalInertialSpeedDU": 1.8247104905295555
+      },
+      {
+        "name": "月球引力辅助",
+        "initial": [
+          0.983023190751,
+          0.339530631148,
+          0.364091086118,
+          -0.756469092483
+        ],
+        "T_requested": 10,
+        "T_reached": 10.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.007203804523367629,
+        "minMoonTime": 0.3865,
+        "earthDistanceRangeDU": [
+          0.7400911583114759,
+          7.182384675687866
+        ],
+        "initialInertialSpeedDU": 0.22788149418142756,
+        "finalInertialSpeedDU": 0.6277036868863262
+      }
+    ]
+  },
+  {
+    "id": "gptweb",
+    "presets": [
+      {
+        "name": "◈L4 扰动\n平衡附近的有界振荡",
+        "initial": [
+          0.49984941560416846,
+          0.8510254037844399,
+          0,
+          0.018
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.9682173736098831,
+        "minMoonTime": 2.0,
+        "earthDistanceRangeDU": [
+          0.9931707999566171,
+          1.006127710495683
+        ],
+        "initialInertialSpeedDU": 0.9961989033963286,
+        "finalInertialSpeedDU": 0.9851850685409522
+      },
+      {
+        "name": "⌁L1 不稳定\n微小扰动的增长",
+        "initial": [
+          0.8368151317448633,
+          0,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.15103428385930748,
+        "minMoonTime": 0.0,
+        "earthDistanceRangeDU": [
+          0.8291374037680641,
+          0.8489657161406925
+        ],
+        "initialInertialSpeedDU": 0.8368151317448633,
+        "finalInertialSpeedDU": 0.8476204371026367
+      },
+      {
+        "name": "◎绕地轨道\n含月球摄动的近圆轨道",
+        "initial": [
+          0.1678494156041708,
+          0,
+          0,
+          2.162659238752418
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.8200000000000001,
+        "minMoonTime": 0.0,
+        "earthDistanceRangeDU": [
+          0.1799252179151288,
+          0.18001232702499595
+        ],
+        "initialInertialSpeedDU": 2.330508654356589,
+        "finalInertialSpeedDU": 2.3367652098592653
+      },
+      {
+        "name": "↗月球引力辅助\n近月飞越与速率变化",
+        "initial": [
+          0.7378494156041708,
+          -0.02,
+          0.6,
+          0.15
+        ],
+        "T_requested": 10,
+        "T_reached": 10.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.03915513558471394,
+        "minMoonTime": 0.423,
+        "earthDistanceRangeDU": [
+          0.7502666192761077,
+          6.5647701625204276
+        ],
+        "initialInertialSpeedDU": 1.082901927594862,
+        "finalInertialSpeedDU": 0.5296688124357939
+      }
+    ]
+  },
+  {
+    "id": "zlinux",
+    "presets": [
+      {
+        "name": "L4 扰动\n蝌蚪轨道",
+        "initial": [
+          0.5078494144,
+          0.8660254037844386,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.9563731709570711,
+        "minMoonTime": 2.0,
+        "earthDistanceRangeDU": [
+          1.0101485039339513,
+          1.0507353944635491
+        ],
+        "initialInertialSpeedDU": 1.0039477216002946,
+        "finalInertialSpeedDU": 0.9633267244075228
+      },
+      {
+        "name": "L1 不稳定\n指数离开",
+        "initial": [
+          0.8369151258197123,
+          0,
+          0,
+          0.0001
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.14841558362108775,
+        "minMoonTime": 2.0,
+        "earthDistanceRangeDU": [
+          0.8490657114197123,
+          0.8515901524499905
+        ],
+        "initialInertialSpeedDU": 0.8370151258197123,
+        "finalInertialSpeedDU": 0.8360982463462513
+      },
+      {
+        "name": "绕地轨道\n准圆 · 有界",
+        "initial": [
+          -0.1621505856,
+          0,
+          0,
+          2.728405
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.8471682246734973,
+        "minMoonTime": 0.17550000000000002,
+        "earthDistanceRangeDU": [
+          0.14998736552430322,
+          0.15288689374881242
+        ],
+        "initialInertialSpeedDU": 2.5662544144,
+        "finalInertialSpeedDU": 2.5420503524981712
+      },
+      {
+        "name": "月球引力辅助\n绕月甩摆 · 逃逸",
+        "initial": [
+          1.163,
+          0.303,
+          -0.225,
+          -0.447
+        ],
+        "T_requested": 10,
+        "T_reached": 10.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.0372914755906247,
+        "minMoonTime": 6.285,
+        "earthDistanceRangeDU": [
+          0.307021588263983,
+          3.403332490017561
+        ],
+        "initialInertialSpeedDU": 0.8896291362135123,
+        "finalInertialSpeedDU": 0.7638084659903623
+      }
+    ]
+  },
+  {
+    "id": "kimi",
+    "presets": [
+      {
+        "name": "L4 扰动\n稳定天平动",
+        "initial": [
+          0.49784941,
+          0.8660254,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.9778192024425019,
+        "minMoonTime": 2.0,
+        "earthDistanceRangeDU": [
+          1.0050373072513161,
+          1.025279574869443
+        ],
+        "initialInertialSpeedDU": 0.9989264379735416,
+        "finalInertialSpeedDU": 0.9781777167921034
+      },
+      {
+        "name": "L1 不稳定\n快速发散逃逸",
+        "initial": [
+          0.83791513,
+          0,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.015271080077588737,
+        "minMoonTime": 1.7585,
+        "earthDistanceRangeDU": [
+          0.850065715609624,
+          1.0158601687659936
+        ],
+        "initialInertialSpeedDU": 0.83791513,
+        "finalInertialSpeedDU": 1.005882455159503
+      },
+      {
+        "name": "绕地圆轨道\nr₀=0.1 顺行",
+        "initial": [
+          0.08784941,
+          0,
+          0,
+          3.04300718
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.900000004390376,
+        "minMoonTime": 0.0,
+        "earthDistanceRangeDU": [
+          0.09999301081868915,
+          0.10000186026724403
+        ],
+        "initialInertialSpeedDU": 3.13085659,
+        "finalInertialSpeedDU": 3.14779175337495
+      },
+      {
+        "name": "月球引力辅助\n椭圆拱线转移",
+        "initial": [
+          0.08784941,
+          0,
+          0,
+          4.13803002
+        ],
+        "T_requested": 10,
+        "T_reached": 9.186396668524496,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": true,
+        "minMoonDU": 0.004519771071799971,
+        "minMoonTime": 9.186396668524496,
+        "earthDistanceRangeDU": [
+          0.099999995609624,
+          1.046663182494972
+        ],
+        "initialInertialSpeedDU": 4.22587943,
+        "finalInertialSpeedDU": 1.395335151637795
+      }
+    ]
+  },
+  {
+    "id": "ds",
+    "presets": [
+      {
+        "name": "L4 稳定岛 / tadpole",
+        "initial": [
+          0.497849414390376,
+          0.8660254037844386,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.9778191854583842,
+        "minMoonTime": 2.0,
+        "earthDistanceRangeDU": [
+          1.0050373127401788,
+          1.025279602927581
+        ],
+        "initialInertialSpeedDU": 0.9989264434425791,
+        "finalInertialSpeedDU": 0.9781777001152077
+      },
+      {
+        "name": "L1 不稳定鞍点",
+        "initial": [
+          0.8379151257723574,
+          0,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.015271066455948654,
+        "minMoonTime": 1.7585,
+        "earthDistanceRangeDU": [
+          0.8500657113819814,
+          1.0158601724154128
+        ],
+        "initialInertialSpeedDU": 0.8379151257723574,
+        "finalInertialSpeedDU": 1.0058840442709833
+      },
+      {
+        "name": "绕地轨道",
+        "initial": [
+          0.08784941439037601,
+          0,
+          0,
+          3.0622776601683794
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.8983676469776634,
+        "minMoonTime": 1.8940000000000001,
+        "earthDistanceRangeDU": [
+          0.09999965306769434,
+          0.1024907136592288
+        ],
+        "initialInertialSpeedDU": 3.1501270745587555,
+        "finalInertialSpeedDU": 3.152126594646587
+      },
+      {
+        "name": "月球引力辅助",
+        "initial": [
+          0.9936802819055943,
+          0.00031531731116218523,
+          -0.5212378117477119,
+          1.9767638156628915
+        ],
+        "T_requested": 10,
+        "T_reached": 10.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.005606085246725834,
+        "minMoonTime": 0.001,
+        "earthDistanceRangeDU": [
+          0.5527208681276136,
+          1.146389169299958
+        ],
+        "initialInertialSpeedDU": 3.01588391739645,
+        "finalInertialSpeedDU": 0.9985600952548424
+      }
+    ]
+  },
+  {
+    "id": "zwin",
+    "presets": [
+      {
+        "name": "L4 扰动 · 蝌蚪轨道",
+        "initial": [
+          0.467849,
+          0.866025,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 1.0094257477464808,
+        "minMoonTime": 0.547,
+        "earthDistanceRangeDU": [
+          0.9500718888780513,
+          0.9901509495118661
+        ],
+        "initialInertialSpeedDU": 0.9843180316472924,
+        "finalInertialSpeedDU": 1.0284256461405432
+      },
+      {
+        "name": "L1 不稳定运动",
+        "initial": [
+          0.838915,
+          0,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.015511698185785317,
+        "minMoonTime": 1.5210000000000001,
+        "earthDistanceRangeDU": [
+          0.8510655856188314,
+          1.0161381105625078
+        ],
+        "initialInertialSpeedDU": 0.838915,
+        "finalInertialSpeedDU": 0.8182314296274986
+      },
+      {
+        "name": "绕地圆轨道",
+        "initial": [
+          0.137849,
+          0,
+          0,
+          2.416255
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.8500004143811686,
+        "minMoonTime": 0.0,
+        "earthDistanceRangeDU": [
+          0.14996532121658462,
+          0.15000393184537633
+        ],
+        "initialInertialSpeedDU": 2.554104,
+        "finalInertialSpeedDU": 2.557704709981389
+      },
+      {
+        "name": "月球引力辅助",
+        "initial": [
+          -0.15,
+          0,
+          0.2567,
+          3.671
+        ],
+        "T_requested": 10,
+        "T_reached": 10.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.054593661190624775,
+        "minMoonTime": 6.296,
+        "earthDistanceRangeDU": [
+          0.09255039225367565,
+          1.124887893227353
+        ],
+        "initialInertialSpeedDU": 3.5303450100521334,
+        "finalInertialSpeedDU": 0.35686562430246693
+      }
+    ]
+  },
+  {
+    "id": "qwen",
+    "presets": [
+      {
+        "name": "L1 周期轨道 (Lyapunov)",
+        "initial": [
+          0.86,
+          0,
+          0,
+          0.47404
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.12784941439960001,
+        "minMoonTime": 0.0,
+        "earthDistanceRangeDU": [
+          0.8721505856004,
+          1.1320369864735826
+        ],
+        "initialInertialSpeedDU": 1.33404,
+        "finalInertialSpeedDU": 1.3194736469265878
+      },
+      {
+        "name": "L1 不稳定运动 (流形逃逸)",
+        "initial": [
+          0.83721513,
+          -0.00013,
+          0.00086,
+          -0.0004
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.015006927621207242,
+        "minMoonTime": 1.997,
+        "earthDistanceRangeDU": [
+          0.8493657255490003,
+          1.0151724694034305
+        ],
+        "initialInertialSpeedDU": 0.8368157156130118,
+        "finalInertialSpeedDU": 2.1623330400845755
+      },
+      {
+        "name": "L4 扰动 (蝌蚪摆动)",
+        "initial": [
+          0.51,
+          0.866,
+          0,
+          0
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.9519081695252865,
+        "minMoonTime": 2.0,
+        "earthDistanceRangeDU": [
+          1.0112354988047247,
+          1.056118783353123
+        ],
+        "initialInertialSpeedDU": 1.005015422767233,
+        "finalInertialSpeedDU": 0.9603173327163028
+      },
+      {
+        "name": "绕地轨道 (有界)",
+        "initial": [
+          0.0878494143996,
+          0,
+          0,
+          3.055
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.8990002594342961,
+        "minMoonTime": 1.8805,
+        "earthDistanceRangeDU": [
+          0.0999990130226682,
+          0.10154162418405252
+        ],
+        "initialInertialSpeedDU": 3.1428494143996,
+        "finalInertialSpeedDU": 3.160537873742753
+      },
+      {
+        "name": "月球引力辅助 (飞越)",
+        "initial": [
+          1.16,
+          0.02,
+          0,
+          -0.1
+        ],
+        "T_requested": 10,
+        "T_reached": 10.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.011794172446991153,
+        "minMoonTime": 1.071,
+        "earthDistanceRangeDU": [
+          0.4571832289287733,
+          1.1723211997244445
+        ],
+        "initialInertialSpeedDU": 1.0601886624558856,
+        "finalInertialSpeedDU": 0.9619630320534286
+      },
+      {
+        "name": "L4 大振幅蝌蚪 (宽摆动)",
+        "initial": [
+          0.45,
+          0.9,
+          0.05,
+          -0.02
+        ],
+        "T_requested": 2,
+        "T_reached": 2.0,
+        "success": true,
+        "earthImpact": false,
+        "moonImpact": false,
+        "minMoonDU": 0.999673116202082,
+        "minMoonTime": 1.2795,
+        "earthDistanceRangeDU": [
+          0.9168217957456929,
+          1.0119070610822245
+        ],
+        "initialInertialSpeedDU": 0.9525754563287886,
+        "finalInertialSpeedDU": 1.0559119965426473
+      }
+    ]
+  }
+]
