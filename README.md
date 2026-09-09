@@ -74,6 +74,8 @@ submissions/<harness>--<model>--<date>/
 
 [评阅方法与限制](reviews/2026-09-09/METHODS.md) · [逐项评分证据](reviews/2026-09-09/README.md) · [机器可读评分](reviews/2026-09-09/scores.json) · [实测记录与截图](reviews/2026-09-09/evidence/)
 
+**后续专项：[前四名纯科学终评](reviews/2026-09-09/science-final/README.md)**。只比较最终数学、物理及数值结果，不计界面、工程材料或中间文件完整度；其权重和结论单列，原综合榜分数保持原评分口径。
+
 ### 总排名
 
 | 排名 | 参赛组合 | 原始合计 /100 | 封顶 | 最终得分 /100 | 评阅 |
