@@ -1,0 +1,98 @@
+{
+  "scipy": "1.17.0",
+  "solver": "DOP853",
+  "samples_per_case": 101,
+  "rtol": 3e-14,
+  "atol": 3e-15,
+  "pass_check": true,
+  "results": [
+    {
+      "key": "l4",
+      "method": "rk4",
+      "h": 0.01,
+      "T": 100,
+      "max_state_error": 3.0069557973475985e-10,
+      "final_state_error": 2.9092127588616196e-10,
+      "reference_tolerance_difference": 1.427939564742243e-12,
+      "threshold": 1e-06,
+      "pass_check": true
+    },
+    {
+      "key": "l4",
+      "method": "yoshida",
+      "h": 0.01,
+      "T": 100,
+      "max_state_error": 1.412061636430435e-07,
+      "final_state_error": 1.2251702733028134e-07,
+      "reference_tolerance_difference": 1.427939564742243e-12,
+      "threshold": 1e-06,
+      "pass_check": true
+    },
+    {
+      "key": "l1",
+      "method": "rk4",
+      "h": 0.001,
+      "T": 2,
+      "max_state_error": 2.1834667333691892e-13,
+      "final_state_error": 2.1834667333691892e-13,
+      "reference_tolerance_difference": 1.6142402301148813e-12,
+      "threshold": 2e-07,
+      "pass_check": true
+    },
+    {
+      "key": "l1",
+      "method": "yoshida",
+      "h": 0.001,
+      "T": 2,
+      "max_state_error": 1.483652978459665e-10,
+      "final_state_error": 1.483652978459665e-10,
+      "reference_tolerance_difference": 1.6142402301148813e-12,
+      "threshold": 2e-07,
+      "pass_check": true
+    },
+    {
+      "key": "earth",
+      "method": "rk4",
+      "h": 0.001,
+      "T": 3,
+      "max_state_error": 2.0121782975755068e-10,
+      "final_state_error": 2.0121782975755068e-10,
+      "reference_tolerance_difference": 1.8392246816562963e-12,
+      "threshold": 1e-07,
+      "pass_check": true
+    },
+    {
+      "key": "earth",
+      "method": "yoshida",
+      "h": 0.001,
+      "T": 3,
+      "max_state_error": 3.5531455772622895e-08,
+      "final_state_error": 3.5531455772622895e-08,
+      "reference_tolerance_difference": 1.8392246816562963e-12,
+      "threshold": 1e-07,
+      "pass_check": true
+    },
+    {
+      "key": "flyby",
+      "method": "rk4",
+      "h": 0.0001,
+      "T": 0.6,
+      "max_state_error": 6.931327318403063e-09,
+      "final_state_error": 4.84903790152013e-09,
+      "reference_tolerance_difference": 4.861847808261544e-13,
+      "threshold": 3e-06,
+      "pass_check": true
+    },
+    {
+      "key": "flyby",
+      "method": "yoshida",
+      "h": 0.0001,
+      "T": 0.6,
+      "max_state_error": 1.7032870526099163e-07,
+      "final_state_error": 1.135811982919396e-07,
+      "reference_tolerance_difference": 4.861847808261544e-13,
+      "threshold": 3e-06,
+      "pass_check": true
+    }
+  ]
+}

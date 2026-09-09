@@ -1,0 +1,10 @@
+{
+  "source":"actual Node checkedStep integration observed in round 3 before preset revision",
+  "initial_flyby":{"state":[0.807849414390376,-0.1,0.65,0.65],"h":0.0002,"T":1},
+  "results":[
+    {"method":"rk4","minMoon":0.007199992514405746,"maxDrift":6.810083963415536e-8,"initialInertialSpeed":1.6394587262381335,"finalInertialSpeed":0.5364022237262739},
+    {"method":"yoshida","minMoon":0.007199992012592633,"maxDrift":7.438275018145646e-7,"initialInertialSpeed":1.6394587262381335,"finalInertialSpeed":0.5364044270253536}
+  ],
+  "decision":"This is a genuine decelerating gravity assist. To provide an accelerating teaching preset, integrate original to T=.6, then use CR3BP reversing symmetry [x,-y,-vx,vy]. Reduce default h to .0001. Only the derived initial state is embedded; no trajectory samples are embedded.",
+  "reverse_initial_full_precision":[0.9830231907507747,0.3395306311477534,0.36409108611813895,-0.7564690924830453]
+}

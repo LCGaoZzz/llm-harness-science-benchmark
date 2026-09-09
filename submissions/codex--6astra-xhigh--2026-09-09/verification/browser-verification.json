@@ -1,0 +1,164 @@
+{
+  "observed_at": "2026-09-09T06:43:13Z",
+  "tool": "cua_repl documented browser APIs, actual Chromium tab",
+  "url": "http://127.0.0.1:8741/",
+  "final_html_sha256": "03f3b6c7011d7f2c757cd2265bf664256f86c8135cb5d1ae33862630cd67af92",
+  "self_test_visible_result": "23 / 23 通过 · 14:43:13 实测",
+  "console_errors_and_warnings": [],
+  "checks": [
+    {
+      "name": "initial canvas paint",
+      "result": "pass after fixing redraw on initial paused animation frame"
+    },
+    {
+      "name": "single step",
+      "result": "pass",
+      "time_before": 0,
+      "time_after": 0.01
+    },
+    {
+      "name": "isolated algorithm switch preserves displayed state",
+      "result": "pass",
+      "before": {
+        "C0": "2.988072899",
+        "time": "0.0100",
+        "x": "0.49784980"
+      },
+      "after": {
+        "C0": "2.988072899",
+        "time": "0.0100",
+        "x": "0.49784980"
+      }
+    },
+    {
+      "name": "pause freezes time while changing view",
+      "result": "pass",
+      "time_before": 53.63,
+      "time_after": 53.63
+    },
+    {
+      "name": "changed h single step",
+      "result": "pass",
+      "h": 0.002,
+      "time_before": 53.63,
+      "time_after": 53.632
+    },
+    {
+      "name": "invalid h=0 rejected",
+      "result": "pass",
+      "visible_message": "h 的可用范围是 0.000001–0.05 TU"
+    },
+    {
+      "name": "all four custom initial values applied",
+      "result": "pass",
+      "state": [
+        0.4,
+        0.2,
+        0.1,
+        0.3
+      ],
+      "time": 0
+    },
+    {
+      "name": "reset restores applied initial state",
+      "result": "pass",
+      "state": [
+        0.4,
+        0.2,
+        0.1,
+        0.3
+      ],
+      "time": 0
+    },
+    {
+      "name": "physical timestep hint after single step",
+      "result": "pass",
+      "visible_message": "每步 765.96 秒（物理时间）"
+    },
+    {
+      "name": "empty initial value rejected",
+      "result": "pass",
+      "input_method": "Control+A, Backspace",
+      "visible_message": "请输入有效有限数：x0"
+    },
+    {
+      "name": "L1 guard",
+      "result": "pass",
+      "time": 2.493,
+      "visible_message": "近遇步长不足：请减小 h 后继续。当前状态与时间已保留。"
+    },
+    {
+      "name": "Earth orbit actual animation",
+      "result": "pass",
+      "time": 14.857,
+      "steps": 14857,
+      "max_jacobi_drift_display": "1.76e-11",
+      "visual": "closed-looking perturbed Earth orbit inside zero-velocity boundary; actually integrated"
+    },
+    {
+      "name": "zoom and keyboard pan",
+      "result": "pass",
+      "observed_width_change": "1.25 to 1.56 DU",
+      "pan_method": "ArrowRight on canvas",
+      "visual": "Earth and track shift; no time advancement while paused"
+    },
+    {
+      "name": "zero-velocity and grid checkboxes",
+      "result": "pass",
+      "actions": "uncheck and recheck each; restored visible boundaries and grid"
+    },
+    {
+      "name": "flyby actual animation",
+      "result": "pass",
+      "time": 12.25,
+      "steps": 122500,
+      "max_jacobi_drift_display": "4.66e-8",
+      "final_state_display": [
+        -5.19312855,
+        -6.72202625,
+        -6.95938337,
+        4.65073657
+      ]
+    },
+    {
+      "name": "pause message after final fix",
+      "result": "pass",
+      "visible_message": "已暂停。可单步推进或继续模拟。"
+    },
+    {
+      "name": "final browser self tests",
+      "result": "pass",
+      "passed": 23,
+      "total": 23
+    },
+    {
+      "result": "pass after final layout-only correction",
+      "name": "wide viewport default fit",
+      "visible": "L1–L5 and initial L4 state all visible at width 1265px; fitted width 4.46 DU"
+    }
+  ],
+  "inconclusive_or_tool_limits": [
+    {
+      "name": "first visible-tab switch check",
+      "result": "inconclusive",
+      "before_time": 0.001,
+      "after_time": 0.145,
+      "reason": "time and camera changed during the check; isolated paused repeat passed; initial observation is not counted as a pass"
+    },
+    {
+      "name": "Playwright fill empty string",
+      "result": "tool action did not clear number field",
+      "resolution": "used actual keyboard select-all and Backspace; blank-input rejection then verified"
+    },
+    {
+      "name": "direct file URL",
+      "result": "blocked",
+      "reason": "browser URL security policy rejects file://; no workaround attempted; local HTTP already verified"
+    },
+    {
+      "name": "responsive devices",
+      "result": "not exhaustively tested",
+      "reason": "tested actual desktop browser viewports; no separate phone browser session"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "active_theories": [
+    {
+      "confidence": 0.0,
+      "statement": "At fixed step, symplectic Yoshida yields lower long-time Jacobi drift than RK4 on smooth L4 motion.",
+      "theory_id": "blf_24d2b9d057374d5497be9a34096c64cd"
+    },
+    {
+      "confidence": 0.0,
+      "statement": "At these finite horizons RK4 error constants dominate; RK4 beats Yoshida despite not being symplectic.",
+      "theory_id": "blf_10a98f64727944c19b00b304f033fdf2"
+    },
+    {
+      "confidence": 0.0,
+      "statement": "Step size controls the dominant truncation error; halving h lowers drift before roundoff dominates.",
+      "theory_id": "blf_4f85397ec43e495bb92ee6b5c25288ba"
+    },
+    {
+      "confidence": 0.0,
+      "statement": "Truncation dominates uniformly: smaller steps continue to lower Jacobi drift in both integrators.",
+      "theory_id": "blf_24f1dc3bf0464475974abd8d508574a9"
+    },
+    {
+      "confidence": 0.0,
+      "statement": "Integrator-specific truncation constants compete with accumulating roundoff; repeated rotations can add a method-specific error floor at very small h.",
+      "theory_id": "blf_bb147fbf01444b31a2d34b5e2bd9a595"
+    }
+  ],
+  "campaign_id": "camp_3d63e656eeed4632a3d8a707297dfef5",
+  "n_retired": 0,
+  "next": "5 rival theories are live. campaign__propose with no `pool` will regenerate the space from the leading one, so a theory you just revised reaches the next batch.",
+  "ok": true,
+  "recorded": 1
+}

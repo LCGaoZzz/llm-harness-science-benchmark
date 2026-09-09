@@ -1,0 +1,40 @@
+{
+  "campaign_id": "camp_3d63e656eeed4632a3d8a707297dfef5",
+  "generator_bypassed": "this batch was chosen from the 1 candidates you supplied, so the theories are ranking your list rather than deciding what is on it. Omitting `pool` would have enumerated 5 candidates from `blf_bb147fbf01444b31a2d34b5e2bd9a595` — the space that theory actually implies. That regeneration is the only path by which revising a theory changes what gets measured next; while you supply the pool, a theory can be stated, refuted and replaced without the search ever moving.",
+  "method": "information_directed",
+  "n_beliefs_compared": 3,
+  "n_pool": 1,
+  "notes": [],
+  "ok": true,
+  "picks": [
+    {
+      "chosen_for": "information",
+      "ids_score": 0.0,
+      "information": 0.00468981030230204,
+      "label": "yoshida|0.00125",
+      "per_belief": [
+        {
+          "predicted": -10.749866588326178,
+          "sd": 1.1756422971943448,
+          "support": 0.007602164924713778,
+          "theory_id": "blf_10a98f64727944c19b00b304f033fdf2"
+        },
+        {
+          "predicted": -13.731894912260671,
+          "sd": 1.8120799944301238,
+          "support": 0.0003901223802080785,
+          "theory_id": "blf_4f85397ec43e495bb92ee6b5c25288ba"
+        },
+        {
+          "predicted": -11.803196993313552,
+          "sd": 1.1219464834005424,
+          "support": 0.9920077126950781,
+          "theory_id": "blf_bb147fbf01444b31a2d34b5e2bd9a595"
+        }
+      ],
+      "predicted": -11.795941830077464,
+      "predicted_sd": 1.1270869325605697,
+      "regret": 0.0
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "campaign_id": "camp_3d63e656eeed4632a3d8a707297dfef5",
+  "generator_bypassed": "this batch was chosen from the 6 candidates you supplied, so the theories are ranking your list rather than deciding what is on it. Omitting `pool` would have enumerated 12 candidates from `blf_24f1dc3bf0464475974abd8d508574a9` — the space that theory actually implies. That regeneration is the only path by which revising a theory changes what gets measured next; while you supply the pool, a theory can be stated, refuted and replaced without the search ever moving.",
+  "method": "information_directed",
+  "n_beliefs_compared": 5,
+  "n_pool": 6,
+  "notes": [
+    "warm-up round 6 of 10: picked by total predictive variance across all theories, not by the information criterion. There is not yet enough fitted structure for a regret-versus-information trade-off to be worth optimising, and choosing by the objective this early is what makes a posterior agree with itself later."
+  ],
+  "ok": true,
+  "picks": [
+    {
+      "chosen_for": "uncertainty",
+      "ids_score": null,
+      "information": 1.8857750634852448,
+      "label": "rk4|0.01",
+      "per_belief": [],
+      "predicted": null,
+      "predicted_sd": 1.3732352542391435,
+      "regret": null
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "round": "08",
+  "method": "yoshida",
+  "h": 0.02,
+  "T": 100,
+  "state": [
+    0.3418368534098809,
+    0.931892306901187,
+    0.002120654721917914,
+    0.023476206912899422
+  ],
+  "maxDrift": 7.817329450432453e-9,
+  "finalDrift": -1.0130332128710506e-9,
+  "minMoon": 0.8559950326714262,
+  "steps": 5000,
+  "log10_max_jacobi_drift": -8.10694158492277,
+  "elapsed_ms": 359.1512,
+  "tests": {
+    "timestamp": "2026-09-09T06:31:42.818Z",
+    "passed": 23,
+    "total": 23,
+    "results": [
+      {
+        "name": "L1–L5 平衡残差",
+        "pass": true,
+        "value": 3.1086244689504383e-15,
+        "limit": 1e-12,
+        "detail": "数值二分 + 二维 Newton，max |∇Ω|"
+      },
+      {
+        "name": "NASA/JPL 外部位置锚点",
+        "pass": true,
+        "value": 8.95090418262362e-16,
+        "limit": 2e-13,
+        "detail": "JPL 文档数值；只用于测试，轨迹和标记由方程生成"
+      },
+      {
+        "name": "势梯度独立差分核对",
+        "pass": true,
+        "value": 4.760428113380865e-10,
+        "limit": 1e-8,
+        "detail": ""
+      },
+      {
+        "name": "正则变换与 C = −2H",
+        "pass": true,
+        "value": 2.7755575615628914e-17,
+        "limit": 1e-14,
+        "detail": ""
+      },
+      {
+        "name": "rk4 四阶步长收敛",
+        "pass": true,
+        "value": 15.892943234169138,
+        "range": [
+          12,
+          20
+        ],
+        "detail": "‖s(h)−s(h/2)‖ / ‖s(h/2)−s(h/4)‖，预期约 16",
+        "e1": 1.6595230402456457e-9,
+        "e2": 1.0441886161637721e-10
+      },
+      {
+        "name": "rk4 长时 Jacobi 误差",
+        "pass": true,
+        "value": 7.638334409421077e-14,
+        "limit": 1e-7,
+        "detail": "L4 扰动，h=0.01，T=100 TU，10,000 步",
+        "finalDrift": 3.6415315207705135e-14
+      },
+      {
+        "name": "rk4 绕地守恒误差",
+        "pass": true,
+        "value": 4.001243780749064e-12,
+        "limit": 2e-7,
+        "detail": "h=0.001，T=3 TU"
+      },
+      {
+        "name": "yoshida 四阶步长收敛",
+        "pass": true,
+        "value": 16.004566445229386,
+        "range": [
+          12,
+          20
+        ],
+        "detail": "‖s(h)−s(h/2)‖ / ‖s(h/2)−s(h/4)‖，预期约 16",
+        "e1": 6.127932168403419e-8,
+        "e2": 3.828864836404252e-9
+      },
+      {
+        "name": "yoshida 长时 Jacobi 误差",
+        "pass": true,
+        "value": 4.885620796812873e-10,
+        "limit": 1e-7,
+        "detail": "L4 扰动，h=0.01，T=100 TU，10,000 步",
+        "finalDrift": -6.330225232886733e-11
+      },
+      {
+        "name": "yoshida 绕地守恒误差",
+        "pass": true,
+        "value": 1.2647660696529783e-11,
+        "limit": 2e-7,
+        "detail": "h=0.001，T=3 TU"
+      },
+      {
+        "name": "辛积分时间可逆性",
+        "pass": true,
+        "value": 2.1426028012206378e-14,
+        "limit": 2e-11,
+        "detail": "100 步正向 + 100 步反向"
+      },
+      {
+        "name": "辛映射 Jacobian",
+        "pass": true,
+        "value": 1.458679525807177e-10,
+        "limit": 2e-8,
+        "detail": "正则变量有限差分：max |MᵀJM−J|"
+      },
+      {
+        "name": "NaN / Infinity / 溢出防护",
+        "pass": true,
+        "value": 6,
+        "expected": 6
+      },
+      {
+        "name": "非法步长与未知算法拒绝",
+        "pass": true,
+        "value": 6,
+        "expected": 6
+      },
+      {
+        "name": "奇点、表面与大步长防护",
+        "pass": true,
+        "value": 4,
+        "expected": 4
+      },
+      {
+        "name": "失败不污染原始状态",
+        "pass": true,
+        "value": 0
+      },
+      {
+        "name": "线段碰撞检测",
+        "pass": true,
+        "value": 3.469446951953614e-18
+      },
+      {
+        "name": "零速度边求根与允许域符号",
+        "pass": true,
+        "value": 2.5979218776228663e-13,
+        "limit": 1e-10,
+        "detail": "曲线 F=2Ω−C=0；F<0 为不可达域"
+      },
+      {
+        "name": "rk4 月球飞掠与增速",
+        "pass": true,
+        "value": 1.4115771990522548,
+        "minMoon": 0.0071993505692369685,
+        "maxDrift": 4.51543069601712e-9,
+        "detail": "T=0.6，h=0.0001；惯性速率增量 >0.5；最近月心 0.007199 DU；max |ΔC|=4.515e-9"
+      },
+      {
+        "name": "yoshida 月球飞掠与增速",
+        "pass": true,
+        "value": 1.4115772426118973,
+        "minMoon": 0.0071993505406199206,
+        "maxDrift": 4.655696717037472e-8,
+        "detail": "T=0.6，h=0.0001；惯性速率增量 >0.5；最近月心 0.007199 DU；max |ΔC|=4.656e-8"
+      },
+      {
+        "name": "L1 扰动增长",
+        "pass": true,
+        "value": 273.27324820853255,
+        "detail": "T=2 TU，位置偏离放大 >30 倍；不等同于 Lyapunov 指数估计"
+      },
+      {
+        "name": "L4 扰动保持有界",
+        "pass": true,
+        "value": 0.1689851169267175,
+        "limit": 0.3,
+        "detail": "T=100 TU；本初值的位置偏离上界"
+      },
+      {
+        "name": "零速度曲线网格收敛",
+        "pass": true,
+        "value": 0.00023571710297387583,
+        "coarse": {
+          "err": 0.0008964137316720411,
+          "count": 384
+        },
+        "fine": {
+          "err": 0.00023571710297387583,
+          "count": 772
+        },
+        "detail": "与画布同一三角等值线算法；40→80 网格，最大 |2Ω−C| 应降低"
+      }
+    ]
+  },
+  "artifact": {
+    "path": "G:\\oomicoos\\deliverables\\earth-moon-lab\\index.html",
+    "sha256": "71db161fb55bde4257365d8d40c71fce91ce4526ed0f17658a7823cad38992f4",
+    "bytes": 44611
+  }
+}

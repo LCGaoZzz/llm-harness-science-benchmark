@@ -1,0 +1,285 @@
+{
+  "ATTENTION": [
+    "conflicting_evidence: 3 conflict(s) between the objective and another recorded metric.",
+    "coverage: measurements are spread evenly across the levels the theories reason about, so the posterior is being compute…",
+    "covers_data: the leading principle leaves 1.077 of held-out error against an assay repeatability of 0.020 (53.9x). That…",
+    "needs_new_theory: true",
+    "no_outside_check: 12 candidates are ranked by `log10_max_jacobi_drift`, and not one of them came from outside this camp…",
+    "origin_audit: the best candidate was chosen by the campaign itself (12 of 12 labelled). This is the case where the mach…",
+    "should_stop: true",
+    "theories: 3 — its directional claims earned no weight — the data does not move the way this mechanism says it should"
+  ],
+  "best": {
+    "label": "r11-rk4-h0.0025",
+    "metrics": {
+      "elapsed_ms": 393.427,
+      "log10_max_jacobi_drift": -14.750469787535078,
+      "max_jacobi_drift": 1.7763568394002505e-15,
+      "passed_checks": 23.0,
+      "total_checks": 23.0
+    },
+    "payload": {
+      "T": 100,
+      "cost": "local CPU only; no paid API",
+      "evidence": "verification/round-11.json",
+      "initial": "L4 + 0.01 x"
+    },
+    "round": 11
+  },
+  "best_per_round": [
+    -11.8062339437416,
+    -11.8062339437416,
+    -14.273348532815415,
+    -14.273348532815415,
+    -14.653559774527022,
+    -14.653559774527022,
+    -14.653559774527022,
+    -14.653559774527022,
+    -14.653559774527022,
+    -14.653559774527022,
+    -14.750469787535078,
+    -14.750469787535078
+  ],
+  "best_theory": "blf_bb147fbf01444b31a2d34b5e2bd9a595",
+  "brought_in_and_never_read": "1 column(s) came from outside this campaign and no formula it has measured reads it: `mass_ratio` (https://ssd-api.jpl.nasa.gov/doc/periodic_orbits.html). The quantity is already computed, and every form on the record is one edit away from reading it — so this is the cheapest measurement available and the only one that can tell you whether what you went and got is worth anything here. Left unread it is a citation in the write-up and no evidence.",
+  "calibration": {
+    "coverage_2sd": 1.0,
+    "mean_signed_z": -1.0002627142832137,
+    "median_abs_z": 1.0134292954048334,
+    "n_predicted": 2
+  },
+  "campaign_id": "camp_3d63e656eeed4632a3d8a707297dfef5",
+  "conflicting_evidence": {
+    "n": 3,
+    "n_omitted": 0,
+    "note": "3 conflict(s) between the objective and another recorded metric.",
+    "shown": [
+      {
+        "disagreeing": [
+          {
+            "label": "r02-yoshida-h0.01",
+            "objective_side": 3.5974047386149923,
+            "origin": "proposed",
+            "other_side": -78.94599999999997,
+            "round": 2,
+            "source_ref": null
+          },
+          {
+            "label": "r01-rk4-h0.02",
+            "objective_side": 1.1022510392033649,
+            "origin": "derived",
+            "other_side": -77.99869999999999,
+            "round": 1,
+            "source_ref": null
+          },
+          {
+            "label": "r09-rk4-h0.000625",
+            "objective_side": -1.7450747915820575,
+            "origin": "proposed",
+            "other_side": 73.31189999999998,
+            "round": 9,
+            "source_ref": null
+          },
+          {
+            "label": "r04-yoshida-h0.0025",
+            "objective_side": 1.1897265501644778,
+            "origin": "proposed",
+            "other_side": -71.57490000000001,
+            "round": 4,
+            "source_ref": null
+          },
+          {
+            "label": "r06-yoshida-h0.000625",
+            "objective_side": -0.11160633600247216,
+            "origin": "proposed",
+            "other_side": 30.607000000000028,
+            "round": 6,
+            "source_ref": null
+          }
+        ],
+        "n_comparable": 12,
+        "note": "`log10_max_jacobi_drift` and `elapsed_ms` rank 8 of 12 shared candidates opposite ways — worst is `r02-yoshida-h0.01`.",
+        "objective": "log10_max_jacobi_drift",
+        "other_metric": "elapsed_ms"
+      },
+      {
+        "disagreeing": [
+          {
+            "label": "r02-yoshida-h0.01",
+            "objective_side": 3.5974047386149923,
+            "origin": "proposed",
+            "other_side": -5.0,
+            "round": 2,
+            "source_ref": null
+          },
+          {
+            "label": "r04-yoshida-h0.0025",
+            "objective_side": 1.1897265501644778,
+            "origin": "proposed",
+            "other_side": -5.0,
+            "round": 4,
+            "source_ref": null
+          },
+          {
+            "label": "r01-rk4-h0.02",
+            "objective_side": 1.1022510392033649,
+            "origin": "derived",
+            "other_side": -5.0,
+            "round": 1,
+            "source_ref": null
+          }
+        ],
+        "n_comparable": 12,
+        "note": "`log10_max_jacobi_drift` and `passed_checks` rank 3 of 12 shared candidates opposite ways — worst is `r02-yoshida-h0.01`.",
+        "objective": "log10_max_jacobi_drift",
+        "other_metric": "passed_checks"
+      },
+      {
+        "disagreeing": [
+          {
+            "label": "r02-yoshida-h0.01",
+            "objective_side": 3.5974047386149923,
+            "origin": "proposed",
+            "other_side": -5.0,
+            "round": 2,
+            "source_ref": null
+          },
+          {
+            "label": "r04-yoshida-h0.0025",
+            "objective_side": 1.1897265501644778,
+            "origin": "proposed",
+            "other_side": -5.0,
+            "round": 4,
+            "source_ref": null
+          },
+          {
+            "label": "r01-rk4-h0.02",
+            "objective_side": 1.1022510392033649,
+            "origin": "derived",
+            "other_side": -5.0,
+            "round": 1,
+            "source_ref": null
+          }
+        ],
+        "n_comparable": 12,
+        "note": "`log10_max_jacobi_drift` and `total_checks` rank 3 of 12 shared candidates opposite ways — worst is `r02-yoshida-h0.01`.",
+        "objective": "log10_max_jacobi_drift",
+        "other_metric": "total_checks"
+      }
+    ],
+    "what_to_do": "A conflict here is not a theory being wrong, which is what the rounds are for; it is a reason to doubt that the objective measures what it is named after. Do not settle it by preferring the source you started with. The round that settles it looks for a THIRD kind of evidence, or for a better instrument tested against the anchors you already hold — and either way both readings go in as rival theories so the next batch is chosen for what separates them."
+  },
+  "coverage": {
+    "balance": 1.0,
+    "note": "measurements are spread evenly across the levels the theories reason about, so the posterior is being computed on evidence that was not chosen to agree with it",
+    "per_factor": [
+      {
+        "evenness": 1.0,
+        "factor": "integrator",
+        "largest_share": 0.5,
+        "levels_seen": 2
+      },
+      {
+        "evenness": 0.9999999999999999,
+        "factor": "step",
+        "largest_share": 0.16666666666666666,
+        "levels_seen": 6
+      }
+    ],
+    "verdict": "even"
+  },
+  "covers_data": {
+    "adequate": false,
+    "note": "the leading principle leaves 1.077 of held-out error against an assay repeatability of 0.020 (53.9x). That gap is structure, not noise: there is something real none of your principles names. State a rival principle that could account for it — this is the point at which a campaign discovers something rather than merely optimising",
+    "observation_sd": 0.02,
+    "statement": "Integrator-specific truncation constants compete with accumulating roundoff; repeated rotations can add a method-specific error floor at very small h.",
+    "theory_id": "blf_bb147fbf01444b31a2d34b5e2bd9a595",
+    "times_the_measurement_noise": 53.874308680047164,
+    "typical_error": 1.0774861736009433
+  },
+  "direction": "minimize",
+  "goal": "Build and validate a single-file Earth-Moon CR3BP browser laboratory through 12 rounds",
+  "improving": false,
+  "n_beliefs_retired": 2,
+  "n_candidates": 12,
+  "n_comparisons": 0,
+  "n_from_observations": 0,
+  "n_recorded": 1,
+  "n_rounds": 12,
+  "needs_new_theory": true,
+  "no_outside_check": {
+    "n_scored": 12,
+    "note": "12 candidates are ranked by `log10_max_jacobi_drift`, and not one of them came from outside this campaign. Every number in the record was produced by the same instrument, so the record cannot show that instrument to be wrong. The cheapest fix is one published value scored under `log10_max_jacobi_drift`, recorded with `origin: literature` and a `source_ref` — a single one is enough for a disagreement between your instrument and the world to become visible, and until there is one, a large gain in this record and a large error in this record are the same picture."
+  },
+  "objective": "log10_max_jacobi_drift",
+  "objective_source": "declared",
+  "ok": true,
+  "origin_audit": {
+    "beliefs": {
+      "derived": 1,
+      "prior": 2
+    },
+    "best_from": "proposed",
+    "candidates": {
+      "derived": 1,
+      "proposed": 11
+    },
+    "map_belief_from": "derived",
+    "n_literature_without_source": 0,
+    "n_unlabelled": 0,
+    "note": "the best candidate was chosen by the campaign itself (12 of 12 labelled). This is the case where the machinery, rather than the reading, is what produced the result."
+  },
+  "round": 12,
+  "rounds_without_improvement": 1,
+  "scoring": "metric",
+  "should_stop": true,
+  "status": "active",
+  "stop_reason": "reached max_rounds (12)",
+  "surprise_threshold": 2.0,
+  "theories": [
+    {
+      "log_evidence": -27.32089045359443,
+      "n_obs": 12,
+      "note": "its directional claims earned no weight — the data does not move the way this mechanism says it should",
+      "statement": "At these finite horizons RK4 error constants dominate; RK4 beats Yoshida despite not being symplectic.",
+      "support": 0.0029887354598896678,
+      "theory_id": "blf_10a98f64727944c19b00b304f033fdf2"
+    },
+    {
+      "log_evidence": -30.758142945486256,
+      "n_obs": 12,
+      "statement": "Step size controls the dominant truncation error; halving h lowers drift before roundoff dominates.",
+      "support": 0.00023220568878228246,
+      "theory_id": "blf_4f85397ec43e495bb92ee6b5c25288ba"
+    },
+    {
+      "log_evidence": -23.7644229291907,
+      "n_obs": 12,
+      "note": "its directional claims earned no weight — the data does not move the way this mechanism says it should",
+      "statement": "Integrator-specific truncation constants compete with accumulating roundoff; repeated rotations can add a method-specific error floor at very small h.",
+      "support": 0.9967790588513281,
+      "theory_id": "blf_bb147fbf01444b31a2d34b5e2bd9a595"
+    }
+  ],
+  "what_is_unexplained": {
+    "covers_data": {
+      "adequate": false,
+      "note": "the leading principle leaves 1.077 of held-out error against an assay repeatability of 0.020 (53.9x). That gap is structure, not noise: there is something real none of your principles names. State a rival principle that could account for it — this is the point at which a campaign discovers something rather than merely optimising",
+      "observation_sd": 0.02,
+      "statement": "Integrator-specific truncation constants compete with accumulating roundoff; repeated rotations can add a method-specific error floor at very small h.",
+      "theory_id": "blf_bb147fbf01444b31a2d34b5e2bd9a595",
+      "times_the_measurement_noise": 53.874308680047164,
+      "typical_error": 1.0774861736009433
+    },
+    "what_to_do": "State a principle that could account for the residual, with campaign__theories — a factor none of the current ones name, an interaction between two that do, or a revision retiring one that stopped paying. Set `parents` so the lineage survives.",
+    "why_now": "the leading principle leaves 1.077 of held-out error against an assay repeatability of 0.020 (53.9x). That gap is structure, not noise: there is something real none of your principles names. State a rival principle that could account for it — this is the point at which a campaign discovers something rather than merely optimising"
+  },
+  "what_to_do_about_the_conflict": {
+    "this_is_not_a_stopping_point": "A disagreement between your scoring model and a real measurement is the most informative thing to have happened, and the tools that would settle it — literature, structures, homologues, a second scorer — are available in this same turn. Ending the run to ask for advice discards it.",
+    "what_the_next_round_is_for": [
+      "A THIRD kind of evidence. Two disagreeing sources cannot settle each other.",
+      "A better instrument, if the conflict means this one is wrong for this system. Test the replacement against the anchors you already hold and record what it scored on them.",
+      "Both readings as rival theories, with campaign__theories, so the next batch is chosen for what separates them."
+    ]
+  }
+}

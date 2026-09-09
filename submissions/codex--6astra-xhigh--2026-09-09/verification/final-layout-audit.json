@@ -1,0 +1,7 @@
+{
+  "stage": "Round 12 final delivery QA; no new numerical method or configuration",
+  "reason": "At actual 1265px viewport the L4 initial position was outside the plot. Fit both world dimensions after resize/preset/home, preserve manual zoom and pan.",
+  "before_sha256": "92c35d0bf21dbd908378de852d2ccc6e453ba7dd9264c1b304a762b66fb661a9",
+  "after_sha256": "03f3b6c7011d7f2c757cd2265bf664256f86c8135cb5d1ae33862630cd67af92",
+  "physics_unchanged": true
+}

@@ -1,0 +1,161 @@
+{
+  "round": "02",
+  "method": "yoshida",
+  "h": 0.01,
+  "T": 100,
+  "state": [
+    0.34183547725133445,
+    0.9318931912363242,
+    0.0021214905766354653,
+    0.023476255274164137
+  ],
+  "maxDrift": 4.885620796812873e-10,
+  "finalDrift": -6.330225232886733e-11,
+  "minMoon": 0.8559938553225055,
+  "steps": 10000,
+  "log10_max_jacobi_drift": -9.311080244329972,
+  "elapsed_ms": 288.696,
+  "tests": {
+    "timestamp": "2026-09-09T06:22:32.418Z",
+    "passed": 18,
+    "total": 18,
+    "results": [
+      {
+        "name": "L1–L5 平衡残差",
+        "pass": true,
+        "value": 3.1086244689504383e-15,
+        "limit": 1e-12,
+        "detail": "数值二分 + 二维 Newton，max |∇Ω|"
+      },
+      {
+        "name": "NASA/JPL 外部位置锚点",
+        "pass": true,
+        "value": 8.95090418262362e-16,
+        "limit": 2e-13,
+        "detail": "JPL 文档数值；只用于测试，轨迹和标记由方程生成"
+      },
+      {
+        "name": "势梯度独立差分核对",
+        "pass": true,
+        "value": 4.760428113380865e-10,
+        "limit": 1e-8,
+        "detail": ""
+      },
+      {
+        "name": "正则变换与 C = −2H",
+        "pass": true,
+        "value": 2.7755575615628914e-17,
+        "limit": 1e-14,
+        "detail": ""
+      },
+      {
+        "name": "rk4 四阶步长收敛",
+        "pass": true,
+        "value": 15.892943234169138,
+        "range": [
+          12,
+          20
+        ],
+        "detail": "‖s(h)−s(h/2)‖ / ‖s(h/2)−s(h/4)‖，预期约 16",
+        "e1": 1.6595230402456457e-9,
+        "e2": 1.0441886161637721e-10
+      },
+      {
+        "name": "rk4 长时 Jacobi 误差",
+        "pass": true,
+        "value": 7.638334409421077e-14,
+        "limit": 1e-7,
+        "detail": "L4 扰动，h=0.01，T=100 TU，10,000 步",
+        "finalDrift": 3.6415315207705135e-14
+      },
+      {
+        "name": "rk4 绕地守恒误差",
+        "pass": true,
+        "value": 4.001243780749064e-12,
+        "limit": 2e-7,
+        "detail": "h=0.001，T=3 TU"
+      },
+      {
+        "name": "yoshida 四阶步长收敛",
+        "pass": true,
+        "value": 16.004566445229386,
+        "range": [
+          12,
+          20
+        ],
+        "detail": "‖s(h)−s(h/2)‖ / ‖s(h/2)−s(h/4)‖，预期约 16",
+        "e1": 6.127932168403419e-8,
+        "e2": 3.828864836404252e-9
+      },
+      {
+        "name": "yoshida 长时 Jacobi 误差",
+        "pass": true,
+        "value": 4.885620796812873e-10,
+        "limit": 1e-7,
+        "detail": "L4 扰动，h=0.01，T=100 TU，10,000 步",
+        "finalDrift": -6.330225232886733e-11
+      },
+      {
+        "name": "yoshida 绕地守恒误差",
+        "pass": true,
+        "value": 1.2647660696529783e-11,
+        "limit": 2e-7,
+        "detail": "h=0.001，T=3 TU"
+      },
+      {
+        "name": "辛积分时间可逆性",
+        "pass": true,
+        "value": 2.1426028012206378e-14,
+        "limit": 2e-11,
+        "detail": "100 步正向 + 100 步反向"
+      },
+      {
+        "name": "辛映射 Jacobian",
+        "pass": true,
+        "value": 1.458679525807177e-10,
+        "limit": 2e-8,
+        "detail": "正则变量有限差分：max |MᵀJM−J|"
+      },
+      {
+        "name": "NaN / Infinity / 溢出防护",
+        "pass": true,
+        "value": 6,
+        "expected": 6
+      },
+      {
+        "name": "非法步长与未知算法拒绝",
+        "pass": true,
+        "value": 6,
+        "expected": 6
+      },
+      {
+        "name": "奇点、表面与大步长防护",
+        "pass": true,
+        "value": 4,
+        "expected": 4
+      },
+      {
+        "name": "失败不污染原始状态",
+        "pass": true,
+        "value": 0
+      },
+      {
+        "name": "线段碰撞检测",
+        "pass": true,
+        "value": 3.469446951953614e-18
+      },
+      {
+        "name": "零速度边求根与允许域符号",
+        "pass": true,
+        "value": 2.5979218776228663e-13,
+        "limit": 1e-10,
+        "detail": "曲线 F=2Ω−C=0；F<0 为不可达域"
+      }
+    ]
+  },
+  "artifact": {
+    "path": "G:\\oomicoos\\deliverables\\earth-moon-lab\\index.html",
+    "sha256": "d4ae826c4cba7589cdab81faaee2061071355e4d86fd103beaa0491de085e8f9",
+    "bytes": 11849
+  }
+}
