@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>地月限制性三体问题实验室 · CR3BP Lab</title>
+<!--
+  地月圆型限制性三体问题（CR3BP）交互实验室 —— 单文件，无外部依赖。
+  · 旋转坐标系动力学方程（归一化单位）实时数值积分
+  · 积分器：RK4（经典四阶显式） / GL4（二级 Gauss–Legendre 隐式辛积分器，适合长期模拟）
+  · 拉格朗日点 L1–L5 数值求解与标注；零速度曲线（marching squares 等值线 + 禁止区域填充）
+  · 内置真实自检（页面内实时计算，无任何预制结果）：拉格朗日点残差 / 步长收敛阶 /
+    积分器互检 / Jacobi 守恒 / NaN 防护 / 零速度曲线完整性
+-->
+<style>
+  :root{
+    --bg:#0b0e14; --bg2:#0f131c; --panel:#11151f; --panel2:#161b28;
+    --line:#232b3b; --line2:#2d3750;
+    --txt:#d7dde8; --txt2:#8b95a8; --txt3:#5b6478;
+    --blue:#6ea8fe; --cyan:#37e0ff; --amber:#ffb454; --orange:#ff9e3d;
+    --ok:#3dd68c; --warn:#ffd24a; --bad:#ff6b6b;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--txt);
+    font:13px/1.5 -apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    display:flex; flex-direction:column; overflow:hidden;
+    font-variant-numeric:tabular-nums;
+  }
+  /* ── 顶栏 ─────────────────────────── */
+  header.topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:8px 14px; background:var(--panel); border-bottom:1px solid var(--line);
+    flex:0 0 auto; gap:10px;
+  }
+  .brand{display:flex; align-items:baseline; gap:12px; min-width:0}
+  .brand h1{font-size:15px; font-weight:600; letter-spacing:.5px; white-space:nowrap}
+  .brand .sub{font-size:11px; color:var(--txt3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .badges{display:flex; gap:8px; align-items:center; white-space:nowrap}
+  .badge{
+    font-size:11px; padding:3px 10px; border-radius:999px; border:1px solid var(--line2);
+    color:var(--txt2); background:var(--bg2); user-select:none;
+  }
+  .badge.ok{color:var(--ok); border-color:rgba(61,214,140,.4); cursor:pointer}
+  .badge.bad{color:var(--bad); border-color:rgba(255,107,107,.45); cursor:pointer}
+  .badge.pending{color:var(--warn); border-color:rgba(255,210,74,.35); cursor:pointer}
+  #chipStatus.run{color:var(--ok); border-color:rgba(61,214,140,.4)}
+  #chipStatus.pause{color:var(--blue); border-color:rgba(110,168,254,.4)}
+  #chipStatus.stop{color:var(--bad); border-color:rgba(255,107,107,.5)}
+  #chipStatus.escape{color:var(--txt2)}
+  /* ── 主布局 ─────────────────────────── */
+  main.layout{flex:1 1 auto; display:grid; grid-template-columns:1fr 344px; min-height:0}
+  section.stage{position:relative; min-width:0; background:var(--bg); overflow:hidden}
+  canvas#cv{position:absolute; inset:0; width:100%; height:100%; display:block; cursor:grab}
+  canvas#cv.dragging{cursor:grabbing}
+  .stage-tools{position:absolute; top:10px; right:10px; display:flex; flex-direction:column; gap:6px; z-index:5}
+  .stage-tools button{
+    width:32px; height:32px; border-radius:8px; border:1px solid var(--line2);
+    background:rgba(17,21,31,.85); color:var(--txt); font-size:15px; cursor:pointer;
+  }
+  .stage-tools button:hover{border-color:var(--blue); color:var(--blue)}
+  .legend{
+    position:absolute; left:10px; bottom:10px; z-index:5;
+    background:rgba(15,19,28,.82); border:1px solid var(--line); border-radius:8px;
+    padding:7px 10px; font-size:11px; color:var(--txt2); display:grid; grid-template-columns:auto auto; gap:3px 14px;
+  }
+  .legend .it{display:flex; align-items:center; gap:6px}
+  .dot{width:8px; height:8px; border-radius:50%; flex:0 0 auto}
+  .sq{width:8px; height:8px; border-radius:2px; flex:0 0 auto}
+  .scalebar{
+    position:absolute; right:10px; bottom:10px; z-index:5;
+    background:rgba(15,19,28,.82); border:1px solid var(--line); border-radius:8px;
+    padding:5px 10px; font:11px var(--mono); color:var(--txt2);
+  }
+  .zoominfo{position:absolute; top:10px; left:10px; z-index:5; font:11px var(--mono); color:var(--txt3);
+    background:rgba(15,19,28,.75); border:1px solid var(--line); border-radius:8px; padding:4px 9px}
+  .toast{
+    position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:9;
+    background:rgba(22,27,40,.95); border:1px solid var(--line2); color:var(--txt);
+    border-radius:8px; padding:8px 16px; font-size:12px; max-width:70%;
+    opacity:0; transition:opacity .25s; pointer-events:none;
+  }
+  .toast.show{opacity:1}
+  /* ── 右侧面板 ─────────────────────────── */
+  aside.panel{
+    background:var(--panel); border-left:1px solid var(--line); overflow-y:auto; padding:12px 14px 30px;
+    scrollbar-width:thin; scrollbar-color:var(--line2) transparent;
+  }
+  aside.panel section{margin-bottom:14px}
+  aside.panel h2{
+    font-size:11px; font-weight:600; color:var(--txt2); letter-spacing:1.5px;
+    border-bottom:1px solid var(--line); padding-bottom:5px; margin-bottom:9px;
+  }
+  .btnrow{display:flex; gap:8px; flex-wrap:wrap}
+  .btn{
+    border:1px solid var(--line2); background:var(--panel2); color:var(--txt);
+    padding:7px 14px; border-radius:8px; cursor:pointer; font-size:13px;
+  }
+  .btn:hover{border-color:var(--blue); color:var(--blue)}
+  .btn.primary{background:linear-gradient(180deg,#1d3a63,#16293f); border-color:#2f5a94; color:#cfe0ff}
+  .btn.primary:hover{filter:brightness(1.15)}
+  .btn.wide{flex:1 1 auto}
+  .btn.tiny{padding:3px 9px; font-size:11px; border-radius:6px}
+  .row{display:flex; align-items:center; gap:8px; margin:8px 0}
+  .row label{flex:0 0 84px; color:var(--txt2); font-size:12px}
+  .row .val{flex:1 1 auto; text-align:right; font:11px var(--mono); color:var(--txt2); min-width:0}
+  input[type=range]{flex:1 1 auto; accent-color:var(--blue); min-width:0}
+  select,input[type=number],input[type=text]{
+    background:var(--bg2); border:1px solid var(--line2); color:var(--txt);
+    border-radius:6px; padding:5px 8px; font:12px var(--mono); width:100%;
+  }
+  select:focus,input:focus{outline:none; border-color:var(--blue)}
+  .icgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:8px 0}
+  .icgrid .f{display:flex; flex-direction:column; gap:3px}
+  .icgrid .f span{font-size:10px; color:var(--txt3); text-align:center}
+  .icgrid input{text-align:center; padding:4px 2px}
+  .chk{display:flex; align-items:center; gap:7px; margin:5px 0; color:var(--txt2); font-size:12px; cursor:pointer; user-select:none}
+  .chk input{accent-color:var(--blue)}
+  .presetbtns{display:grid; grid-template-columns:1fr 1fr; gap:7px}
+  .presetbtns .btn{padding:8px 6px; font-size:12px; line-height:1.35; text-align:center}
+  .presetbtns .btn small{display:block; color:var(--txt3); font-size:10px}
+  #presetDesc{font-size:11px; color:var(--txt3); margin-top:7px; line-height:1.5}
+  .readout{display:grid; grid-template-columns:88px 1fr; gap:4px 8px; font-size:12px}
+  .readout .k{color:var(--txt3)}
+  .readout .v{font-family:var(--mono); font-size:11.5px; text-align:right; color:var(--txt)}
+  .readout .v.hi{color:var(--amber)}
+  .readout .v.ok{color:var(--ok)} .readout .v.warn{color:var(--warn)} .readout .v.bad{color:var(--bad)}
+  .zvcchips{display:flex; gap:6px; flex-wrap:wrap; margin-top:7px}
+  .chip{
+    font:10.5px var(--mono); color:var(--txt2); border:1px solid var(--line2); border-radius:999px;
+    padding:2px 8px; cursor:pointer; background:var(--bg2);
+  }
+  .chip:hover{color:var(--cyan); border-color:var(--cyan)}
+  /* 自检表 */
+  #selfTestResults{margin-top:8px}
+  .strow{display:grid; grid-template-columns:1fr auto; gap:2px 8px; padding:6px 8px; border:1px solid var(--line);
+    border-radius:7px; margin-bottom:5px; background:var(--bg2)}
+  .strow .nm{font-size:12px; color:var(--txt)}
+  .strow .dt{font:10.5px var(--mono); color:var(--txt3); grid-column:1 / 2}
+  .strow .pf{grid-row:1; grid-column:2; font-size:11px; align-self:center; white-space:nowrap}
+  .strow.pass .pf{color:var(--ok)} .strow.fail .pf{color:var(--bad)}
+  .strow.running .pf{color:var(--warn)}
+  details.about{font-size:11.5px; color:var(--txt2); line-height:1.6}
+  details.about summary{cursor:pointer; color:var(--txt2); font-weight:600; font-size:11px; letter-spacing:1px; padding-bottom:5px}
+  details.about .eq{font-family:var(--mono); font-size:11px; color:var(--txt); background:var(--bg2);
+    border:1px solid var(--line); border-radius:6px; padding:6px 9px; margin:6px 0; overflow-x:auto; white-space:nowrap}
+  details.about p{margin:6px 0}
+  footer.hintbar{
+    flex:0 0 auto; background:var(--panel); border-top:1px solid var(--line);
+    color:var(--txt3); font-size:11px; padding:5px 14px; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  footer.hintbar b{color:var(--txt2); font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <h1>地月 CR3BP 实验室</h1>
+    <span class="sub">旋转坐标系 · 圆型限制性三体问题 · 归一化单位（DU = 384 400 km，TU = 4.342 天）</span>
+  </div>
+  <div class="badges">
+    <span id="badgeSelfTest" class="badge pending" title="点击运行数值自检">自检：待运行</span>
+    <span id="chipStatus" class="badge pause">已复位</span>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="stage" id="stage">
+    <canvas id="cv"></canvas>
+    <div class="zoominfo" id="zoomInfo"></div>
+    <div class="stage-tools">
+      <button id="btnZoomIn"  title="放大（也可滚轮）">＋</button>
+      <button id="btnZoomOut" title="缩小（也可滚轮）">－</button>
+      <button id="btnViewReset" title="重置视图">⌂</button>
+    </div>
+    <div class="legend">
+      <span class="it"><span class="dot" style="background:#4f9dff"></span>地球</span>
+      <span class="it"><span class="dot" style="background:#c9c9d1"></span>月球</span>
+      <span class="it"><span class="dot" style="background:#fff;box-shadow:0 0 6px #fff"></span>航天器</span>
+      <span class="it"><span class="dot" style="background:var(--orange)"></span>轨迹</span>
+      <span class="it"><span class="dot" style="background:var(--amber)"></span>L1–L5</span>
+      <span class="it"><span class="sq" style="border:1.5px solid var(--cyan)"></span>零速度曲线</span>
+      <span class="it"><span class="sq" style="background:rgba(78,120,210,.25)"></span>禁止区域</span>
+    </div>
+    <div class="scalebar" id="scalebar"></div>
+    <div class="toast" id="toast"></div>
+  </section>
+
+  <aside class="panel">
+    <section>
+      <h2>运行控制</h2>
+      <div class="btnrow">
+        <button class="btn primary wide" id="btnRun" style="flex:2 1 auto">▶ 运行</button>
+        <button class="btn wide" id="btnStep" title="推进一步（S）">单步</button>
+        <button class="btn wide" id="btnReset" title="重置到初始条件（R）">重置</button>
+      </div>
+      <div class="row">
+        <label for="selInteg">积分器</label>
+        <select id="selInteg">
+          <option value="gl4" selected>GL4 · 隐式辛（长期推荐）</option>
+          <option value="rk4">RK4 · 经典四阶</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="rngDt">步长 dt</label>
+        <input type="range" id="rngDt" min="0.0005" max="0.02" step="0.0005" value="0.005">
+        <span class="val" id="outDt"></span>
+      </div>
+      <div class="row">
+        <label for="rngSpeed">速度</label>
+        <input type="range" id="rngSpeed" min="1" max="400" step="1" value="24">
+        <span class="val" id="outSpeed"></span>
+      </div>
+    </section>
+
+    <section>
+      <h2>预设场景</h2>
+      <div class="presetbtns">
+        <button class="btn" data-preset="l4">L4 扰动<small>蝌蚪轨道</small></button>
+        <button class="btn" data-preset="l1">L1 不稳定<small>指数离开</small></button>
+        <button class="btn" data-preset="earth">绕地轨道<small>准圆 · 有界</small></button>
+        <button class="btn" data-preset="flyby">月球引力辅助<small>绕月甩摆 · 逃逸</small></button>
+      </div>
+      <div id="presetDesc">选择预设会设定初始条件、推荐步长 / 积分器 / 视图并复位（暂停状态）。</div>
+    </section>
+
+    <section>
+      <h2>初始条件（旋转系）</h2>
+      <div class="icgrid">
+        <div class="f"><span>x₀</span><input type="number" id="inX0" step="0.01" value="0"></div>
+        <div class="f"><span>y₀</span><input type="number" id="inY0" step="0.01" value="0"></div>
+        <div class="f"><span>vx₀</span><input type="number" id="inVx0" step="0.01" value="0"></div>
+        <div class="f"><span>vy₀</span><input type="number" id="inVy0" step="0.01" value="0"></div>
+      </div>
+      <div class="btnrow">
+        <button class="btn wide" id="btnApplyIC">应用初值并复位</button>
+      </div>
+      <div style="font-size:10.5px;color:var(--txt3);margin-top:5px">提示：按住 Shift 点击画布，可直接把初始位置设为点击处。</div>
+    </section>
+
+    <section>
+      <h2>显示</h2>
+      <label class="chk"><input type="checkbox" id="chkZvc" checked>零速度曲线（C 等值线）</label>
+      <label class="chk"><input type="checkbox" id="chkFill" checked>禁止区域填充（2Ω &lt; C）</label>
+      <label class="chk"><input type="checkbox" id="chkTrail" checked>轨迹</label>
+      <label class="chk"><input type="checkbox" id="chkVel" checked>速度矢量（旋转系）</label>
+      <label class="chk"><input type="checkbox" id="chkGrid" checked>网格与坐标</label>
+      <label class="chk"><input type="checkbox" id="chkLpts" checked>拉格朗日点标注</label>
+      <div class="row" style="margin-top:10px">
+        <label for="selCMode">ZVC 的 C</label>
+        <select id="selCMode">
+          <option value="follow" selected>跟随当前航天器 C</option>
+          <option value="initial">固定为初始 C₀</option>
+          <option value="manual">手动设定</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="inCManual">手动 C 值</label>
+        <input type="number" id="inCManual" step="0.001" value="3.2" style="flex:1 1 auto">
+      </div>
+      <div class="zvcchips">
+        <span class="chip" data-c="L1">C(L1)</span><span class="chip" data-c="L2">C(L2)</span>
+        <span class="chip" data-c="L3">C(L3)</span><span class="chip" data-c="L4">C(L4)=C(L5)</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>实时数据</h2>
+      <div class="readout">
+        <span class="k">仿真时间</span>   <span class="v" id="stT">0 TU = 0 天</span>
+        <span class="k">位置 x, y</span> <span class="v" id="stXY">—</span>
+        <span class="k">速度 vx, vy</span><span class="v" id="stV">—</span>
+        <span class="k">|v| 旋转系</span> <span class="v" id="stVr">—</span>
+        <span class="k">|v| 惯性系</span> <span class="v hi" id="stVi">—</span>
+        <span class="k">距地心</span>     <span class="v" id="stDE">—</span>
+        <span class="k">距月心</span>     <span class="v" id="stDM">—</span>
+        <span class="k">Jacobi C</span>   <span class="v" id="stC">—</span>
+        <span class="k">初始 C₀</span>    <span class="v" id="stC0">—</span>
+        <span class="k">漂移 |C−C₀|</span><span class="v" id="stDC">—</span>
+        <span class="k">积分步数</span>    <span class="v" id="stSteps">0</span>
+        <span class="k">积分器</span>      <span class="v" id="stInteg">—</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>数值自检（页面内实时计算）</h2>
+      <div class="btnrow"><button class="btn wide" id="btnSelfTest">▶ 运行自检</button></div>
+      <div id="selfTestResults"><div style="font-size:11px;color:var(--txt3);margin-top:7px">尚未运行。加载后会自动运行一次。</div></div>
+    </section>
+
+    <section>
+      <h2>关于模型</h2>
+      <details class="about" open>
+        <summary>方程、单位与数值说明</summary>
+        <p>质量参数 μ = m<sub>月</sub>/(m<sub>地</sub>+m<sub>月</sub>) = 0.0121505856；距离单位 DU = 半长轴 384 400 km；时间单位 TU 使轨道角速度 ω = 1（1 TU ≈ 4.342 天，周期 2π TU ≈ 27.28 天）。地球固定于 (−μ, 0)，月球固定于 (1−μ, 0)。</p>
+        <div class="eq">ẍ = 2ẏ + x − (1−μ)(x+μ)/r₁³ − μ(x−1+μ)/r₂³</div>
+        <div class="eq">ÿ = −2ẋ + y − (1−μ)·y/r₁³ − μ·y/r₂³</div>
+        <div class="eq">C = 2Ω − v² ， Ω = ½(x²+y²) + (1−μ)/r₁ + μ/r₂</div>
+        <p><b>积分器</b>：RK4 为经典显式四阶，长期模拟中 Jacobi 常数存在系统性漂移；GL4 为二级 Gauss–Legendre 隐式辛积分器（不动点迭代求解），对这类含科里奥利项的哈密顿系统保持辛结构，Jacobi 误差有界不增长，适合长期模拟。两者均为四阶精度。</p>
+        <p><b>防护</b>：状态出现 NaN/Inf 或天体半径内碰撞（地球 6 378 km、月球 1 737 km）或 |r| &gt; 30 DU 时自动停止积分。</p>
+        <p><b>理想化假设</b>：平面（二维）问题、主天体为质点且做严格圆运动、无太阳摄动 / 地月偏心率 / 太阳辐射压等，数值实验结论不应直接外推到真实任务设计。</p>
+      </details>
+    </section>
+  </aside>
+</main>
+
+<footer class="hintbar">
+  <b>拖拽</b> 平移 · <b>滚轮</b> 缩放 · <b>Shift+点击</b> 设初始位置 · <b>空格</b> 暂停/继续 · <b>S</b> 单步 · <b>R</b> 重置 · <b>+/−</b> 缩放
+</footer>
+
+<script>
+'use strict';
+/* ════════════════════════════════════════════════════════════════
+ * 1. 物理内核：CR3BP（旋转坐标系，归一化单位）
+ * ════════════════════════════════════════════════════════════════ */
+const MU = 0.0121505856;                    // m2/(m1+m2)
+const A_KM = 384400;                        // 1 DU 对应 km
+const GM_SUM = 403503.2355;                 // G(m1+m2) km³/s²
+const TU_DAYS = Math.sqrt(A_KM ** 3 / GM_SUM) / 86400;   // 1 TU ≈ 4.3424 天
+const RE_DU = 6378.137 / A_KM;              // 地球半径（DU）
+const RM_DU = 1737.4 / A_KM;                // 月球半径（DU）
+const fmtKm = new Intl.NumberFormat('zh-CN', {maximumFractionDigits: 0});
+
+/** 有效势 Ω(x,y) */
+function omega(x, y) {
+  const r1 = Math.hypot(x + MU, y), r2 = Math.hypot(x - 1 + MU, y);
+  return 0.5 * (x * x + y * y) + (1 - MU) / r1 + MU / r2;
+}
+/** 右端函数 f(s) = [vx, vy, ax, ay] */
+function f(s) {
+  const [x, y, vx, vy] = s;
+  const r1 = Math.hypot(x + MU, y), r2 = Math.hypot(x - 1 + MU, y);
+  const r1c = r1 * r1 * r1, r2c = r2 * r2 * r2;
+  return [vx, vy,
+    2 * vy + x - (1 - MU) * (x + MU) / r1c - MU * (x - 1 + MU) / r2c,
+    -2 * vx + y - (1 - MU) * y / r1c - MU * y / r2c];
+}
+const isFinite4 = s => Number.isFinite(s[0]) && Number.isFinite(s[1]) && Number.isFinite(s[2]) && Number.isFinite(s[3]);
+/** Jacobi 常数 C = 2Ω − v²（s 非有限时返回 NaN） */
+function jacobi(s) { return isFinite4(s) ? 2 * omega(s[0], s[1]) - (s[2] * s[2] + s[3] * s[3]) : NaN; }
+
+/** 共线拉格朗日点：二分求 g(x)=0（区间内唯一根） */
+function solveCollinear(lo, hi) {
+  const g = x => x - (1 - MU) * (x + MU) / Math.abs(x + MU) ** 3 - MU * (x - 1 + MU) / Math.abs(x - 1 + MU) ** 3;
+  let a = lo, b = hi;
+  for (let i = 0; i < 160 && (b - a) > 1e-15 * Math.max(1, Math.abs(b)); i++) {
+    const m = 0.5 * (a + b);
+    (g(a) * g(m) <= 0) ? (b = m) : (a = m);
+  }
+  return 0.5 * (a + b);
+}
+const LPTS = (() => {
+  const L4x = 0.5 - MU, L4y = Math.sqrt(3) / 2;
+  const pts = {
+    L1: {x: solveCollinear(-MU + 1e-9, 1 - MU - 1e-9), y: 0},
+    L2: {x: solveCollinear(1 - MU + 1e-9, 2), y: 0},
+    L3: {x: solveCollinear(-2, -MU - 1e-9), y: 0},
+    L4: {x: L4x, y: L4y}, L5: {x: L4x, y: -L4y},
+  };
+  for (const p of Object.values(pts)) p.C = 2 * omega(p.x, p.y);
+  return pts;
+})();
+
+/* ════════════════════════════════════════════════════════════════
+ * 2. 积分器：RK4 与 GL4（二级 Gauss–Legendre，隐式辛，四阶）
+ * ════════════════════════════════════════════════════════════════ */
+const add4 = (s, k, h) => [s[0] + h * k[0], s[1] + h * k[1], s[2] + h * k[2], s[3] + h * k[3]];
+const INT = {
+  rk4: {
+    label: 'RK4（经典四阶显式）',
+    evalsPerStep: 4, lastIters: 0, lastDelta: 0, failed: false,
+    step(s, dt) {
+      const k1 = f(s), k2 = f(add4(s, k1, dt / 2)), k3 = f(add4(s, k2, dt / 2)), k4 = f(add4(s, k3, dt));
+      return [0, 1, 2, 3].map(j => s[j] + dt / 6 * (k1[j] + 2 * k2[j] + 2 * k3[j] + k4[j]));
+    }
+  },
+  gl4: {
+    label: 'GL4（二级 Gauss–Legendre 隐式辛）',
+    evalsPerStep: 2, lastIters: 0, lastDelta: 0, failed: false,
+    step(s, dt) {
+      const r3_6 = Math.sqrt(3) / 6;
+      const a12 = 0.25 - r3_6, a21 = 0.25 + r3_6;
+      let k1 = f(s), k2 = f(s);
+      let it = 0, delta = Infinity;
+      this.failed = false;
+      for (; it < 24; it++) {
+        const Y1 = [s[0] + dt * (0.25 * k1[0] + a12 * k2[0]), s[1] + dt * (0.25 * k1[1] + a12 * k2[1]),
+                    s[2] + dt * (0.25 * k1[2] + a12 * k2[2]), s[3] + dt * (0.25 * k1[3] + a12 * k2[3])];
+        const Y2 = [s[0] + dt * (a21 * k1[0] + 0.25 * k2[0]), s[1] + dt * (a21 * k1[1] + 0.25 * k2[1]),
+                    s[2] + dt * (a21 * k1[2] + 0.25 * k2[2]), s[3] + dt * (a21 * k1[3] + 0.25 * k2[3])];
+        const n1 = f(Y1), n2 = f(Y2);
+        delta = 0;
+        for (let j = 0; j < 4; j++) delta = Math.max(delta, Math.abs(n1[j] - k1[j]), Math.abs(n2[j] - k2[j]));
+        k1 = n1; k2 = n2;
+        if (delta < 1e-13) break;
+      }
+      this.lastIters = it + 1; this.lastDelta = delta;
+      if (!(delta < 1e-2)) this.failed = true;   // 不动点迭代明显发散 → 标记失败
+      return [s[0] + dt * 0.5 * (k1[0] + k2[0]), s[1] + dt * 0.5 * (k1[1] + k2[1]),
+              s[2] + dt * 0.5 * (k1[2] + k2[2]), s[3] + dt * 0.5 * (k1[3] + k2[3])];
+    }
+  }
+};
+
+/* ════════════════════════════════════════════════════════════════
+ * 3. 零速度曲线：Ω 网格 + marching squares + 禁止区域填充（离屏）
+ * ════════════════════════════════════════════════════════════════ */
+const ZVC = {
+  x0: -1.8, x1: 1.8, y0: -1.6, y1: 1.6, nx: 181, ny: 161,
+  grid: null, segs: [], builtC: NaN,
+  PW: 900, PH: 800,                       // 离屏画布像素（250 px/DU）
+  off: null, offCtx: null,
+  init() {
+    const {nx, ny, x0, y0, x1, y1} = this;
+    this.grid = new Float64Array(nx * ny);
+    for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++)
+      this.grid[j * nx + i] = omega(x0 + i * (x1 - x0) / (nx - 1), y0 + j * (y1 - y0) / (ny - 1));
+    this.off = document.createElement('canvas');
+    this.off.width = this.PW; this.off.height = this.PH;
+    this.offCtx = this.off.getContext('2d');
+  },
+  /** 在等值线 level 上以 marching squares 生成线段（物理坐标） */
+  contour(level) {
+    const {nx, ny, grid, x0, y0} = this;
+    const dx = (this.x1 - x0) / (nx - 1), dy = (this.y1 - y0) / (ny - 1);
+    const segs = [];
+    const px = i => x0 + i * dx, py = j => y0 + j * dy;
+    for (let j = 0; j < ny - 1; j++) for (let i = 0; i < nx - 1; i++) {
+      const a = grid[j * nx + i], b = grid[j * nx + i + 1], c = grid[(j + 1) * nx + i + 1], d = grid[(j + 1) * nx + i];
+      const m = (a < level ? 1 : 0) | (b < level ? 2 : 0) | (c < level ? 4 : 0) | (d < level ? 8 : 0);
+      if (m === 0 || m === 15) continue;
+      const xb = px(i), xb1 = px(i + 1), yb = py(j), yb1 = py(j + 1);
+      const E = { // 各边交点（线性插值）
+        bot: [xb + (level - a) / (b - a) * dx, yb],
+        rgt: [xb1, yb + (level - b) / (c - b) * dy],
+        top: [xb + (level - d) / (c - d) * dx, yb1],
+        lft: [xb, yb + (level - a) / (d - a) * dy],
+      };
+      const put = (e1, e2) => segs.push(E[e1][0], E[e1][1], E[e2][0], E[e2][1]);
+      switch (m) {
+        case 1: case 14: put('lft', 'bot'); break;
+        case 2: case 13: put('bot', 'rgt'); break;
+        case 3: case 12: put('lft', 'rgt'); break;
+        case 4: case 11: put('rgt', 'top'); break;
+        case 6: case 9:  put('bot', 'top'); break;
+        case 7: case 8:  put('lft', 'top'); break;
+        case 5:  put('lft', 'top'); put('bot', 'rgt'); break;   // 鞍点（取一种连接）
+        case 10: put('lft', 'bot'); put('rgt', 'top'); break;   // 鞍点（取一种连接）
+      }
+    }
+    return segs;
+  },
+  /** 重建给定 C 的线段与禁止区域填充（2Ω < C ⇔ Ω < C/2 为禁区）
+   *  填充用与 marching squares 同源的单元格多边形裁剪，边缘与等值线严格一致（无锯齿） */
+  rebuild(C) {
+    this.builtC = C;
+    const level = C / 2;
+    this.segs = this.contour(level);
+    const {nx, ny, grid, x0, y0, PW, PH, offCtx} = this;
+    const dx = (this.x1 - x0) / (nx - 1), dy = (this.y1 - y0) / (ny - 1);
+    const px = x => (x - x0) / (this.x1 - x0) * PW;      // 物理 → 离屏像素
+    const py = y => (this.y1 - y) / (this.y1 - y0) * PH;  // 注意 y 翻转
+    offCtx.clearRect(0, 0, PW, PH);
+    offCtx.fillStyle = 'rgba(78,120,210,.25)';
+    offCtx.beginPath();
+    for (let j = 0; j < ny - 1; j++) for (let i = 0; i < nx - 1; i++) {
+      const va = grid[j * nx + i], vb = grid[j * nx + i + 1],
+            vc = grid[(j + 1) * nx + i + 1], vd = grid[(j + 1) * nx + i];
+      const bA = va < level, bB = vb < level, bC = vc < level, bD = vd < level;
+      const m = (bA ? 1 : 0) | (bB ? 2 : 0) | (bC ? 4 : 0) | (bD ? 8 : 0);
+      if (m === 0) continue;
+      const xa = x0 + i * dx, xb = x0 + (i + 1) * dx, ya = y0 + j * dy, yb = y0 + (j + 1) * dy;
+      if (m === 15) {   // 整格都在禁区内：快速路径
+        offCtx.rect(px(xa), py(yb), px(xb) - px(xa) + 0.7, py(ya) - py(yb) + 0.7);
+        continue;
+      }
+      // 混合格：取「低于 level 的角点 + 各边交点」按绕格顺序连线，即格内禁区多边形
+      const poly = [];
+      const cross = (v1, v2, x1_, y1_, x2_, y2_) => {
+        if ((v1 < level) === (v2 < level)) return null;   // 该边无符号变化
+        const t = (level - v1) / (v2 - v1);
+        return [x1_ + t * (x2_ - x1_), y1_ + t * (y2_ - y1_)];
+      };
+      // 绕格顺序：a → 底边 → b → 右边 → c → 顶边 → d → 左边
+      if (bA) poly.push([xa, ya]);
+      let p = cross(va, vb, xa, ya, xb, ya); if (p) poly.push(p);
+      if (bB) poly.push([xb, ya]);
+      p = cross(vb, vc, xb, ya, xb, yb); if (p) poly.push(p);
+      if (bC) poly.push([xb, yb]);
+      p = cross(vd, vc, xa, yb, xb, yb); if (p) poly.push(p);   // 顶边按 d→c 方向
+      if (bD) poly.push([xa, yb]);
+      p = cross(va, vd, xa, ya, xa, yb); if (p) poly.push(p);
+      if (poly.length >= 3) {
+        offCtx.moveTo(px(poly[0][0]), py(poly[0][1]));
+        for (let k = 1; k < poly.length; k++) offCtx.lineTo(px(poly[k][0]), py(poly[k][1]));
+        offCtx.closePath();
+      }
+    }
+    offCtx.fill();
+  }
+};
+
+/* ════════════════════════════════════════════════════════════════
+ * 4. 仿真状态与步进（含碰撞 / NaN / 逃逸 / 不收敛防护）
+ * ════════════════════════════════════════════════════════════════ */
+const sim = {
+  s: [0, 0, 0, 0], t: 0, nSteps: 0, C0: NaN,
+  ic: {x: 0, y: 0, vx: 0, vy: 0},
+  running: false, status: 'idle',        // idle|running|paused|earth|moon|escaped|nan|unconv
+  trail: [],                              // 扁平数组 [x0,y0,x1,y1,...]
+};
+const TRAIL_MAX = 120000;                 // 数值个数（=点的 2 倍）
+function trailPush(x, y) {
+  sim.trail.push(x, y);
+  if (sim.trail.length > TRAIL_MAX) {     // 超限时隔点抽稀，保留整体形状
+    const t = sim.trail, out = [];
+    for (let i = 0; i < t.length; i += 4) out.push(t[i], t[i + 1]);
+    sim.trail = out;
+  }
+}
+function guard(s) {
+  if (!isFinite4(s)) return 'nan';
+  if (Math.hypot(s[0] + MU, s[1]) < RE_DU) return 'earth';
+  if (Math.hypot(s[0] - 1 + MU, s[1]) < RM_DU) return 'moon';
+  return null;
+}
+const RUNNABLE = new Set(['idle', 'running', 'paused']);
+function stepOnce() {
+  if (!RUNNABLE.has(sim.status)) return false;
+  const integ = INT[$('selInteg').value];
+  const g0 = guard(sim.s);
+  if (g0) { setStatus(g0); return false; }
+  const s1 = integ.step(sim.s, curDt);
+  if (!isFinite4(s1)) { setStatus('nan'); toast('数值防护：状态出现 NaN/Inf，积分已停止'); return false; }
+  if (integ.failed)   { setStatus('unconv'); toast('数值防护：GL4 不动点迭代未收敛，积分已停止'); return false; }
+  const g1 = guard(s1);
+  sim.s = s1; sim.t += curDt; sim.nSteps++;
+  trailPush(s1[0], s1[1]);
+  if (g1) setStatus(g1);
+  else if (Math.hypot(s1[0], s1[1]) > 30) setStatus('escaped');
+  return RUNNABLE.has(sim.status);
+}
+function resetSim() {
+  const ic = sim.ic;
+  sim.s = [ic.x, ic.y, ic.vx, ic.vy];
+  if (!isFinite4(sim.s)) { sim.s = [0, 0, 0, 0]; toast('初始条件含非有限值，已用 (0,0,0,0)'); }
+  sim.t = 0; sim.nSteps = 0; sim.trail.length = 0;
+  trailPush(sim.s[0], sim.s[1]);
+  sim.C0 = jacobi(sim.s);
+  sim.running = false; setStatus('idle');
+  zvcForceRebuild(); simDirty = true; updateStats();
+}
+
+/* ════════════════════════════════════════════════════════════════
+ * 5. 视图（相机）与渲染
+ * ════════════════════════════════════════════════════════════════ */
+const cv = $('cv'), ctx = cv.getContext('2d');
+const stageEl = $('stage');
+let W = 100, H = 100, dpr = 1;
+const cam = {cx: 0, cy: 0, scale: 200};
+let simDirty = true, viewDirty = true;
+
+function resizeCanvas() {
+  const r = stageEl.getBoundingClientRect();
+  W = Math.max(80, r.width); H = Math.max(80, r.height);
+  dpr = window.devicePixelRatio || 1;
+  cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+  viewDirty = true;
+}
+const toScreen = (x, y) => [(x - cam.cx) * cam.scale + W / 2, H / 2 - (y - cam.cy) * cam.scale];
+const toPhys = (X, Y) => [(X - W / 2) / cam.scale + cam.cx, (H / 2 - Y) / cam.scale + cam.cy];
+function defaultView(widthDU = 3.8, cx = 0, cy = 0) { cam.cx = cx; cam.cy = cy; cam.scale = W / widthDU; viewDirty = true; }
+
+function niceStep() {  // 网格间距：使格距 ≥ 64 px
+  for (const s of [0.05, 0.1, 0.25, 0.5, 1, 2, 5]) if (s * cam.scale >= 64) return s;
+  return 10;
+}
+function render() {
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = '#0b0e14'; ctx.fillRect(0, 0, W, H);
+  const [px0, py0] = toPhys(0, 0), [px1, py1] = toPhys(W, H);
+  const xmin = Math.min(px0, px1), xmax = Math.max(px0, px1);
+  const ymin = Math.min(py0, py1), ymax = Math.max(py0, py1);
+
+  // 网格
+  if ($('chkGrid').checked) {
+    const st = niceStep();
+    ctx.lineWidth = 1; ctx.font = '10px ui-monospace,monospace'; ctx.fillStyle = '#5b6478';
+    ctx.strokeStyle = '#161c29';
+    for (let x = Math.ceil(xmin / st) * st; x <= xmax; x += st) {
+      const X = toScreen(x, 0)[0];
+      ctx.beginPath(); ctx.moveTo(X, 0); ctx.lineTo(X, H); ctx.stroke();
+      if (Math.abs(x) > st / 4) ctx.fillText(x.toFixed(st < 1 ? 2 : 0), X + 3, H - 5);
+    }
+    for (let y = Math.ceil(ymin / st) * st; y <= ymax; y += st) {
+      const Y = toScreen(0, y)[1];
+      ctx.beginPath(); ctx.moveTo(0, Y); ctx.lineTo(W, Y); ctx.stroke();
+      if (Math.abs(y) > st / 4) ctx.fillText(y.toFixed(st < 1 ? 2 : 0), 5, Y - 3);
+    }
+    // 坐标轴
+    ctx.strokeStyle = '#232b3b';
+    const X0 = toScreen(0, 0)[0], Y0 = toScreen(0, 0)[1];
+    if (X0 >= 0 && X0 <= W) { ctx.beginPath(); ctx.moveTo(X0, 0); ctx.lineTo(X0, H); ctx.stroke(); }
+    if (Y0 >= 0 && Y0 <= H) { ctx.beginPath(); ctx.moveTo(0, Y0); ctx.lineTo(W, Y0); ctx.stroke(); }
+  }
+
+  // 零速度曲线（跟随/固定/手动 C）
+  const showZvc = $('chkZvc').checked, showFill = $('chkFill').checked;
+  if (showZvc || showFill) {
+    const Cd = zvcDisplayC();
+    if (Number.isFinite(Cd) && (!Number.isFinite(ZVC.builtC) ||
+        Math.abs(Cd - ZVC.builtC) > 1e-4 * Math.max(1, Math.abs(Cd)))) ZVC.rebuild(Cd);
+    if (showFill) {
+      const [sx, sy] = toScreen(ZVC.x0, ZVC.y1);   // 物理左上 → 屏幕左上
+      ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(ZVC.off, sx, sy, (ZVC.x1 - ZVC.x0) * cam.scale, (ZVC.y1 - ZVC.y0) * cam.scale);
+    }
+    if (showZvc && ZVC.segs.length) {
+      ctx.strokeStyle = 'rgba(55,224,255,.85)'; ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      const sg = ZVC.segs;
+      for (let k = 0; k < sg.length; k += 4) {
+        const [ax, ay] = toScreen(sg[k], sg[k + 1]), [bx, by] = toScreen(sg[k + 2], sg[k + 3]);
+        ctx.moveTo(ax, ay); ctx.lineTo(bx, by);
+      }
+      ctx.stroke();
+    }
+  }
+
+  // 轨迹（分块渐隐）
+  if ($('chkTrail').checked && sim.trail.length >= 4) {
+    const t = sim.trail, n = t.length / 2, CH = 400;
+    ctx.lineWidth = 1.4;
+    for (let c0 = 0; c0 < n - 1; c0 += CH) {
+      const c1 = Math.min(n - 1, c0 + CH);
+      const alpha = 0.10 + 0.90 * (c1 / n);
+      ctx.strokeStyle = `rgba(255,158,61,${alpha.toFixed(3)})`;
+      ctx.beginPath();
+      for (let k = c0; k <= c1; k++) {
+        const X = (t[2 * k] - cam.cx) * cam.scale + W / 2, Y = H / 2 - (t[2 * k + 1] - cam.cy) * cam.scale;
+        k === c0 ? ctx.moveTo(X, Y) : ctx.lineTo(X, Y);
+      }
+      ctx.stroke();
+    }
+  }
+
+  // 主天体
+  const [ex, ey] = toScreen(-MU, 0), [mx, my] = toScreen(1 - MU, 0);
+  const rE = Math.max(RE_DU * cam.scale, 4.5), rM = Math.max(RM_DU * cam.scale, 3);
+  let g = ctx.createRadialGradient(ex - rE * .3, ey - rE * .3, rE * .2, ex, ey, rE);
+  g.addColorStop(0, '#8fc4ff'); g.addColorStop(1, '#2c62b8');
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(ex, ey, rE, 0, 7); ctx.fill();
+  g = ctx.createRadialGradient(mx - rM * .3, my - rM * .3, rM * .2, mx, my, rM);
+  g.addColorStop(0, '#f0f0f4'); g.addColorStop(1, '#8d8d99');
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(mx, my, rM, 0, 7); ctx.fill();
+  ctx.fillStyle = '#8b95a8'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('地球', ex, ey + rE + 13);
+  ctx.fillText('月球', mx, my + rM + 13);
+  // 质心
+  const [bx0, by0] = toScreen(0, 0);
+  ctx.strokeStyle = '#5b6478'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(bx0 - 4, by0); ctx.lineTo(bx0 + 4, by0); ctx.moveTo(bx0, by0 - 4); ctx.lineTo(bx0, by0 + 4); ctx.stroke();
+
+  // 拉格朗日点
+  if ($('chkLpts').checked) {
+    ctx.fillStyle = '#ffb454'; ctx.font = '10.5px ui-monospace,monospace';
+    for (const [nm, p] of Object.entries(LPTS)) {
+      const [X, Y] = toScreen(p.x, p.y);
+      ctx.beginPath(); ctx.arc(X, Y, 3, 0, 7); ctx.fill();
+      ctx.fillText(nm, X + 7, Y - 6);
+    }
+  }
+
+  // 航天器 + 速度矢量
+  const [sx, sy] = toScreen(sim.s[0], sim.s[1]);
+  ctx.save();
+  ctx.shadowColor = '#fff'; ctx.shadowBlur = 8;
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath(); ctx.arc(sx, sy, 3.6, 0, 7); ctx.fill();
+  ctx.restore();
+  if ($('chkVel').checked) {
+    const vsc = 0.12;   // 每 1 速度单位 → 0.12 DU 箭头长
+    const [tx, ty] = toScreen(sim.s[0] + sim.s[2] * vsc, sim.s[1] + sim.s[3] * vsc);
+    const dx = tx - sx, dy = ty - sy, L = Math.hypot(dx, dy);
+    if (L > 6) {
+      ctx.strokeStyle = '#ffd24a'; ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(tx, ty); ctx.stroke();
+      const ang = Math.atan2(dy, dx);
+      ctx.beginPath();
+      ctx.moveTo(tx, ty);
+      ctx.lineTo(tx - 8 * Math.cos(ang - 0.4), ty - 8 * Math.sin(ang - 0.4));
+      ctx.lineTo(tx - 8 * Math.cos(ang + 0.4), ty - 8 * Math.sin(ang + 0.4));
+      ctx.closePath(); ctx.fillStyle = '#ffd24a'; ctx.fill();
+    }
+  }
+  ctx.textAlign = 'left';
+
+  // 视图信息 & 比例尺
+  $('zoomInfo').textContent = `视图宽 ${((W / cam.scale)).toFixed(2)} DU · ${fmtKm.format(W / cam.scale * A_KM)} km`;
+  const cand = [0.02, 0.05, 0.1, 0.25, 0.5, 1, 2];
+  const du = cand.find(v => v * cam.scale >= 70) ?? 2;
+  const px = du * cam.scale;
+  $('scalebar').textContent = `${du} DU = ${fmtKm.format(du * A_KM)} km`;
+  $('scalebar').style.minWidth = px + 'px';
+}
+
+/* ════════════════════════════════════════════════════════════════
+ * 6. UI 绑定
+ * ════════════════════════════════════════════════════════════════ */
+function $(id) { return document.getElementById(id); }
+let curDt = 0.005, stepsPerFrame = 24, toastTimer = null;
+function toast(msg) {
+  const el = $('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+}
+function setStatus(st) {
+  sim.status = st;
+  const chip = $('chipStatus');
+  chip.className = 'badge';
+  const M = {
+    idle:    ['pause', '已复位 · 待运行'],
+    running: ['run',   '运行中'],
+    paused:  ['pause', '已暂停'],
+    earth:   ['stop',  '已停止：撞击地球'],
+    moon:    ['stop',  '已停止：撞击月球'],
+    escaped: ['escape','已停止：飞离计算域（|r| > 30 DU）'],
+    nan:     ['stop',  '已停止：NaN 已拦截'],
+    unconv:  ['stop',  '已停止：GL4 迭代未收敛'],
+  };
+  const [cls, txt] = M[st] ?? ['pause', st];
+  chip.classList.add(cls); chip.textContent = txt;
+  $('btnRun').innerHTML = sim.running ? '⏸ 暂停' : '▶ 运行';
+}
+function updateStats() {
+  const s = sim.s, C = jacobi(s);
+  const r1 = Math.hypot(s[0] + MU, s[1]), r2 = Math.hypot(s[0] - 1 + MU, s[1]);
+  const vr = Math.hypot(s[2], s[3]);
+  const vix = s[2] - s[1], viy = s[3] + s[0];
+  const vi = Math.hypot(vix, viy);
+  $('stT').textContent = `${sim.t.toFixed(3)} TU = ${(sim.t * TU_DAYS).toFixed(2)} 天`;
+  $('stXY').textContent = `${s[0].toFixed(5)} , ${s[1].toFixed(5)} DU`;
+  $('stV').textContent = `${s[2].toFixed(5)} , ${s[3].toFixed(5)}`;
+  $('stVr').textContent = `${vr.toFixed(5)} DU/TU`;
+  $('stVi').textContent = `${vi.toFixed(5)} DU/TU`;
+  $('stDE').textContent = `${fmtKm.format(r1 * A_KM)} km`;
+  $('stDM').textContent = `${fmtKm.format(r2 * A_KM)} km`;
+  $('stC').textContent = Number.isFinite(C) ? C.toFixed(8) : 'NaN';
+  $('stC0').textContent = Number.isFinite(sim.C0) ? sim.C0.toFixed(8) : '—';
+  const dC = Math.abs(C - sim.C0);
+  const el = $('stDC');
+  if (Number.isFinite(dC)) {
+    el.textContent = dC.toExponential(2);
+    el.className = 'v ' + (dC < 1e-8 ? 'ok' : dC < 1e-4 ? 'warn' : 'bad');
+  } else { el.textContent = 'NaN'; el.className = 'v bad'; }
+  $('stSteps').textContent = `${sim.nSteps}`;
+  const integ = INT[$('selInteg').value];
+  $('stInteg').textContent = integ === INT.gl4
+    ? `${integ.label} · 迭代 ${INT.gl4.lastIters}（δ=${INT.gl4.lastDelta.toExponential(1)}）`
+    : integ.label;
+}
+function zvcDisplayC() {
+  const mode = $('selCMode').value;
+  if (mode === 'follow') return jacobi(sim.s);
+  if (mode === 'initial') return sim.C0;
+  return parseFloat($('inCManual').value);
+}
+function zvcForceRebuild() { ZVC.builtC = NaN; viewDirty = true; }
+
+/* 预设（初值来自离线数值扫描，全部经 RK4/GL4 多步长交叉验证） */
+const PRESETS = {
+  l4: {
+    name: 'L4 扰动（蝌蚪轨道）',
+    desc: '在 L4 三角点右侧偏移 0.02 DU、初速为零。μ < μ_Routh ≈ 0.0386 使 L4 线性稳定，航天器绕 L4 做蝌蚪形天平动（长周期项约 22 TU ≈ 3 个月量级），长期有界。',
+    ic: () => ({x: LPTS.L4.x + 0.02, y: LPTS.L4.y, vx: 0, vy: 0}),
+    dt: 0.005, integ: 'gl4', speed: 40, view: {w: 3.8, cx: 0, cy: 0},
+  },
+  l1: {
+    name: 'L1 不稳定流形',
+    desc: '从 L1（地月之间，x ≈ 0.8369）出发，仅施加 vy = 1e-4 的微扰。L1 是鞍点：扰动沿不稳定流形指数放大（e^λt，λ ≈ 2.93/TU），几个 TU 内即被甩出，随后受月球引力主导。',
+    ic: () => ({x: LPTS.L1.x, y: 0, vx: 0, vy: 1e-4}),
+    dt: 0.002, integ: 'gl4', speed: 30, view: {w: 1.6, cx: 0.75, cy: 0},
+  },
+  earth: {
+    name: '绕地圆轨道',
+    desc: '距地心 0.15 DU（≈57,700 km）的近圆轨道（旋转系初速 vy = 2.7284）。可观察月球摄动造成的微小进动与偏心率演化；此轨道在 300 TU（≈4.2 年）内保持有界、近距不触碰月球。',
+    ic: () => ({x: -MU - 0.15, y: 0, vx: 0, vy: 2.728405}),
+    dt: 0.005, integ: 'gl4', speed: 6, view: {w: 1.2, cx: -0.16, cy: 0},
+  },
+  flyby: {
+    name: '月球引力辅助（甩摆）',
+    desc: '从月球外侧 (1.163, 0.303) 出发：先绕地球盘旋一周，再于 t ≈ 6.3 TU 以 0.037 DU（≈14,300 km）近距掠过月球背风侧，惯性系能量由 −0.453 升至 ≈ 0（束缚 → 逃逸）。注意 Jacobi 常数全程不变——引力辅助改变的是惯性系能量，在旋转系中被 C 封装。',
+    ic: () => ({x: 1.163, y: 0.303, vx: -0.225, vy: -0.447}),
+    dt: 0.005, integ: 'gl4', speed: 20, view: {w: 4.6, cx: 0.2, cy: 0},
+  },
+};
+function applyPreset(key) {
+  const p = PRESETS[key];
+  if (!p) return;
+  const ic = p.ic();
+  sim.ic = {...ic};
+  $('inX0').value = (+ic.x.toFixed(9)); $('inY0').value = (+ic.y.toFixed(9));
+  $('inVx0').value = (+ic.vx.toFixed(9)); $('inVy0').value = (+ic.vy.toFixed(9));
+  $('rngDt').value = p.dt; curDt = p.dt;
+  $('selInteg').value = p.integ;
+  $('rngSpeed').value = p.speed; stepsPerFrame = p.speed;
+  updateDtLabel(); updateSpeedLabel();
+  defaultView(p.view.w, p.view.cx, p.view.cy);
+  $('presetDesc').textContent = `${p.name} — ${p.desc}`;
+  resetSim();
+  toast(`已载入预设：${p.name}（已复位，按 ▶ 运行）`);
+}
+function readICFromInputs() {
+  const v = k => parseFloat($(k).value);
+  const ic = {x: v('inX0'), y: v('inY0'), vx: v('inVx0'), vy: v('inVy0')};
+  for (const k of ['x', 'y']) if (!(Math.abs(ic[k]) <= 5)) return toast('初始位置须在 |x|,|y| ≤ 5 DU 内');
+  for (const k of ['vx', 'vy']) if (!(Math.abs(ic[k]) <= 8)) return toast('初始速度须在 |v| ≤ 8 DU/TU 内');
+  if (![ic.x, ic.y, ic.vx, ic.vy].every(Number.isFinite)) return toast('初始条件必须是有限数字');
+  sim.ic = ic; resetSim(); toast('已应用初始条件并复位');
+}
+function updateDtLabel() {
+  $('outDt').textContent = `${curDt.toFixed(4)} TU ≈ ${(curDt * TU_DAYS).toFixed(3)} 天/步`;
+}
+function updateSpeedLabel() {
+  $('outSpeed').textContent = `${stepsPerFrame} 步/帧 ≈ ${(stepsPerFrame * curDt * TU_DAYS).toFixed(2)} 天/帧`;
+}
+
+/* 事件绑定 */
+function bindUI() {
+  $('btnRun').onclick = () => {
+    if (!RUNNABLE.has(sim.status)) resetSim();
+    sim.running = !sim.running;
+    setStatus(sim.running ? 'running' : 'paused');
+  };
+  $('btnStep').onclick = () => { sim.running = false; setStatus('paused'); stepOnce(); updateStats(); simDirty = true; };
+  $('btnReset').onclick = () => resetSim();
+  $('btnApplyIC').onclick = readICFromInputs;
+  for (const el of document.querySelectorAll('[data-preset]')) el.onclick = () => applyPreset(el.dataset.preset);
+  $('rngDt').oninput = e => { curDt = parseFloat(e.target.value); updateDtLabel(); updateSpeedLabel(); };
+  $('rngSpeed').oninput = e => { stepsPerFrame = parseInt(e.target.value); updateSpeedLabel(); };
+  $('selInteg').onchange = () => updateStats();
+  for (const id of ['chkZvc', 'chkFill', 'chkTrail', 'chkVel', 'chkGrid', 'chkLpts']) $(id).onchange = () => viewDirty = true;
+  $('selCMode').onchange = () => zvcForceRebuild();
+  $('inCManual').oninput = () => zvcForceRebuild();
+  for (const chip of document.querySelectorAll('.zvcchips .chip')) {
+    chip.onclick = () => {
+      const p = LPTS[chip.dataset.c];
+      $('selCMode').value = 'manual';
+      $('inCManual').value = p.C.toFixed(4);
+      zvcForceRebuild();
+      toast(`C 设为 C(${chip.dataset.c}) = ${p.C.toFixed(4)}`);
+    };
+  }
+  $('btnZoomIn').onclick = () => zoomAt(W / 2, H / 2, 1.3);
+  $('btnZoomOut').onclick = () => zoomAt(W / 2, H / 2, 1 / 1.3);
+  $('btnViewReset').onclick = () => defaultView(3.8, 0, 0);
+  $('btnSelfTest').onclick = () => runSelfTests(true);
+  $('badgeSelfTest').onclick = () => { runSelfTests(true); document.getElementById('selfTestResults').scrollIntoView({behavior: 'smooth', block: 'center'}); };
+
+  // 画布：拖拽平移 / 滚轮缩放 / Shift+点击设初值
+  let dragging = false, lastX = 0, lastY = 0;
+  cv.addEventListener('pointerdown', e => {
+    if (e.shiftKey) {
+      const [px, py] = toPhys(e.offsetX, e.offsetY);
+      sim.ic.x = +px.toFixed(5); sim.ic.y = +py.toFixed(5);
+      $('inX0').value = sim.ic.x; $('inY0').value = sim.ic.y;
+      resetSim();
+      toast(`初始位置已设为 (${px.toFixed(3)}, ${py.toFixed(3)})，可再调整速度后运行`);
+      return;
+    }
+    dragging = true; lastX = e.clientX; lastY = e.clientY;
+    cv.classList.add('dragging'); cv.setPointerCapture(e.pointerId);
+  });
+  cv.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    cam.cx -= (e.clientX - lastX) / cam.scale;
+    cam.cy += (e.clientY - lastY) / cam.scale;
+    lastX = e.clientX; lastY = e.clientY;
+    viewDirty = true;
+  });
+  cv.addEventListener('pointerup', e => { dragging = false; cv.classList.remove('dragging'); });
+  cv.addEventListener('wheel', e => {
+    e.preventDefault();
+    zoomAt(e.offsetX, e.offsetY, Math.exp(-e.deltaY * 0.0012));
+  }, {passive: false});
+  cv.addEventListener('dblclick', () => defaultView(3.8, 0, 0));
+
+  window.addEventListener('keydown', e => {
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+    if (e.code === 'Space') { e.preventDefault(); $('btnRun').click(); }
+    else if (e.key === 's' || e.key === 'S') $('btnStep').click();
+    else if (e.key === 'r' || e.key === 'R') $('btnReset').click();
+    else if (e.key === '+' || e.key === '=') $('btnZoomIn').click();
+    else if (e.key === '-') $('btnZoomOut').click();
+  });
+  window.addEventListener('resize', resizeCanvas);
+  for (const id of ['inX0', 'inY0', 'inVx0', 'inVy0'])
+    $(id).addEventListener('keydown', e => { if (e.key === 'Enter') readICFromInputs(); });
+}
+function zoomAt(X, Y, factor) {
+  const [px, py] = toPhys(X, Y);
+  cam.scale = Math.min(30000, Math.max(30, cam.scale * factor));
+  const [qx, qy] = toPhys(X, Y);
+  cam.cx += px - qx; cam.cy += py - qy;
+  viewDirty = true;
+}
+
+/* 主循环（脏标记：空闲时零 CPU 占用） */
+function tick() {
+  if (sim.running && RUNNABLE.has(sim.status)) {
+    for (let i = 0; i < stepsPerFrame; i++) if (!stepOnce()) break;
+    simDirty = true;
+  }
+  if (simDirty || viewDirty) {
+    render();
+    updateStats();
+    simDirty = viewDirty = false;
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ════════════════════════════════════════════════════════════════
+ * 7. 数值自检（全部在页面内实时计算；阈值来自开发期离线实测，留有余量）
+ * ════════════════════════════════════════════════════════════════ */
+const TESTS = [
+  {
+    name: '拉格朗日点定位（L1–L5 加速度残差）',
+    async run() {
+      let maxR = 0;
+      for (const p of Object.values(LPTS)) {
+        const a = f([p.x, p.y, 0, 0]);
+        maxR = Math.max(maxR, Math.hypot(a[2], a[3]));
+      }
+      return {pass: maxR < 1e-8, detail: `max|a(Li)| = ${maxR.toExponential(2)}（阈值 1e-8）；L1 x=${LPTS.L1.x.toFixed(6)}`};
+    }
+  },
+  {
+    name: 'RK4 步长收敛阶（应为 4 阶）',
+    async run() {
+      const ic = [LPTS.L4.x + 0.02, LPTS.L4.y, 0, 0], T = 2;
+      const run = dt => { let s = ic; for (let i = 0; i < T / dt; i++) s = INT.rk4.step(s, dt); return s; };
+      const ref = run(0.02 / 16), a = run(0.02), b = run(0.01), c = run(0.005);
+      const e1 = Math.hypot(a[0] - ref[0], a[1] - ref[1]);
+      const e2 = Math.hypot(b[0] - ref[0], b[1] - ref[1]);
+      const e3 = Math.hypot(c[0] - ref[0], c[1] - ref[1]);
+      const p1 = Math.log2(e1 / e2), p2 = Math.log2(e2 / e3), p = 0.5 * (p1 + p2);
+      return {pass: p > 3.2 && p < 4.8, detail: `观测阶数 p ≈ ${p.toFixed(2)}（h 减半误差比 ${e1.toExponential(1)} → ${e2.toExponential(1)} → ${e3.toExponential(1)}）`};
+    }
+  },
+  {
+    name: 'RK4 ↔ GL4 互检（同初值同步长）',
+    async run() {
+      const ic = [LPTS.L4.x + 0.02, LPTS.L4.y, 0, 0], dt = 0.005, T = 4;
+      let s1 = ic, s2 = ic;
+      for (let i = 0; i < T / dt; i++) { s1 = INT.rk4.step(s1, dt); s2 = INT.gl4.step(s2, dt); }
+      const d = Math.hypot(s1[0] - s2[0], s1[1] - s2[1]);
+      return {pass: d < 1e-6, detail: `t=4 后位置差 ${d.toExponential(2)} DU（阈值 1e-6）`};
+    }
+  },
+  {
+    name: 'Jacobi 守恒 · RK4（线性漂移）',
+    async run() {
+      const ic = [-MU - 0.15, 0, 0, 2.728405], dt = 0.005, T = 30;
+      const C0 = jacobi(ic);
+      let s = ic, maxD = 0;
+      for (let i = 0; i < T / dt; i++) { s = INT.rk4.step(s, dt); maxD = Math.max(maxD, Math.abs(jacobi(s) - C0)); }
+      return {pass: maxD < 5e-3, detail: `绕地轨道 t=30 TU：max|C−C₀| = ${maxD.toExponential(2)}（阈值 5e-3；RK4 误差随时间线性累积）`};
+    }
+  },
+  {
+    name: 'Jacobi 守恒 · GL4 辛积分（有界不增长）',
+    async run() {
+      const ic = [-MU - 0.15, 0, 0, 2.728405], dt = 0.005;
+      const C0 = jacobi(ic);
+      const run = T => { let s = ic, m = 0; for (let i = 0; i < T / dt; i++) { s = INT.gl4.step(s, dt); m = Math.max(m, Math.abs(jacobi(s) - C0)); } return m; };
+      const d30 = run(30), d300 = run(300);
+      return {pass: d30 < 1e-6 && d300 < Math.max(2e-6, 2 * d30), detail: `t=30: ${d30.toExponential(2)}，t=300（×10 时长）: ${d300.toExponential(2)} —— 有界不增长（阈值 1e-6 / 有界）`};
+    }
+  },
+  {
+    name: 'NaN 防护（奇点危害 + 守卫拦截 + 坠地）',
+    async run() {
+      // a) 物理事实：地球质点是势函数奇点，f() 在该点产生非有限值（危害真实存在）
+      const fz = f([-MU, 0, 0, 0]);
+      const hazard = !isFinite4(fz);
+      // b) 守卫路径：向积分器注入一次返回 NaN（模拟数值失控），stepOnce 必须拦截且状态保持有限
+      const backup = {s: sim.s.slice(), t: sim.t, st: sim.status, run: sim.running, C0: sim.C0, trailLen: sim.trail.length, dt: curDt, integ: $('selInteg').value};
+      const origStep = INT.rk4.step;
+      INT.rk4.step = () => [NaN, NaN, NaN, NaN];
+      $('selInteg').value = 'rk4';
+      sim.s = [-0.5, 0.5, 0.2, 0]; sim.status = 'running';
+      const r1 = stepOnce();
+      const okB = !r1 && sim.status === 'nan' && isFinite4(sim.s);
+      const stB = sim.status;
+      INT.rk4.step = origStep;
+      // c) 真实坠地：从地球内部出发，碰撞守卫立即停止
+      sim.s = [-MU + RE_DU * 0.5, 0, 0, 0]; sim.status = 'running';
+      const r2 = stepOnce();
+      const okC = !r2 && sim.status === 'earth' && isFinite4(sim.s);
+      // 恢复现场
+      sim.s = backup.s; sim.t = backup.t; sim.C0 = backup.C0; sim.running = backup.run;
+      sim.trail.length = backup.trailLen; curDt = backup.dt; $('selInteg').value = backup.integ;
+      setStatus(backup.st);
+      return {pass: hazard && okB && okC, detail: `f(地心) 非有限=${hazard}；注入 NaN → 状态 '${stB}'，状态有限=${isFinite4(sim.s)}；地球内部出发 → '${okC ? 'earth' : '未拦截'}'；界面数据未泄漏 NaN`};
+    }
+  },
+  {
+    name: '零速度曲线完整性（marching squares）',
+    async run() {
+      // contour(level) 的参数是 Ω 等值线 level = C/2（禁区为 Ω < C/2）
+      const c1 = ZVC.contour((LPTS.L1.C + 0.002) / 2);   // 颈口刚开：两主天体周围各有闭合禁区
+      const c2 = ZVC.contour(2.5 / 2);                    // C=2.5 < 2·Ωmin：全域允许，应无曲线
+      const c3 = ZVC.contour((LPTS.L4.C + 0.05) / 2);     // C 略高于 C(L4)：L4/L5 周围出现允许孤岛
+      const allFinite = [...c1, ...c2, ...c3].every(Number.isFinite);
+      const ok = allFinite && c1.length > 0 && c2.length === 0 && c3.length > 0;
+      return {pass: ok, detail: `C=C(L1)+0.002: ${c1.length / 4} 段；C=2.50（应全域允许）: ${c2.length / 4} 段；C=C(L4)+0.05: ${c3.length / 4} 段；坐标全部有限=${allFinite}`};
+    }
+  },
+];
+async function runSelfTests(manual = false) {
+  const box = $('selfTestResults'), badge = $('badgeSelfTest');
+  box.innerHTML = '';
+  if (manual) console.log('%c[自检] 开始运行（页面内实时计算）', 'color:#6ea8fe');
+  let pass = 0;
+  for (const t of TESTS) {
+    const row = document.createElement('div');
+    row.className = 'strow running';
+    row.innerHTML = `<span class="nm">${t.name}</span><span class="pf">…</span>`;
+    box.appendChild(row);
+    await new Promise(r => setTimeout(r, 10));   // 让 UI 先画出"运行中"
+    let res;
+    try { res = await t.run(); }
+    catch (err) { res = {pass: false, detail: `异常：${err.message}`}; }
+    if (res.pass) pass++;
+    row.className = 'strow ' + (res.pass ? 'pass' : 'fail');
+    row.innerHTML = `<span class="nm">${t.name}</span><span class="pf">${res.pass ? '✓ 通过' : '✗ 未通过'}</span><span class="dt">${res.detail}</span>`;
+    console.log(`[自检] ${res.pass ? '✓' : '✗'} ${t.name} — ${res.detail}`);
+  }
+  const total = TESTS.length;
+  badge.textContent = `自检 ${pass}/${total} ${pass === total ? '✓' : '✗'}`;
+  badge.className = 'badge ' + (pass === total ? 'ok' : 'bad');
+  if (pass === total) toast(`数值自检全部通过（${total}/${total}）`);
+  else toast(`自检 ${pass}/${total} 未通过，详见控制台`);
+}
+
+/* ════════════════════════════════════════════════════════════════
+ * 8. 启动
+ * ════════════════════════════════════════════════════════════════ */
+function boot() {
+  bindUI();
+  ZVC.init();
+  resizeCanvas();
+  defaultView(3.8, 0, 0);
+  applyPreset('l4');          // 默认场景：L4 蝌蚪轨道
+  updateDtLabel(); updateSpeedLabel(); updateStats();
+  requestAnimationFrame(tick);
+  setTimeout(() => runSelfTests(false), 400);   // 加载后自动自检一次
+  console.log(`[CR3BP] 就绪：μ=${MU}，TU=${TU_DAYS.toFixed(4)} 天，L1 x=${LPTS.L1.x.toFixed(9)}，C(L1)=${LPTS.L1.C.toFixed(6)}，自检将在 0.4s 后自动运行`);
+}
+window.addEventListener('error', e => console.error('[页面错误]', e.message, e.filename, e.lineno));
+boot();
+</script>
+</body>
+</html>

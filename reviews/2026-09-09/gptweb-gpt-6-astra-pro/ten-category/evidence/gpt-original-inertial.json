@@ -1,0 +1,464 @@
+{
+  "scipy_version": "1.17.0",
+  "browser": "144.0.7559.96",
+  "formulation": "Inertial Cartesian; rotating primaries; no centrifugal or Coriolis terms in reference RHS",
+  "reference_method": "DOP853",
+  "tight_rtol": 2.3e-14,
+  "tight_atol": 2e-15,
+  "tight_max_step": 0.02,
+  "loose_rtol": 1e-12,
+  "loose_atol": 1e-14,
+  "loose_max_step": 0.05,
+  "thresholds": {
+    "position_error_DU": 1e-06,
+    "velocity_error_VU": 1e-05,
+    "reference_difference": 1e-07
+  },
+  "html_sha256": "e47703cc377ef47a5c1b3f356bcdbac2b555946e0e95c598b9197fe4a5ed8a75",
+  "cases": [
+    {
+      "preset": "l4",
+      "method": "rk4",
+      "T": 20.0,
+      "initial": [
+        0.49984941560416846,
+        0.8510254037844399,
+        0,
+        0.018
+      ],
+      "reference_state": [
+        0.5170573769727644,
+        0.8515736800303034,
+        0.012765736432393981,
+        0.007489445561800534
+      ],
+      "reference_tight_loose_state_difference": 4.493798268288831e-14,
+      "reference_nfev": 12014,
+      "reference_steps": 1001,
+      "runs": [
+        {
+          "h": 0.002,
+          "n": 10000,
+          "state": [
+            0.517057376972746,
+            0.8515736800302599,
+            0.012765736432335539,
+            0.007489445561861624
+          ],
+          "position_error_DU": 4.726213026239794e-14,
+          "position_error_km": 1.8167562872865768e-08,
+          "velocity_error_VU": 8.454321743541696e-14,
+          "velocity_error_km_s": 8.661848689270645e-14,
+          "state_error_dimensionless_norm": 9.685692835967936e-14,
+          "max_jacobi_drift": 1.3322676295501878e-15
+        },
+        {
+          "h": 0.001,
+          "n": 20000,
+          "state": [
+            0.5170573769728307,
+            0.8515736800302799,
+            0.012765736432416963,
+            0.007489445561777073
+          ],
+          "position_error_DU": 7.033532306178569e-14,
+          "position_error_km": 2.7036898184950418e-08,
+          "velocity_error_VU": 3.284182975690992e-14,
+          "velocity_error_km_s": 3.364799314036621e-14,
+          "state_error_dimensionless_norm": 7.762501820925787e-14,
+          "max_jacobi_drift": 1.3322676295501878e-15
+        }
+      ],
+      "pass": true
+    },
+    {
+      "preset": "l4",
+      "method": "sy4",
+      "T": 20.0,
+      "initial": [
+        0.49984941560416846,
+        0.8510254037844399,
+        0,
+        0.018
+      ],
+      "reference_state": [
+        0.5170573769727644,
+        0.8515736800303034,
+        0.012765736432393981,
+        0.007489445561800534
+      ],
+      "reference_tight_loose_state_difference": 4.493798268288831e-14,
+      "reference_nfev": 12014,
+      "reference_steps": 1001,
+      "runs": [
+        {
+          "h": 0.002,
+          "n": 10000,
+          "state": [
+            0.5170573769706084,
+            0.8515736800137301,
+            0.012765736408902217,
+            0.00748944557846809
+          ],
+          "position_error_DU": 1.6712952498460534e-11,
+          "position_error_km": 6.424458940408229e-06,
+          "velocity_error_VU": 2.8803999904920134e-11,
+          "velocity_error_km_s": 2.951104729516304e-11,
+          "state_error_dimensionless_norm": 3.3301549389456905e-11,
+          "max_jacobi_drift": 5.808686864838819e-13
+        },
+        {
+          "h": 0.001,
+          "n": 20000,
+          "state": [
+            0.5170573769714716,
+            0.8515736800289809,
+            0.012765736429813712,
+            0.007489445563703789
+          ],
+          "position_error_DU": 1.849452185334941e-12,
+          "position_error_km": 7.109294200427514e-07,
+          "velocity_error_VU": 3.2062705248712916e-12,
+          "velocity_error_km_s": 3.2849743581759073e-12,
+          "state_error_dimensionless_norm": 3.701438107614204e-12,
+          "max_jacobi_drift": 4.04121180963557e-14
+        }
+      ],
+      "pass": true
+    },
+    {
+      "preset": "l1",
+      "method": "rk4",
+      "T": 4.0,
+      "initial": [
+        0.8368151317448633,
+        0,
+        0,
+        0
+      ],
+      "reference_state": [
+        -0.49666256214359555,
+        -0.051211676958287294,
+        -0.4777130301515914,
+        -0.9509077361989118
+      ],
+      "reference_tight_loose_state_difference": 8.583352326364415e-12,
+      "reference_nfev": 2594,
+      "reference_steps": 215,
+      "runs": [
+        {
+          "h": 0.0005,
+          "n": 8000,
+          "state": [
+            -0.4966625621413836,
+            -0.05121167695487724,
+            -0.4777130301577897,
+            -0.9509077362056719
+          ],
+          "position_error_DU": 4.0646308373553895e-12,
+          "position_error_km": 1.5624440938794117e-06,
+          "velocity_error_VU": 9.171628385532025e-12,
+          "velocity_error_km_s": 9.39676294794259e-12,
+          "state_error_dimensionless_norm": 1.0031948518920797e-11,
+          "max_jacobi_drift": 2.8066438062523957e-13
+        },
+        {
+          "h": 0.00025,
+          "n": 16000,
+          "state": [
+            -0.4966625621445834,
+            -0.051211676960265705,
+            -0.4777130301480001,
+            -0.9509077361961565
+          ],
+          "position_error_DU": 2.211311437307815e-12,
+          "position_error_km": 8.50028116501124e-07,
+          "velocity_error_VU": 4.526449180936305e-12,
+          "velocity_error_km_s": 4.6375592382551665e-12,
+          "state_error_dimensionless_norm": 5.037721752972002e-12,
+          "max_jacobi_drift": 2.220446049250313e-14
+        }
+      ],
+      "pass": true
+    },
+    {
+      "preset": "l1",
+      "method": "sy4",
+      "T": 4.0,
+      "initial": [
+        0.8368151317448633,
+        0,
+        0,
+        0
+      ],
+      "reference_state": [
+        -0.49666256214359555,
+        -0.051211676958287294,
+        -0.4777130301515914,
+        -0.9509077361989118
+      ],
+      "reference_tight_loose_state_difference": 8.583352326364415e-12,
+      "reference_nfev": 2594,
+      "reference_steps": 215,
+      "runs": [
+        {
+          "h": 0.0005,
+          "n": 8000,
+          "state": [
+            -0.4966625622675894,
+            -0.051211677275625034,
+            -0.47771302956343115,
+            -0.9509077358897101
+          ],
+          "position_error_DU": 3.4070180633154474e-10,
+          "position_error_km": 0.0001309657743538458,
+          "velocity_error_VU": 6.644833634628765e-10,
+          "velocity_error_km_s": 6.807943351871891e-10,
+          "state_error_dimensionless_norm": 7.46736808491797e-10,
+          "max_jacobi_drift": 2.149480593516273e-11
+        },
+        {
+          "h": 0.00025,
+          "n": 16000,
+          "state": [
+            -0.4966625622061661,
+            -0.05121167708840483,
+            -0.4777130299121667,
+            -0.9509077360257562
+          ],
+          "position_error_DU": 1.443802196364865e-10,
+          "position_error_km": 5.5499756428265414e-05,
+          "velocity_error_VU": 2.954776644887862e-10,
+          "velocity_error_km_s": 3.0273070962979036e-10,
+          "state_error_dimensionless_norm": 3.288657751028948e-10,
+          "max_jacobi_drift": 1.1262102361797588e-12
+        }
+      ],
+      "pass": true
+    },
+    {
+      "preset": "earth",
+      "method": "rk4",
+      "T": 10.0,
+      "initial": [
+        0.1678494156041708,
+        0,
+        0,
+        2.162659238752418
+      ],
+      "reference_state": [
+        0.11495520691072783,
+        0.12745432591256886,
+        -1.530993178317966,
+        1.5271772261581826
+      ],
+      "reference_tight_loose_state_difference": 1.0263654875391178e-11,
+      "reference_nfev": 17930,
+      "reference_steps": 1494,
+      "runs": [
+        {
+          "h": 0.0005,
+          "n": 20000,
+          "state": [
+            0.11495520640483733,
+            0.1274543264061728,
+            -1.5309931843479898,
+            1.5271772202211467
+          ],
+          "position_error_DU": 7.068026876362846e-10,
+          "position_error_km": 0.00027169495312738784,
+          "velocity_error_VU": 8.462244581004729e-09,
+          "velocity_error_km_s": 8.669966007415876e-09,
+          "state_error_dimensionless_norm": 8.491710863424035e-09,
+          "max_jacobi_drift": 1.3250378572138288e-10
+        },
+        {
+          "h": 0.00025,
+          "n": 40000,
+          "state": [
+            0.1149552068888367,
+            0.1274543259339146,
+            -1.5309931785787616,
+            1.5271772259020864
+          ],
+          "position_error_DU": 3.057550812481435e-11,
+          "position_error_km": 1.1753225323178638e-05,
+          "velocity_error_VU": 3.6551284627101235e-10,
+          "velocity_error_km_s": 3.744850343320195e-10,
+          "state_error_dimensionless_norm": 3.667894525285962e-10,
+          "max_jacobi_drift": 4.381384144380718e-12
+        }
+      ],
+      "pass": true
+    },
+    {
+      "preset": "earth",
+      "method": "sy4",
+      "T": 10.0,
+      "initial": [
+        0.1678494156041708,
+        0,
+        0,
+        2.162659238752418
+      ],
+      "reference_state": [
+        0.11495520691072783,
+        0.12745432591256886,
+        -1.530993178317966,
+        1.5271772261581826
+      ],
+      "reference_tight_loose_state_difference": 1.0263654875391178e-11,
+      "reference_nfev": 17930,
+      "reference_steps": 1494,
+      "runs": [
+        {
+          "h": 0.0005,
+          "n": 20000,
+          "state": [
+            0.11495517885085069,
+            0.12745435361101654,
+            -1.530993513367498,
+            1.527176894152527
+          ],
+          "position_error_DU": 3.942791788705697e-08,
+          "position_error_km": 0.0151560916357847,
+          "velocity_error_VU": 4.716841572464922e-07,
+          "velocity_error_km_s": 4.832625162765201e-07,
+          "state_error_dimensionless_norm": 4.73329171831023e-07,
+          "max_jacobi_drift": 5.504041666881676e-11
+        },
+        {
+          "h": 0.00025,
+          "n": 40000,
+          "state": [
+            0.11495520510101145,
+            0.12745432769839213,
+            -1.5309931999267903,
+            1.5271772047465508
+          ],
+          "position_error_DU": 2.5424865988641505e-09,
+          "position_error_km": 0.0009773318486033795,
+          "velocity_error_VU": 3.0420375792858474e-08,
+          "velocity_error_km_s": 3.116710011536741e-08,
+          "state_error_dimensionless_norm": 3.052643938431297e-08,
+          "max_jacobi_drift": 2.603695037350917e-11
+        }
+      ],
+      "pass": true
+    },
+    {
+      "preset": "flyby",
+      "method": "rk4",
+      "T": 1.5,
+      "initial": [
+        0.7378494156041708,
+        -0.02,
+        0.6,
+        0.15
+      ],
+      "reference_state": [
+        1.6117402259368312,
+        -0.27786697840917046,
+        0.5214402676970946,
+        -0.8632890904364402
+      ],
+      "reference_tight_loose_state_difference": 1.118165148301362e-12,
+      "reference_nfev": 1586,
+      "reference_steps": 127,
+      "runs": [
+        {
+          "h": 0.0005,
+          "n": 3000,
+          "state": [
+            1.6117402259483986,
+            -0.27786697836310437,
+            0.5214402677455492,
+            -0.8632890904122377
+          ],
+          "position_error_DU": 4.749621251602481e-11,
+          "position_error_km": 1.8257544091159935e-05,
+          "velocity_error_VU": 5.416279271661598e-11,
+          "velocity_error_km_s": 5.549231852431498e-11,
+          "state_error_dimensionless_norm": 7.203817264638589e-11,
+          "max_jacobi_drift": 1.56070711909706e-11
+        },
+        {
+          "h": 0.00025,
+          "n": 6000,
+          "state": [
+            1.6117402259375881,
+            -0.27786697840632524,
+            0.5214402677001299,
+            -0.8632890904349941
+          ],
+          "position_error_DU": 2.9441931528810975e-12,
+          "position_error_km": 1.1317478479674939e-06,
+          "velocity_error_VU": 3.36210938700039e-12,
+          "velocity_error_km_s": 3.4446385730730417e-12,
+          "state_error_dimensionless_norm": 4.469010276518513e-12,
+          "max_jacobi_drift": 9.85433956657289e-13
+        }
+      ],
+      "pass": true
+    },
+    {
+      "preset": "flyby",
+      "method": "sy4",
+      "T": 1.5,
+      "initial": [
+        0.7378494156041708,
+        -0.02,
+        0.6,
+        0.15
+      ],
+      "reference_state": [
+        1.6117402259368312,
+        -0.27786697840917046,
+        0.5214402676970946,
+        -0.8632890904364402
+      ],
+      "reference_tight_loose_state_difference": 1.118165148301362e-12,
+      "reference_nfev": 1586,
+      "reference_steps": 127,
+      "runs": [
+        {
+          "h": 0.0005,
+          "n": 3000,
+          "state": [
+            1.6117402263263283,
+            -0.2778669770317781,
+            0.5214402691840201,
+            -0.8632890897643254
+          ],
+          "position_error_DU": 1.4314041092842015e-09,
+          "position_error_km": 0.000550231739608847,
+          "velocity_error_VU": 1.6317737814052474e-09,
+          "velocity_error_km_s": 1.6718286834125308e-09,
+          "state_error_dimensionless_norm": 2.170622813331989e-09,
+          "max_jacobi_drift": 2.14546158616713e-10
+        },
+        {
+          "h": 0.00025,
+          "n": 6000,
+          "state": [
+            1.6117402259607747,
+            -0.2778669783230872,
+            0.5214402677896999,
+            -0.8632890903940721
+          ],
+          "position_error_DU": 8.935109438336489e-11,
+          "position_error_km": 3.434656068096546e-05,
+          "velocity_error_VU": 1.0183707698240781e-10,
+          "velocity_error_km_s": 1.0433685617099468e-10,
+          "state_error_dimensionless_norm": 1.3547844225494267e-10,
+          "max_jacobi_drift": 1.3446577185050046e-11
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "console": [],
+  "pass": true,
+  "caveat": "Local tolerances are not rigorous global error bounds. Reference tight-loose differences include phase accumulation and are only a numerical consistency estimate."
+}

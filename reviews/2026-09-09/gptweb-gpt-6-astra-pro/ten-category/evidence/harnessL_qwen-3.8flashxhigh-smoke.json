@@ -1,0 +1,285 @@
+{
+  "entry": {
+    "submission": "harnessL--qwen-3.8flashxhigh--2026-09-09",
+    "html": "/mnt/data/benchmark/submissions/harnessL--qwen-3.8flashxhigh--2026-09-09/cr3bp_lab.html",
+    "sha256": "c496e3bde81beb685d321e3e2aefbaa6949a0846c0d4634e3603f389fd4663eb"
+  },
+  "page_errors": [],
+  "console": [],
+  "external_requests": [],
+  "title": "地月限制性三体问题实验室 · Earth–Moon CR3BP Lab",
+  "body": "地月限制性三体问题实验室 CR3BP\n旋转坐标系 · RK4 / 辛积分 / 自适应DOPRI5 · 实时Jacobi守恒 · 真实自检\nμEM=0.0121506 · 距离单位=地月 384400 km · 时间单位=4.3486 d\n拖拽平移 · 滚轮缩放\n预设 PRESETS\nL1 周期轨道 (Lyapunov)L1 不稳定运动 (流形逃逸)L4 扰动 (蝌蚪摆动)绕地轨道 (有界)月球引力辅助 (飞越)L4 大振幅蝌蚪 (宽摆动)\n积分器 INTEGRATOR\nRK4\n辛(隐式中点)\nDOPRI5\n步长 h\n2.0e-3\n每帧子步\n40\nDOPRI容差\n1e-10\n运行 RUN\n⏸ 暂停\n单步\n重置\n清轨迹\n初始状态 STATE\nx\ny\nvx\nvy\n显示 VIEW\n缩放 px/单位\n330\n平移 X\n0.10\n平移 Y\n0.00\n零速度曲线\n拉格朗日点\n速度矢量\n轨迹\n遥测 TELEMETRY\nx (DU)\n1.11967\ny (DU)\n-0.00848\n|v| (DU/TD)\n0.4615\n仿真时间 T\n9.418 td\n≈ 天数\n40.95 d\nC_J (雅可比)\n2.970281\nC_J 漂移\n1.23e-12\n距地 / 距月\n1.132 / 0.132\n自检 SELF-TESTS\n运行 ▸\n点击「运行」执行拉格朗日点残差 / 步长收敛 / 守恒误差 / NaN 防护 / 外部锚点校验。\n数值局限：辛积分(隐式中点)为2阶、其误差随时间有界但幅度大于RK4；DOPRI5自适应按状态误差控步。靠近天体的近距离/混沌轨道误差被指数放大——此时固定步长不可靠，请缩小h或用自适应。",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L1 周期轨道 (Lyapunov)",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L1 不稳定运动 (流形逃逸)",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L4 扰动 (蝌蚪摆动)",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "绕地轨道 (有界)",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "月球引力辅助 (飞越)",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L4 大振幅蝌蚪 (宽摆动)",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "RK4",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "辛(隐式中点)",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "DOPRI5",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "h",
+      "type": "range",
+      "text": "",
+      "value": "-2.7",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "sub",
+      "type": "range",
+      "text": "",
+      "value": "40",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tol",
+      "type": "range",
+      "text": "",
+      "value": "-10",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "play",
+      "type": "submit",
+      "text": "⏸ 暂停",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "step",
+      "type": "submit",
+      "text": "单步",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "reset",
+      "type": "submit",
+      "text": "重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "clear",
+      "type": "submit",
+      "text": "清轨迹",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "sx",
+      "type": "number",
+      "text": "",
+      "value": "0.860000",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "sy",
+      "type": "number",
+      "text": "",
+      "value": "0.000000",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "svx",
+      "type": "number",
+      "text": "",
+      "value": "0.000000",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "svy",
+      "type": "number",
+      "text": "",
+      "value": "0.474040",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "zoom",
+      "type": "range",
+      "text": "",
+      "value": "330",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "panx",
+      "type": "range",
+      "text": "",
+      "value": "0.1",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "pany",
+      "type": "range",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tZvc",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tLp",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tVec",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tTrail",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "runtests",
+      "type": "submit",
+      "text": "运行 ▸",
+      "value": "",
+      "disabled": false
+    }
+  ],
+  "globals": [
+    {
+      "key": "__CR3BP__",
+      "keys": [
+        "S",
+        "MU",
+        "LP",
+        "deriv",
+        "jacobi",
+        "rk4",
+        "sympl",
+        "dopri",
+        "advance",
+        "omega",
+        "zvcSegments",
+        "lpResidual",
+        "PRESETS",
+        "TIME_UNIT_DAYS",
+        "setIC",
+        "runTests"
+      ]
+    }
+  ],
+  "viewport": {
+    "innerWidth": 1440,
+    "innerHeight": 1000,
+    "scrollWidth": 1440,
+    "scrollHeight": 1000,
+    "canvases": [
+      {
+        "id": "cv",
+        "width": 1100,
+        "height": 953,
+        "rect": {
+          "x": 0,
+          "y": 43.890625,
+          "width": 1099,
+          "height": 953,
+          "top": 43.890625,
+          "right": 1099,
+          "bottom": 996.890625,
+          "left": 0
+        }
+      }
+    ]
+  },
+  "loaded": true
+}

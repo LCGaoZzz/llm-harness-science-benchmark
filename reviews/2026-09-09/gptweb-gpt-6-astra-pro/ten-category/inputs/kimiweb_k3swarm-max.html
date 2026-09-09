@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地月限制性三体问题实验室 (CR3BP Lab)</title>
+<style>
+/* ============ 全局深色科技风样式 ============ */
+:root{
+  --bg:#0a0e14; --panel:#111827; --panel2:#0d1420; --border:#1f2b3a;
+  --fg:#c9d6e2; --dim:#7c8da0; --accent:#4fc3f7; --accent2:#ffb74d;
+  --pass:#4caf7d; --fail:#ef5350; --mono:'Cascadia Code','JetBrains Mono',Consolas,Menlo,monospace;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%; overflow:hidden; background:var(--bg); color:var(--fg);
+  font:13px/1.5 "Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;}
+#app{display:flex; height:100vh; width:100vw;}
+/* 左侧控制面板 */
+#panel{width:322px; min-width:322px; height:100%; overflow-y:auto; background:var(--panel);
+  border-right:1px solid var(--border); padding:12px 14px 40px;}
+#panel::-webkit-scrollbar{width:8px} #panel::-webkit-scrollbar-thumb{background:#263447;border-radius:4px}
+h1{font-size:16px; color:var(--accent); letter-spacing:1px; margin-bottom:2px;}
+.sub{color:var(--dim); font-size:11px; margin-bottom:10px;}
+fieldset{border:1px solid var(--border); border-radius:6px; padding:8px 10px 10px; margin-bottom:10px;}
+legend{color:var(--accent); font-size:12px; padding:0 6px;}
+button{background:#1a2635; color:var(--fg); border:1px solid #2b3c52; border-radius:4px;
+  padding:4px 10px; cursor:pointer; font-size:12px; transition:background .15s;}
+button:hover{background:#24344a; border-color:var(--accent);}
+button.primary{background:#0d3a52; border-color:var(--accent); color:var(--accent);}
+button.warn{border-color:#7a4a2a; color:var(--accent2);}
+button.active{background:#0d3a52; border-color:var(--accent); color:var(--accent);}
+.btnrow{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;}
+label.row{display:flex; align-items:center; gap:6px; margin:4px 0; color:var(--dim); font-size:12px;}
+input[type=number]{width:88px; background:#0b1220; border:1px solid #2b3c52; color:var(--fg);
+  border-radius:4px; padding:3px 6px; font-family:var(--mono); font-size:12px;}
+input[type=range]{flex:1; accent-color:var(--accent);}
+.val{font-family:var(--mono); color:var(--accent); font-size:12px; min-width:64px; text-align:right;}
+.icgrid{display:grid; grid-template-columns:1fr 1fr; gap:4px 8px;}
+.icgrid label{display:flex; align-items:center; gap:4px; font-size:12px; color:var(--dim);}
+.icgrid input{width:100%;}
+.presets{display:grid; grid-template-columns:1fr 1fr; gap:6px;}
+.presets button{font-size:11px; padding:5px 4px; text-align:left;}
+/* 状态面板 */
+#status{font-family:var(--mono); font-size:12px; background:var(--panel2);
+  border:1px solid var(--border); border-radius:6px; padding:8px 10px; margin-bottom:10px; white-space:pre-wrap;}
+#status.warnmsg{color:var(--fail); font-weight:bold;}
+#status.driftOk{}#status.driftWarn{color:var(--warn,#e6b450);}
+#status.driftBad{color:var(--fail); font-weight:bold;}
+/* 自检面板 */
+#selftest{font-family:var(--mono); font-size:11.5px;}
+#selftest .st-row{display:flex; gap:6px; align-items:baseline; padding:3px 0; border-bottom:1px dashed #1a2534;}
+#selftest .st-name{flex:0 0 108px; color:var(--fg);}
+#selftest .st-badge{flex:0 0 44px; font-weight:bold;}
+#selftest .st-detail{color:var(--dim); font-size:10.5px; word-break:break-all;}
+.pass{color:var(--pass);} .fail{color:var(--fail);} .run{color:var(--accent2);}
+/* 主画布区 */
+#stage{flex:1; position:relative; overflow:hidden; background:#070b11;}
+#cv{position:absolute; inset:0; width:100%; height:100%; cursor:grab;}
+#cv.dragging{cursor:grabbing;}
+#hint{position:absolute; right:10px; top:8px; color:var(--dim); font-size:11px;
+  background:rgba(10,16,24,.7); padding:4px 8px; border-radius:4px; pointer-events:none;}
+#legend{position:absolute; left:10px; bottom:10px; color:var(--dim); font-size:11px;
+  background:rgba(10,16,24,.72); padding:6px 10px; border-radius:4px; pointer-events:none; font-family:var(--mono);}
+#legend .sw{display:inline-block; width:18px; height:0; border-top:2px solid; margin-right:6px; vertical-align:middle;}
+/* 错误日志条 */
+#errbar{position:fixed; left:0; right:0; bottom:0; background:#141019; border-top:1px solid #3a2430;
+  z-index:50; font-family:var(--mono); font-size:11.5px;}
+#errbar .bar-head{display:flex; justify-content:space-between; padding:4px 12px; cursor:pointer; color:var(--dim);}
+#errbar .bar-head.err{color:var(--fail);}
+#errlog{max-height:140px; overflow-y:auto; padding:4px 12px 8px; display:none; white-space:pre-wrap; color:#ff9e9e;}
+#errbar.open #errlog{display:block;}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- ================= 控制面板 ================= -->
+  <div id="panel">
+    <h1>地月 CR3BP 实验室</h1>
+    <div class="sub">圆型限制性三体问题 · 旋转坐标系 · μ=0.012150585609624</div>
+
+    <fieldset><legend>仿真控制</legend>
+      <div class="btnrow">
+        <button id="btnRun" class="primary">▶ 开始</button>
+        <button id="btnStep">单步</button>
+        <button id="btnReset" class="warn">重置</button>
+        <button id="btnClearTrail">清空拖尾</button>
+      </div>
+      <div class="btnrow">
+        <button id="intRK4" class="active">RK4</button>
+        <button id="intVerlet">辛 Verlet</button>
+        <span style="color:var(--dim);font-size:11px;align-self:center">(切换不清轨迹)</span>
+      </div>
+      <label class="row">步长 dt <input type="range" id="dtSlider" min="0" max="1000" value="600">
+        <span class="val" id="dtVal">1.00e-3</span></label>
+      <label class="row">每帧步数 <input type="range" id="spfSlider" min="1" max="200" value="20">
+        <span class="val" id="spfVal">20</span></label>
+    </fieldset>
+
+    <fieldset><legend>初始条件</legend>
+      <div class="icgrid">
+        <label>x₀ <input type="number" id="icX" step="0.001" value="0.497849"></label>
+        <label>y₀ <input type="number" id="icY" step="0.001" value="0.866025"></label>
+        <label>vx₀ <input type="number" id="icVX" step="0.001" value="0"></label>
+        <label>vy₀ <input type="number" id="icVY" step="0.001" value="0"></label>
+      </div>
+      <div class="btnrow" style="margin-top:6px"><button id="btnApplyIC" class="primary">应用初始条件 (重置轨迹)</button></div>
+    </fieldset>
+
+    <fieldset><legend>预设轨道</legend>
+      <div class="presets">
+        <button id="pL4">L4 扰动<br><small>稳定天平动</small></button>
+        <button id="pL1">L1 不稳定<br><small>快速发散逃逸</small></button>
+        <button id="pEarth">绕地圆轨道<br><small>r₀=0.1 顺行</small></button>
+        <button id="pMoon">月球引力辅助<br><small>椭圆拱线转移</small></button>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>视图</legend>
+      <div class="btnrow">
+        <button id="zoomIn">放大 +</button>
+        <button id="zoomOut">缩小 −</button>
+        <button id="viewReset">重置视图</button>
+      </div>
+      <div style="color:var(--dim);font-size:11px">滚轮缩放 · 左键拖拽平移</div>
+    </fieldset>
+
+    <fieldset><legend>实时状态</legend>
+      <div id="status">—</div>
+    </fieldset>
+
+    <fieldset><legend>自检 <button id="btnRerun" style="float:right;font-size:10px;padding:1px 8px">重新运行</button></legend>
+      <div id="selftest"><div class="st-row"><span class="st-name">等待运行…</span></div></div>
+    </fieldset>
+  </div>
+
+  <!-- ================= 主画布 ================= -->
+  <div id="stage">
+    <canvas id="cv"></canvas>
+    <div id="hint">旋转坐标系 (地-月连线固定) · 长度单位=地月距离 · 时间单位=1/ω</div>
+    <div id="legend">
+      <div><span class="sw" style="border-color:rgba(80,200,255,.95)"></span>ZVC @ C(航天器)</div>
+      <div><span class="sw" style="border-color:rgba(255,160,60,.7)"></span>ZVC @ C(L1)</div>
+      <div><span class="sw" style="border-color:rgba(190,130,255,.7)"></span>ZVC @ C(L2)</div>
+      <div><span class="sw" style="border-color:rgba(120,255,150,.6)"></span>ZVC @ C(L3)</div>
+      <div><span class="sw" style="border-color:#e8e8e8"></span>轨迹拖尾</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 错误日志条 ================= -->
+<div id="errbar">
+  <div class="bar-head" id="errHead"><span id="errTitle">✔ 无错误</span><span>▾ 错误日志 (点击展开)</span></div>
+  <div id="errlog"></div>
+</div>
+
+<script>
+"use strict";
+(function(){
+/* ==================================================================
+ * SECTION: ERROR-CAPTURE —— 全局错误捕获到底部日志条（硬性要求）
+ * ================================================================== */
+const errbar=document.getElementById('errbar'),
+      errlog=document.getElementById('errlog'),
+      errTitle=document.getElementById('errTitle'),
+      errHead=document.getElementById('errHead');
+let errCount=0;
+function pushError(msg){
+  errCount++;
+  errTitle.textContent='✖ 捕获到 '+errCount+' 个错误（点击查看）';
+  errHead.classList.add('err');
+  const t=new Date().toLocaleTimeString();
+  errlog.textContent+='['+t+'] '+msg+'\n';
+  errlog.scrollTop=errlog.scrollHeight;
+}
+window.onerror=function(message,source,lineno,colno,error){
+  pushError(message+' @ '+(source||'')+':'+lineno+':'+colno+(error&&error.stack?('\n'+error.stack):''));
+  return false;
+};
+window.addEventListener('unhandledrejection',function(ev){
+  pushError('Unhandled Promise rejection: '+(ev.reason&&(ev.reason.stack||ev.reason.message)||ev.reason));
+});
+errHead.addEventListener('click',()=>errbar.classList.toggle('open'));
+
+/* ==================================================================
+ * SECTION: PHYSICS —— 无量纲 CR3BP 物理核心（仿真与自检共用）
+ * 坐标系: 旋转系, 地球(-μ,0), 月球(1-μ,0), ω=1
+ * ẍ - 2ẏ = ∂Ω/∂x ;  ÿ + 2ẋ = ∂Ω/∂y
+ * ================================================================== */
+const MU=0.012150585609624;
+const SQRT3_2=Math.sqrt(3)/2;
+
+// 伪势梯度 ∂Ω/∂x, ∂Ω/∂y
+function gradOmega(x,y){
+  const dx1=x+MU, dx2=x-1+MU;
+  const r1=Math.hypot(dx1,y), r2=Math.hypot(dx2,y);
+  const r13=r1*r1*r1, r23=r2*r2*r2;
+  return [ x-(1-MU)*dx1/r13-MU*dx2/r23,
+           y-(1-MU)*y/r13-MU*y/r23 ];
+}
+// Jacobi 常数 C = x²+y² + 2(1-μ)/r1 + 2μ/r2 − v²
+function jacobi(x,y,vx,vy){
+  const r1=Math.hypot(x+MU,y), r2=Math.hypot(x-1+MU,y);
+  return x*x+y*y+2*(1-MU)/r1+2*MU/r2-(vx*vx+vy*vy);
+}
+// ZVC 场 (带奇点截断保护, 仅用于等值线绘制)
+function zvcField(x,y){
+  const r1=Math.max(Math.hypot(x+MU,y),1e-3);
+  const r2=Math.max(Math.hypot(x-1+MU,y),1e-3);
+  return x*x+y*y+2*(1-MU)/r1+2*MU/r2;
+}
+// 状态导数 ds/dt = [vx, vy, 2vy+Ωx, -2vx+Ωy]
+function deriv(s){
+  const g=gradOmega(s[0],s[1]);
+  return [s[2], s[3], 2*s[3]+g[0], -2*s[2]+g[1]];
+}
+// 状态防护: 返回 null 表示正常, 否则返回中文原因(供主循环自动暂停)
+function checkState(s){
+  for(let i=0;i<4;i++)
+    if(!Number.isFinite(s[i])) return '检测到 NaN/Inf 状态，仿真已自动暂停';
+  const r1=Math.hypot(s[0]+MU,s[1]), r2=Math.hypot(s[0]-1+MU,s[1]);
+  if(r1<1e-6) return '接近地球奇点 (r1<1e-6)，判定碰撞，仿真已暂停';
+  if(r2<1e-6) return '接近月球奇点 (r2<1e-6)，判定碰撞，仿真已暂停';
+  return null;
+}
+
+/* ---------- 拉格朗日点: 运行时数值求解 (不硬编码) ---------- */
+// 共线点一维函数 f(x)=∂Ω/∂x|_{y=0} 及其导数
+function fCol(x){
+  const a=x+MU, b=x-1+MU;
+  return x-(1-MU)*a/Math.abs(a)**3-MU*b/Math.abs(b)**3;
+}
+function dfCol(x){
+  const a=x+MU, b=x-1+MU;
+  return 1+2*(1-MU)/Math.abs(a)**3+2*MU/Math.abs(b)**3;
+}
+function newtonCol(x0){
+  let x=x0;
+  for(let i=0;i<100;i++){
+    const fx=fCol(x);
+    x-=fx/dfCol(x);
+    if(Math.abs(fCol(x))<1e-12) break;   // 收敛残差 <1e-12
+  }
+  return x;
+}
+const L1x=newtonCol(0.83), L2x=newtonCol(1.16), L3x=newtonCol(-1.005);
+// L4/L5 由解析条件构造, 残差在自检中验证 <1e-12
+const L4x=0.5-MU, L4y=SQRT3_2;
+const LPTS=[
+  {n:'L1',x:L1x,y:0},{n:'L2',x:L2x,y:0},{n:'L3',x:L3x,y:0},
+  {n:'L4',x:L4x,y:L4y},{n:'L5',x:L4x,y:-L4y}
+];
+const C_L1=jacobi(L1x,0,0,0), C_L2=jacobi(L2x,0,0,0),
+      C_L3=jacobi(L3x,0,0,0), C_L45=jacobi(L4x,L4y,0,0);
+
+/* ==================================================================
+ * SECTION: INTEGRATORS —— RK4 与 旋转系辛 Störmer–Verlet
+ * ================================================================== */
+function stepRK4(s,h){
+  const k1=deriv(s);
+  const s2=[s[0]+0.5*h*k1[0],s[1]+0.5*h*k1[1],s[2]+0.5*h*k1[2],s[3]+0.5*h*k1[3]];
+  const k2=deriv(s2);
+  const s3=[s[0]+0.5*h*k2[0],s[1]+0.5*h*k2[1],s[2]+0.5*h*k2[2],s[3]+0.5*h*k2[3]];
+  const k3=deriv(s3);
+  const s4=[s[0]+h*k3[0],s[1]+h*k3[1],s[2]+h*k3[2],s[3]+h*k3[3]];
+  const k4=deriv(s4);
+  return [ s[0]+h*(k1[0]+2*k2[0]+2*k3[0]+k4[0])/6,
+           s[1]+h*(k1[1]+2*k2[1]+2*k3[1]+k4[1])/6,
+           s[2]+h*(k1[2]+2*k2[2]+2*k3[2]+k4[2])/6,
+           s[3]+h*(k1[3]+2*k2[3]+2*k3[3]+k4[3])/6 ];
+}
+// 辛 Verlet (Strang 分裂): 重力半 kick → Coriolis 精确旋转(h/2) → 漂移
+// → Coriolis 精确旋转(h/2) → 重力半 kick
+// Coriolis 子流 v̇=2(ẏ,−ẋ) 的精确解是旋转: exp(2Jτ), J=[[0,1],[-1,0]]
+// 即 [vx,vy]→[vx·cos2τ+vy·sin2τ, −vx·sin2τ+vy·cos2τ]
+function coriolisRotate(vx,vy,tau){
+  const c=Math.cos(2*tau), sn=Math.sin(2*tau);
+  return [vx*c+vy*sn, -vx*sn+vy*c];
+}
+function stepVerlet(s,h){
+  let x=s[0], y=s[1], vx=s[2], vy=s[3];
+  let g=gradOmega(x,y);
+  vx+=0.5*h*g[0]; vy+=0.5*h*g[1];           // 重力半步 kick
+  let v=coriolisRotate(vx,vy,0.5*h); vx=v[0]; vy=v[1];  // Coriolis 精确旋转
+  x+=h*vx; y+=h*vy;                          // 漂移
+  v=coriolisRotate(vx,vy,0.5*h); vx=v[0]; vy=v[1];      // Coriolis 精确旋转
+  g=gradOmega(x,y);
+  vx+=0.5*h*g[0]; vy+=0.5*h*g[1];            // 重力半步 kick
+  return [x,y,vx,vy];
+}
+const INTEGRATORS={ rk4:{name:'RK4',step:stepRK4},
+                    verlet:{name:'辛 Verlet',step:stepVerlet} };
+// 通用积分 (自检用): 以步长 h 积分 T 时间单位
+function integrate(integKey,s0,h,T){
+  let s=s0.slice();
+  const n=Math.round(T/h);
+  const step=INTEGRATORS[integKey].step;
+  for(let i=0;i<n;i++) s=step(s,h);
+  return s;
+}
+
+/* ==================================================================
+ * SECTION: SIM-STATE —— 仿真状态机
+ * ================================================================== */
+const TRAIL_MAX=20000;
+const sim={
+  s:[L4x+0.01,L4y,0,0],   // 状态 [x,y,vx,vy]
+  t:0,
+  running:false,
+  integ:'rk4',
+  dt:1e-3,
+  stepsPerFrame:20,
+  C0:null,                // 初始 Jacobi 常数
+  trail:[],               // 拖尾点 [[x,y],...]
+  msg:'',                 // 暂停/碰撞提示
+};
+sim.C0=jacobi(sim.s[0],sim.s[1],sim.s[2],sim.s[3]);
+
+function simStep(){        // 积分一个 dt, 返回防护信息(null=正常)
+  sim.s=INTEGRATORS[sim.integ].step(sim.s,sim.dt);
+  sim.t+=sim.dt;
+  return checkState(sim.s);
+}
+function resetSim(){
+  sim.s=[parseFloat(icX.value),parseFloat(icY.value),
+         parseFloat(icVX.value),parseFloat(icVY.value)];
+  sim.t=0; sim.trail.length=0; sim.msg='';
+  sim.C0=jacobi(sim.s[0],sim.s[1],sim.s[2],sim.s[3]);
+  const bad=checkState(sim.s); if(bad) sim.msg=bad;
+  zvcDirty=true;
+}
+
+/* ==================================================================
+ * SECTION: VIEW —— 视图变换 (缩放/平移, HiDPI)
+ * ================================================================== */
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+const view={cx:0.49, cy:0, scale:260};  // 世界中心 + px/单位
+let dpr=1, cw=0, ch=0;
+function resizeCanvas(){
+  dpr=window.devicePixelRatio||1;
+  cw=cv.clientWidth; ch=cv.clientHeight;
+  cv.width=Math.round(cw*dpr); cv.height=Math.round(ch*dpr);
+  if(!view._init){ view.scale=Math.min(cw,ch)/3.4; view._init=true; }
+  zvcDirty=true;
+}
+function w2s(x,y){ return [ (x-view.cx)*view.scale+cw/2, (view.cy-y)*view.scale+ch/2 ]; }
+function s2w(px,py){ return [ (px-cw/2)/view.scale+view.cx, view.cy-(py-ch/2)/view.scale ]; }
+function zoomAt(px,py,factor){
+  const [wx,wy]=s2w(px,py);
+  view.scale*=factor; view.scale=Math.min(Math.max(view.scale,20),20000);
+  view.cx=wx-(px-cw/2)/view.scale; view.cy=wy+(py-ch/2)/view.scale;
+  zvcDirty=true;
+}
+function resetView(){ view.cx=0.49; view.cy=0; view.scale=Math.min(cw,ch)/3.4; zvcDirty=true; }
+
+/* ==================================================================
+ * SECTION: ZVC —— marching squares 零速度曲线
+ * ================================================================== */
+const ZVC_N=240;               // 网格分辨率
+let zvcSegs=null, zvcDirty=true, zvcLastT=0, zvcLastC=Infinity;
+// 在矩形网格 field[i][j] 上提取 level 等值线段
+function marchingSquares(f,nx,ny,x0,y0,dx,dy,level,out){
+  for(let j=0;j<ny-1;j++){
+    for(let i=0;i<nx-1;i++){
+      const f00=f[j*nx+i], f10=f[j*nx+i+1], f01=f[(j+1)*nx+i], f11=f[(j+1)*nx+i+1];
+      let idx=0;
+      if(f00>level)idx|=1; if(f10>level)idx|=2; if(f11>level)idx|=4; if(f01>level)idx|=8;
+      if(idx===0||idx===15) continue;
+      const xa=x0+i*dx, ya=y0+j*dy;
+      // 各边交点 (线性插值)
+      const lerp=(fa,fb)=> (Math.abs(fb-fa)<1e-30)?0.5:(level-fa)/(fb-fa);
+      const btm=[xa+dx*lerp(f00,f10), ya];        // 下边 (00->10)
+      const top=[xa+dx*lerp(f01,f11), ya+dy];     // 上边 (01->11)
+      const lft=[xa, ya+dy*lerp(f00,f01)];        // 左边 (00->01)
+      const rgt=[xa+dx, ya+dy*lerp(f10,f11)];     // 右边 (10->11)
+      const seg=(a,b)=>{out.push(a[0],a[1],b[0],b[1]);};
+      switch(idx){
+        case 1: case 14: seg(lft,btm); break;
+        case 2: case 13: seg(btm,rgt); break;
+        case 3: case 12: seg(lft,rgt); break;
+        case 4: case 11: seg(top,rgt); break;
+        case 6: case 9:  seg(btm,top); break;
+        case 7: case 8:  seg(lft,top); break;
+        case 5:  seg(lft,btm); seg(top,rgt); break;   // 鞍点二义性(取此解析)
+        case 10: seg(lft,top); seg(btm,rgt); break;
+      }
+    }
+  }
+}
+function computeZVC(){
+  const p0=s2w(0,0), p1=s2w(cw,ch);   // 当前视图的世界矩形
+  const x0=Math.min(p0[0],p1[0])-0.05, x1=Math.max(p0[0],p1[0])+0.05;
+  const y0=Math.min(p0[1],p1[1])-0.05, y1=Math.max(p0[1],p1[1])+0.05;
+  const nx=ZVC_N, ny=ZVC_N, dx=(x1-x0)/(nx-1), dy=(y1-y0)/(ny-1);
+  const f=new Float64Array(nx*ny);
+  for(let j=0;j<ny;j++){
+    const y=y0+j*dy;
+    for(let i=0;i<nx;i++) f[j*nx+i]=zvcField(x0+i*dx,y);
+  }
+  const Cship=jacobi(sim.s[0],sim.s[1],sim.s[2],sim.s[3]);
+  const levels=[{C:Cship,col:'rgba(80,200,255,0.95)',w:1.6},
+                {C:C_L1, col:'rgba(255,160,60,0.70)',w:1.1},
+                {C:C_L2, col:'rgba(190,130,255,0.70)',w:1.1},
+                {C:C_L3, col:'rgba(120,255,150,0.60)',w:1.1}];
+  zvcSegs=[];
+  for(const lv of levels){
+    const seg=[];
+    marchingSquares(f,nx,ny,x0,y0,dx,dy,lv.C,seg);
+    zvcSegs.push({col:lv.col,w:lv.w,seg});
+  }
+  zvcLastC=Cship; zvcLastT=performance.now(); zvcDirty=false;
+}
+
+/* ==================================================================
+ * SECTION: RENDER —— Canvas 2D 绘制
+ * ================================================================== */
+function niceStep(){           // 自适应网格刻度步长
+  const target=90/view.scale;  // 目标 ~90px 一格
+  const steps=[0.01,0.02,0.05,0.1,0.2,0.5,1,2,5];
+  for(const s of steps) if(s>=target) return s;
+  return 10;
+}
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle='#070b11'; ctx.fillRect(0,0,cw,ch);
+  // ---- 坐标网格与轴刻度 ----
+  const st=niceStep();
+  const tl=s2w(0,0), br=s2w(cw,ch);
+  const xA=Math.floor(Math.min(tl[0],br[0])/st)*st, xB=Math.max(tl[0],br[0]);
+  const yA=Math.floor(Math.min(tl[1],br[1])/st)*st, yB=Math.max(tl[1],br[1]);
+  ctx.lineWidth=1; ctx.font='10px '+getComputedStyle(document.body).fontFamily;
+  ctx.strokeStyle='rgba(60,80,105,0.28)'; ctx.fillStyle='rgba(120,140,165,0.65)';
+  ctx.beginPath();
+  for(let x=xA;x<=xB;x+=st){ const [px]=w2s(x,0); ctx.moveTo(px,0); ctx.lineTo(px,ch); }
+  for(let y=yA;y<=yB;y+=st){ const [,py]=w2s(0,y); ctx.moveTo(0,py); ctx.lineTo(cw,py); }
+  ctx.stroke();
+  // 坐标轴
+  ctx.strokeStyle='rgba(90,120,155,0.55)'; ctx.beginPath();
+  const [,ay]=w2s(0,0); ctx.moveTo(0,ay); ctx.lineTo(cw,ay);
+  const [ax]=w2s(0,0); ctx.moveTo(ax,0); ctx.lineTo(ax,ch); ctx.stroke();
+  // 刻度标签
+  const fmt=v=>{ const a=Math.abs(v); return (a<1e-9)?'0':(st<0.1?v.toFixed(2):v.toFixed(1)); };
+  for(let x=xA;x<=xB;x+=st){ const [px,py0]=w2s(x,0);
+    if(Math.abs(x)>st/2) ctx.fillText(fmt(x),px+3,Math.min(Math.max(ay+12,12),ch-4)); }
+  for(let y=yA;y<=yB;y+=st){ const [px0,py]=w2s(0,y);
+    if(Math.abs(y)>st/2) ctx.fillText(fmt(y),Math.min(Math.max(ax+4,4),cw-34),py-3); }
+
+  // ---- 零速度曲线 ----
+  if(zvcSegs){
+    for(const g of zvcSegs){
+      ctx.strokeStyle=g.col; ctx.lineWidth=g.w; ctx.beginPath();
+      const sg=g.seg;
+      for(let k=0;k<sg.length;k+=4){
+        const a=w2s(sg[k],sg[k+1]), b=w2s(sg[k+2],sg[k+3]);
+        ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]);
+      }
+      ctx.stroke();
+    }
+  }
+  // ---- 轨迹拖尾 ----
+  if(sim.trail.length>1){
+    ctx.strokeStyle='rgba(235,238,242,0.85)'; ctx.lineWidth=1.2; ctx.beginPath();
+    let p=w2s(sim.trail[0][0],sim.trail[0][1]); ctx.moveTo(p[0],p[1]);
+    for(let i=1;i<sim.trail.length;i++){
+      p=w2s(sim.trail[i][0],sim.trail[i][1]); ctx.lineTo(p[0],p[1]);
+    }
+    ctx.stroke();
+  }
+  // ---- 地球 / 月球 (显示半径夸大) ----
+  drawBody(-MU,0,9,'#2f7fd6','#79c0ff','地球');
+  drawBody(1-MU,0,5,'#8a8f98','#c9cdd4','月球');
+  // ---- 拉格朗日点 ----
+  ctx.font='11px sans-serif';
+  for(const L of LPTS){
+    const [px,py]=w2s(L.x,L.y);
+    ctx.strokeStyle='#ffd54f'; ctx.lineWidth=1.3;
+    ctx.beginPath(); ctx.moveTo(px-5,py); ctx.lineTo(px+5,py);
+    ctx.moveTo(px,py-5); ctx.lineTo(px,py+5); ctx.stroke();
+    ctx.fillStyle='#ffd54f'; ctx.fillText(L.n,px+7,py-6);
+  }
+  // ---- 航天器 ----
+  const [sx,sy]=w2s(sim.s[0],sim.s[1]);
+  ctx.fillStyle='#ffffff';
+  ctx.strokeStyle='#4fc3f7'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.arc(sx,sy,4,0,6.2832); ctx.fill(); ctx.stroke();
+  ctx.fillStyle='rgba(160,220,255,0.9)'; ctx.font='11px sans-serif';
+  ctx.fillText('航天器',sx+8,sy-8);
+}
+function drawBody(x,y,pr,fill,glow,label){
+  const [px,py]=w2s(x,y);
+  const grd=ctx.createRadialGradient(px,py,0,px,py,pr*2.4);
+  grd.addColorStop(0,glow); grd.addColorStop(0.4,fill); grd.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=grd; ctx.beginPath(); ctx.arc(px,py,pr*2.4,0,6.2832); ctx.fill();
+  ctx.fillStyle=fill; ctx.beginPath(); ctx.arc(px,py,pr,0,6.2832); ctx.fill();
+  ctx.fillStyle='rgba(200,215,230,0.85)'; ctx.font='12px sans-serif';
+  ctx.fillText(label,px+pr+4,py+4);
+}
+
+/* ==================================================================
+ * SECTION: MAIN-LOOP —— requestAnimationFrame 主循环
+ * ================================================================== */
+const statusEl=document.getElementById('status');
+function frame(){
+  requestAnimationFrame(frame);
+  if(sim.running && !sim.msg){
+    for(let i=0;i<sim.stepsPerFrame;i++){
+      const bad=simStep();
+      if(bad){ sim.msg=bad; sim.running=false; updateRunBtn(); break; }
+    }
+    sim.trail.push([sim.s[0],sim.s[1]]);
+    if(sim.trail.length>TRAIL_MAX) sim.trail.splice(0,2000);  // 上限防内存膨胀
+  }
+  // ZVC 节流重算: 视图变化 / C 明显变化, 且距上次 ≥150ms
+  const Cnow=jacobi(sim.s[0],sim.s[1],sim.s[2],sim.s[3]);
+  const now=performance.now();
+  if(zvcDirty || ((sim.running||Math.abs(Cnow-zvcLastC)>1e-9) && now-zvcLastT>150
+                  && Math.abs(Cnow-zvcLastC)>1e-9)){
+    computeZVC();
+  }
+  render();
+  updateStatus(Cnow);
+}
+function fmtE(v){ return (v===0)?'0':v.toExponential(2); }
+function updateStatus(Cnow){
+  const dC=Cnow-sim.C0;
+  let txt='x  = '+sim.s[0].toFixed(8)+'\n'
+        +'y  = '+sim.s[1].toFixed(8)+'\n'
+        +'vx = '+sim.s[2].toFixed(8)+'\n'
+        +'vy = '+sim.s[3].toFixed(8)+'\n'
+        +'t  = '+sim.t.toFixed(4)+'\n'
+        +'C  = '+Cnow.toFixed(10)+'\n'
+        +'ΔC = '+fmtE(dC)+'\n'
+        +'积分器: '+INTEGRATORS[sim.integ].name+'   dt = '+sim.dt.toExponential(2)+'\n'
+        +'拖尾点: '+sim.trail.length+' / '+TRAIL_MAX;
+  // Jacobi 漂移分级告警: 近遭遇/大步长导致的积分失真会在此暴露
+  const adC=Math.abs(dC);
+  if(sim.t>0 && adC>1e-3) txt+='\n⚠ ΔC 漂移过大: 近遭遇未被分辨, 结果不可信 (减小 dt 重试)';
+  else if(sim.t>0 && adC>1e-8) txt+='\n△ ΔC 漂移可察: 数值精度下降 (近遭遇或大 dt)';
+  if(sim.msg) txt+='\n⚠ '+sim.msg;
+  statusEl.textContent=txt;
+  statusEl.className=sim.msg?'warnmsg':(adC>1e-3?'driftBad':(adC>1e-8?'driftWarn':'driftOk'));
+}
+
+/* ==================================================================
+ * SECTION: UI —— 控件事件绑定
+ * ================================================================== */
+const $=id=>document.getElementById(id);
+const icX=$('icX'), icY=$('icY'), icVX=$('icVX'), icVY=$('icVY');
+const btnRun=$('btnRun');
+function updateRunBtn(){
+  btnRun.textContent=sim.running?'⏸ 暂停':'▶ 开始';
+}
+btnRun.onclick=()=>{ if(sim.msg){sim.msg='';} sim.running=!sim.running; updateRunBtn(); };
+$('btnStep').onclick=()=>{           // 单步: 积分一个 dt
+  sim.running=false; updateRunBtn();
+  sim.msg='';
+  const bad=simStep();
+  if(bad) sim.msg=bad;
+  sim.trail.push([sim.s[0],sim.s[1]]);
+  if(sim.trail.length>TRAIL_MAX) sim.trail.splice(0,2000);
+  zvcDirty=true;
+};
+$('btnReset').onclick=()=>{ resetSim(); };
+$('btnClearTrail').onclick=()=>{ sim.trail.length=0; };
+$('btnApplyIC').onclick=()=>{ resetSim(); };
+// 积分器切换 (不清轨迹)
+$('intRK4').onclick=()=>{ sim.integ='rk4';
+  $('intRK4').classList.add('active'); $('intVerlet').classList.remove('active'); };
+$('intVerlet').onclick=()=>{ sim.integ='verlet';
+  $('intVerlet').classList.add('active'); $('intRK4').classList.remove('active'); };
+// dt 对数滑杆 1e-4 … 5e-3
+const DT_MIN=Math.log10(1e-4), DT_MAX=Math.log10(5e-3);
+const dtSlider=$('dtSlider'), spfSlider=$('spfSlider');
+function applyDt(){
+  const u=dtSlider.value/1000;
+  sim.dt=Math.pow(10, DT_MIN+u*(DT_MAX-DT_MIN));
+  $('dtVal').textContent=sim.dt.toExponential(2);
+}
+dtSlider.addEventListener('input',applyDt);
+spfSlider.addEventListener('input',()=>{
+  sim.stepsPerFrame=parseInt(spfSlider.value);
+  $('spfVal').textContent=sim.stepsPerFrame;
+});
+// 视图控制
+$('zoomIn').onclick=()=>zoomAt(cw/2,ch/2,1.3);
+$('zoomOut').onclick=()=>zoomAt(cw/2,ch/2,1/1.3);
+$('viewReset').onclick=resetView;
+cv.addEventListener('wheel',e=>{
+  e.preventDefault();
+  zoomAt(e.offsetX,e.offsetY, e.deltaY<0?1.15:1/1.15);
+},{passive:false});
+let dragging=false,lastX=0,lastY=0;
+cv.addEventListener('pointerdown',e=>{ dragging=true; lastX=e.clientX; lastY=e.clientY;
+  cv.classList.add('dragging'); cv.setPointerCapture(e.pointerId); });
+cv.addEventListener('pointermove',e=>{
+  if(!dragging) return;
+  view.cx-=(e.clientX-lastX)/view.scale;
+  view.cy+=(e.clientY-lastY)/view.scale;
+  lastX=e.clientX; lastY=e.clientY; zvcDirty=true;
+});
+cv.addEventListener('pointerup',()=>{ dragging=false; cv.classList.remove('dragging'); });
+window.addEventListener('resize',resizeCanvas);
+// 预设 (初值由运行时求得的 L 点构造)
+function setIC(x,y,vx,vy){
+  icX.value=+x.toFixed(8); icY.value=+y.toFixed(8);
+  icVX.value=+vx.toFixed(8); icVY.value=+vy.toFixed(8);
+  resetSim();
+}
+$('pL4').onclick=()=>setIC(L4x+0.01, L4y, 0, 0);                    // L4 扰动: 稳定天平动
+$('pL1').onclick=()=>setIC(L1x+0.001, 0, 0, 0);                    // L1 不稳定: 逃逸
+$('pEarth').onclick=()=>{                                          // 绕地圆轨道 r0=0.1 顺行
+  const r0=0.1; setIC(r0-MU, 0, 0, Math.sqrt((1-MU)/r0)-r0);
+};
+$('pMoon').onclick=()=>{                                           // 月球引力辅助椭圆 (拱线达月球轨道半径 1.0)
+  const r0=0.1, ra=1.0;
+  setIC(r0-MU, 0, 0, Math.sqrt((1-MU)*(2/r0-1/((r0+ra)/2)))-r0);
+};
+
+/* ==================================================================
+ * SECTION: SELFTEST —— 真实执行的自检系统 (与仿真共用物理代码)
+ * ================================================================== */
+const stPanel=$('selftest');
+function stRow(name,badge,badgeCls,detail){
+  const d=document.createElement('div'); d.className='st-row';
+  d.innerHTML='<span class="st-name"></span><span class="st-badge"></span><span class="st-detail"></span>';
+  d.children[0].textContent=name;
+  d.children[1].textContent=badge; d.children[1].className='st-badge '+badgeCls;
+  d.children[2].textContent=detail;
+  stPanel.appendChild(d);
+  console.log('[SELFTEST] '+name+': '+badge+' | '+detail);
+}
+function runSelfTests(){
+  stPanel.innerHTML='';
+  console.log('%c[SELFTEST] ====== CR3BP 自检开始 ======','color:#4fc3f7');
+  // ---- 1. 拉格朗日点残差 ----
+  let maxRes=0, resDetail=[];
+  for(const L of LPTS){
+    const g=gradOmega(L.x,L.y);
+    const r=Math.abs(g[0])+Math.abs(g[1]);
+    maxRes=Math.max(maxRes,r);
+    resDetail.push(L.n+'='+L.x.toFixed(10)+' 残差'+r.toExponential(1));
+  }
+  const t1=maxRes<1e-10;
+  stRow('L1–L5 残差', t1?'PASS':'FAIL', t1?'pass':'fail',
+        'max|Ωx|+|Ωy| = '+maxRes.toExponential(2)+' (阈值1e-10); '+resDetail.join('; '));
+  // ---- 2. 步长收敛 (RK4 应 4 阶, 误差比≈16) ----
+  const s0=[0.5,0,0,1.2], T=0.5;
+  const ref=integrate('rk4',s0,0.00125,T);
+  const sA=integrate('rk4',s0,0.01,T), sB=integrate('rk4',s0,0.005,T);
+  const eA=Math.hypot(...sA.map((v,i)=>v-ref[i]));
+  const eB=Math.hypot(...sB.map((v,i)=>v-ref[i]));
+  const ratio=eA/eB;
+  const t2=ratio>=8&&ratio<=32;
+  stRow('步长收敛', t2?'PASS':'FAIL', t2?'pass':'fail',
+        'e(h=0.01)='+eA.toExponential(2)+' e(h=0.005)='+eB.toExponential(2)+
+        ' 比值='+ratio.toFixed(2)+' (期望≈16, 允许8–32)');
+  // ---- 3a. RK4 守恒量误差 (L4扰动初值, h=0.002, 50 TU) ----
+  const icC=[L4x+0.01,L4y,0,0], C0=jacobi(...icC);
+  let s=icC.slice(), rkMax=0;
+  for(let i=0;i<Math.round(50/0.002);i++){
+    s=stepRK4(s,0.002);
+    const d=Math.abs(jacobi(...s)-C0); if(d>rkMax)rkMax=d;
+  }
+  const t3a=rkMax<1e-8;
+  stRow('RK4 守恒 50TU', t3a?'PASS':'FAIL', t3a?'pass':'fail',
+        'h=0.002, max|ΔC| = '+rkMax.toExponential(2)+' (阈值1e-8)');
+  // ---- 3b. 辛 Verlet 长时有界 (h=0.005, 500 TU, 比较前后半段) ----
+  s=icC.slice();
+  const N=Math.round(500/0.005);
+  let fh=0, sh=0;
+  for(let i=0;i<N;i++){
+    s=stepVerlet(s,0.005);
+    const d=Math.abs(jacobi(...s)-C0);
+    if(i<N/2){ if(d>fh)fh=d; } else { if(d>sh)sh=d; }
+  }
+  const t3b=sh<1e-3 && sh<=2*Math.max(fh,1e-16);   // 有界且非线性增长
+  stRow('辛守恒 500TU', t3b?'PASS':'FAIL', t3b?'pass':'fail',
+        'h=0.005, 前半段 max|ΔC|='+fh.toExponential(2)+' 后半段='+sh.toExponential(2)+
+        ' (有界<1e-3 且无线性增长)');
+  // ---- 4. NaN / 奇点防护 ----
+  const gNaN=checkState([NaN,0,0,0])!==null;
+  const gInf=checkState([0,Infinity,0,0])!==null;
+  const gSing1=checkState([-MU+5e-7,0,0,0])!==null;    // r1=5e-7<1e-6
+  const gSing2=checkState([1-MU,8e-7,0,0])!==null;     // r2=8e-7<1e-6
+  const gOK=checkState([0.5,0.3,0.1,-0.2])===null;     // 正常状态不误报
+  const t4=gNaN&&gInf&&gSing1&&gSing2&&gOK;
+  stRow('NaN/奇点防护', t4?'PASS':'FAIL', t4?'pass':'fail',
+        'NaN检出:'+gNaN+' Inf检出:'+gInf+' 地球奇点:'+gSing1+' 月球奇点:'+gSing2+
+        ' 正常不误报:'+gOK+' (主循环共用 checkState)');
+  // ---- 汇总 ----
+  const all=t1&&t2&&t3a&&t3b&&t4;
+  stRow('汇总', all?'ALL PASS':'HAS FAIL', all?'pass':'fail',
+        'L1='+L1x.toFixed(10)+' L2='+L2x.toFixed(10)+' L3='+L3x.toFixed(10)+
+        ' C(L1)='+C_L1.toFixed(10)+' C(L2)='+C_L2.toFixed(10)+' C(L3)='+C_L3.toFixed(10)+
+        ' C(L4,5)='+C_L45.toFixed(10));
+  console.log('%c[SELFTEST] ====== '+(all?'全部通过':'存在失败')+' ======',
+              'color:'+(all?'#4caf7d':'#ef5350'));
+}
+$('btnRerun').onclick=runSelfTests;
+
+/* ==================================================================
+ * SECTION: BOOT —— 初始化
+ * ================================================================== */
+resizeCanvas();
+applyDt();
+sim.stepsPerFrame=parseInt(spfSlider.value);
+setIC(L4x+0.01,L4y,0,0);     // 默认 L4 扰动
+updateRunBtn();
+computeZVC();
+requestAnimationFrame(frame);
+setTimeout(runSelfTests,50); // 页面加载后自动运行自检
+})();
+</script>
+</body>
+</html>

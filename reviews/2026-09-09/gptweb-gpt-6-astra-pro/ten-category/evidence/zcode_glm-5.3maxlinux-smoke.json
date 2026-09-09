@@ -1,0 +1,297 @@
+{
+  "entry": {
+    "submission": "zcode--glm-5.3maxlinux--2026-09-09",
+    "html": "/mnt/data/benchmark/submissions/zcode--glm-5.3maxlinux--2026-09-09/index.html",
+    "sha256": "fe76f3a5dec68e4a6c921793af74750b6bacaddab3401220f0dc2ab981d0e65a"
+  },
+  "page_errors": [],
+  "console": [
+    {
+      "type": "log",
+      "text": "[CR3BP] 就绪：μ=0.0121505856，TU=4.3425 天，L1 x=0.836915126，C(L1)=3.188341，自检将在 0.4s 后自动运行"
+    },
+    {
+      "type": "log",
+      "text": "[自检] ✓ 拉格朗日点定位（L1–L5 加速度残差） — max|a(Li)| = 2.89e-15（阈值 1e-8）；L1 x=0.836915"
+    },
+    {
+      "type": "log",
+      "text": "[自检] ✓ RK4 步长收敛阶（应为 4 阶） — 观测阶数 p ≈ 3.98（h 减半误差比 9.1e-11 → 5.7e-12 → 3.7e-13）"
+    },
+    {
+      "type": "log",
+      "text": "[自检] ✓ RK4 ↔ GL4 互检（同初值同步长） — t=4 后位置差 1.10e-12 DU（阈值 1e-6）"
+    },
+    {
+      "type": "log",
+      "text": "[自检] ✓ Jacobi 守恒 · RK4（线性漂移） — 绕地轨道 t=30 TU：max|C−C₀| = 5.88e-4（阈值 5e-3；RK4 误差随时间线性累积）"
+    },
+    {
+      "type": "log",
+      "text": "[自检] ✓ Jacobi 守恒 · GL4 辛积分（有界不增长） — t=30: 1.65e-7，t=300（×10 时长）: 1.65e-7 —— 有界不增长（阈值 1e-6 / 有界）"
+    },
+    {
+      "type": "log",
+      "text": "[自检] ✓ NaN 防护（奇点危害 + 守卫拦截 + 坠地） — f(地心) 非有限=true；注入 NaN → 状态 'nan'，状态有限=true；地球内部出发 → 'earth'；界面数据未泄漏 NaN"
+    },
+    {
+      "type": "log",
+      "text": "[自检] ✓ 零速度曲线完整性（marching squares） — C=C(L1)+0.002: 870 段；C=2.50（应全域允许）: 0 段；C=C(L4)+0.05: 746 段；坐标全部有限=true"
+    }
+  ],
+  "external_requests": [],
+  "title": "地月限制性三体问题实验室 · CR3BP Lab",
+  "body": "地月 CR3BP 实验室\n旋转坐标系 · 圆型限制性三体问题 · 归一化单位（DU = 384 400 km，TU = 4.342 天）\n自检 7/7 ✓\n已复位 · 待运行\n视图宽 3.80 DU · 1,460,720 km\n＋\n－\n⌂\n地球\n月球\n航天器\n轨迹\nL1–L5\n零速度曲线\n禁止区域\n0.25 DU = 96,100 km\n数值自检全部通过（7/7）\n运行控制\n▶ 运行\n单步\n重置\n积分器\nGL4 · 隐式辛（长期推荐）\nRK4 · 经典四阶\n步长 dt\n0.0050 TU ≈ 0.022 天/步\n速度\n40 步/帧 ≈ 0.87 天/帧\n预设场景\nL4 扰动\n蝌蚪轨道\nL1 不稳定\n指数离开\n绕地轨道\n准圆 · 有界\n月球引力辅助\n绕月甩摆 · 逃逸\nL4 扰动（蝌蚪轨道） — 在 L4 三角点右侧偏移 0.02 DU、初速为零。μ < μ_Routh ≈ 0.0386 使 L4 线性稳定，航天器绕 L4 做蝌蚪形天平动（长周期项约 22 TU ≈ 3 个月量级），长期有界。\n初始条件（旋转系）\nx₀\ny₀\nvx₀\nvy₀\n应用初值并复位\n提示：按住 Shift 点击画布，可直接把初始位置设为点击处。\n显示\n零速度曲线（C 等值线）\n禁止区域填充（2Ω < C）\n轨迹\n速度矢量（旋转系）\n网格与坐标\n拉格朗日点标注\nZVC 的 C\n跟随当前航天器 C\n固定为初始 C₀\n手动设定\n手动 C 值\nC(L1)\nC(L2)\nC(L3)\nC(L4)=C(L5)\n实时数据\n仿真时间\n0.000 TU = 0.00 天\n位置 x, y\n0.50785 , 0.86603 DU\n速度 vx, vy\n0.00000 , 0.00000\n|v| 旋转系\n0.00000 DU/TU\n|v| 惯性系\n1.00395 DU/TU\n距地心\n388,301 km\n距月心\n380,614 km\nJacobi C\n2.98830379\n初始 C₀\n2.98830379\n漂移 |C−C₀|\n0.00e+0\n积分步数\n0\n积分器\nGL4（二级 Gauss–Legendre 隐式辛） · 迭代 0（δ=0.0e+0）\n数值自检（页面内实时计算）\n▶ 运行自检\n拉格朗日点定位（L1–L5 加速度残差）\n✓ 通过\nmax|a(Li)| = 2.89e-15（阈值 1e-8）；L1 x=0.836915\nRK4 步长收敛阶（应为 4 阶）\n✓ 通过\n观测阶数 p ≈ 3.98（h 减半误差比 9.1e-11 → 5.7e-12 → 3.7e-13）\nRK4 ↔ GL4 互检（同初值同步长）\n✓ 通过\nt=4 后位置差 1.10e-12 DU（阈值 1e-6）\nJacobi 守恒 · RK4（线性漂移）\n✓ 通过\n绕地轨道 t=30 TU：max|C−C₀| = 5.88e-4（阈值 5e-3；RK4 误差随时间线性累积）\nJacobi 守恒 · GL4 辛积分（有界不增长）\n✓ 通过\nt=30: 1.65e-7，t=300（×10 时长）: 1.65e-7 —— 有界不增长（阈值 1e-6 / 有界）\nNaN 防护（奇点危害 + 守卫拦截 + 坠地）\n✓ 通过\nf(地心) 非有限=true；注入 NaN → 状态 'nan'，状态有限=true；地球内部出发 → 'earth'；界面数据未泄漏 NaN\n零速度曲线完整性（marching squares）\n✓ 通过\nC=C(L1)+0.002: 870 段；C=2.50（应全域允许）: 0 段；C=C(L4)+0.05: 746 段；坐标全部有限=true\n关于模型\n方程、单位与数值说明\n\n质量参数 μ = m月/(m地+m月) = 0.0121505856；距离单位 DU = 半长轴 384 400 km；时间单位 TU 使轨道角速度 ω = 1（1 TU ≈ 4.342 天，周期 2π TU ≈ 27.28 天）。地球固定于 (−μ, 0)，月球固定于 (1−μ, 0)。\n\nẍ = 2ẏ + x − (1−μ)(x+μ)/r₁³ − μ(x−1+μ)/r₂³\nÿ = −2ẋ + y − (1−μ)·y/r₁³ − μ·y/r₂³\nC = 2Ω − v² ， Ω = ½(x²+y²) + (1−μ)/r₁ + μ/r₂\n\n积分器：RK4 为经典显式四阶，长期模拟中 Jacobi 常数存在系统性漂移；GL4 为二级 Gauss–Legendre 隐式辛积分器（不动点迭代求解），对这类含科里奥利项的哈密顿系统保持辛结构，Jacobi 误差有界不增长，适合长期模拟。两者均为四阶精度。\n\n防护：状态出现 NaN/Inf 或天体半径内碰撞（地球 6 378 km、月球 1 737 km）或 |r| > 30 DU 时自动停止积分。\n\n理想化假设：平面（二维）问题、主天体为质点且做严格圆运动、无太阳摄动 / 地月偏心率 / 太阳辐射压等，数值实验结论不应直接外推到真实任务设计。\n\n拖拽 平移 · 滚轮 缩放 · Shift+点击 设初始位置 · 空格 暂停/继续 · S 单步 · R 重置 · +/− 缩放",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "btnZoomIn",
+      "type": "submit",
+      "text": "＋",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnZoomOut",
+      "type": "submit",
+      "text": "－",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnViewReset",
+      "type": "submit",
+      "text": "⌂",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnRun",
+      "type": "submit",
+      "text": "▶ 运行",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnStep",
+      "type": "submit",
+      "text": "单步",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnReset",
+      "type": "submit",
+      "text": "重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "selInteg",
+      "type": "select-one",
+      "text": "GL4 · 隐式辛（长期推荐）\nRK4 · 经典四阶",
+      "value": "gl4",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "rngDt",
+      "type": "range",
+      "text": "",
+      "value": "0.005",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "rngSpeed",
+      "type": "range",
+      "text": "",
+      "value": "40",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L4 扰动\n蝌蚪轨道",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L1 不稳定\n指数离开",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "绕地轨道\n准圆 · 有界",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "月球引力辅助\n绕月甩摆 · 逃逸",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "inX0",
+      "type": "number",
+      "text": "",
+      "value": "0.507849414",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "inY0",
+      "type": "number",
+      "text": "",
+      "value": "0.866025404",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "inVx0",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "inVy0",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnApplyIC",
+      "type": "submit",
+      "text": "应用初值并复位",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "chkZvc",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "chkFill",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "chkTrail",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "chkVel",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "chkGrid",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "chkLpts",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "selCMode",
+      "type": "select-one",
+      "text": "跟随当前航天器 C\n固定为初始 C₀\n手动设定",
+      "value": "follow",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "inCManual",
+      "type": "number",
+      "text": "",
+      "value": "3.2",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnSelfTest",
+      "type": "submit",
+      "text": "▶ 运行自检",
+      "value": "",
+      "disabled": false
+    }
+  ],
+  "globals": [
+    {
+      "key": "updateDtLabel",
+      "keys": []
+    },
+    {
+      "key": "updateSpeedLabel",
+      "keys": []
+    }
+  ],
+  "viewport": {
+    "innerWidth": 1440,
+    "innerHeight": 1000,
+    "scrollWidth": 1440,
+    "scrollHeight": 1000,
+    "canvases": [
+      {
+        "id": "cv",
+        "width": 1096,
+        "height": 931,
+        "rect": {
+          "x": 0,
+          "y": 41.5,
+          "width": 1096,
+          "height": 931,
+          "top": 41.5,
+          "right": 1096,
+          "bottom": 972.5,
+          "left": 0
+        }
+      }
+    ]
+  },
+  "loaded": true
+}

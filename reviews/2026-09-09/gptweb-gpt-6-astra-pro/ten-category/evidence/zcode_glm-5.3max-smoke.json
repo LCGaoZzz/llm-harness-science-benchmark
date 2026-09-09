@@ -1,0 +1,278 @@
+{
+  "entry": {
+    "submission": "zcode--glm-5.3max--2026-09-09",
+    "html": "/mnt/data/benchmark/submissions/zcode--glm-5.3max--2026-09-09/index.html",
+    "sha256": "760b0f6e0cdee3028313adf5af875e4b1b69a83342757ea3622db87a5163d906"
+  },
+  "page_errors": [],
+  "console": [
+    {
+      "type": "table",
+      "text": "[Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, Object]"
+    }
+  ],
+  "external_requests": [],
+  "title": "地月 CR3BP 实验室 · 限制性三体问题 / 拉格朗日点 / 零速度曲线",
+  "body": "地月限制性三体问题实验室CR3BP · 旋转坐标系 · RK4 / 辛积分器\nC₀ = 2.98829\nL1 颈道 开 · L2 颈道 开\n运行中\nt\t2.34 TU\t10.2 d\n位置 (LU)\t(0.36098, 0.86643)\tx,y = 139, 333 ×10³ km\n速度 (LU/TU)\t(-0.0958, 0.0244)\t|v| = 0.101 km/s\nr₁ 地 / r₂ 月\t0.9434 / 1.0694\t362627 / 411087 km\nJacobi C₀\t2.988290\t初始\n漂移 ΔC\t-4.44e-15\t1.5e-13 % 相对\n步数\t468\tRK4 · h=0.005\n航天器轨迹\n零速度曲线 2Ω=C₀\n禁止区域\n临界等值线 C₁ / C₂\n拉格朗日点 L1–L5\n网格 0.5 LU · 缩放 ×1.00 · 1 LU = 384 400 km\n运动控制\n⏸ 暂停\n⏭ 单步\n↺ 重置\n🧹 轨迹\n步长 h\n0.00500\n每帧步数\n×6\n空格运行/暂停 · S单步 · R重置 · 0适配视图 · 拖拽平移 · 滚轮缩放\n积分器\nRK4 —— 经典四阶 Runge–Kutta\n隐式中点 —— 辛 · 二阶 · Newton 迭代\nYoshida 辛四阶 —— 隐式中点三重复合\n经典显式四阶：每步 4 次导数求值。精度高但 Jacobi 常数存在长期漂移（自检可见）。\n预设场景\nL4 扰动 · 蝌蚪轨道\nL1 不稳定运动\n绕地圆轨道\n月球引力辅助\n从 L4 向地球方向偏移 0.02 LU、零初速。μ<μ_Routh≈0.0385 时 L4 线性稳定，扰动演化为绕 L4–L5 的蝌蚪形振动轨道（长周期 2π/ω_long ≈ 29.9 TU ≈ 130 天，短周期 ≈ 6.6 TU）。零速度曲线把运动束缚在内域。\n初始条件（修改后自动重置）\nx₀\ny₀\nvx₀\nvy₀\n质量参数 μ\n0.01215059\nμ = m₂/(m₁+m₂)。地月系 μ≈0.0121506。改变 μ 将重新求解拉格朗日点并重置仿真。\n显示\n 轨迹（\n8k\n30k\n60k\n120k\n 点）\n 拉格朗日点\n 零速度曲线\n 禁止区域着色\n 临界等值线\n 网格\n 速度矢量\n 数据面板\n数值自检（真实执行）\n▶ 运行自检套件\n20 / 20 通过 · 1270 ms · 全部为实时计算\nL1/L2/L3 二分法残差 |∇Ω|\t1.665e-15\t1e-11\tPASS\nL4/L5 解析位置残差（r₁=r₂=1 及 |∇Ω|）\t1.758e-16\t1e-12\tPASS\n独立 Newton 法交叉验证 |Δx|\t2.220e-16\t1e-9\tPASS\n文献对照 γ₁,γ₂,γ₃ (Murray & Dermott)\t7.113e-7\t0.002\tPASS\nRK4 收敛阶 ≈ 4\t4.818e+0\t3.6–5.0\tPASS\n隐式中点收敛阶 ≈ 2（辛）\t2.068e+0\t1.7–2.3\tPASS\nYoshida 辛四阶收敛阶 ≈ 4\t4.352e+0\t3.6–5.0\tPASS\n隐式中点时间可逆性（自伴）\t1.684e-12\t1e-8\tPASS\nJacobi 漂移 RK4（L4 蝌蚪 T=100, h=0.005）\t2.487e-14\t1e-12\tPASS\nJacobi 漂移 隐式中点（同上）\t6.247e-9\t1e-7\tPASS\nJacobi 漂移 Yoshida 辛4（同上）\t5.889e-13\t1e-10\tPASS\n长期对比（绕地轨道 T=1000, h=0.005）：RK4 secular vs 辛4 有界\t5.648e-8\t辛4<1e-6 且 RK4>1e-3\tPASS\n禁止区域一致性 min(2Ω−C₀) ≥ −tol\t5.837e+0\t≥ −3.0e-8\tPASS\nRouth 判据与 L4 Hessian\t4.441e-16\t1e-12\tPASS\nNaN/奇点防护（置于地心 / 月心）\t0\t全部捕获\tPASS\n撞击检测（月心正上方自由落体）\t2.464e-3\t< R月(4.52e-3)\tPASS\n确定性：同初值两次积分逐位一致\t0\t逐位一致\tPASS\n预设守恒（SY4）：平滑场景 l4/earth T=20\t1.486e-9\t1e-8\tPASS\n预设守恒（SY4）：含近距离相遇 l1/flyby h=0.001\t4.438e-5\t0.0001\tPASS\n绕地轨道近圆性（20 圈内 |r−a|/a）\t2.229e-4\t0.05\tPASS\n自检在浏览器中实时执行：求解拉格朗日点并计算残差、用独立 Newton 法交叉验证、 以极小步长参考解测收敛阶、长时间积分测 Jacobi 守恒、检验禁止区域一致性、NaN/撞击防护。 无任何预制轨迹或写死结果。页面加载时自动运行一次。\n模型方程（无量纲旋转坐标系）\nẍ − 2ẏ = ∂Ω/∂x ,  ÿ + 2ẋ = ∂Ω/∂y\nΩ(x,y) = ½(x²+y²) + (1−μ)/r₁ + μ/r₂\nr₁² = (x+μ)² + y² ,  r₂² = (x−1+μ)² + y²\nC = 2Ω(x,y) − (vx²+vy²) (Jacobi 常数)\nL4/L5 = (½−μ, ±√3/2) ;  L1–L3: ∂Ω/∂x=0\n单位制：LU = 地月平均距离 384 400 km；TU = 4.3481 d（系统周期 2π）； 速度单位 = 1.0223 km/s。地球位于 (−μ, 0)，月球位于 (1−μ, 0)。\nLU = 384 400 km\nTU = 4.3481 d\nVU = 1.0223 km/s\nC(L1)=3.18834 · C(L2)=3.17216 · C(L4)=2.98800\nL1 x=0.836915 · L2 x=1.155682 · L3 x=-1.005063\n碰撞半径 = 真实天体半径 · NaN 防护常开",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "btnRun",
+      "type": "submit",
+      "text": "⏸ 暂停",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnStep",
+      "type": "submit",
+      "text": "⏭ 单步",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnReset",
+      "type": "submit",
+      "text": "↺ 重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnClearTrail",
+      "type": "submit",
+      "text": "🧹 轨迹",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "rngH",
+      "type": "range",
+      "text": "",
+      "value": "-2.3",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "numH",
+      "type": "number",
+      "text": "",
+      "value": "0.005",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "rngSpd",
+      "type": "range",
+      "text": "",
+      "value": "6",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "selInt",
+      "type": "select-one",
+      "text": "RK4 —— 经典四阶 Runge–Kutta\n隐式中点 —— 辛 · 二阶 · Newton 迭代\nYoshida 辛四阶 —— 隐式中点三重复合",
+      "value": "rk4",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L4 扰动 · 蝌蚪轨道",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L1 不稳定运动",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "绕地圆轨道",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "月球引力辅助",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "icx",
+      "type": "number",
+      "text": "",
+      "value": "0.467849",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "icy",
+      "type": "number",
+      "text": "",
+      "value": "0.866025",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "icvx",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "icvy",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "numMu",
+      "type": "number",
+      "text": "",
+      "value": "0.01215059",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tgTrail",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "selTrail",
+      "type": "select-one",
+      "text": "8k\n30k\n60k\n120k",
+      "value": "30000",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tgL",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tgZvc",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tgFill",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tgCrit",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tgGrid",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tgVec",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "tgHud",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "btnTest",
+      "type": "submit",
+      "text": "▶ 运行自检套件",
+      "value": "",
+      "disabled": false
+    }
+  ],
+  "globals": [
+    {
+      "key": "CR3BP",
+      "keys": [
+        "app",
+        "applyPreset",
+        "applyIC",
+        "resetSim",
+        "runSelfTests",
+        "presetIC",
+        "buildModel",
+        "integrateFixed",
+        "makeSim",
+        "simStep",
+        "setRunning",
+        "getState"
+      ]
+    }
+  ],
+  "viewport": {
+    "innerWidth": 1440,
+    "innerHeight": 1000,
+    "scrollWidth": 1440,
+    "scrollHeight": 1000,
+    "canvases": [
+      {
+        "id": "sky",
+        "width": 1068,
+        "height": 924,
+        "rect": {
+          "x": 0,
+          "y": 46,
+          "width": 1068,
+          "height": 924,
+          "top": 46,
+          "right": 1068,
+          "bottom": 970,
+          "left": 0
+        }
+      }
+    ]
+  },
+  "loaded": true
+}

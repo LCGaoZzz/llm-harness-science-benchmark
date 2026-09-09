@@ -1,0 +1,109 @@
+{
+  "schema": "cr3bp-science-results-only/v1",
+  "date": "2026-09-09",
+  "reviewed_source_commit": "ac5a306be9b29978ad6787903821b4a6a181ff01",
+  "scope": "Existing overall top four; new science-only human assessment, not replacement of original ten-category leaderboard. No files were written to GitHub in this follow-up.",
+  "criteria": [
+    {
+      "name": "数学正确性",
+      "max": 30
+    },
+    {
+      "name": "数值结果质量",
+      "max": 35
+    },
+    {
+      "name": "物理结果与科学解释",
+      "max": 25
+    },
+    {
+      "name": "无效科学结果的控制",
+      "max": 10
+    }
+  ],
+  "excluded": [
+    "intermediate files",
+    "development history",
+    "submitted test count",
+    "UI appearance",
+    "engineering logs",
+    "code length",
+    "algorithm count",
+    "wall time"
+  ],
+  "ranking_note": "Competition ranks. A 1-point difference is not statistically significant and not a measured probability of expert approval. DS is the preferred submission under these weights, not a universal accuracy winner.",
+  "rows": [
+    {
+      "id": "harnessL_ds-4.1flashmax",
+      "label": "harnessL × ds-4.1flashmax",
+      "scores": [
+        30,
+        35,
+        23,
+        8
+      ],
+      "total": 96,
+      "rank": 1,
+      "reasons": [
+        "原最终HTML的方程、质量比、平衡点和固定步长正则辛方法均通过独立计算；不因标签或证明文件缺失否定正确算法。",
+        "固定六阶与自适应GBS在共同L4、绕地、近月例子中均输出高精度结果；GBS提供实际可用的局部误差控制，且不是仅凭小Jacobi漂移判断。",
+        "最终允许域自检以当前C构造2Ω-C，不能独立验证初始C0禁区；GBS固定8阶标签与可调外推层数不一致。各扣1分，仅涉及最终科学表述，非过程文件。",
+        "正常场景完成；原RK4生产路径存在跨步表面漏检。只保留2分，不让极端非典型穿体探针主导科学排名。"
+      ]
+    },
+    {
+      "id": "gptweb_gpt-6pro",
+      "label": "gptweb × gpt-6pro",
+      "scores": [
+        30,
+        31,
+        25,
+        9
+      ],
+      "total": 95,
+      "rank": 2,
+      "reasons": [
+        "连续方程、Jacobi、平衡点和正则分裂正确；独立坐标转换校核正确。",
+        "RK4与四阶辛法均按预期收敛，细化步长可达到高精度；本轮标准工况的相位/状态精度不及DS高阶/自适应配置，仍是可信的高质量结果。",
+        "最终四类预设的核心物理现象可信；同月距入/出射惯性速度核验支持引力辅助。无完整中间文件也可由最终内核独立复现。",
+        "未分辨近遇步被拒绝，非法输出防护较好；没有连续碰撞时刻定位，保留1分。"
+      ]
+    },
+    {
+      "id": "codex_6astra-xhigh",
+      "label": "Codex × 6astra-xhigh",
+      "scores": [
+        30,
+        31,
+        25,
+        9
+      ],
+      "total": 95,
+      "rank": 2,
+      "reasons": [
+        "连续方程、Jacobi、平衡点和正则分裂正确；没有单独惯性画面不扣分。",
+        "共同实验的RK4/Yoshida4与GPTweb几乎相同；不因原始验证文件或UI少一项而强行拉开数值分数。",
+        "四类预设物理现象可信；同月距飞越增益成立；没有速度箭头或中间日志不影响此项。",
+        "未分辨近遇步被拒绝；没有连续碰撞时刻定位，保留1分。"
+      ]
+    },
+    {
+      "id": "zcode_glm-5.3max",
+      "label": "zcode × glm-5.3max（Windows）",
+      "scores": [
+        30,
+        32,
+        21,
+        8
+      ],
+      "total": 91,
+      "rank": 4,
+      "reasons": [
+        "原最终核中的RK4、Newton隐式中点和四阶复合均正确；原自检报告4.82阶不覆盖独立实测的正确渐近收敛。",
+        "固定辛方法在多个共同测试中误差常数小于另外两份四阶分裂；RK4步长细化也达到参考分辨率附近。",
+        "最终L4长周期29.9 TU与线性21.0698 TU及实际有限振幅慢模约21 TU不符；月球最近距离/时刻说明与实际初值的高精度传播不符。分别扣2分。",
+        "原生产路径存在跨步表面漏检；不对中间工程材料缺失扣分。"
+      ]
+    }
+  ]
+}

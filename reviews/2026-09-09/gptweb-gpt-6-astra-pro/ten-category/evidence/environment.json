@@ -1,0 +1,12 @@
+{
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.35-x86_64-with-glibc2.41",
+  "browser": "144.0.7559.96",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "source_commit": "ac5a306be9b29978ad6787903821b4a6a181ff01",
+  "network_policy": "original HTML loaded via Playwright set_content into about:blank; all http/https network blocked",
+  "file_url_limitation": "Chromium policy returns ERR_BLOCKED_BY_ADMINISTRATOR for file:// and local HTTP navigation; not counted as submission failure"
+}

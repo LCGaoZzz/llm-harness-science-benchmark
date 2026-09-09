@@ -1,0 +1,148 @@
+{
+  "key": "zcode_glm-5.3max",
+  "steps": [],
+  "errors": [],
+  "pause_holds_time": true,
+  "single_step": {
+    "before": {
+      "t": 1.169999999999997,
+      "s": [
+        0.44634165426002603,
+        0.8575660662174589,
+        -0.04436165269671945,
+        -0.006337410172403251
+      ],
+      "running": false,
+      "view": {
+        "x": 0,
+        "y": 0,
+        "scale": 296.6666666666667,
+        "fit": 296.6666666666667
+      },
+      "h": 0.005,
+      "method": "rk4"
+    },
+    "after": {
+      "t": 1.174999999999997,
+      "s": [
+        0.44611918883231827,
+        0.8575345680689176,
+        -0.044624545677424174,
+        -0.006261720806450698
+      ],
+      "running": false,
+      "view": {
+        "x": 0,
+        "y": 0,
+        "scale": 296.6666666666667,
+        "fit": 296.6666666666667
+      },
+      "h": 0.005,
+      "method": "rk4"
+    },
+    "advances": true
+  },
+  "run_advances": true,
+  "reset": {
+    "t": 0,
+    "s": [
+      0.467849,
+      0.866025,
+      0,
+      0
+    ],
+    "running": false,
+    "view": {
+      "x": 0,
+      "y": 0,
+      "scale": 296.6666666666667,
+      "fit": 296.6666666666667
+    },
+    "h": 0.005,
+    "method": "rk4"
+  },
+  "presets": [
+    {
+      "label": "L4 扰动 · 蝌蚪轨道",
+      "before": {
+        "t": 0.15000000000000005,
+        "s": [
+          0.4676578057895628,
+          0.8657552400984043,
+          -0.0027353758656061245,
+          -0.0034818337764051066
+        ],
+        "running": false,
+        "view": {
+          "x": 0,
+          "y": 0,
+          "scale": 296.6666666666667,
+          "fit": 296.6666666666667
+        },
+        "h": 0.005,
+        "method": "rk4"
+      },
+      "after": {
+        "t": 0.15500000000000005,
+        "s": [
+          0.46764385388981594,
+          0.8657375706882062,
+          -0.002845584255093628,
+          -0.0035857958644150527
+        ],
+        "running": false,
+        "view": {
+          "x": 0,
+          "y": 0,
+          "scale": 296.6666666666667,
+          "fit": 296.6666666666667
+        },
+        "h": 0.005,
+        "method": "rk4"
+      },
+      "advances": true
+    },
+    {
+      "label": "L1 不稳定运动",
+      "before": {
+        "t": 0.18000000000000008,
+        "s": [
+          0.8392928540310823,
+          -4.4663738027900453e-05,
+          0.004284382114881973,
+          -0.0007470856679028336
+        ],
+        "running": false,
+        "view": {
+          "x": 0,
+          "y": 0,
+          "scale": 296.6666666666667,
+          "fit": 296.6666666666667
+        },
+        "h": 0.005,
+        "method": "rk4"
+      },
+      "after": {
+        "t": 0.18500000000000008,
+        "s": [
+          0.8393145983361381,
+          -4.85048774053213e-05,
+          0.004413479548784692,
+          -0.0007895714013391828
+        ],
+        "running": false,
+        "view": {
+          "x": 0,
+          "y": 0,
+          "scale": 296.6666666666667,
+          "fit": 296.6666666666667
+        },
+        "h": 0.005,
+        "method": "rk4"
+      },
+      "advances": true
+    }
+  ],
+  "complete": false,
+  "error": "Locator.click: Timeout 4000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-preset]\").nth(2)\n    - locator resolved to <button class=\"wide\" data-preset=\"earth\">绕地圆轨道</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - performing click action\n"
+}

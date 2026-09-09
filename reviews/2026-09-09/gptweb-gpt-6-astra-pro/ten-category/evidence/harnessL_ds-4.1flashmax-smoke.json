@@ -1,0 +1,357 @@
+{
+  "entry": {
+    "submission": "harnessL--ds-4.1flashmax--2026-09-09",
+    "html": "/mnt/data/benchmark/submissions/harnessL--ds-4.1flashmax--2026-09-09/lab.html",
+    "sha256": "2092ed57f0bf0b21f9aff27e72de0f01e1098ecf49885f667cc844b90f692bb6"
+  },
+  "page_errors": [],
+  "console": [],
+  "external_requests": [],
+  "title": "地月限制性三体问题实验室 · Earth–Moon CR3BP Lab",
+  "body": "地月限制性三体问题实验室Earth–Moon CR3BP · rotating frame\n暂停\nGBS\n预设轨道\nL4 稳定岛 / tadpole\nL1 不稳定鞍点\n绕地轨道\n月球引力辅助\n积分器\nGBS (adaptive extrapolation)\nDOPRI5 (adaptive, 5)\nGBS-fixed (order 8)\nAdaptive RK4 (step doubling)\nAdaptive symplectic-4 (step doubling)\nYoshida-4 (symplectic, 4)\nYoshida-6 (symplectic, 6)\nVerlet (symplectic, 2)\nRK4\nGragg-Bulirsch-Stoer, order 2k from the harmonic sequence · 阶数 8 · 自适应\ndt\nrtol\n外推行数 k\n序列\nBulirsch (2,4,6,8,12,…)\nHarmonic (2,4,6,8,10,…)\n自适应方法：dt 只是初始步长，控制器会按 rtol 调整。\n初始条件（旋转系，归一化）\nx₀\ny₀\nz₀\nvx₀\nvy₀\nvz₀\n应用初始条件并重置\n运行\n▶ 运行\n单步\n重置\n速度\n仿真速度 ≈ 0.60 TU/s（1 个月球周期 = 2π TU ≈ 10.5 s 真实时间）\n视图\n＋\n－\n适配\n跟随\n缩放\n 零速度曲线\n 轨迹尾迹\n 拉格朗日点\n滚轮缩放 · 拖拽平移\n实时状态\n时间 t\n0.000 TU · 0.00 d\n位置 (x,y,z)\n0.49785, 0.86603, 0.00000\n位置 (km)\n191373, 332900, 0\n速度 (vx,vy,vz)\n0.00000, 0.00000, 0.00000\n速率 |v|\n0.00000 VU · 0.000 km/s\nr₁ (地心距)\n1.00504 DU · 386336 km\nr₂ (月心距)\n0.99504 DU · 382492 km\nJacobi C\n2.988072899\nC₀\n2.988072899\nΔC / |C₀|\n0.000e+0\n步数 / 力评估\n0 / 0\n平均步长\n0.00000 TU\n最小步长\n0.00100 (当前)\nJACOBI 常数漂移 |ΔC|/|C₀|\n当前\n0.000e+0\n本次最大\n0.000e+0\n拉格朗日点（数值求解）\n点\tx\ty\tC\t|∇Ω|\nL1\t0.836915\t0.000000\t3.188341\t4.4e-16\nL2\t1.155682\t0.000000\t3.172160\t5.6e-16\nL3\t-1.005063\t0.000000\t3.012147\t4.3e-19\nL4\t0.487849\t0.866025\t2.987997\t2.2e-16\nL5\t0.487849\t-0.866025\t2.987997\t2.2e-16\n由 Ω 的梯度零点用二分 + 牛顿求得（L4/L5 为闭式解）。最大残差 5.55e-16，C(L4)=3−μ+μ²=2.987997。\n自检\n运行全部自检\n尚未运行。",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L4 稳定岛 / tadpole",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "L1 不稳定鞍点",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "绕地轨道",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "type": "submit",
+      "text": "月球引力辅助",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "method",
+      "type": "select-one",
+      "text": "GBS (adaptive extrapolation)\nDOPRI5 (adaptive, 5)\nGBS-fixed (order 8)\nAdaptive RK4 (step doubling)\nAdaptive symplectic-4 (step doubling)\nYoshida-4 (symplectic, 4)\nYoshida-6 (symplectic, 6)\nVerlet (symplectic, 2)\nRK4",
+      "value": "gbs",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "dtNum",
+      "type": "number",
+      "text": "",
+      "value": "0.001",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "dt",
+      "type": "range",
+      "text": "",
+      "value": "-3",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "rtol",
+      "type": "number",
+      "text": "",
+      "value": "1e-13",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "gbsK",
+      "type": "number",
+      "text": "",
+      "value": "5",
+      "disabled": false
+    },
+    {
+      "tag": "SELECT",
+      "id": "gbsSeq",
+      "type": "select-one",
+      "text": "Bulirsch (2,4,6,8,12,…)\nHarmonic (2,4,6,8,10,…)",
+      "value": "bulirsch",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "ic-x",
+      "type": "number",
+      "text": "",
+      "value": "0.497849414390376",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "ic-y",
+      "type": "number",
+      "text": "",
+      "value": "0.8660254037844386",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "ic-z",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "ic-vx",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "ic-vy",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "ic-vz",
+      "type": "number",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "applyIC",
+      "type": "submit",
+      "text": "应用初始条件并重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "play",
+      "type": "submit",
+      "text": "▶ 运行",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "stepBtn",
+      "type": "submit",
+      "text": "单步",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "reset",
+      "type": "submit",
+      "text": "重置",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "speed",
+      "type": "range",
+      "text": "",
+      "value": "0.6",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "zoomIn",
+      "type": "submit",
+      "text": "＋",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "zoomOut",
+      "type": "submit",
+      "text": "－",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "fit",
+      "type": "submit",
+      "text": "适配",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "follow",
+      "type": "submit",
+      "text": "跟随",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "zoom",
+      "type": "range",
+      "text": "",
+      "value": "0",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "showZVC",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "showTrail",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "INPUT",
+      "id": "showL",
+      "type": "checkbox",
+      "text": "",
+      "value": "on",
+      "disabled": false
+    },
+    {
+      "tag": "BUTTON",
+      "id": "runTests",
+      "type": "submit",
+      "text": "运行全部自检",
+      "value": "",
+      "disabled": false
+    }
+  ],
+  "globals": [
+    {
+      "key": "CR3BP",
+      "keys": [
+        "MU_EARTH_MOON",
+        "DU_KM",
+        "TU_DAYS",
+        "VU_KMS",
+        "R_EARTH",
+        "R_MOON",
+        "R_SINGULARITY",
+        "omega",
+        "gradOmega",
+        "hessOmega",
+        "jacobi",
+        "dist1",
+        "dist2",
+        "deriv6",
+        "lagrangePoints",
+        "stability",
+        "stepRK4",
+        "stepVerlet",
+        "stepYoshida4",
+        "stepYoshida6",
+        "stepDOPRI5",
+        "stepGBS",
+        "mmidState",
+        "stepGBSFix",
+        "gbsExtrapolate",
+        "stepARK4",
+        "stepSymAdapt",
+        "METHODS",
+        "makeStepper",
+        "integrate",
+        "guardState",
+        "validateDt",
+        "isFiniteState",
+        "presets",
+        "mulberry32",
+        "resetStats",
+        "snapshotStats",
+        "runSelfTests",
+        "errState",
+        "observedOrder",
+        "toCanon",
+        "toPhys"
+      ]
+    },
+    {
+      "key": "__CR3BP_LAB__",
+      "keys": [
+        "sim",
+        "opts",
+        "C",
+        "lagrange",
+        "setIC",
+        "reset",
+        "oneStep",
+        "render",
+        "runSelfTests",
+        "ready"
+      ]
+    }
+  ],
+  "viewport": {
+    "innerWidth": 1440,
+    "innerHeight": 1000,
+    "scrollWidth": 1440,
+    "scrollHeight": 1000,
+    "canvases": [
+      {
+        "id": "view",
+        "width": 834,
+        "height": 961,
+        "rect": {
+          "x": 286,
+          "y": 39.390625,
+          "width": 834,
+          "height": 961,
+          "top": 39.390625,
+          "right": 1120,
+          "bottom": 1000.390625,
+          "left": 286
+        }
+      },
+      {
+        "id": "driftCanvas",
+        "width": 293,
+        "height": 64,
+        "rect": {
+          "x": 1133,
+          "y": 373.90625,
+          "width": 295,
+          "height": 64,
+          "top": 373.90625,
+          "right": 1428,
+          "bottom": 437.90625,
+          "left": 1133
+        }
+      }
+    ]
+  },
+  "loaded": true
+}

@@ -66,7 +66,7 @@ submissions/<harness>--<model>--<date>/
 
 ## 多专家评审与统一展示（10+4）
 
-**当前榜单是 `codex-gpt-6-astra-xhigh` 的评审样例，不是多专家共识排名。** 该名称标识评审者，与榜内参赛组合的名称分开记录。后续每位专家必须独立署名，并按同一“10+4”结构展示：
+**以下按评审者独立收录，尚未形成多专家共识排名。** `codex-gpt-6-astra-xhigh` 提供首份完整样例。评审者 ID 与榜内参赛组合名称分开记录；每位专家均按同一“10+4”结构展示：
 
 1. **10：十项单项排名，附综合总榜。** 对所评快照的全部参赛者，按本 README 原有十项标准分别给分、分别排名，再列出合计、封顶规则与最终总排名。只给得分矩阵或总榜不能替代十个单项榜；每项应有证据及扣分理由。
 2. **4：前四名纯科学终评。** 列明从该专家综合榜入选的四份产物，另按最终数学、物理和数值结果给分、排名并提出推荐。若入选边界同分，应说明处理方式。此部分不计界面、工程组织、报告篇幅、自检数量或中间工程文件是否上传；不得因过程材料缺失直接扣科学分。
@@ -78,9 +78,10 @@ submissions/<harness>--<model>--<date>/
 | 评审者 ID | 日期 | 10：单项排名与综合总榜 | 4：纯科学终评 | 状态与版本 |
 |---|---|---|---|---|
 | **codex-gpt-6-astra-xhigh** | 2026-09-09 | [十项单项排名与总榜](reviews/2026-09-09/codex-gpt-6-astra-xhigh/README.md) · [逐项依据](reviews/2026-09-09/README.md) | [四强终评与证据](reviews/2026-09-09/science-final/README.md) | 已记录为 10+4 样例；[原结果快照 fe815c2](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/fe815c262397496d63d9ffbe928e61e49714b0b8) |
+| **gptweb-gpt-6-astra-pro** | 2026-09-09 | [十项单项排名与综合总榜](reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md#gptweb-gpt-6-astra-pro-ten) | [四强终评与证据](reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md#gptweb-gpt-6-astra-pro-four) | 10+4 已完整收录；十项为既有评分的独立复核，四强为新科学评分；[原始材料与来源](reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md#原始材料与导入核对) |
 | 待登记评审者 ID（648dcc3） | 2026-09-09 | [独立评分记录](SCOREBOARD.md) | 尚未提供独立四强终评 | 待补齐署名与 10+4；[归档版本](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/648dcc3) |
 
-以下展示 codex-gpt-6-astra-xhigh 的样例，分数与并列关系保持不变。并行提交 648dcc3 的 SCOREBOARD.md 及其提交说明均保留，其分数不归属于本样例。其他专家可作出不同判断，并通过各自的 10+4 记录展示。
+以下依次展示各专家的 10+4 记录，原有分数与并列关系保持不变。并行提交 648dcc3 的 SCOREBOARD.md 及其提交说明均保留，其评审者身份尚待登记。各份记录分别注明评分来源与复核关系；其他专家可作出不同判断。
 
 <!-- BEGIN REVIEW codex-gpt-6-astra-xhigh -->
 ## 结果索引
@@ -244,3 +245,170 @@ submissions/<harness>--<model>--<date>/
 
 该专家推荐 harnessL-ds-4.1flashmax；97 与 96 的差距较小，科学终评已说明权重敏感性。
 <!-- END REVIEW codex-gpt-6-astra-xhigh -->
+
+<!-- BEGIN REVIEW gptweb-gpt-6-astra-pro -->
+## gptweb-gpt-6-astra-pro：10+4 评审记录
+
+**评审者：`gptweb-gpt-6-astra-pro` · 2026-09-09 · 状态：10+4 已完整收录。**
+
+评审者身份由仓库所有者在导入请求中指定，与参赛组合 `gptweb-gpt-6pro` 分开记录。两部分均评阅源快照 [`ac5a306`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/ac5a306be9b29978ad6787903821b4a6a181ff01)。
+
+[完整署名记录与原始材料](reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md)。
+
+<a id="gptweb-gpt-6-astra-pro-ten"></a>
+
+### 10：十项单项排名与综合总榜
+
+**评分来源：独立执行复核后，保留既有统一榜 [`faef8de`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/faef8de83fd70487b8986fe58c972dd403eb2176/README.md)。** 原包明确说明这不是另一套独立分值估计；本记录保留这一来源关系，不把相同分数当作两次独立评分。[原包说明](reviews/2026-09-09/gptweb-gpt-6-astra-pro/ten-category/README.md) · [独立复核报告](reviews/2026-09-09/gptweb-gpt-6-astra-pro/ten-category/repo/evaluations/2026-09-09-independent/REVIEW.md) · [原始十项分数](reviews/2026-09-09/gptweb-gpt-6-astra-pro/ten-category/repo/evaluations/2026-09-09-independent/scores.json) · [原有 70 项理由](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/faef8de83fd70487b8986fe58c972dd403eb2176/reviews/2026-09-09/README.md)。
+
+十项各 10 分，等权求和；本包七份均无封顶。同分采用竞赛排名，表内同分行的先后不表示优劣。
+
+#### 综合总排名
+
+| 排名 | 参赛组合 | 原始合计 /100 | 封顶 | 最终得分 /100 |
+|---:|---|---:|---|---:|
+| 1 | gptweb-gpt-6pro | 98 | 无 | **98** |
+| 2 | codex-6astra-xhigh | 95 | 无 | **95** |
+| 3 | zcode-glm-5.3max | 88 | 无 | **88** |
+| 4 | harnessL-ds-4.1flashmax | 85 | 无 | **85** |
+| 5 | zcode-glm-5.3maxlinux | 83 | 无 | **83** |
+| 6 | harnessL-qwen-3.8flashxhigh | 74 | 无 | **74** |
+| 7 | kimiweb-k3swarm-max | 72 | 无 | **72** |
+
+#### 1. 物理模型
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | codex-6astra-xhigh | 10 |
+| 1 | gptweb-gpt-6pro | 10 |
+| 1 | harnessL-ds-4.1flashmax | 10 |
+| 1 | harnessL-qwen-3.8flashxhigh | 10 |
+| 1 | zcode-glm-5.3max | 10 |
+| 1 | zcode-glm-5.3maxlinux | 10 |
+| 7 | kimiweb-k3swarm-max | 9 |
+
+#### 2. 数学方程
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | codex-6astra-xhigh | 10 |
+| 1 | gptweb-gpt-6pro | 10 |
+| 1 | harnessL-ds-4.1flashmax | 10 |
+| 1 | zcode-glm-5.3max | 10 |
+| 5 | harnessL-qwen-3.8flashxhigh | 9 |
+| 5 | kimiweb-k3swarm-max | 9 |
+| 5 | zcode-glm-5.3maxlinux | 9 |
+
+#### 3. 单位与坐标
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | gptweb-gpt-6pro | 10 |
+| 2 | codex-6astra-xhigh | 8 |
+| 3 | zcode-glm-5.3maxlinux | 7 |
+| 4 | harnessL-ds-4.1flashmax | 6 |
+| 4 | harnessL-qwen-3.8flashxhigh | 6 |
+| 4 | zcode-glm-5.3max | 6 |
+| 7 | kimiweb-k3swarm-max | 5 |
+
+#### 4. 拉格朗日点
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | codex-6astra-xhigh | 10 |
+| 1 | gptweb-gpt-6pro | 10 |
+| 1 | harnessL-ds-4.1flashmax | 10 |
+| 1 | harnessL-qwen-3.8flashxhigh | 10 |
+| 1 | kimiweb-k3swarm-max | 10 |
+| 1 | zcode-glm-5.3max | 10 |
+| 1 | zcode-glm-5.3maxlinux | 10 |
+
+#### 5. 数值积分器
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | codex-6astra-xhigh | 10 |
+| 1 | gptweb-gpt-6pro | 10 |
+| 1 | zcode-glm-5.3max | 10 |
+| 4 | harnessL-ds-4.1flashmax | 9 |
+| 4 | harnessL-qwen-3.8flashxhigh | 9 |
+| 6 | zcode-glm-5.3maxlinux | 8 |
+| 7 | kimiweb-k3swarm-max | 6 |
+
+#### 6. 收敛与精度
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | codex-6astra-xhigh | 10 |
+| 1 | gptweb-gpt-6pro | 10 |
+| 3 | harnessL-ds-4.1flashmax | 9 |
+| 3 | zcode-glm-5.3max | 9 |
+| 5 | zcode-glm-5.3maxlinux | 8 |
+| 6 | harnessL-qwen-3.8flashxhigh | 7 |
+| 6 | kimiweb-k3swarm-max | 7 |
+
+#### 7. 守恒量表现
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | codex-6astra-xhigh | 10 |
+| 1 | gptweb-gpt-6pro | 10 |
+| 1 | harnessL-ds-4.1flashmax | 10 |
+| 1 | zcode-glm-5.3max | 10 |
+| 5 | zcode-glm-5.3maxlinux | 9 |
+| 6 | harnessL-qwen-3.8flashxhigh | 8 |
+| 6 | kimiweb-k3swarm-max | 8 |
+
+#### 8. 稳定性与边界
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | codex-6astra-xhigh | 9 |
+| 1 | gptweb-gpt-6pro | 9 |
+| 3 | harnessL-ds-4.1flashmax | 6 |
+| 3 | zcode-glm-5.3max | 6 |
+| 3 | zcode-glm-5.3maxlinux | 6 |
+| 6 | harnessL-qwen-3.8flashxhigh | 4 |
+| 6 | kimiweb-k3swarm-max | 4 |
+
+#### 9. 验证与工程质量
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | codex-6astra-xhigh | 10 |
+| 1 | gptweb-gpt-6pro | 10 |
+| 3 | zcode-glm-5.3max | 9 |
+| 4 | harnessL-ds-4.1flashmax | 8 |
+| 4 | zcode-glm-5.3maxlinux | 8 |
+| 6 | kimiweb-k3swarm-max | 7 |
+| 7 | harnessL-qwen-3.8flashxhigh | 6 |
+
+#### 10. 交互与科学可视化
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | gptweb-gpt-6pro | 9 |
+| 2 | codex-6astra-xhigh | 8 |
+| 2 | zcode-glm-5.3max | 8 |
+| 2 | zcode-glm-5.3maxlinux | 8 |
+| 5 | harnessL-ds-4.1flashmax | 7 |
+| 5 | kimiweb-k3swarm-max | 7 |
+| 7 | harnessL-qwen-3.8flashxhigh | 5 |
+
+<a id="gptweb-gpt-6-astra-pro-four"></a>
+
+### 4：前四名纯科学终评
+
+本部分是该专家的新科学评分，入选四份与上述综合榜前四名一致，入选边界无同分。权重为数学正确性 **30**、数值结果质量 **35**、物理结果与科学解释 **25**、无效科学结果控制 **10**；与 `codex-gpt-6-astra-xhigh` 样例的五维权重不同，分数不直接平均。
+
+| 排名 | 参赛组合 | 数学 /30 | 数值 /35 | 物理结果与科学解释 /25 | 无效结果控制 /10 | 科学总分 /100 |
+|---:|---|---:|---:|---:|---:|---:|
+| 1 | harnessL × ds-4.1flashmax | 30 | 35 | 23 | 8 | **96** |
+| 2 | gptweb × gpt-6pro | 30 | 31 | 25 | 9 | **95** |
+| 2 | Codex × 6astra-xhigh | 30 | 31 | 25 | 9 | **95** |
+| 4 | zcode × glm-5.3max（Windows） | 30 | 32 | 21 | 8 | **91** |
+
+**该专家推荐 harnessL × ds-4.1flashmax；GPT Web 与 Codex 并列第二。** 原报告认为 DS 的高阶固定步方法与自适应 GBS 在所测场景中提供了较强数值结果；也明确指出四份产物在足够小的步长下均可达到高精度，1 分差不代表统计显著性或专家投票概率。报告未因界面、工程组织或中间文件缺失扣科学分。
+
+[原始科学结论与限制](reviews/2026-09-09/gptweb-gpt-6-astra-pro/science-final/SCIENCE_REVIEW.md) · [科学评分及逐项理由](reviews/2026-09-09/gptweb-gpt-6-astra-pro/science-final/scores.json)。
+<!-- END REVIEW gptweb-gpt-6-astra-pro -->

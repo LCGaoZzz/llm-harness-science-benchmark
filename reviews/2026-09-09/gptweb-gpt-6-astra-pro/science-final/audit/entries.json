@@ -1,0 +1,22 @@
+{
+  "harnessL_ds-4.1flashmax": {
+    "submission": "harnessL--ds-4.1flashmax--2026-09-09",
+    "html": "inputs/harnessL_ds-4.1flashmax.html",
+    "sha256": "2092ed57f0bf0b21f9aff27e72de0f01e1098ecf49885f667cc844b90f692bb6"
+  },
+  "gptweb_gpt-6pro": {
+    "submission": "gptweb--gpt-6pro--2026-09-09",
+    "html": "inputs/gptweb_gpt-6pro.html",
+    "sha256": "e47703cc377ef47a5c1b3f356bcdbac2b555946e0e95c598b9197fe4a5ed8a75"
+  },
+  "codex_6astra-xhigh": {
+    "submission": "codex--6astra-xhigh--2026-09-09",
+    "html": "inputs/codex_6astra-xhigh.html",
+    "sha256": "03f3b6c7011d7f2c757cd2265bf664256f86c8135cb5d1ae33862630cd67af92"
+  },
+  "zcode_glm-5.3max": {
+    "submission": "zcode--glm-5.3max--2026-09-09",
+    "html": "inputs/zcode_glm-5.3max.html",
+    "sha256": "760b0f6e0cdee3028313adf5af875e4b1b69a83342757ea3622db87a5163d906"
+  }
+}
