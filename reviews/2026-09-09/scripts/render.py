@@ -38,7 +38,9 @@ intro=(
     '**同分并列，使用竞赛排名（如 1、2、2、4）；表内同分条目的显示顺序不代表先后。** '
     '这些是本次产物的评分，不能据此推断模型总体能力。生成环境、迭代轮数及提示词完整性不完全一致；详见各原始提交说明。\n\n'
     f'本次更新接续[先前榜单 `{data["previous_leaderboard_commit"][:7]}`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/{data["previous_leaderboard_commit"]}/README.md#结果索引)，'
-    '参赛文件未变；[分数差异与依据](reviews/2026-09-09/METHODS.md#与先前榜单的差异)单独列出，旧版分数仍可追溯。\n\n'
+    f'及[并行评阅 `{data["parallel_leaderboard_commit"][:7]}`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/{data["parallel_leaderboard_commit"]}/LEADERBOARD.md)。'
+    '参赛文件未变；[分数差异与依据](reviews/2026-09-09/METHODS.md#与先前榜单的差异)单独列出，旧版分数仍可追溯。'
+    'README 与 [LEADERBOARD.md](LEADERBOARD.md) 由同一评分数据生成。\n\n'
     '[评阅方法与限制](reviews/2026-09-09/METHODS.md) · '
     '[逐项评分证据](reviews/2026-09-09/README.md) · '
     '[机器可读评分](reviews/2026-09-09/scores.json) · '
@@ -83,7 +85,7 @@ for r in ordered:
     for i,(n,s,t) in enumerate(zip(criteria,r['scores'],r['reasons'])):doc+=f'| {i+1} | {n} | {s} | {t.replace("|","∣")} |\n'
     doc+=f'\n原始合计 **{r["raw_total"]}**；封顶规则：**无**；最终 **{r["final_total"]}**；总榜第 **{r["rank"]}**。\n\n'
     doc+=f'原始实测可按 `id="{r["id"]}"` 查阅 [数值结果](evidence/numerical.json)、[独立参考](evidence/reference.json)、[自检/控制台](evidence/browser.json)、[控件与边界](evidence/interactions.json)。\n\n'
-outputs={repo/'README.md':prefix+intro.rstrip()+'\n',review/'README.md':doc.rstrip()+'\n'}
+outputs={repo/'README.md':prefix+intro.rstrip()+'\n',repo/'LEADERBOARD.md':'# 当前得分榜\n\n'+intro.split('## 结果索引\n\n',1)[1].rstrip()+'\n',review/'README.md':doc.rstrip()+'\n'}
 for p,s in outputs.items():
     if '--check' in sys.argv:assert p.read_text(encoding='utf-8')==s,'Generated document is stale: '+str(p)
     else:p.write_text(s,encoding='utf-8',newline='\n')
