@@ -86,7 +86,7 @@
 
 本次评阅进行期间，远端新增了 [`53010a4` 榜单](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/53010a454316d39a1c2cb8c76747a685d80c8674/README.md#结果索引)。该提交只改 README，没有改变七份参赛产物或评分标准，因此本次测试仍对应同一批原始文件。下面保留其总分作为版本对照；旧版全部单项分数、文字及排名可通过上述固定链接查阅。
 
-随后并行新增了 [`bd4a59a` 的 LEADERBOARD.md](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/bd4a59a83558414797c9a6dad021e9e733e954ab/LEADERBOARD.md)，同样没有修改参赛文件。其 Kimi 为未解包复核的 46 分暂定值；本次已实际解包、检查源码并离线执行，因此采用完成复核后的评分。旧版内容完整保留在固定链接中，当前 README 和 LEADERBOARD.md 则统一从 scores.json 生成。
+随后并行新增了 [`bd4a59a` 的 LEADERBOARD.md](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/bd4a59a83558414797c9a6dad021e9e733e954ab/LEADERBOARD.md)，同样没有修改参赛文件。其 Kimi 为未解包复核的 46 分暂定值；本次已实际解包、检查源码并离线执行，因此采用完成复核后的评分。该重复榜单随后由仓库维护提交 `265e99c` 移除，旧版内容仍完整保留在固定链接中，当前榜单统一在根 README 展示。
 
 本次不是对旧版总分机械加减，而是分别按十项标准重新判断。差异主要来自可重复的失败案例、对最终 HTML 与旧日志的区分，以及对最高分所要求的完整坐标转换和验证的检查。测试条数、方法数量和材料篇幅不直接折算为分数。
 
@@ -118,4 +118,4 @@ python reviews/2026-09-09/scripts/presets.py reviews/2026-09-09/evidence
 python reviews/2026-09-09/scripts/render.py --check
 ```
 
-首次复现会覆盖 `evidence/` 下的重跑输出和截图；建议另建工作副本。预设运行/暂停的墙钟时刻、截图及耗时不保证逐字节一致，固定数值核心测试可复算。`render.py` 从 [scores.json](scores.json) 同步生成根 README、LEADERBOARD.md 的 11 个榜单和评阅明细；`--check` 验证生成文本、70 项覆盖、取值范围、排名、证据 ID 及七份页面加载状态。它校验评分材料一致性，不宣称评阅判断本身能被单元测试自动证明。
+首次复现会覆盖 `evidence/` 下的重跑输出和截图；建议另建工作副本。预设运行/暂停的墙钟时刻、截图及耗时不保证逐字节一致，固定数值核心测试可复算。`render.py` 从 [scores.json](scores.json) 生成根 README 的 11 个榜单和评阅明细；`--check` 验证生成文本、70 项覆盖、取值范围、排名、证据 ID 及七份页面加载状态。它校验评分材料一致性，不宣称评阅判断本身能被单元测试自动证明。
