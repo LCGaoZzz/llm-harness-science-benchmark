@@ -3,7 +3,10 @@
   "date": "2026-09-09",
   "reviewed_commit": "ac5a306be9b29978ad6787903821b4a6a181ff01",
   "scope": "原综合榜前四；仅最终产物的数学、物理和数值结果；不计界面、工程组织、报告长度、自检数量或中间文件是否上传。",
-  "reviewer": "本次 Codex 单一评阅者，未盲审；不是外部专家组投票。",
+  "reviewer_id": "codex-gpt-6-astra-xhigh",
+  "reviewer": "codex-gpt-6-astra-xhigh（单一评阅者，未盲审；不是外部专家组投票）",
+  "review_format": "10+4",
+  "sample_source_commit": "fe815c262397496d63d9ffbe928e61e49714b0b8",
   "criteria": [
     {"name": "物理方程与量纲/坐标自洽", "max": 20},
     {"name": "平衡点与动力学性质", "max": 15},
