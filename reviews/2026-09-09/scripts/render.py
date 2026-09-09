@@ -7,6 +7,9 @@ import json,sys
 
 review=Path(__file__).resolve().parents[1];repo=review.parents[1]
 data=json.loads((review/'scores.json').read_text(encoding='utf-8'))
+science=json.loads((review/'science-final/scores.json').read_text(encoding='utf-8'))
+assert data['reviewer_id']==science['reviewer_id']=='codex-gpt-6-astra-xhigh'
+assert data['review_format']==science['review_format']=='10+4'
 rows=data['submissions'];criteria=data['criteria']
 assert len(rows)==7 and len(criteria)==10
 assert len({r['id'] for r in rows})==7
@@ -30,8 +33,10 @@ for filename in ['integrity.json','browser.json','interactions.json','numerical.
 def rank(value,values):return 1+sum(x>value for x in values)
 ordered=sorted(rows,key=lambda r:(-r['final_total'],r['label']))
 for r in ordered:r['rank']=rank(r['final_total'],[x['final_total'] for x in rows])
+assert {r['id'] for r in ordered[:4]}=={r['id'] for r in science['submissions']}
 intro=(
     '## 结果索引\n\n'
+    f'**评审者：`{data["reviewer_id"]}` · 展示格式：10+4 · 单专家样例。**\n\n'
     '已完成 **7 份提交**的独立评阅（2026-09-09）。评分以提交快照 '
     f'[`{data["reviewed_commit"][:7]}`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/{data["reviewed_commit"]}) 为准。'
     '每项 0–10 分、等权求和，再应用原有封顶规则；本轮 7 份均未触发封顶。\n\n'
@@ -40,7 +45,7 @@ intro=(
     f'本次更新接续[先前榜单 `{data["previous_leaderboard_commit"][:7]}`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/{data["previous_leaderboard_commit"]}/README.md#结果索引)，'
     f'及[并行评阅 `{data["parallel_leaderboard_commit"][:7]}`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/{data["parallel_leaderboard_commit"]}/LEADERBOARD.md)。'
     '参赛文件未变；[分数差异与依据](reviews/2026-09-09/METHODS.md#与先前榜单的差异)单独列出，旧版分数仍可追溯。'
-    '当前榜单统一在本 README 展示。\n\n'
+    '该专家的当前榜单统一在本 README 展示；其他专家的结果由上方索引分别收录。\n\n'
     '[评阅方法与限制](reviews/2026-09-09/METHODS.md) · '
     '[逐项评分证据](reviews/2026-09-09/README.md) · '
     '[机器可读评分](reviews/2026-09-09/scores.json) · '
@@ -57,9 +62,17 @@ for i,name in enumerate(criteria):
     vals=[r['scores'][i] for r in rows]
     for r in sorted(rows,key=lambda r:(-r['scores'][i],r['label'])):intro+=f'| {rank(r["scores"][i],vals)} | [{r["label"]}](reviews/2026-09-09/README.md#{r["id"]}) | {r["scores"][i]} |\n'
     intro+='\n'
+intro+='### 前四名纯科学终评（4）\n\n'
+intro+=f'评审者：`{science["reviewer_id"]}`。这是上述综合榜前四名的独立科学评分；[权重、逐项理由与实测证据](reviews/2026-09-09/science-final/README.md)单列。\n\n'
+intro+='| 排名 | 参赛组合 | 科学得分 /100 |\n|---:|---|---:|\n'
+science_rows=sorted(science['submissions'],key=lambda r:(-sum(r['scores']),r['label']))
+science_totals=[sum(r['scores']) for r in science_rows]
+for r in science_rows:intro+=f'| {rank(sum(r["scores"]),science_totals)} | {r["label"]} | **{sum(r["scores"])}** |\n'
+intro+='\n该专家推荐 harnessL-ds-4.1flashmax；97 与 96 的差距较小，科学终评已说明权重敏感性。\n'
 root_readme=(repo/'README.md').read_text(encoding='utf-8');prefix=root_readme.split('## 结果索引')[0]
 assert '## 评分标准（100 分）' in prefix and '## 公平性原则' in prefix
 doc='# 2026-09-09：七份 CR3BP 提交评阅\n\n'
+doc+=f'**评审者：`{data["reviewer_id"]}`。** 本文对应“10+4”中的十项评阅；[配套四强纯科学终评](science-final/README.md)。这是该专家的独立评审样例，不是多专家共识。\n\n'
 doc+='评阅对象为固定提交快照，原始 HTML、ZIP、报告与提交说明均未修改。'
 doc+='[评分方法、实测条件、封顶核验与复现步骤](METHODS.md)；[主榜及十项独立排名](../../README.md#结果索引)。\n\n'
 doc+='评分是单一评阅者依据 README 作出的判断，整数分值不代表统计置信区间。统一测试用于查验事实；没有按原始误差数值机械线性换分，也未把自检条数当成得分。\n\n'
@@ -90,5 +103,5 @@ outputs={repo/'README.md':prefix+intro.rstrip()+'\n',review/'README.md':doc.rstr
 for p,s in outputs.items():
     if '--check' in sys.argv:assert p.read_text(encoding='utf-8')==s,'Generated document is stale: '+str(p)
     else:p.write_text(s,encoding='utf-8',newline='\n')
-print('Validated 7 submissions, 70 scores, 11 rankings, ties, totals, caps and evidence coverage.')
+print('Validated reviewer identity, 10+4 linkage, 7 submissions, 70 scores, 11 comprehensive rankings, ties, totals, caps and evidence coverage.')
 print([(r['rank'],r['label'],r['final_total']) for r in ordered])

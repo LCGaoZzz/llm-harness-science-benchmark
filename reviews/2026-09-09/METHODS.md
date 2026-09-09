@@ -1,6 +1,6 @@
 # 2026-09-09 评阅方法与复现
 
-本轮评阅仓库快照 [`ac5a306be9b29978ad6787903821b4a6a181ff01`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/ac5a306be9b29978ad6787903821b4a6a181ff01) 中的全部 7 份提交，采用该快照 README 的原有 10 项评分和封顶规则。评阅者为本次 Codex 会话，单一评阅、未盲审；其中一个参赛组合也是 Codex，因此公开脚本、实测数据和逐项判断以便第三方复核。
+本轮评阅仓库快照 [`ac5a306be9b29978ad6787903821b4a6a181ff01`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/ac5a306be9b29978ad6787903821b4a6a181ff01) 中的全部 7 份提交，采用该快照 README 的原有 10 项评分和封顶规则。评阅者 ID 为 **`codex-gpt-6-astra-xhigh`**，单一评阅、未盲审；其中一个参赛组合也是 Codex，因此公开脚本、实测数据和逐项判断以便第三方复核。这份十项评阅与[四强纯科学终评](science-final/README.md)共同组成该专家的“10+4”样例，评分不代表其他专家意见。
 
 ## 评分口径
 

@@ -4,6 +4,7 @@ from pathlib import Path
 import numpy as np
 p=Path(__file__).resolve().parent
 data=json.loads((p/'scores.json').read_text(encoding='utf-8'))
+assert data['reviewer_id']=='codex-gpt-6-astra-xhigh' and data['review_format']=='10+4'
 raw=json.loads((p/'results.json').read_text());refs=json.loads((p/'reference.json').read_text())
 byid={s['id']:s for s in raw['submissions']};refid={s['id']:s for s in refs['submissions']}
 assert set(byid)==set(refid)=={s['id'] for s in data['submissions']}=={'ds','gptweb','codex','zwin'}
@@ -18,6 +19,7 @@ def total(s):return sum(s['scores'])
 rows=sorted(data['submissions'],key=lambda s:(-total(s),s['label']))
 def rank(s):return 1+sum(total(t)>total(s) for t in rows)
 text='# 前四名纯科学终评\n\n'
+text+=f'**评审者：`{data["reviewer_id"]}`。** 本文对应“10+4”中的四强科学终评；[配套十项评阅](../README.md)。这是该专家的独立评审样例，不是多专家共识。\n\n'
 text+='**本次选择：harnessL-ds-4.1flashmax，97/100；GPT Web 与 Codex 同为 96/100，并列第二。** zcode Windows 为 91/100。'
 text+='这是在“最终数学、物理与数值结果”口径下的选择，不是沿用或重算原综合榜的工程/视觉分。\n\n'
 text+='## 最终评分\n\n'
