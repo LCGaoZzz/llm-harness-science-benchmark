@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>地月限制性三体问题实验室 · Earth–Moon CR3BP Lab</title>
+<style>
+/*__INLINE_CSS__*/
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>地月限制性三体问题实验室<span class="sub">Earth–Moon CR3BP · rotating frame</span></h1>
+    <div class="grow"></div>
+    <div class="status">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">就绪</span>
+      <span class="badge" id="methodBadge">—</span>
+    </div>
+  </header>
+  <main>
+    <aside class="panel left">
+      <div class="group">
+        <h2>预设轨道</h2>
+        <div class="row wrap" id="presets"></div>
+      </div>
+
+      <div class="group">
+        <h2>积分器</h2>
+        <select id="method"></select>
+        <div class="hint" id="methodBlurb"></div>
+        <div class="row">
+          <label>dt</label>
+          <input type="number" id="dtNum" step="0.0001" min="0.000001" max="0.2">
+        </div>
+        <input type="range" id="dt" min="-6" max="-0.7" step="0.01">
+        <div class="row" id="tolRow">
+          <label>rtol</label>
+          <input type="number" id="rtol" step="1e-1" min="1e-15" max="1e-4">
+        </div>
+        <div class="row" id="gbsKRow">
+          <label>外推行数 k</label>
+          <input type="number" id="gbsK" min="2" max="8" step="1">
+        </div>
+        <div class="row" id="gbsSeqRow">
+          <label>序列</label>
+          <select id="gbsSeq">
+            <option value="bulirsch">Bulirsch (2,4,6,8,12,…)</option>
+            <option value="harmonic">Harmonic (2,4,6,8,10,…)</option>
+          </select>
+        </div>
+        <div class="hint" id="stepHint"></div>
+      </div>
+
+      <div class="group">
+        <h2>初始条件（旋转系，归一化）</h2>
+        <div class="row"><label>x₀</label><input type="number" id="ic-x" step="0.001"></div>
+        <div class="row"><label>y₀</label><input type="number" id="ic-y" step="0.001"></div>
+        <div class="row"><label>z₀</label><input type="number" id="ic-z" step="0.001"></div>
+        <div class="row"><label>vx₀</label><input type="number" id="ic-vx" step="0.001"></div>
+        <div class="row"><label>vy₀</label><input type="number" id="ic-vy" step="0.001"></div>
+        <div class="row"><label>vz₀</label><input type="number" id="ic-vz" step="0.001"></div>
+        <button id="applyIC">应用初始条件并重置</button>
+      </div>
+
+      <div class="group">
+        <h2>运行</h2>
+        <div class="seg">
+          <button id="play" class="primary">▶ 运行</button>
+          <button id="stepBtn">单步</button>
+          <button id="reset">重置</button>
+        </div>
+        <div class="row"><label>速度</label><input type="range" id="speed" min="0" max="3" step="0.05"></div>
+        <div class="hint" id="speedHint"></div>
+      </div>
+
+      <div class="group">
+        <h2>视图</h2>
+        <div class="seg">
+          <button id="zoomIn">＋</button>
+          <button id="zoomOut">－</button>
+          <button id="fit">适配</button>
+          <button id="follow" class="ghost">跟随</button>
+        </div>
+        <div class="row"><label>缩放</label><input type="range" id="zoom" min="-1" max="3" step="0.01"></div>
+        <div class="row">
+          <label style="min-width:auto"><input type="checkbox" id="showZVC" checked> 零速度曲线</label>
+        </div>
+        <div class="row">
+          <label style="min-width:auto"><input type="checkbox" id="showTrail" checked> 轨迹尾迹</label>
+        </div>
+        <div class="row">
+          <label style="min-width:auto"><input type="checkbox" id="showL" checked> 拉格朗日点</label>
+        </div>
+        <div class="hint">滚轮缩放 · 拖拽平移</div>
+      </div>
+    </aside>
+
+    <section class="stage">
+      <canvas id="view"></canvas>
+      <div class="halt" id="halt"></div>
+    </section>
+
+    <aside class="panel right">
+      <div class="group">
+        <h2>实时状态</h2>
+        <div class="kv" id="readout"></div>
+      </div>
+
+      <div class="group">
+        <h2>Jacobi 常数漂移 |ΔC|/|C₀|</h2>
+        <canvas class="spark" id="driftCanvas"></canvas>
+        <div class="kv">
+          <span class="k">当前</span><span class="v" id="driftNow">—</span>
+          <span class="k">本次最大</span><span class="v" id="driftMax">—</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <h2>拉格朗日点（数值求解）</h2>
+        <table class="lp" id="lpTable"></table>
+        <div class="hint" id="lpNote"></div>
+      </div>
+
+      <div class="group">
+        <h2>自检</h2>
+        <button id="runTests" class="primary">运行全部自检</button>
+        <div class="hint" id="testSummary">尚未运行。</div>
+        <div id="testOut"></div>
+      </div>
+    </aside>
+  </main>
+</div>
+<script>
+/*__INLINE_CORE__*/
+</script>
+<script>
+/*__INLINE_UI__*/
+</script>
+</body>
+</html>

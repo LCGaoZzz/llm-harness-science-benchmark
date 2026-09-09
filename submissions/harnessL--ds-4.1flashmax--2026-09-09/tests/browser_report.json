@@ -1,0 +1,231 @@
+{
+  "url": "file:///data/users/lianchong/workspace3/outputs/turn_20260909060823_7f04edadd3c74c7fbb2df231e97604f9/lab.html",
+  "console": [],
+  "page_errors": [],
+  "title": "地月限制性三体问题实验室 · Earth–Moon CR3BP Lab",
+  "lp_table_rows": 6,
+  "method_options": [
+    "gbs",
+    "dopri5",
+    "gbsfix",
+    "ark4",
+    "symadapt",
+    "yoshida4",
+    "yoshida6",
+    "verlet",
+    "rk4"
+  ],
+  "preset_buttons": [
+    "L4 稳定岛 / tadpole",
+    "L1 不稳定鞍点",
+    "绕地轨道",
+    "月球引力辅助"
+  ],
+  "canvas_size": [
+    994,
+    911
+  ],
+  "presets": [
+    {
+      "t": 0.21000000000000002,
+      "x": 0.4980558218378078,
+      "y": 0.8662795911591473,
+      "vx": 0.0021436923026211577,
+      "vy": 0.0022994454723029214,
+      "C": 2.988072899059368,
+      "C0": 2.9880728990593677,
+      "halted": false,
+      "finite": true,
+      "preset_index": 0
+    },
+    {
+      "t": 0.22991999999999996,
+      "x": 0.838225401608911,
+      "y": -4.642517225155982e-05,
+      "vx": 0.0027875881544853535,
+      "vy": -0.0006093051376494069,
+      "C": 3.188352456278343,
+      "C0": 3.1883524562783436,
+      "halted": false,
+      "finite": true,
+      "preset_index": 1
+    },
+    {
+      "t": 0.2200200000000001,
+      "x": 0.0836224790573704,
+      "y": 0.029315020500055314,
+      "vx": -0.8765856889680406,
+      "vy": 2.928779242529907,
+      "C": 10.41416264080473,
+      "C0": 10.414162640804646,
+      "halted": false,
+      "finite": true,
+      "preset_index": 2
+    },
+    {
+      "t": 0.22002000000000002,
+      "x": 0.8488476948737044,
+      "y": 0.029106012551536088,
+      "vx": -0.4785232631420764,
+      "vy": 0.15136932717146048,
+      "C": 2.933958292240985,
+      "C0": 2.9339582922409884,
+      "halted": false,
+      "finite": true,
+      "preset_index": 3
+    }
+  ],
+  "single_step": {
+    "t_before": 0.25998,
+    "t_after": 0.27176496486760726,
+    "advanced": true
+  },
+  "after_reset": {
+    "t": 0,
+    "steps": 0,
+    "halted": false
+  },
+  "method_probe": [
+    {
+      "method": "rk4",
+      "t": 0.001,
+      "finite": true,
+      "C": 2.933943633281835
+    },
+    {
+      "method": "yoshida4",
+      "t": 0.001,
+      "finite": true,
+      "C": 2.934105213096453
+    },
+    {
+      "method": "dopri5",
+      "t": 0,
+      "finite": true,
+      "C": 2.9339582922409884
+    },
+    {
+      "method": "gbs",
+      "t": 0,
+      "finite": true,
+      "C": 2.9339582922409884
+    },
+    {
+      "method": "verlet",
+      "t": 0.001,
+      "finite": true,
+      "C": 2.941851768718096
+    }
+  ],
+  "custom_ic": {
+    "x": 0.6,
+    "y": 0.1,
+    "C0": 3.4559229370184523
+  },
+  "throughput": {
+    "t": 4.599720000000001,
+    "steps": 194,
+    "evals": 7178,
+    "halted": false,
+    "driftMax": 2.972412152259471e-16,
+    "lag": false,
+    "readoutText": "时间 t4.525 TU  ·  19.68 d位置 (x,y,z)0.62330, 0.78825, 0.00000位置 (km)239596, 303004, 0速度 (vx,vy,vz)0.00223, -0.03274, 0.00000速率 |v|0.03282 VU  ·  0.034 km/sr₁ (地心距)1.01249 DU  ·  389201 kmr₂ (月心距)0.86847 DU  ·  333840 kmJacobi C2.988072899C₀2.988072899ΔC / |C₀|1.486e-16步数 / 力评估191 / 7067平均步长0.02369 TU最小步长0.00100 (当前)",
+    "wall_s": 3.01,
+    "fps": 61
+  },
+  "view_ok": {
+    "scale": true
+  },
+  "self_tests": {
+    "summary": "全部通过 14/14 · 92 ms",
+    "rows": [
+      {
+        "status": "PASS",
+        "name": "拉格朗日点梯度残差 max|∇Ω|",
+        "value": "5.55e-16",
+        "detail": "L1..L5: L1=4.44e-16 L2=5.55e-16 L3=4.34e-19 L4=2.21e-16 L5=2.21e-16"
+      },
+      {
+        "status": "PASS",
+        "name": "拉格朗日点 Jacobi 常数",
+        "value": "2.99e+0",
+        "detail": "L1 C=3.188341  L2 C=3.172160  L3 C=3.012147  L4 C=2.987997  L5 C=2.987997  (C_L4 analytic 3-mu+mu^2 = 2.987997)"
+      },
+      {
+        "status": "PASS",
+        "name": "L 点线性稳定性分类",
+        "value": "1.00e+0",
+        "detail": "collinear unstable (λmax>0): true; triangular stable: true; mu=0.012151 < mu_Routh=0.038521"
+      },
+      {
+        "status": "PASS",
+        "name": "步长收敛阶 Verlet (symplectic, 2)",
+        "value": "2.00e+0",
+        "detail": "errors 2.8e-5, 6.9e-6, 1.7e-6, 4.3e-7"
+      },
+      {
+        "status": "PASS",
+        "name": "步长收敛阶 RK4",
+        "value": "3.99e+0",
+        "detail": "errors 3.1e-11, 2.0e-12, 1.3e-13, 1.0e-14"
+      },
+      {
+        "status": "PASS",
+        "name": "步长收敛阶 Yoshida-4 (symplectic, 4)",
+        "value": "4.00e+0",
+        "detail": "errors 7.9e-8, 4.9e-9, 3.1e-10, 1.9e-11"
+      },
+      {
+        "status": "PASS",
+        "name": "步长收敛阶 Yoshida-6 (symplectic, 6)",
+        "value": "5.99e+0",
+        "detail": "errors 4.7e-7, 7.7e-9, 1.2e-10, 1.9e-12"
+      },
+      {
+        "status": "PASS",
+        "name": "GBS 外推单步收敛阶 (k=4 → 名义 8)",
+        "value": "8.95e+0",
+        "detail": "errors 3.0e-9, 6.1e-12, 1.2e-14, 1.0e-15"
+      },
+      {
+        "status": "PASS",
+        "name": "辛算法漂移有界：T=16π / T=4π 的最大漂移之比",
+        "value": "1.15e+0",
+        "detail": "yoshida4 6.09e-11 -> 7.00e-11 (dt=0.01, 4 倍时长)"
+      },
+      {
+        "status": "PASS",
+        "name": "RK4 漂移随时长增长：T=16π / T=4π 的最大漂移之比",
+        "value": "2.30e+0",
+        "detail": "rk4 1.49e-15 -> 3.42e-15 (dt=0.01, 4 倍时长)"
+      },
+      {
+        "status": "PASS",
+        "name": "NaN / 奇点防护",
+        "value": "1.00e+0",
+        "detail": "state at Moon centre=ok; NaN in state=ok; dt = 0 rejected=ok; dt = NaN rejected=ok; dt < 0 rejected=ok; integration at Moon flagged=ok; random ensemble: no NaN escape=ok; flagged runs=8/120"
+      },
+      {
+        "status": "PASS",
+        "name": "轨迹不越出零速度曲线允许区 min(2Ω−C)",
+        "value": "2.18e-8",
+        "detail": "min(2Ω−C) along trajectory (should be v² >= 0)"
+      },
+      {
+        "status": "PASS",
+        "name": "辛算法时间可逆性 |forward∘backward − IC|",
+        "value": "1.07e-14",
+        "detail": "after T=+1.0 then T=-1.0 with dt=±0.01 (backward reached t=-1.000)"
+      },
+      {
+        "status": "PASS",
+        "name": "预设轨道符合动力学预期",
+        "value": "1.00e+0",
+        "detail": "l4=ok (max dist from L4 = 0.1602); l1=ok (final dist from L1 = 0.1481); earth=ok (r1 in [0.1000, 0.1025]); moon=ok (min dist to Moon = 0.0056)"
+      }
+    ]
+  },
+  "screenshot": "/data/users/lianchong/workspace3/outputs/turn_20260909060823_7f04edadd3c74c7fbb2df231e97604f9/tests/lab_screenshot.png",
+  "console_error_count": 0,
+  "console_warning_count": 0
+}

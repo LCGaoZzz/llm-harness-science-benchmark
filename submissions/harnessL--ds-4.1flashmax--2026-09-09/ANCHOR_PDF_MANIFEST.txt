@@ -1,0 +1,17 @@
+# tests/_anchor_sources/ 下第三方参考 PDF 清单（归档阶段新增元数据）
+#
+# 原始会话目录中的 tests/_anchor_sources/ 含 10 个第三方公开文献 PDF（共约 100 MB），
+# 作为外部数值锚点来源。为避免向本公开仓库搬运第三方文档全文，仅归档各 PDF 的
+# .figmeta.json 溯源副件与本清单；PDF 本体保留在原始机器上未做任何改动。
+# 各 PDF 的字节哈希如下，供后续如需补充归档时校验：
+#
+9c5dd8514493beeedb9f504fdbc0f562b3dde5ea0ce4e663961dcb835deab2a  9921560   aas15-615.pdf
+f9b96a3d3ee63812956f501c790802e86462276df2d14bd48e4f04a9fff5a05f  2191119   cmes_overview_em_transfer.pdf
+c9a58888fa3a84d11a7bca048d605549ccf3a0a2b739693161bb70bdce4c24e9  9311289   esa_ari_libration.pdf
+f6b4e19d3accfef9cba7a238f2b70288a31ba1e7b845e1c8ad7664c15c0657f4  222988    gjpam2015_jacobi.pdf
+e7d724774e3a551b7ffd4077112bf838667be9eedc965be6e58df37acfe18b36  23754584  gupta2020_purdue.pdf
+31d48ccc24cce5698df849a599c2505667d4baadd1302d3b5001a1615fbdecbe  3445066   hoelker1971_nomology.pdf
+445d64d8bc8c1a9fba4b77186afe3afc84f413b054b15519abcb68c564359b04  5730      majer_thesis.pdf
+f04abbeb54721af62ad9de3b06126dffa8556d283ee094997441fccac08de7ca  22579575  nasa_survey_20040171140.pdf
+3a6cd22a2d9c2f831abb69b6e75581448a02cf97f33fbc872fc2e491ee0bbbeb  10436219  nasa_tp20220014814.pdf
+0a9d49f45b58c40624a1cbbef6a49d0fb4b0aa5879c1cda9f142dfa71debd593  25647523  pice_polito_thesis.pdf

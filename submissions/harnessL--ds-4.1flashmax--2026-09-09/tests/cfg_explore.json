@@ -1,0 +1,36 @@
+[
+ {
+  "label": "rk4",
+  "method": "rk4"
+ },
+ {
+  "label": "verlet",
+  "method": "verlet"
+ },
+ {
+  "label": "yoshida4",
+  "method": "yoshida4"
+ },
+ {
+  "label": "yoshida6",
+  "method": "yoshida6"
+ },
+ {
+  "label": "dopri5_rtol1e-08",
+  "method": "dopri5",
+  "rtol": 1e-08,
+  "atol": 1e-10
+ },
+ {
+  "label": "dopri5_rtol1e-10",
+  "method": "dopri5",
+  "rtol": 1e-10,
+  "atol": 1e-12
+ },
+ {
+  "label": "dopri5_rtol1e-12",
+  "method": "dopri5",
+  "rtol": 1e-12,
+  "atol": 1e-14
+ }
+]

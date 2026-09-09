@@ -1,0 +1,454 @@
+{
+  "protocol": {
+    "T": 125.66370614359172,
+    "budget": 200000,
+    "ensemble": "heldout",
+    "orbits": [
+      "h_stiffmoon",
+      "h_mid",
+      "h_smooth",
+      "h_stiffearth"
+    ],
+    "metric": "max_t |C(t)-C0|/|C0|, cap 1.0, gate failure = 1.0"
+  },
+  "results": [
+    {
+      "label": "gbs_bulirsch_k5_rtol1e-13",
+      "method": "gbs",
+      "dt": 0.001,
+      "rtol": 1e-13,
+      "evalsPerStep": 24,
+      "order": 8,
+      "symplectic": false,
+      "adaptive": true,
+      "metrics": {
+        "jacobi_drift_rel": 1,
+        "drift_h_stiffmoon": 1.7384708949914128e-12,
+        "drift_h_mid": 2.5511935422619585e-14,
+        "drift_h_smooth": 7.963574900896776e-14,
+        "drift_h_stiffearth": 1,
+        "dt_min": 0.00031922195094157365,
+        "dt_mean": 0.08776790921738671
+      },
+      "jacobi_drift_rel": 1,
+      "failures": 1,
+      "totalEvals": 355311,
+      "wallMs": 61,
+      "perOrbit": [
+        {
+          "id": "h_stiffmoon",
+          "drift": 1.7384708949914128e-12,
+          "gate": "ok",
+          "evals": 39701,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 982,
+          "rejects": 91,
+          "maxR": 22.53525046631113
+        },
+        {
+          "id": "h_mid",
+          "drift": 2.5511935422619585e-14,
+          "gate": "ok",
+          "evals": 34077,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 835,
+          "rejects": 86,
+          "maxR": 2.7389483593733512
+        },
+        {
+          "id": "h_smooth",
+          "drift": 7.963574900896776e-14,
+          "gate": "ok",
+          "evals": 81511,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 1914,
+          "rejects": 289,
+          "maxR": 0.9978955445930308
+        },
+        {
+          "id": "h_stiffearth",
+          "drift": 1,
+          "gate": "incomplete",
+          "evals": 200022,
+          "t": 30.61171633424403,
+          "fracT": 0.24360029855609258,
+          "status": "ok",
+          "steps": 4402,
+          "rejects": 1004,
+          "maxR": 0.3124667965624171
+        }
+      ]
+    },
+    {
+      "label": "gbs_k4_rtol1e-12",
+      "method": "gbs",
+      "dt": 0.001,
+      "rtol": 1e-12,
+      "evalsPerStep": 24,
+      "order": 8,
+      "symplectic": false,
+      "adaptive": true,
+      "metrics": {
+        "jacobi_drift_rel": 1,
+        "drift_h_stiffmoon": 2.6637277538641814e-12,
+        "drift_h_mid": 1.0107893401620165e-13,
+        "drift_h_smooth": 6.662806716508454e-13,
+        "drift_h_stiffearth": 1,
+        "dt_min": 0.00012815372293578637,
+        "dt_mean": 0.041613190502060436
+      },
+      "jacobi_drift_rel": 1,
+      "failures": 1,
+      "totalEvals": 392952,
+      "wallMs": 35,
+      "perOrbit": [
+        {
+          "id": "h_stiffmoon",
+          "drift": 2.6637277538641814e-12,
+          "gate": "ok",
+          "evals": 52872,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 2134,
+          "rejects": 69,
+          "maxR": 22.535229073497643
+        },
+        {
+          "id": "h_mid",
+          "drift": 1.0107893401620165e-13,
+          "gate": "ok",
+          "evals": 43656,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 1752,
+          "rejects": 67,
+          "maxR": 2.739283240226671
+        },
+        {
+          "id": "h_smooth",
+          "drift": 6.662806716508454e-13,
+          "gate": "ok",
+          "evals": 96408,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 3899,
+          "rejects": 118,
+          "maxR": 0.9980719916215324
+        },
+        {
+          "id": "h_stiffearth",
+          "drift": 1,
+          "gate": "incomplete",
+          "evals": 200016,
+          "t": 27.93971232112401,
+          "fracT": 0.22233716622362093,
+          "status": "ok",
+          "steps": 7738,
+          "rejects": 596,
+          "maxR": 0.31251284397185325
+        }
+      ]
+    },
+    {
+      "label": "gbs_bulirsch_k5_rtol1e-12",
+      "method": "gbs",
+      "dt": 0.001,
+      "rtol": 1e-12,
+      "evalsPerStep": 24,
+      "order": 8,
+      "symplectic": false,
+      "adaptive": true,
+      "metrics": {
+        "jacobi_drift_rel": 1,
+        "drift_h_stiffmoon": 1.6109589341280094e-12,
+        "drift_h_mid": 9.366755530798496e-13,
+        "drift_h_smooth": 2.231482341232093e-12,
+        "drift_h_stiffearth": 1,
+        "dt_min": 0.0004176274320590602,
+        "dt_mean": 0.11284581613795691
+      },
+      "jacobi_drift_rel": 1,
+      "failures": 1,
+      "totalEvals": 328153,
+      "wallMs": 23,
+      "perOrbit": [
+        {
+          "id": "h_stiffmoon",
+          "drift": 1.6109589341280094e-12,
+          "gate": "ok",
+          "evals": 32153,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 764,
+          "rejects": 105,
+          "maxR": 22.535196388112944
+        },
+        {
+          "id": "h_mid",
+          "drift": 9.366755530798496e-13,
+          "gate": "ok",
+          "evals": 27232,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 647,
+          "rejects": 89,
+          "maxR": 2.7391892696775786
+        },
+        {
+          "id": "h_smooth",
+          "drift": 2.231482341232093e-12,
+          "gate": "ok",
+          "evals": 68746,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 1500,
+          "rejects": 358,
+          "maxR": 0.9979466252444392
+        },
+        {
+          "id": "h_stiffearth",
+          "drift": 1,
+          "gate": "incomplete",
+          "evals": 200022,
+          "t": 37.45526912484682,
+          "fracT": 0.298059561302831,
+          "status": "ok",
+          "steps": 4208,
+          "rejects": 1198,
+          "maxR": 0.31249579353573126
+        }
+      ]
+    },
+    {
+      "label": "dopri5_rtol1e-12",
+      "method": "dopri5",
+      "dt": 0.001,
+      "rtol": 1e-12,
+      "evalsPerStep": 6,
+      "order": 5,
+      "symplectic": false,
+      "adaptive": true,
+      "metrics": {
+        "jacobi_drift_rel": 1,
+        "drift_h_stiffmoon": 1.5804399149236278e-11,
+        "drift_h_mid": 4.035083963362427e-12,
+        "drift_h_smooth": 3.9507126946450806e-11,
+        "drift_h_stiffearth": 1,
+        "dt_min": 0.000015900159993307103,
+        "dt_mean": 0.006495004098348375
+      },
+      "jacobi_drift_rel": 1,
+      "failures": 1,
+      "totalEvals": 546861,
+      "wallMs": 79,
+      "perOrbit": [
+        {
+          "id": "h_stiffmoon",
+          "drift": 1.5804399149236278e-11,
+          "gate": "ok",
+          "evals": 96089,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 13663,
+          "rejects": 64,
+          "maxR": 22.53248116590479
+        },
+        {
+          "id": "h_mid",
+          "drift": 4.035083963362427e-12,
+          "gate": "ok",
+          "evals": 79723,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 11368,
+          "rejects": 21,
+          "maxR": 2.739291130374836
+        },
+        {
+          "id": "h_smooth",
+          "drift": 3.9507126946450806e-11,
+          "gate": "ok",
+          "evals": 171045,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 24435,
+          "rejects": 0,
+          "maxR": 0.998073852285207
+        },
+        {
+          "id": "h_stiffearth",
+          "drift": 1,
+          "gate": "incomplete",
+          "evals": 200004,
+          "t": 16.710225715354927,
+          "fracT": 0.13297575113900198,
+          "status": "ok",
+          "steps": 28530,
+          "rejects": 42,
+          "maxR": 0.31251648111051183
+        }
+      ]
+    },
+    {
+      "label": "verlet",
+      "method": "verlet",
+      "dt": 0.0012566370614359172,
+      "rtol": null,
+      "evalsPerStep": 2,
+      "order": 2,
+      "symplectic": true,
+      "adaptive": false,
+      "metrics": {
+        "jacobi_drift_rel": 0.034495529073756574,
+        "drift_h_stiffmoon": 0.02535108540203626,
+        "drift_h_mid": 0.005686091681175063,
+        "drift_h_smooth": 0.000028877087515992017,
+        "drift_h_stiffearth": 0.034495529073756574,
+        "dt_min": 2.1225332602625713e-10,
+        "dt_mean": 0.0012566244951909653
+      },
+      "jacobi_drift_rel": 0.034495529073756574,
+      "failures": 0,
+      "totalEvals": 800008,
+      "wallMs": 127,
+      "perOrbit": [
+        {
+          "id": "h_stiffmoon",
+          "drift": 0.02535108540203626,
+          "gate": "ok",
+          "evals": 200002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 100001,
+          "rejects": 0,
+          "maxR": 4.117491226157777
+        },
+        {
+          "id": "h_mid",
+          "drift": 0.005686091681175063,
+          "gate": "ok",
+          "evals": 200002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 100001,
+          "rejects": 0,
+          "maxR": 2.858272657043715
+        },
+        {
+          "id": "h_smooth",
+          "drift": 0.000028877087515992017,
+          "gate": "ok",
+          "evals": 200002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 100001,
+          "rejects": 0,
+          "maxR": 0.9980790934397769
+        },
+        {
+          "id": "h_stiffearth",
+          "drift": 0.034495529073756574,
+          "gate": "ok",
+          "evals": 200002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 100001,
+          "rejects": 0,
+          "maxR": 0.3125224597825795
+        }
+      ]
+    },
+    {
+      "label": "yoshida4",
+      "method": "yoshida4",
+      "dt": 0.0037699111843077513,
+      "rtol": null,
+      "evalsPerStep": 6,
+      "order": 4,
+      "symplectic": true,
+      "adaptive": false,
+      "metrics": {
+        "jacobi_drift_rel": 1,
+        "drift_h_stiffmoon": 1,
+        "drift_h_mid": 8.089731705963306e-9,
+        "drift_h_smooth": 2.425180133569396e-7,
+        "drift_h_stiffearth": 0.06940676819042021,
+        "dt_min": 0.0012566370872519883,
+        "dt_mean": 0.003769854636770836
+      },
+      "jacobi_drift_rel": 1,
+      "failures": 1,
+      "totalEvals": 663174,
+      "wallMs": 50,
+      "perOrbit": [
+        {
+          "id": "h_stiffmoon",
+          "drift": 1,
+          "gate": "impact-moon",
+          "evals": 63162,
+          "t": 39.68585503720343,
+          "fracT": 0.315809999999966,
+          "status": "impact-moon",
+          "steps": 10527,
+          "rejects": 0,
+          "maxR": 0.9824333703951661
+        },
+        {
+          "id": "h_mid",
+          "drift": 8.089731705963306e-9,
+          "gate": "ok",
+          "evals": 200004,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 33334,
+          "rejects": 0,
+          "maxR": 2.739260375586106
+        },
+        {
+          "id": "h_smooth",
+          "drift": 2.425180133569396e-7,
+          "gate": "ok",
+          "evals": 200004,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 33334,
+          "rejects": 0,
+          "maxR": 0.9980809030407697
+        },
+        {
+          "id": "h_stiffearth",
+          "drift": 0.06940676819042021,
+          "gate": "ok",
+          "evals": 200004,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 33334,
+          "rejects": 0,
+          "maxR": 0.316906290119502
+        }
+      ]
+    }
+  ]
+}

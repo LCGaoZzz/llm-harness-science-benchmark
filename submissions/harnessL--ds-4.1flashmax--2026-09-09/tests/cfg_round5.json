@@ -1,0 +1,47 @@
+[
+ {
+  "label": "gbs_bulirsch_k5_rtol1e-13",
+  "method": "gbs",
+  "gbsK": 5,
+  "gbsSeq": "bulirsch",
+  "rtol": 1e-13,
+  "atol": 1e-16
+ },
+ {
+  "label": "gbs_bulirsch_k6_rtol1e-13",
+  "method": "gbs",
+  "gbsK": 6,
+  "gbsSeq": "bulirsch",
+  "rtol": 1e-13,
+  "atol": 1e-16
+ },
+ {
+  "label": "gbs_k5_rtol1e-13",
+  "method": "gbs",
+  "gbsK": 5,
+  "rtol": 1e-13,
+  "atol": 1e-16
+ },
+ {
+  "label": "gbs_k6_rtol1e-13",
+  "method": "gbs",
+  "gbsK": 6,
+  "rtol": 1e-13,
+  "atol": 1e-16
+ },
+ {
+  "label": "gbs_k4_rtol1e-14",
+  "method": "gbs",
+  "gbsK": 4,
+  "rtol": 1e-14,
+  "atol": 1e-17
+ },
+ {
+  "label": "gbs_bulirsch_k4_rtol1e-13",
+  "method": "gbs",
+  "gbsK": 4,
+  "gbsSeq": "bulirsch",
+  "rtol": 1e-13,
+  "atol": 1e-16
+ }
+]

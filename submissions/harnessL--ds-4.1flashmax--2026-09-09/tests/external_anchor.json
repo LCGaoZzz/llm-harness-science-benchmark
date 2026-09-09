@@ -1,0 +1,390 @@
+{
+  "task": "Published numerical values of the Jacobi constant at the Earth-Moon CR3BP libration points L1-L5, with each source's mass ratio mu and the exact C definition used. External anchor set for a numerical experiment.",
+  "generated_utc": "2026-09-09",
+  "workspace": "/data/users/lianchong/workspace3",
+  "output_dir": "/data/users/lianchong/workspace3/outputs/turn_20260909060823_7f04edadd3c74c7fbb2df231e97604f9",
+  "conventions": {
+    "A_Omega_excludes_mu(1-mu)/2": {
+      "Omega": "Omega = 0.5*(x^2+y^2) + (1-mu)/r1 + mu/r2",
+      "C": "C = 2*Omega - v^2 = x^2+y^2 + 2*(1-mu)/r1 + 2*mu/r2 - (xdot^2+ydot^2+zdot^2)",
+      "C_L4_L5": "C_L4 = C_L5 = 3 - mu + mu^2",
+      "sources_using_this": [
+        "S1 AAS 15-615",
+        "S2 Gupta 2020",
+        "S4 de Oliveira 2020",
+        "S5 Pice 2024",
+        "S7 NASA/TP-20220014814",
+        "U1 JPL DESCANSO Vol.12 (index-read)"
+      ]
+    },
+    "B_Omega_includes_mu(1-mu)/2": {
+      "Omega": "Omega = 0.5*(x^2+y^2) + (1-mu)/r1 + mu/r2 + 0.5*mu*(1-mu)   (= Szebehely's pseudo-potential; equivalently Omega = 0.5*[(1-mu)*r1^2 + mu*r2^2] + (1-mu)/r1 + mu/r2)",
+      "C": "C = 2*Omega - v^2  =>  C_B = C_A + mu*(1-mu)  (a pure constant offset)",
+      "C_L4_L5": "C_L4 = C_L5 = 3 exactly, independent of mu",
+      "sources_using_this": [
+        "S3 Hoelker 1971 (NASA TN D-5949)",
+        "S6 Zhang-Yu-Dai 2023 (CMES)",
+        "S8 ESA/ARI 2004",
+        "U2 Majer 2023 (index-read)"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "name": "Isolating blocks as computational tools in the circular restricted three-body problem (AAS 15-615; journal version: Physica D 343:38-50)",
+      "authors": "Rodney L. Anderson, Robert W. Easton, Martin W. Lo",
+      "year": 2015,
+      "doi_or_url": "https://www.colorado.edu/amath/sites/default/files/attached-files/aas15-615.pdf ; journal DOI 10.1016/j.physd.2016.10.004",
+      "mu": 0.012150584270571545,
+      "mu_statement": "stated verbatim: 'The mass parameter for the Earth-Moon system used here mu is = 1.2150584270571545x10^-2'",
+      "definition": "Phi(x,y,z) = 0.5*(x^2+y^2) + U(x,y,z), U = lambda/rho1 + mu/rho2 with lambda = 1-mu; J = 0.5*<qdot,qdot> - Phi(q); J = -C/2, i.e. C = 2*Phi(q) - <qdot,qdot> = x^2+y^2 + 2*(1-mu)/rho1 + 2*mu/rho2 - (xdot^2+ydot^2+zdot^2)",
+      "convention": "A_Omega_excludes_mu(1-mu)/2",
+      "C": {
+        "L1": 3.1883411054012485,
+        "L2": 3.1721604503998044,
+        "L3": 3.012147149342249,
+        "L4": 2.987997052427545,
+        "L5": 2.987997052427545
+      },
+      "evidence_quote": "'The mass parameter for the Earth-Moon system used here mu is = 1.2150584270571545x10^-2.' (p.2) | 'Phi(x,y,z) = 1/2 (x^2+y^2) + U(x,y,z) ... U(x,y,z) = lambda/rho1(x,y,z) + mu/rho2(x,y,z)' (p.2) | 'The Jacobi Integral J = 1/2 <qdot,qdot> - Phi(q) is a constant of motion for this model, and the Jacobi constant is defined by the equation J = -C/2.' (p.2) | 'As a reference, the Jacobi constants computed at each libration point in the Earth-Moon system are CL1 = 3.1883411054012485 CL2 = 3.1721604503998044 CL3 = 3.0121471493422489 CL4 = CL5 = 2.9879970524275450.' (p.3)",
+      "evidence_location": "pp. 2-3 of the AAS 15-615 preprint PDF",
+      "verified": true,
+      "verification_method": "PDF downloaded to tests/_anchor_sources/aas15-615.pdf and read with a PDF reader; all four C values independently reproduced to 15-16 significant digits from the paper's own mu and definition (mpmath, 40 digits).",
+      "caveats": "Conference preprint AAS 15-615; the journal version is Physica D 343 (2017) 38-50.",
+      "C_exact_as_published": {
+        "L1": "3.1883411054012485",
+        "L2": "3.1721604503998044",
+        "L3": "3.0121471493422489",
+        "L4": "2.9879970524275450",
+        "L5": "2.9879970524275450"
+      },
+      "note_on_numeric_field": "The numeric C field below is float64 and rounds L3 to 3.012147149342249; use C_exact_as_published for the verbatim 16-digit strings."
+    },
+    {
+      "id": "S2",
+      "name": "Finding Order in Chaos: Resonant Orbits and Poincare Sections (MSc thesis, Purdue University)",
+      "authors": "Maaninee Gupta (advisor Kathleen C. Howell)",
+      "year": 2020,
+      "doi_or_url": "https://engineering.purdue.edu/people/kathleen.howell.1/Publications/Masters/2020_Gupta.pdf ; DOI 10.25394/pgs.12200837.v1",
+      "mu": 0.0121506,
+      "mu_statement": "Table 4.2 'CR3BP Quantities Corresponding to Relevant Systems' lists Earth-Moon mu = 1.21506x10^-2",
+      "definition": "U* = (1-mu)/d + mu/r + 0.5*(x^2+y^2); C = 2*U* - v^2 (Eq. 2.40). No mu(1-mu)/2 term.",
+      "convention": "A_Omega_excludes_mu(1-mu)/2",
+      "C": {
+        "L1": 3.18834,
+        "L2": 3.17216,
+        "L3": 3.01215,
+        "L4": 2.98799,
+        "L5": 2.98799
+      },
+      "evidence_quote": "'Rearranging the terms in Equation (2.39) results in the following definition of the integration constant C, hereby termed the Jacobi constant: C = 2U* - v^2 (2.40)' (p.16) | 'Table 2.1. Values of Jacobi Constant for Libration Points in the Earth-Moon, Saturn-Titan, and Mars-Deimos Systems. System L1 L2 L3 L4 L5 / Earth-Moon 3.18834 3.17216 3.01215 2.98799 2.98799 / Saturn-Titan 3.01576 3.01545 3.00024 2.99976 2.99976 / Mars-Deimos 3.00001 3.00001 3.00000 2.99999 2.99999' (p.21) | 'Table 4.2. CR3BP Quantities Corresponding to Relevant Systems. System mu ... Earth-Moon 1.21506x10^-2' (p.74)",
+      "evidence_location": "p.16 (Eq. 2.40), p.21 (Table 2.1), p.74 (Table 4.2); PDF pages 29, 34, 87",
+      "verified": true,
+      "verification_method": "PDF downloaded and read; C values reproduce (5 dp) from the thesis's mu = 0.0121506 with its own definition.",
+      "caveats": "C values given to 5 decimal places; the thesis also tabulates Saturn-Titan and Mars-Deimos."
+    },
+    {
+      "id": "S3",
+      "name": "Nomology of Earth-Moon Orbits, C = 4.00 and C = C(L1) (NASA TN D-5949)",
+      "authors": "R. F. Hoelker (NASA Electronics Research Center)",
+      "year": 1970,
+      "doi_or_url": "https://ntrs.nasa.gov/api/citations/19710004582/downloads/19710004582.pdf",
+      "mu": 0.0125,
+      "mu_statement": "report states 'The ratio of the masses is 1:79' and 'a mass ratio mu of 1/80'; with mu = m2/(m1+m2) this is mu = 0.0125 exactly. Independently confirmed: the report's L1 position XR(L1) = 0.8352093934 is reproduced to 11 digits by mu = 0.0125.",
+      "definition": "The report's Jacobi integral equation (Eq. 5) is not legible in the OCR, but its quoted C-levels are only reproducible with the constant-included convention: C = 2*Omega - v^2 with Omega = 0.5*(x^2+y^2) + (1-mu)/r1 + mu/r2 + 0.5*mu*(1-mu). (With mu = 0.0125 the same points give C_L1 = 3.191542 without the constant, far from the quoted 3.20388.)",
+      "convention": "B_Omega_includes_mu(1-mu)/2",
+      "C": {
+        "L1": 3.20388,
+        "L2": 3.1872,
+        "L3": 3.02484,
+        "L4": 3.0,
+        "L5": 3.0
+      },
+      "evidence_quote": "'The mathematical representation of the problem is done by the restricted problem of three bodies with a mass ratio mu of 1/80.' (Summary) | 'The ratio of the masses is 1:79 ...' (p.3) | 'The overall appearance of these \"zero-velocity-curves\" is depicted in Figure 2, for the C-values of 3.30; 3.20388; 3.18720; 3.10; 3.02484; 3.010 and 3.0010.' (p.5) | 'With decrease of the Jacobian constant to C = 3.20388 the terrestrial and lunar regions increase such that they touch each other (see Figure 4). The point of tangency is marked as L1' (p.5) | 'Figure 7 then illustrates the point of C-curve development at which the third gate at L3 starts to open. The corresponding C-value is C = 3.02484.' (p.6) | 'for a value of C = 3.00 these two parts degenerate to a single point each (L4 and L5), which are equilateral to the masses. These two points represent the only stable ones of the five equilibrium points.' (Summary)",
+      "evidence_location": "Summary (p.1) and pp.3-7; PDF pages 3-8",
+      "verified": true,
+      "verification_method": "PDF downloaded from NTRS and read; C(L1) and C(L3) independently reproduced (3.203886 and 3.024840) from mu = 0.0125 under convention B; L1 position reproduced exactly.",
+      "caveats": "The quoted C(L2) = 3.18720 differs by 4.1e-5 from the value recomputed here (3.1872413) - probably a typo/rounding in the 1970 report. The report is a pictorial atlas: L1/L2/L3 values are read from the text describing the zero-velocity-curve gates, not from a C table."
+    },
+    {
+      "id": "S4",
+      "name": "Order-chaos-order and invariant manifolds in the bounded planar Earth-Moon system (Celest. Mech. Dyn. Astron. 132:51)",
+      "authors": "V. M. de Oliveira, P. A. Sousa-Silva, I. L. Caldas",
+      "year": 2020,
+      "doi_or_url": "https://arxiv.org/abs/2006.13111 ; DOI 10.1007/s10569-020-09989-x",
+      "mu": 0.01215,
+      "mu_statement": "stated as 'mu = 1.2150 x 10^-2' (4 significant figures)",
+      "definition": "Omega = 0.5*(x^2+y^2) + (1-mu)/r1 + mu/r2; C = 2*Omega - xdot^2 - ydot^2. No mu(1-mu)/2 term.",
+      "convention": "A_Omega_excludes_mu(1-mu)/2",
+      "C": {
+        "L1": 3.1883,
+        "L2": 3.1722,
+        "L3": null,
+        "L4": null,
+        "L5": null
+      },
+      "evidence_quote": "'For the Earth-Moon system, we have mu = 1.2150 x 10^-2.' | 'Omega = 1/2(x^2 + y^2) + (1-mu)/sqrt((x+mu)^2+y^2) + mu/sqrt((x-(1-mu))^2+y^2)' and 'C = 2Omega - xdot^2 - ydot^2' | 'C1 ~ 3.1883 and C2 ~ 3.1722 are the Jacobi constants at the Lagrangian points L1 and L2, respectively.'",
+      "evidence_location": "full text (ar5iv HTML of arXiv:2006.13111); values quoted in Sec. 2 and the Fig. 1 discussion",
+      "verified": true,
+      "verification_method": "ar5iv HTML full text opened and read; only L1 and L2 values are published (no L3-L5).",
+      "caveats": "mu given to 4 significant figures only; C values to 4 decimal places. Independent corroboration of the 3.1883 / 3.1722 pair."
+    },
+    {
+      "id": "S5",
+      "name": "Low-Thrust Earth-Moon Transfer Trajectories to Stable Distant Retrograde Orbits using Indirect Optimization Method (MSc thesis, Politecnico di Torino)",
+      "authors": "Daniele Pice (supervisor M. Battipede)",
+      "year": 2024,
+      "doi_or_url": "https://webthesis.biblio.polito.it/32315/1/tesi.pdf",
+      "mu": 0.0121486,
+      "mu_statement": "No explicit mu value found in the sections read. mu is IMPLIED by Table 2.2 itself: L4 xi = 0.48785136 = 0.5 - mu => mu = 0.01214864; the C values are consistent with mu = 0.0121485 (C_L4 = 3 - mu + mu^2 = 2.987999). Its Table 2.1 GM values (Earth 3.9860e5, Moon 4.9028e3) would instead give mu = 0.0121506 - a ~2e-6 internal inconsistency.",
+      "definition": "U = (1-mu)/rho13 + mu/rho23 + 0.5*(xi^2+eta^2); C = 2U - V^2 (Eqs. 2.33, 2.38, 2.43). No mu(1-mu)/2 term.",
+      "convention": "A_Omega_excludes_mu(1-mu)/2",
+      "C": {
+        "L1": 3.188326,
+        "L2": 3.172147,
+        "L3": 3.012145,
+        "L4": 2.987999,
+        "L5": 2.987999
+      },
+      "evidence_quote": "'Table 2.2 EM Lagrangian Points positions and Jacobi Constants in the synodic RF. LPs xi eta zeta JC / L1 0.83740242 0.00000000 0.00000000 3.188326 / L2 1.15618808 0.00000000 0.00000000 3.172147 / L3 -1.00506193 0.00000000 0.00000000 3.012145 / L4 0.48785136 0.86602540 0.00000000 2.987999 / L5 0.48785136 -0.86602540 0.00000000 2.987999' (p.27) | 'JC = 2U = 2[(1-mu)/rho13 + mu/rho23] + xi^2 + eta^2' (Eq. 2.43, p.25)",
+      "evidence_location": "p.25 (Eq. 2.43), p.27 (Table 2.2); PDF pages 38, 40",
+      "verified": true,
+      "verification_method": "PDF downloaded and read; C values and the L3/L4/L5 coordinates independently reproduced from mu = 0.01214864.",
+      "caveats": "The L1 and L2 x-coordinates printed in Table 2.2 (0.83740242, 1.15618808) are NOT consistent with its own C values: they imply mu ~ 0.01205, whereas C_L4 = 2.987999 and L4 x = 0.48785136 imply mu ~ 0.0121486. Treat the C column (not the L1/L2 x column) as the anchor. mu is inferred, not stated."
+    },
+    {
+      "id": "S6",
+      "name": "Overview of Earth-Moon Transfer Trajectory Modeling and Design (CMES-Computer Modeling in Engineering & Sciences 135(1))",
+      "authors": "Jiye Zhang, Huichang Yu, Honghua Dai",
+      "year": 2023,
+      "doi_or_url": "https://cdn.techscience.press/ueditor/files/cmes/TSP_CMES-135-1/TSP_CMES_22585/TSP_CMES_22585.pdf ; DOI 10.32604/cmes.2022.022585",
+      "mu": 0.01214,
+      "mu_statement": "stated: 'For the Earth-Moon system, the mass parameter mu = 0.01214.'",
+      "definition": "Omega = 0.5*(X^2+Y^2) + (1-mu)/R1 + mu/R2 + 0.5*mu*(1-mu)  (Eq. 3; the mu(1-mu)/2 term is INCLUDED); C = 2*Omega(X,Y,Z) - (Xdot^2+Ydot^2+Zdot^2) (Eq. 6)",
+      "convention": "B_Omega_includes_mu(1-mu)/2",
+      "C": {
+        "L1": 3.2003,
+        "L2": null,
+        "L3": null,
+        "L4": null,
+        "L5": null
+      },
+      "evidence_quote": "'Omega(X,Y,Z) = 1/2(X^2+Y^2) + (1-mu)/R1 + mu/R2 + 1/2 mu(1-mu)' (Eq. 3) | 'For the Earth-Moon system, the mass parameter mu = 0.01214.' | 'C = 2Omega(X,Y,Z) - (Xdot^2+Ydot^2+Zdot^2)' (Eq. 6) | 'Theoretically, C < CL1 = 3.2003 is enough for an Earth-Moon transfer, with which a spacecraft could target the neck region around the L1 point.' (p.16)",
+      "evidence_location": "p.14 (Eqs. 3, 6 and mu), p.16 (C_L1 = 3.2003); PDF pages 10 and 12",
+      "verified": true,
+      "verification_method": "PDF downloaded and read.",
+      "caveats": "The quoted C_L1 = 3.2003 corresponds to mu ~ 0.01215 under convention B (3.200344); with the paper's own rounded mu = 0.01214 the value is 3.200246 -> 3.2002. So 3.2003 is apparently quoted from the literature rather than recomputed. Only C_L1 is quoted numerically; the paper's Table 2 gives Lagrangian-point positions only."
+    },
+    {
+      "id": "S7",
+      "name": "Astrodynamics Convention and Modeling Reference for Lunar, Cislunar, and Libration Point Orbits (NASA/TP-20220014814, Version 1.1)",
+      "authors": "David Folta, Natasha Bosanac, Ian Elliott, Laurie Mann, Rebecca Mesarch, Jose Rosales",
+      "year": 2022,
+      "doi_or_url": "https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf",
+      "mu": null,
+      "mu_statement": "No numerical mu is given in the Jacobi-constant section; this source is used as an authoritative DEFINITION anchor only.",
+      "definition": "C_J = (x^2+y^2) + 2*(1-mu)/r1 + 2*mu/r2 - (xdot^2+ydot^2+zdot^2)  (Eq. 112). No mu(1-mu)/2 term.",
+      "convention": "A_Omega_excludes_mu(1-mu)/2",
+      "C": {
+        "L1": null,
+        "L2": null,
+        "L3": null,
+        "L4": null,
+        "L5": null
+      },
+      "evidence_quote": "'6.4 Jacobi Constant. In the CR3BP, there exists a constant of motion commonly labeled the Jacobi constant C_J, written as a function of the nondimensional state vector and mass ratio as: C_J = (x^2 + y^2) + 2(1-mu)/r1 + 2mu/r2 - xdot^2 - ydot^2 - zdot^2 (112)' (report p.71; PDF p.76). Sections 6.6-6.8 describe the five equilibrium points qualitatively and give no numerical C table.",
+      "evidence_location": "Sec. 6.4, Eq. 112 (report p.71 / PDF p.76)",
+      "verified": true,
+      "verification_method": "PDF downloaded from NTRS and read.",
+      "caveats": "Definition-only source: no published numeric C values at L1-L5. Useful to settle the definition question for a modern NASA reference."
+    },
+    {
+      "id": "S8",
+      "name": "Assessment of Mission Design Including Utilization of Libration Points and Weak Stability Boundaries (ESA/ARI study report)",
+      "authors": "Franco Bernelli-Zazzera, Francesco Topputo, Mauro Massari (Politecnico di Milano)",
+      "year": 2004,
+      "doi_or_url": "https://www.esa.int/gsp/ACT/doc/ARI/ARI%20Study%20Report/ACT-RPT-MAD-ARI-03-4103b-InterplanetaryHighways-Milano.pdf",
+      "mu": 0.0121409319,
+      "mu_statement": "Table 1.1 lists Earth-Moon mu = 0.0121409319 (with L1 = 0.8369626376, L2 = 1.1556450246)",
+      "definition": "Omega = 0.5*(x^2+y^2) + (1-mu)/r1 + mu/r2 + 0.5*mu*(1-mu)  (Eq. 1.7; term INCLUDED); C = 2*Omega - (xdot^2+ydot^2+zdot^2) (Eq. 1.9)",
+      "convention": "B_Omega_includes_mu(1-mu)/2",
+      "C": {
+        "L1": null,
+        "L2": null,
+        "L3": null,
+        "L4": null,
+        "L5": null
+      },
+      "evidence_quote": "'Omega(x,y,z) = 1/2(x^2+y^2) + (1-mu)/r1 + mu/r2 + 1/2 mu(1-mu) (1.7)' | 'The system has a first integral of motion, called Jacobi integral, equal to: C = 2Omega(x,y,z) - (xdot^2+ydot^2+zdot^2) (1.9)' | 'Table 1.1: Position of the libration points L1 and L2 for some problems in the solar system ... Earth-Moon 0.0121409319 0.8369626376 1.1556450246'",
+      "evidence_location": "Sec. 1.1, Eqs. 1.7 and 1.9 (report pp.9-10 / PDF pp.22-23); Table 1.1 (report p.12 / PDF p.25)",
+      "verified": true,
+      "verification_method": "PDF downloaded and read; both tabulated positions reproduced to 11 digits from mu = 0.0121409319.",
+      "caveats": "Convention anchor: the report uses the mu(1-mu)/2-included form (its Eq. 1.7 cites Szebehely's book). It gives L1/L2 positions only - no C values. Its Earth-Moon mu (0.0121409319) is the 'Barcelona school' value, ~1e-5 below the modern mass-ratio value."
+    }
+  ],
+  "derived_values_not_published": {
+    "warning": "These numbers were computed by me from the definitions verified in the opened sources (conventions A and B above). They are NOT published values and must not be cited as literature anchors; they are given only to quantify how much mu and the convention shift the C values.",
+    "mu_0.0121505856_user_case_a": {
+      "convention_A_excludes": {
+        "L1": 3.18834111766,
+        "L2": 3.17216046089,
+        "L3": 3.01214715067,
+        "L4": 2.98799705113,
+        "L5": 2.98799705113
+      },
+      "convention_B_includes": {
+        "L1": 3.20034406653,
+        "L2": 3.18416340976,
+        "L3": 3.02415009954,
+        "L4": 3.0,
+        "L5": 3.0
+      }
+    },
+    "mu_0.012277471_szebehely_test_problem_value_user_case_b": {
+      "convention_A_excludes": {
+        "L1": 3.18950841737,
+        "L2": 3.17315916583,
+        "L3": 3.01227396009,
+        "L4": 2.98787326529,
+        "L5": 2.98787326529
+      },
+      "convention_B_includes": {
+        "L1": 3.20163515208,
+        "L2": 3.18528590053,
+        "L3": 3.0244006948,
+        "L4": 3.0,
+        "L5": 3.0
+      }
+    },
+    "mu_0.0125_hoelker_1971": {
+      "convention_A_excludes": {
+        "L1": 3.1915424111,
+        "L2": 3.17489750307,
+        "L3": 3.01249635365,
+        "L4": 2.98765625,
+        "L5": 2.98765625
+      },
+      "convention_B_includes": {
+        "L1": 3.2038861611,
+        "L2": 3.18724125307,
+        "L3": 3.02484010365,
+        "L4": 3.0,
+        "L5": 3.0
+      }
+    },
+    "mu_0.0121409319_ESA_ARI_family": {
+      "convention_A_excludes": {
+        "L1": 3.18825208056,
+        "L2": 3.17208425119,
+        "L3": 3.01213750271,
+        "L4": 2.98800647033,
+        "L5": 2.98800647033
+      },
+      "convention_B_includes": {
+        "L1": 3.20024561024,
+        "L2": 3.18407778087,
+        "L3": 3.02413103239,
+        "L4": 3.0,
+        "L5": 3.0
+      }
+    },
+    "shift_between_conventions": {
+      "formula": "C_B - C_A = mu*(1-mu) for every L point (a pure constant offset)",
+      "mu_0.0121505856": 0.01200294887,
+      "mu_0.012277471": 0.01212673471,
+      "mu_0.0125": 0.01234375
+    }
+  },
+  "unverified_sources": [
+    {
+      "id": "U1",
+      "name": "Low-Energy Lunar Trajectory Design (JPL DESCANSO Book Series, Volume 12), Chapter 2 'Methodology', Table 2-4",
+      "authors": "Jeffrey S. Parker, Rodney L. Anderson",
+      "year": 2014,
+      "doi_or_url": "https://descanso.jpl.nasa.gov/monograph/series12/LunarTraj--03Chapter2Methodology.pdf",
+      "mu": 0.0121505843,
+      "mu_statement": "mu not read directly; the table's L4/L5 x-coordinate 0.4878494157 implies mu = 0.5 - x = 0.0121505843.",
+      "definition": "'The Jacobi constant of a spacecraft in the three-body system may be written simply as C = 2U - V^2' (Eq. 2.6); the tabulated values imply Omega excludes mu(1-mu)/2 (C_L4 = 2.98799703 = 3 - mu + mu^2).",
+      "convention": "A_Omega_excludes_mu(1-mu)/2 (inferred)",
+      "C": {
+        "L1": 3.18834129,
+        "L2": 3.1721606,
+        "L3": 3.01214717,
+        "L4": 2.98799703,
+        "L5": 2.98799703
+      },
+      "evidence_quote": "'Table 2-4 The Jacobi constant of each Lagrange point in the Earth-Moon and the Sun-Earth three-body systems, given in normalized coordinates. Lagrange Point Earth-Moon C Sun-Earth C / L1 3.18834129 3.00089794 / L2 3.17216060 3.00089388 / L3 3.01214717 3.00000304 / L4 2.98799703 2.99999696 / L5 2.98799703 2.99999696'",
+      "verified": false,
+      "verification_method": "NOT directly opened: descanso.jpl.nasa.gov is unreachable from this sandbox (curl and the web-fetch tool both time out). The table text above is a verbatim quote returned by a web-search index of the actual PDF.",
+      "caveats": "Values agree with source S1 (AAS 15-615) to 8 decimal places, and the paper's own L4 coordinate implies mu = 0.0121505843. However the 8-digit C values are ~1.5e-7 higher than S1's 16-digit values and are internally inconsistent with its own L4 coordinate at the 8th decimal (they imply mu ~ 0.012150604). Treat as index-read, not opened."
+    },
+    {
+      "id": "U2",
+      "name": "Computation of satellite orbits around asteroids using the ManLab software (MSc thesis, Universite de Liege / Politecnico di Milano), Table 2.1",
+      "authors": "Riccardo Majer",
+      "year": 2023,
+      "doi_or_url": "https://matheo.uliege.be/bitstream/2268.2/18326/4/Thesis_Majer%20.pdf ; https://www.politesi.polimi.it/handle/10589/208692",
+      "mu": null,
+      "mu_statement": "mu not read. The table's L4 x = 0.4878 (4 dp) is consistent with mu ~ 0.01215.",
+      "definition": "J = 2(T - U), J + C = 0, C = 2U with U = (1-mu)/r1 + mu/r2 + mu(1-mu)/2 (constant INCLUDED). C_L4 = 3.0000 confirms this convention.",
+      "convention": "B_Omega_includes_mu(1-mu)/2",
+      "C": {
+        "L1": 3.2003,
+        "L2": 3.1842,
+        "L3": 3.0241,
+        "L4": 3.0,
+        "L5": 3.5
+      },
+      "evidence_quote": "'Tab. 2.1 Equilibrium points coordinates and respective Jacobi constant of Earth-Moon system.' with rows '1 0.8369 0 0 3.2003', '2 1.1557 0 0 3.1842', '3 -1.0051 0 0 3.0241', '4 0.4878 0.8660 0 3.0000', '5 0.4878 -0.8660 0 3.5000'; and 'C = 2U (2.7)'.",
+      "verified": false,
+      "verification_method": "NOT directly opened: both matheo.uliege.be and politesi.polimi.it block/timeout from this sandbox. The text above is a verbatim quote returned by a web-search index of the actual PDF.",
+      "caveats": "The L5 row reads C = 3.5000 in the indexed text, almost certainly a typo for 3.0000 (L4 and L5 must share the same C). The L1/L2/L3 values are exactly source S1's values plus mu(1-mu) = 0.0120, i.e. the same system in convention B. Good independent example of the convention shift, but index-read only."
+    },
+    {
+      "id": "U3",
+      "name": "Theory of Orbits: The Restricted Problem of Three Bodies (Academic Press) - Appendix IV 'Values of the Jacobian constant', p.226",
+      "authors": "Victor Szebehely",
+      "year": 1967,
+      "doi_or_url": "https://archive.org/details/theoryoforbitsre0000szeb (lending-restricted); NTRS record https://ntrs.nasa.gov/citations/19670055303 ; publisher TOC preview https://api.pageplace.de/preview/DT0400.9780323143462_A23647674/preview-9780323143462_A23647674.pdf",
+      "mu": null,
+      "mu_statement": "The value mu = 0.012277471 commonly attributed to the Earth-Moon system in textbook/test-problem settings could NOT be verified against Szebehely's own table (book text not accessible).",
+      "definition": "Not read. The publisher's table of contents confirms the book contains 'Appendix IV. Values of the Jacobian constant' (p.226), and Ch.4 covers curves of zero velocity and libration points. Szebehely's pseudo-potential is the convention-B form, as cited by source S8 (ESA report, Eq. 1.7 cites Szebehely).",
+      "convention": "B_Omega_includes_mu(1-mu)/2 (inferred from secondary citations, not read directly)",
+      "C": {
+        "L1": null,
+        "L2": null,
+        "L3": null,
+        "L4": null,
+        "L5": null
+      },
+      "evidence_quote": "Publisher TOC: 'Appendix IV. Values of the Jacobian constant 226' (read from the Elsevier/pageplace front-matter preview). No C values could be read.",
+      "verified": false,
+      "verification_method": "NOT opened: archive.org is unreachable from this sandbox and the book is lending-restricted; the Google Books API is also unreachable. Only the front matter/TOC was read.",
+      "caveats": "Do NOT quote Szebehely C values from memory. The frequently cited mu = 0.012277471 is the Arenstorf/test-problem Earth-Moon value used by e.g. Hairer/Norsett/Wanner and Philip Sharp's CCR3B test set (both verified as sources using that mu, but neither publishes C at L1-L5). Derived values for that mu are given above and are clearly marked as not published."
+    },
+    {
+      "id": "U4",
+      "name": "Analytical Expressions of the Jacobi Constants C_J1,2,3 for the Planar Restricted Three-Body Problem (Global Journal of Pure and Applied Mathematics 11(1):9-15)",
+      "authors": "M. A. Sharaf, Z. A. Mominkhan",
+      "year": 2015,
+      "doi_or_url": "https://mail.ripublication.com/gjpam%202015/gjpamv11n1_02.pdf",
+      "mu": null,
+      "mu_statement": "no numerical mu; the paper gives power series in mu",
+      "definition": "C_J = x^2 + y^2 + 2*(mu1/r1 + mu2/r2) (Eq. 5.2) - written WITHOUT the -v^2 term (zero-velocity form) and without mu(1-mu)/2. At equilibrium points (v = 0) it agrees with convention A.",
+      "convention": "A-like (zero-velocity form; no v^2 term, no constant)",
+      "C": {
+        "L1": null,
+        "L2": null,
+        "L3": null,
+        "L4": null,
+        "L5": null
+      },
+      "evidence_quote": "'C_J = x^2 + y^2 + 2(mu1/r1 + mu2/r2) (5.2)' with 'mu1 + mu2 = 1 (5.3)'; the paper derives series for C_J1, C_J2, C_J3 and gives no numerical table.",
+      "verified": true,
+      "verification_method": "PDF downloaded and read (8 pages).",
+      "caveats": "Definition/series paper only - no published numbers for a specific mu; included because it documents yet another way the C formula is written (no -v^2 term)."
+    }
+  ],
+  "notes": "SUMMARY AND DIFFERENCES. (1) Two conventions dominate. Convention A (Omega = 0.5(x^2+y^2)+(1-mu)/r1+mu/r2, C = 2*Omega - v^2) gives C_L4 = C_L5 = 3 - mu + mu^2 (about 2.9880 for Earth-Moon) and is used by AAS 15-615/Physica D, Gupta 2020, de Oliveira 2020, Pice 2024, NASA/TP-20220014814 and (by its numbers) the JPL DESCANSO volume. Convention B (Omega additionally contains +0.5*mu*(1-mu), i.e. Szebehely's pseudo-potential) shifts every C by exactly +mu*(1-mu) and makes C_L4 = C_L5 = 3 exactly; it is used by Hoelker 1971 (NASA TN D-5949), the ESA/ARI 2004 report, the CMES 2023 review and the Majer thesis. The convention offset (~0.0120 for the modern Earth-Moon mu, ~0.0123 for mu = 0.0125) is roughly 100x larger than any mu-induced difference - always record the convention. (2) mu values actually used by the verified sources: 0.012150584270571545 (AAS 15-615, 16 digits); 0.0121506 (Gupta 2020); 0.0121500 (de Oliveira 2020, 4 s.f.); ~0.0121486 implied (Pice 2024); 0.01214 (CMES 2023, rounded); 0.0121409319 (ESA/ARI 2004); 0.0125 = 1/80 (Hoelker 1971). The commonly quoted 0.0121505856 and 0.012277471 are NOT the mu of any of the verified numerical tables: 0.0121505856 reproduces the AAS/Gupta values to ~1e-7, while 0.012277471 is the classical Arenstorf test-problem value and would shift C_L1 by +1.17e-3 and C_L4 by -1.24e-4 (convention A). (3) Effect of mu on the anchor values (convention A): C_L4 = 3-mu+mu^2 is 2.9879971 (mu = 0.0121506), 2.9879990 (mu = 0.0121486), 2.9880065 (mu = 0.0121409319), 2.9878733 (mu = 0.012277471) and 2.9876563 (mu = 0.0125) - i.e. the 4th-5th decimal moves. (4) Rounding/typo-level differences among sources: AAS 15-615 vs Gupta 2020 agree to 5 dp; JPL DESCANSO's 8-digit values are ~1.5e-7 above AAS's 16-digit values and are internally inconsistent with its own L4 coordinate (which implies mu = 0.0121505843) at the 8th decimal; Hoelker's C(L2) = 3.18720 is 4.1e-5 below the recomputed 3.1872413 (likely a typo); the Pice thesis's L1/L2 x-coordinates are inconsistent with its own C values; the CMES review quotes C_L1 = 3.2003 while stating mu = 0.01214 (that value matches mu ~ 0.01215). (5) RECOMMENDED ANCHOR for a numerical experiment: use S1 (AAS 15-615) as the primary anchor because it states mu to 16 digits, states its definition unambiguously, and its four C values were independently reproduced here to 15-16 significant digits; cross-check with S2 (Gupta 2020) and, if a NASA/JPL anchor is required, with U1 (JPL DESCANSO Table 2-4) - noting that U1 is index-read only. If the experiment uses mu = 0.012277471 (Szebehely/Arenstorf), there is no published L1-L5 C table for that mu that I could verify; use the derived values above and say explicitly that they are computed, not published. (6) Do not mix sources across conventions without shifting by mu*(1-mu)."
+}

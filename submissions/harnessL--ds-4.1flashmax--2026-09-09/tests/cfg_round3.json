@@ -1,0 +1,52 @@
+[
+ {
+  "label": "gbs_k3_rtol1e-12",
+  "method": "gbs",
+  "gbsK": 3,
+  "rtol": 1e-12,
+  "atol": 1e-15
+ },
+ {
+  "label": "gbs_k7_rtol1e-12",
+  "method": "gbs",
+  "gbsK": 7,
+  "rtol": 1e-12,
+  "atol": 1e-15
+ },
+ {
+  "label": "gbsfix_k4",
+  "method": "gbsfix",
+  "gbsK": 4,
+  "evalsPerStep": 24
+ },
+ {
+  "label": "gbsfix_k5",
+  "method": "gbsfix",
+  "gbsK": 5,
+  "evalsPerStep": 35
+ },
+ {
+  "label": "ark4_rtol1e-10",
+  "method": "ark4",
+  "rtol": 1e-10,
+  "atol": 1e-13
+ },
+ {
+  "label": "ark4_rtol1e-12",
+  "method": "ark4",
+  "rtol": 1e-12,
+  "atol": 1e-15
+ },
+ {
+  "label": "symadapt_rtol1e-10",
+  "method": "symadapt",
+  "rtol": 1e-10,
+  "atol": 1e-13
+ },
+ {
+  "label": "symadapt_rtol1e-12",
+  "method": "symadapt",
+  "rtol": 1e-12,
+  "atol": 1e-15
+ }
+]

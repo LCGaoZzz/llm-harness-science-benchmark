@@ -1,0 +1,103 @@
+{
+  "protocol": {
+    "T": 125.66370614359172,
+    "budget": 200000,
+    "ensemble": "core",
+    "orbits": [
+      "l4_small",
+      "halo_l2",
+      "tadpole",
+      "dro_0p5",
+      "moonflyby"
+    ],
+    "metric": "max_t |C(t)-C0|/|C0|, cap 1.0, gate failure = 1.0"
+  },
+  "results": [
+    {
+      "label": "shipped_default",
+      "method": "gbs",
+      "dt": 0.001,
+      "rtol": 1e-13,
+      "evalsPerStep": 24,
+      "order": 8,
+      "symplectic": false,
+      "adaptive": true,
+      "metrics": {
+        "jacobi_drift_rel": 1.7589884840565916e-12,
+        "drift_l4_small": 2.9724688462261537e-16,
+        "drift_halo_l2": 1.7589884840565916e-12,
+        "drift_tadpole": 4.90291860171224e-14,
+        "drift_dro_0p5": 1,
+        "drift_moonflyby": 1.487886499379811e-13,
+        "dt_min": 0.00029770079715772907,
+        "dt_mean": 0.13456706808098273
+      },
+      "jacobi_drift_rel": 1.7589884840565916e-12,
+      "failures": 1,
+      "totalEvals": 343064,
+      "wallMs": 64,
+      "perOrbit": [
+        {
+          "id": "l4_small",
+          "drift": 2.9724688462261537e-16,
+          "gate": "ok",
+          "evals": 19869,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 536,
+          "rejects": 1,
+          "maxR": 1.0150830419363737
+        },
+        {
+          "id": "halo_l2",
+          "drift": 1.7589884840565916e-12,
+          "gate": "ok",
+          "evals": 23088,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 612,
+          "rejects": 12,
+          "maxR": 18.54913098046066
+        },
+        {
+          "id": "tadpole",
+          "drift": 4.90291860171224e-14,
+          "gate": "ok",
+          "evals": 60310,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 1421,
+          "rejects": 209,
+          "maxR": 1.3655991915695906
+        },
+        {
+          "id": "dro_0p5",
+          "drift": 1,
+          "gate": "incomplete",
+          "evals": 200022,
+          "t": 46.36668842872115,
+          "fracT": 0.3689743829116378,
+          "status": "ok",
+          "steps": 4185,
+          "rejects": 1221,
+          "maxR": 0.5237396383920819
+        },
+        {
+          "id": "moonflyby",
+          "drift": 1.487886499379811e-13,
+          "gate": "ok",
+          "evals": 39775,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 941,
+          "rejects": 134,
+          "maxR": 2.1633224786430727
+        }
+      ]
+    }
+  ]
+}

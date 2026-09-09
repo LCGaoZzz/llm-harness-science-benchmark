@@ -1,0 +1,200 @@
+{
+  "mu": 0.012150585609624,
+  "tests": [
+    {
+      "id": "lagrange-residual",
+      "name": "拉格朗日点梯度残差 max|∇Ω|",
+      "value": 5.551115123125783e-16,
+      "threshold": 1e-10,
+      "pass": true,
+      "detail": "L1..L5: L1=4.44e-16 L2=5.55e-16 L3=4.34e-19 L4=2.21e-16 L5=2.21e-16",
+      "unit": ""
+    },
+    {
+      "id": "lagrange-C",
+      "name": "拉格朗日点 Jacobi 常数",
+      "value": 2.9879970511210328,
+      "threshold": 3,
+      "pass": true,
+      "detail": "L1 C=3.188341  L2 C=3.172160  L3 C=3.012147  L4 C=2.987997  L5 C=2.987997  (C_L4 analytic 3-mu+mu^2 = 2.987997)",
+      "unit": ""
+    },
+    {
+      "id": "lagrange-stability",
+      "name": "L 点线性稳定性分类",
+      "value": 1,
+      "threshold": 1,
+      "pass": true,
+      "detail": "collinear unstable (λmax>0): true; triangular stable: true; mu=0.012151 < mu_Routh=0.038521",
+      "unit": "bool"
+    },
+    {
+      "id": "order-verlet",
+      "name": "步长收敛阶 Verlet (symplectic, 2)",
+      "value": 1.9999998918917303,
+      "threshold": 2,
+      "pass": true,
+      "detail": "errors 2.8e-5, 6.9e-6, 1.7e-6, 4.3e-7",
+      "unit": ""
+    },
+    {
+      "id": "order-rk4",
+      "name": "步长收敛阶 RK4",
+      "value": 3.9935943423050784,
+      "threshold": 4,
+      "pass": true,
+      "detail": "errors 3.1e-11, 2.0e-12, 1.3e-13, 1.0e-14",
+      "unit": ""
+    },
+    {
+      "id": "order-yoshida4",
+      "name": "步长收敛阶 Yoshida-4 (symplectic, 4)",
+      "value": 4.0012732526560155,
+      "threshold": 4,
+      "pass": true,
+      "detail": "errors 7.9e-8, 4.9e-9, 3.1e-10, 1.9e-11",
+      "unit": ""
+    },
+    {
+      "id": "order-yoshida6",
+      "name": "步长收敛阶 Yoshida-6 (symplectic, 6)",
+      "value": 5.994178753718925,
+      "threshold": 6,
+      "pass": true,
+      "detail": "errors 4.7e-7, 7.7e-9, 1.2e-10, 1.9e-12",
+      "unit": ""
+    },
+    {
+      "id": "order-gbs",
+      "name": "GBS 外推单步收敛阶 (k=4 → 名义 8)",
+      "value": 8.952004413431727,
+      "threshold": 8,
+      "pass": true,
+      "detail": "errors 3.0e-9, 6.1e-12, 1.2e-14, 1.0e-15",
+      "unit": ""
+    },
+    {
+      "id": "conservation-bounded",
+      "name": "辛算法漂移有界：T=16π / T=4π 的最大漂移之比",
+      "value": 1.1496800987765181,
+      "threshold": 1.5,
+      "pass": true,
+      "detail": "yoshida4 6.09e-11 -> 7.00e-11 (dt=0.01, 4 倍时长)",
+      "unit": "ratio"
+    },
+    {
+      "id": "conservation-secular",
+      "name": "RK4 漂移随时长增长：T=16π / T=4π 的最大漂移之比",
+      "value": 2.3000000000000003,
+      "threshold": 1.5,
+      "pass": true,
+      "detail": "rk4 1.49e-15 -> 3.42e-15 (dt=0.01, 4 倍时长)",
+      "unit": "ratio"
+    },
+    {
+      "id": "nan-guard",
+      "name": "NaN / 奇点防护",
+      "value": 1,
+      "threshold": 1,
+      "pass": true,
+      "detail": "state at Moon centre=ok; NaN in state=ok; dt = 0 rejected=ok; dt = NaN rejected=ok; dt < 0 rejected=ok; integration at Moon flagged=ok; random ensemble: no NaN escape=ok; flagged runs=8/120",
+      "unit": "bool"
+    },
+    {
+      "id": "zvc-allowed",
+      "name": "轨迹不越出零速度曲线允许区 min(2Ω−C)",
+      "value": 2.179765079546314e-8,
+      "threshold": -1e-9,
+      "pass": true,
+      "detail": "min(2Ω−C) along trajectory (should be v² >= 0)",
+      "unit": ""
+    },
+    {
+      "id": "reversibility",
+      "name": "辛算法时间可逆性 |forward∘backward − IC|",
+      "value": 1.0658141036401503e-14,
+      "threshold": 1e-9,
+      "pass": true,
+      "detail": "after T=+1.0 then T=-1.0 with dt=±0.01 (backward reached t=-1.000)",
+      "unit": ""
+    },
+    {
+      "id": "presets",
+      "name": "预设轨道符合动力学预期",
+      "value": 1,
+      "threshold": 1,
+      "pass": true,
+      "detail": "l4=ok (max dist from L4 = 0.1602); l1=ok (final dist from L1 = 0.1481); earth=ok (r1 in [0.1000, 0.1025]); moon=ok (min dist to Moon = 0.0056)",
+      "unit": "bool"
+    }
+  ],
+  "orders": {
+    "verlet": {
+      "order": 1.9999998918917303,
+      "errs": [
+        0.0000275213085165725,
+        0.000006880330173594101,
+        0.0000017200826722928164,
+        4.300207446759907e-7
+      ],
+      "dts": [
+        0.01,
+        0.005,
+        0.0025,
+        0.00125
+      ]
+    },
+    "rk4": {
+      "order": 3.9935943423050784,
+      "errs": [
+        3.124496841810931e-11,
+        1.961500406544303e-12,
+        1.258958215455408e-13,
+        1.0179357357031904e-14
+      ],
+      "dts": [
+        0.02,
+        0.01,
+        0.005,
+        0.0025
+      ]
+    },
+    "yoshida4": {
+      "order": 4.0012732526560155,
+      "errs": [
+        7.857170292516202e-8,
+        4.911337451313225e-9,
+        3.0702107869928774e-10,
+        1.9171889770186468e-11
+      ],
+      "dts": [
+        0.02,
+        0.01,
+        0.005,
+        0.0025
+      ]
+    },
+    "yoshida6": {
+      "order": 5.994178753718925,
+      "errs": [
+        4.692808758220701e-7,
+        7.69417473830969e-9,
+        1.2070755159299118e-10,
+        1.908025820673842e-12
+      ],
+      "dts": [
+        0.15,
+        0.075,
+        0.0375,
+        0.01875
+      ]
+    }
+  },
+  "summary": {
+    "passed": 14,
+    "failed": 0,
+    "total": 14
+  },
+  "pass": true,
+  "generated_at": "2026-09-09T07:31:43.162Z"
+}

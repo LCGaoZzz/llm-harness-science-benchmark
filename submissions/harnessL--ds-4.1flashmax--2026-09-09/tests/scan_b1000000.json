@@ -1,0 +1,541 @@
+{
+  "protocol": {
+    "T": 125.66370614359172,
+    "budget": 1000000,
+    "orbits": [
+      "l4_small",
+      "halo_l2",
+      "tadpole",
+      "dro_0p5",
+      "moonflyby"
+    ],
+    "metric": "max_t |C(t)-C0|/|C0|, cap 1.0, gate failure = 1.0"
+  },
+  "results": [
+    {
+      "label": "rk4",
+      "method": "rk4",
+      "dt": 0.0005026548245743669,
+      "rtol": null,
+      "evalsPerStep": 4,
+      "order": 4,
+      "symplectic": false,
+      "jacobi_drift_rel": 0.04094687623092504,
+      "failures": 0,
+      "totalEvals": 5000020,
+      "wallMs": 506,
+      "perOrbit": [
+        {
+          "id": "l4_small",
+          "drift": 1.0403640961791538e-15,
+          "gate": "ok",
+          "evals": 1000004,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 250001,
+          "rejects": 0,
+          "maxR": 1.0151793966819511
+        },
+        {
+          "id": "halo_l2",
+          "drift": 7.707577901410476e-12,
+          "gate": "ok",
+          "evals": 1000004,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 250001,
+          "rejects": 0,
+          "maxR": 18.549136275380874
+        },
+        {
+          "id": "tadpole",
+          "drift": 4.178629721494457e-8,
+          "gate": "ok",
+          "evals": 1000004,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 250001,
+          "rejects": 0,
+          "maxR": 1.3661607396777902
+        },
+        {
+          "id": "dro_0p5",
+          "drift": 0.04094687623092504,
+          "gate": "ok",
+          "evals": 1000004,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 250001,
+          "rejects": 0,
+          "maxR": 0.5229390321271326
+        },
+        {
+          "id": "moonflyby",
+          "drift": 0.0000018562524989011803,
+          "gate": "ok",
+          "evals": 1000004,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 250001,
+          "rejects": 0,
+          "maxR": 7.270490589801564
+        }
+      ]
+    },
+    {
+      "label": "verlet",
+      "method": "verlet",
+      "dt": 0.0002513274122871834,
+      "rtol": null,
+      "evalsPerStep": 2,
+      "order": 2,
+      "symplectic": true,
+      "jacobi_drift_rel": 1,
+      "failures": 1,
+      "totalEvals": 4573986,
+      "wallMs": 735,
+      "perOrbit": [
+        {
+          "id": "l4_small",
+          "drift": 1.706564217636321e-10,
+          "gate": "ok",
+          "evals": 1000002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 500001,
+          "rejects": 0,
+          "maxR": 1.0151794315824663
+        },
+        {
+          "id": "halo_l2",
+          "drift": 9.976639310667237e-9,
+          "gate": "ok",
+          "evals": 1000002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 500001,
+          "rejects": 0,
+          "maxR": 18.549164528619148
+        },
+        {
+          "id": "tadpole",
+          "drift": 0.00011679824579517566,
+          "gate": "ok",
+          "evals": 1000002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 500001,
+          "rejects": 0,
+          "maxR": 1.3661626031784928
+        },
+        {
+          "id": "dro_0p5",
+          "drift": 0.027989170552310712,
+          "gate": "ok",
+          "evals": 1000002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 500001,
+          "rejects": 0,
+          "maxR": 0.5239466531149526
+        },
+        {
+          "id": "moonflyby",
+          "drift": 1,
+          "gate": "impact-moon",
+          "evals": 573978,
+          "t": 72.12820272468267,
+          "fracT": 0.5739779999983781,
+          "status": "impact-moon",
+          "steps": 286989,
+          "rejects": 0,
+          "maxR": 1.9865549509058054
+        }
+      ]
+    },
+    {
+      "label": "yoshida4",
+      "method": "yoshida4",
+      "dt": 0.0007539822368615503,
+      "rtol": null,
+      "evalsPerStep": 6,
+      "order": 4,
+      "symplectic": true,
+      "jacobi_drift_rel": 0.013593869799667093,
+      "failures": 0,
+      "totalEvals": 5000010,
+      "wallMs": 365,
+      "perOrbit": [
+        {
+          "id": "l4_small",
+          "drift": 1.9321047500469998e-14,
+          "gate": "ok",
+          "evals": 1000002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 166667,
+          "rejects": 0,
+          "maxR": 1.0151793966814313
+        },
+        {
+          "id": "halo_l2",
+          "drift": 4.072941614292617e-11,
+          "gate": "ok",
+          "evals": 1000002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 166667,
+          "rejects": 0,
+          "maxR": 18.549136278992506
+        },
+        {
+          "id": "tadpole",
+          "drift": 0.000022293677282302156,
+          "gate": "ok",
+          "evals": 1000002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 166667,
+          "rejects": 0,
+          "maxR": 4.133985315560735
+        },
+        {
+          "id": "dro_0p5",
+          "drift": 0.013593869799667093,
+          "gate": "ok",
+          "evals": 1000002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 166667,
+          "rejects": 0,
+          "maxR": 0.5239100628266604
+        },
+        {
+          "id": "moonflyby",
+          "drift": 8.886137188986424e-8,
+          "gate": "ok",
+          "evals": 1000002,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 166667,
+          "rejects": 0,
+          "maxR": 3.556409706346257
+        }
+      ]
+    },
+    {
+      "label": "yoshida6",
+      "method": "yoshida6",
+      "dt": 0.001759291886010284,
+      "rtol": null,
+      "evalsPerStep": 14,
+      "order": 6,
+      "symplectic": true,
+      "jacobi_drift_rel": 1,
+      "failures": 1,
+      "totalEvals": 4722704,
+      "wallMs": 154,
+      "perOrbit": [
+        {
+          "id": "l4_small",
+          "drift": 3.1210922885374613e-15,
+          "gate": "ok",
+          "evals": 1000006,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 71429,
+          "rejects": 0,
+          "maxR": 1.015179396681752
+        },
+        {
+          "id": "halo_l2",
+          "drift": 9.081061508410578e-12,
+          "gate": "ok",
+          "evals": 1000006,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 71429,
+          "rejects": 0,
+          "maxR": 18.549136275004997
+        },
+        {
+          "id": "tadpole",
+          "drift": 0.000003379389580665131,
+          "gate": "ok",
+          "evals": 1000006,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 71429,
+          "rejects": 0,
+          "maxR": 1.3661607307472714
+        },
+        {
+          "id": "dro_0p5",
+          "drift": 0.08139683140836639,
+          "gate": "ok",
+          "evals": 1000006,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 71429,
+          "rejects": 0,
+          "maxR": 0.5395366782796026
+        },
+        {
+          "id": "moonflyby",
+          "drift": 1,
+          "gate": "impact-moon",
+          "evals": 722680,
+          "t": 90.81464715574424,
+          "fracT": 0.7226799999991514,
+          "status": "impact-moon",
+          "steps": 51620,
+          "rejects": 0,
+          "maxR": 1.9672065508552632
+        }
+      ]
+    },
+    {
+      "label": "dopri5_rtol1e-08",
+      "method": "dopri5",
+      "dt": 0.001,
+      "rtol": 1e-8,
+      "evalsPerStep": 6,
+      "order": 5,
+      "symplectic": false,
+      "jacobi_drift_rel": 1,
+      "failures": 1,
+      "totalEvals": 216419,
+      "wallMs": 36,
+      "perOrbit": [
+        {
+          "id": "l4_small",
+          "drift": 4.0408187365925264e-11,
+          "gate": "ok",
+          "evals": 7035,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 1003,
+          "rejects": 2,
+          "maxR": 1.0151759682188866
+        },
+        {
+          "id": "halo_l2",
+          "drift": 2.7964206279077153e-7,
+          "gate": "ok",
+          "evals": 11557,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 1506,
+          "rejects": 145,
+          "maxR": 18.54912918985476
+        },
+        {
+          "id": "tadpole",
+          "drift": 7.628348165400083e-8,
+          "gate": "ok",
+          "evals": 21672,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 2910,
+          "rejects": 186,
+          "maxR": 1.3661607194407206
+        },
+        {
+          "id": "dro_0p5",
+          "drift": 0.0000035665370535637416,
+          "gate": "ok",
+          "evals": 162064,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 20167,
+          "rejects": 2985,
+          "maxR": 0.5238707144865384
+        },
+        {
+          "id": "moonflyby",
+          "drift": 1,
+          "gate": "impact-moon",
+          "evals": 14091,
+          "t": 114.72880601285645,
+          "fracT": 0.9129828295988635,
+          "status": "impact-moon",
+          "steps": 1849,
+          "rejects": 164,
+          "maxR": 1.9670195870627896
+        }
+      ]
+    },
+    {
+      "label": "dopri5_rtol1e-10",
+      "method": "dopri5",
+      "dt": 0.001,
+      "rtol": 1e-10,
+      "evalsPerStep": 6,
+      "order": 5,
+      "symplectic": false,
+      "jacobi_drift_rel": 1.3819974452464824e-7,
+      "failures": 0,
+      "totalEvals": 489993,
+      "wallMs": 46,
+      "perOrbit": [
+        {
+          "id": "l4_small",
+          "drift": 4.0960620700996395e-13,
+          "gate": "ok",
+          "evals": 17696,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 2528,
+          "rejects": 0,
+          "maxR": 1.0151767250628179
+        },
+        {
+          "id": "halo_l2",
+          "drift": 2.7645383415228586e-9,
+          "gate": "ok",
+          "evals": 27643,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 3833,
+          "rejects": 116,
+          "maxR": 18.549136203497174
+        },
+        {
+          "id": "tadpole",
+          "drift": 1.507840466731472e-9,
+          "gate": "ok",
+          "evals": 51821,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 7369,
+          "rejects": 34,
+          "maxR": 1.3661606980308083
+        },
+        {
+          "id": "dro_0p5",
+          "drift": 1.3819974452464824e-7,
+          "gate": "ok",
+          "evals": 358589,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 50512,
+          "rejects": 715,
+          "maxR": 0.5239570793090328
+        },
+        {
+          "id": "moonflyby",
+          "drift": 4.014908086348865e-10,
+          "gate": "ok",
+          "evals": 34244,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 4849,
+          "rejects": 43,
+          "maxR": 1.9672032141311508
+        }
+      ]
+    },
+    {
+      "label": "dopri5_rtol1e-12",
+      "method": "dopri5",
+      "dt": 0.001,
+      "rtol": 1e-12,
+      "evalsPerStep": 6,
+      "order": 5,
+      "symplectic": false,
+      "jacobi_drift_rel": 1.655216637565253e-9,
+      "failures": 0,
+      "totalEvals": 1232861,
+      "wallMs": 103,
+      "perOrbit": [
+        {
+          "id": "l4_small",
+          "drift": 4.161456384716615e-15,
+          "gate": "ok",
+          "evals": 44506,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 6358,
+          "rejects": 0,
+          "maxR": 1.015179325997173
+        },
+        {
+          "id": "halo_l2",
+          "drift": 2.5589181029480285e-11,
+          "gate": "ok",
+          "evals": 68922,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 9728,
+          "rejects": 118,
+          "maxR": 18.549136266678534
+        },
+        {
+          "id": "tadpole",
+          "drift": 1.586941035412387e-11,
+          "gate": "ok",
+          "evals": 130473,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 18637,
+          "rejects": 2,
+          "maxR": 1.3661590117125075
+        },
+        {
+          "id": "dro_0p5",
+          "drift": 1.655216637565253e-9,
+          "gate": "ok",
+          "evals": 895062,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 127570,
+          "rejects": 296,
+          "maxR": 0.5239559844759478
+        },
+        {
+          "id": "moonflyby",
+          "drift": 7.07571009018393e-12,
+          "gate": "ok",
+          "evals": 93898,
+          "t": 125.66370614359172,
+          "fracT": 1,
+          "status": "ok",
+          "steps": 13409,
+          "rejects": 5,
+          "maxR": 1.967211936308274
+        }
+      ]
+    }
+  ]
+}
