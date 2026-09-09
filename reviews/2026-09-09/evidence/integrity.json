@@ -1,0 +1,68 @@
+{
+  "commit": "ac5a306be9b29978ad6787903821b4a6a181ff01",
+  "submissions": [
+    {
+      "submission": "codex--6astra-xhigh--2026-09-09",
+      "verifiedManifestFiles": 83,
+      "allManifestHashesMatch": true,
+      "entry": "index.html",
+      "entryBytes": 45137,
+      "entrySHA256": "03f3b6c7011d7f2c757cd2265bf664256f86c8135cb5d1ae33862630cd67af92",
+      "zipMember": null
+    },
+    {
+      "submission": "gptweb--gpt-6pro--2026-09-09",
+      "verifiedManifestFiles": 2,
+      "allManifestHashesMatch": true,
+      "entry": "earth_moon_lab.html",
+      "entryBytes": 76771,
+      "entrySHA256": "e47703cc377ef47a5c1b3f356bcdbac2b555946e0e95c598b9197fe4a5ed8a75",
+      "zipMember": null
+    },
+    {
+      "submission": "harnessL--ds-4.1flashmax--2026-09-09",
+      "verifiedManifestFiles": 76,
+      "allManifestHashesMatch": true,
+      "entry": "lab.html",
+      "entryBytes": 81352,
+      "entrySHA256": "2092ed57f0bf0b21f9aff27e72de0f01e1098ecf49885f667cc844b90f692bb6",
+      "zipMember": null
+    },
+    {
+      "submission": "harnessL--qwen-3.8flashxhigh--2026-09-09",
+      "verifiedManifestFiles": 5,
+      "allManifestHashesMatch": true,
+      "entry": "cr3bp_lab.html",
+      "entryBytes": 26407,
+      "entrySHA256": "c496e3bde81beb685d321e3e2aefbaa6949a0846c0d4634e3603f389fd4663eb",
+      "zipMember": null
+    },
+    {
+      "submission": "kimiweb--k3swarm-max--2026-09-09",
+      "verifiedManifestFiles": 1,
+      "allManifestHashesMatch": true,
+      "entry": "index.html",
+      "entryBytes": 32632,
+      "entrySHA256": "4ef48f6019bb7bd8e6bfde44b8189155d1e859cb8ef951645de4491161d001ba",
+      "zipMember": "cr3bp-lab/index.html"
+    },
+    {
+      "submission": "zcode--glm-5.3max--2026-09-09",
+      "verifiedManifestFiles": 7,
+      "allManifestHashesMatch": true,
+      "entry": "index.html",
+      "entryBytes": 54274,
+      "entrySHA256": "760b0f6e0cdee3028313adf5af875e4b1b69a83342757ea3622db87a5163d906",
+      "zipMember": null
+    },
+    {
+      "submission": "zcode--glm-5.3maxlinux--2026-09-09",
+      "verifiedManifestFiles": 8,
+      "allManifestHashesMatch": true,
+      "entry": "index.html",
+      "entryBytes": 56198,
+      "entrySHA256": "fe76f3a5dec68e4a6c921793af74750b6bacaddab3401220f0dc2ab981d0e65a",
+      "zipMember": null
+    }
+  ]
+}

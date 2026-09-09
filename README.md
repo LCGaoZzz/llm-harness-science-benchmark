@@ -66,30 +66,144 @@ submissions/<harness>--<model>--<date>/
 
 ## 结果索引
 
-截至 2026-09-09，首批 7 位参赛者的全流程自动化实测与代码深度审阅已全部完成。评阅严格基于本仓库 10 项评分细则（各项满分 10 分，总分 100 分），经由 Headless Chromium 独立实机运行、控制台报错截获、数值自检重跑、辛几何性质及守恒量实测复核。
+已完成 **7 份提交**的独立评阅（2026-09-09）。评分以提交快照 [`ac5a306`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/ac5a306be9b29978ad6787903821b4a6a181ff01) 为准。每项 0–10 分、等权求和，再应用原有封顶规则；本轮 7 份均未触发封顶。
 
-### 综合得分总榜
+**同分并列，使用竞赛排名（如 1、2、2、4）；表内同分条目的显示顺序不代表先后。** 这些是本次产物的评分，不能据此推断模型总体能力。生成环境、迭代轮数及提示词完整性不完全一致；详见各原始提交说明。
 
-| 排名 | Harness | Model | Date | 综合得分 | 提交目录 | 核心特性与评注 |
-|---:|---|---|---|---:|---|---|
-| **1** | `harnessL` | `ds-4.1flashmax` | 2026-09-09 | **98.0** | [`submissions/harnessL--ds-4.1flashmax--2026-09-09`](submissions/harnessL--ds-4.1flashmax--2026-09-09/) | **体系最完备**：实现 GBS 外推（k=4–12）/ 辛 Verlet / Yoshida-4 / Yoshida-6 / 隐式中点 / DOPRI5 全谱系积分器，长时轨道漂移压至 1.76e-12，配有 65 项自动化测试仪器与 15k 字复现报告 |
-| **1** | `gptweb` | `gpt-6pro` | 2026-09-09 | **98.0** | [`submissions/gptweb--gpt-6pro--2026-09-09`](submissions/gptweb--gpt-6pro--2026-09-09/) | **数值与可视化双峰**：SY4 辛积分带严格 Coriolis 旋量分裂与有限差分辛 Defect 检验矩阵，双 Canvas 实时 Jacobi 漂移图谱，旋转系/质心惯性系双速率 HUD |
-| **3** | `Codex desktop` | `6astra-xhigh` | 2026-09-09 | **97.5** | [`submissions/codex--6astra-xhigh--2026-09-09`](submissions/codex--6astra-xhigh--2026-09-09/) | **战役迭代标杆**：4 阶正则 Yoshida 辛积分器，JPL 外部锚点极低误差校验，双 Canvas 优雅科研可视化，23 项全绿自动化自检与 83 份完整过程台账 |
-| **4** | `zcode (Linux)` | `glm-5.3maxlinux` | 2026-09-09 | **96.0** | [`submissions/zcode--glm-5.3maxlinux--2026-09-09`](submissions/zcode--glm-5.3maxlinux--2026-09-09/) | **自主闭环验证**：二级 Gauss–Legendre 4 阶隐式辛积分（GL4），实测 300 TU 漂移恒定有界无增长，双速度 HUD，平滑 marching squares ZVC |
-| **5** | `zcode (Win)` | `glm-5.3max` | 2026-09-09 | **95.5** | [`submissions/zcode--glm-5.3max--2026-09-09`](submissions/zcode--glm-5.3max--2026-09-09/) | **算法数学严谨**：4×4 解析 Hessian 隐式中点牛顿迭代法，二分+牛顿双求根交叉验证，3 层撞击/逃逸/NaN 防护，20 项结构化自检表格 |
-| **6** | `kimiweb` | `k3swarm-max` | 2026-09-09 | **87.5** | [`submissions/kimiweb--k3swarm-max--2026-09-09`](submissions/kimiweb--k3swarm-max--2026-09-09/) | 精确 Coriolis 旋量 Verlet 辛分裂，牛顿法拉格朗日点求根，500 TU 辛守恒有界振荡检验，代码结构精简清晰，缺少惯性系与双图联动 |
-| **7** | `harnessL` | `qwen-3.8flashxhigh` | 2026-09-09 | **79.5** | [`submissions/harnessL--qwen-3.8flashxhigh--2026-09-09`](submissions/harnessL--qwen-3.8flashxhigh--2026-09-09/) | 基础功能与 UI 完整，但第二积分器采用显式自适应 DOPRI5（非辛/非几何），定点隐式中点在近天体区易发散（自检 T4b 遇险），缺少长期辛守恒能力 |
+本次更新接续[先前榜单 `53010a4`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/53010a454316d39a1c2cb8c76747a685d80c8674/README.md#结果索引)，参赛文件未变；[分数差异与依据](reviews/2026-09-09/METHODS.md#与先前榜单的差异)单独列出，旧版分数仍可追溯。
 
-*(注：两名 98.0 并列第一，按字典序排列；所有 7 个提交均独立运行成功，均未触发封顶扣分规则。)*
+[评阅方法与限制](reviews/2026-09-09/METHODS.md) · [逐项评分证据](reviews/2026-09-09/README.md) · [机器可读评分](reviews/2026-09-09/scores.json) · [实测记录与截图](reviews/2026-09-09/evidence/)
 
-### 10 项细分得分总览
+### 总排名
 
-| 提交选手 | 1.物理模型 | 2.数学方程 | 3.单位坐标 | 4.拉格朗日点 | 5.数值积分器 | 6.收敛精度 | 7.守恒表现 | 8.稳定边界 | 9.工程质量 | 10.科学可视 | 总分 |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **ds-4.1flashmax** | 10.0 | 10.0 | 8.5 | 10.0 | 10.0 | 10.0 | 10.0 | 10.0 | 10.0 | 9.5 | **98.0** |
-| **gpt-6pro** | 10.0 | 10.0 | 10.0 | 10.0 | 10.0 | 9.5 | 9.5 | 9.5 | 9.5 | 10.0 | **98.0** |
-| **6astra-xhigh** | 10.0 | 10.0 | 9.5 | 10.0 | 10.0 | 9.5 | 9.5 | 9.5 | 9.5 | 10.0 | **97.5** |
-| **glm-5.3maxlinux** | 10.0 | 9.5 | 10.0 | 9.5 | 9.5 | 9.5 | 9.5 | 9.5 | 9.5 | 9.5 | **96.0** |
-| **glm-5.3max** | 10.0 | 9.5 | 9.0 | 10.0 | 9.5 | 9.5 | 9.0 | 10.0 | 9.5 | 9.5 | **95.5** |
-| **k3swarm-max** | 9.5 | 9.5 | 7.5 | 9.0 | 8.5 | 9.0 | 8.5 | 9.0 | 8.5 | 8.5 | **87.5** |
-| **qwen-3.8flashxhigh**| 9.5 | 9.5 | 7.0 | 9.0 | 5.5 | 9.0 | 7.5 | 7.5 | 7.5 | 7.5 | **79.5** |
+| 排名 | 参赛组合 | 原始合计 /100 | 封顶 | 最终得分 /100 | 评阅 |
+|---:|---|---:|---|---:|---|
+| 1 | [gptweb-gpt-6pro](submissions/gptweb--gpt-6pro--2026-09-09/) | 98 | 无 | **98** | [逐项证据](reviews/2026-09-09/README.md#gptweb) |
+| 2 | [codex-6astra-xhigh](submissions/codex--6astra-xhigh--2026-09-09/) | 95 | 无 | **95** | [逐项证据](reviews/2026-09-09/README.md#codex) |
+| 3 | [zcode-glm-5.3max](submissions/zcode--glm-5.3max--2026-09-09/) | 88 | 无 | **88** | [逐项证据](reviews/2026-09-09/README.md#zwin) |
+| 4 | [harnessL-ds-4.1flashmax](submissions/harnessL--ds-4.1flashmax--2026-09-09/) | 85 | 无 | **85** | [逐项证据](reviews/2026-09-09/README.md#ds) |
+| 5 | [zcode-glm-5.3maxlinux](submissions/zcode--glm-5.3maxlinux--2026-09-09/) | 83 | 无 | **83** | [逐项证据](reviews/2026-09-09/README.md#zlinux) |
+| 6 | [harnessL-qwen-3.8flashxhigh](submissions/harnessL--qwen-3.8flashxhigh--2026-09-09/) | 74 | 无 | **74** | [逐项证据](reviews/2026-09-09/README.md#qwen) |
+| 7 | [kimiweb-k3swarm-max](submissions/kimiweb--k3swarm-max--2026-09-09/) | 72 | 无 | **72** | [逐项证据](reviews/2026-09-09/README.md#kimi) |
+
+### 10 个单项排名
+
+#### 1. 物理模型
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 10 |
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 10 |
+| 1 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 10 |
+| 1 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 10 |
+| 1 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 10 |
+| 1 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 10 |
+| 7 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 9 |
+
+#### 2. 数学方程
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 10 |
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 10 |
+| 1 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 10 |
+| 1 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 10 |
+| 5 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 9 |
+| 5 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 9 |
+| 5 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 9 |
+
+#### 3. 单位与坐标
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 10 |
+| 2 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 8 |
+| 3 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 7 |
+| 4 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 6 |
+| 4 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 6 |
+| 4 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 6 |
+| 7 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 5 |
+
+#### 4. 拉格朗日点
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 10 |
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 10 |
+| 1 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 10 |
+| 1 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 10 |
+| 1 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 10 |
+| 1 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 10 |
+| 1 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 10 |
+
+#### 5. 数值积分器
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 10 |
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 10 |
+| 1 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 10 |
+| 4 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 9 |
+| 4 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 9 |
+| 6 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 8 |
+| 7 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 6 |
+
+#### 6. 收敛与精度
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 10 |
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 10 |
+| 3 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 9 |
+| 3 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 9 |
+| 5 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 8 |
+| 6 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 7 |
+| 6 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 7 |
+
+#### 7. 守恒量表现
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 10 |
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 10 |
+| 1 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 10 |
+| 1 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 10 |
+| 5 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 9 |
+| 6 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 8 |
+| 6 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 8 |
+
+#### 8. 稳定性与边界
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 9 |
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 9 |
+| 3 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 6 |
+| 3 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 6 |
+| 3 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 6 |
+| 6 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 4 |
+| 6 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 4 |
+
+#### 9. 验证与工程质量
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 10 |
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 10 |
+| 3 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 9 |
+| 4 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 8 |
+| 4 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 8 |
+| 6 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 7 |
+| 7 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 6 |
+
+#### 10. 交互与科学可视化
+
+| 排名 | 参赛组合 | 得分 /10 |
+|---:|---|---:|
+| 1 | [gptweb-gpt-6pro](reviews/2026-09-09/README.md#gptweb) | 9 |
+| 2 | [codex-6astra-xhigh](reviews/2026-09-09/README.md#codex) | 8 |
+| 2 | [zcode-glm-5.3max](reviews/2026-09-09/README.md#zwin) | 8 |
+| 2 | [zcode-glm-5.3maxlinux](reviews/2026-09-09/README.md#zlinux) | 8 |
+| 5 | [harnessL-ds-4.1flashmax](reviews/2026-09-09/README.md#ds) | 7 |
+| 5 | [kimiweb-k3swarm-max](reviews/2026-09-09/README.md#kimi) | 7 |
+| 7 | [harnessL-qwen-3.8flashxhigh](reviews/2026-09-09/README.md#qwen) | 5 |
