@@ -1,0 +1,5 @@
+submissions/**/.*/
+submissions/**/session/
+submissions/**/verification/ledger*
+submissions/**/verification/theories-*
+submissions/**/verification/status-*

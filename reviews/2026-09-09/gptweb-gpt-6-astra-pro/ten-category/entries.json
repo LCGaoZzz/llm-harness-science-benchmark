@@ -17,7 +17,7 @@
   "harnessL_qwen-3.8flashxhigh": {
     "submission": "harnessL--qwen-3.8flashxhigh--2026-09-09",
     "html": "inputs/harnessL_qwen-3.8flashxhigh.html",
-    "sha256": "c496e3bde81beb685d321e3e2aefbaa6949a0846c0d4634e3603f389fd4663eb"
+    "sha256": "44211720570fa9ef149419ebc23a2658da34436c020c6c7f11ae773ef35ab96b"
   },
   "kimiweb_k3swarm-max": {
     "submission": "kimiweb--k3swarm-max--2026-09-09",

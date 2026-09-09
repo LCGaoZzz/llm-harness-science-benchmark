@@ -19,7 +19,7 @@
       "source": "index.html",
       "final": 100,
       "rank": 1,
-      "notes": "L1–L5 与评审真值差 ≤1.1e-15；辛映射 Jacobian 1.5e-10；提示词带战役模式前缀（已披露，Harness 条件差异）；单位取 JPL 示例系统（DU=389703.26 km），全场唯一读数离群者。"
+      "notes": "L1–L5 与评审真值差 ≤1.1e-15；辛映射 Jacobian 1.5e-10；单位取 JPL 示例系统（DU=389703.26 km），全场唯一读数离群者。"
     },
     {
       "id": "gptweb",

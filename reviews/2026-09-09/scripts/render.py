@@ -45,7 +45,7 @@ intro=(
     f'本次更新接续[先前榜单 `{data["previous_leaderboard_commit"][:7]}`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/{data["previous_leaderboard_commit"]}/README.md#结果索引)，'
     f'及[并行评阅 `{data["parallel_leaderboard_commit"][:7]}`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/{data["parallel_leaderboard_commit"]}/LEADERBOARD.md)。'
     '参赛文件未变；[分数差异与依据](reviews/2026-09-09/METHODS.md#与先前榜单的差异)单独列出，旧版分数仍可追溯。'
-    '该专家的当前榜单统一在本 README 展示；其他专家的结果由上方索引分别收录。\n\n'
+    '完整榜单保存在本专家评分页；各专家卡片在仓库首页分别展示。\n\n'
     '[评阅方法与限制](reviews/2026-09-09/METHODS.md) · '
     '[逐项评分证据](reviews/2026-09-09/README.md) · '
     '[机器可读评分](reviews/2026-09-09/scores.json) · '
@@ -69,20 +69,13 @@ science_rows=sorted(science['submissions'],key=lambda r:(-sum(r['scores']),r['la
 science_totals=[sum(r['scores']) for r in science_rows]
 for r in science_rows:intro+=f'| {rank(sum(r["scores"]),science_totals)} | {r["label"]} | **{sum(r["scores"])}** |\n'
 intro+='\n该专家推荐 harnessL-ds-4.1flashmax；97 与 96 的差距较小，科学终评已说明权重敏感性。\n'
-root_readme=(repo/'README.md').read_text(encoding='utf-8')
-start=f'<!-- BEGIN REVIEW {data["reviewer_id"]} -->'
-end=f'<!-- END REVIEW {data["reviewer_id"]} -->'
-assert root_readme.count(start)==root_readme.count(end)==1, 'Expected one owned reviewer block.'
-prefix,remaining=root_readme.split(start,1)
-old_block,suffix=remaining.split(end,1)
-assert '## 评分标准（100 分）' in prefix and '## 公平性原则' in prefix
 archive=intro.replace('](submissions/','](../../../submissions/').replace('](reviews/2026-09-09/','](../')
-archive=archive.replace('该专家的当前榜单统一在本 README 展示；其他专家的结果由上方索引分别收录。','本文件保存该专家的完整 10+4 样例；其他专家见[仓库评审索引](../../../README.md)。')
+archive=archive.replace('完整榜单保存在本专家评分页；各专家卡片在仓库首页分别展示。','本文件保存该专家的完整 10+4 样例；其他专家见[仓库评审索引](../../../README.md)。')
 archive=f'# {data["reviewer_id"]}：10+4 评审样例\n\n'+archive
 doc='# 2026-09-09：七份 CR3BP 提交评阅\n\n'
 doc+=f'**评审者：`{data["reviewer_id"]}`。** 本文对应“10+4”中的十项评阅；[配套四强纯科学终评](science-final/README.md)。这是该专家的独立评审样例，不是多专家共识。\n\n'
-doc+='评阅对象为固定提交快照，原始 HTML、ZIP、报告与提交说明均未修改。'
-doc+='[评分方法、实测条件、封顶核验与复现步骤](METHODS.md)；[主榜及十项独立排名](../../README.md#结果索引)。\n\n'
+doc+='评阅基于注明的提交快照；当前公开资料的整理范围见[公开资料说明](../../PUBLIC_DATA.md)。'
+doc+='[评分方法、实测条件、封顶核验与复现步骤](METHODS.md)；[主榜及十项独立排名](codex-gpt-6-astra-xhigh/README.md)。\n\n'
 doc+='评分是单一评阅者依据 README 作出的判断，整数分值不代表统计置信区间。统一测试用于查验事实；没有按原始误差数值机械线性换分，也未把自检条数当成得分。\n\n'
 doc+='## 得分矩阵\n\n| 排名 | 组合 | '+' | '.join(f'{i+1}' for i in range(10))+' | 合计 |\n|---:|---|'+'---:|'*11+'\n'
 for r in ordered:doc+=f'| {r["rank"]} | [{r["label"]}](#{r["id"]}) | '+' | '.join(map(str,r['scores']))+f' | **{r["final_total"]}** |\n'
@@ -108,7 +101,6 @@ for r in ordered:
     doc+=f'\n原始合计 **{r["raw_total"]}**；封顶规则：**无**；最终 **{r["final_total"]}**；总榜第 **{r["rank"]}**。\n\n'
     doc+=f'原始实测可按 `id="{r["id"]}"` 查阅 [数值结果](evidence/numerical.json)、[独立参考](evidence/reference.json)、[自检/控制台](evidence/browser.json)、[控件与边界](evidence/interactions.json)。\n\n'
 outputs={
-    repo/'README.md':prefix+start+'\n'+intro.rstrip()+'\n'+end+suffix,
     review/'README.md':doc.rstrip()+'\n',
     review/data['reviewer_id']/'README.md':archive.rstrip()+'\n',
 }

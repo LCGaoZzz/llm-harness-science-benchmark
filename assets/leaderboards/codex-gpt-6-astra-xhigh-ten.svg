@@ -1,0 +1,59 @@
+<svg font-family="Segoe UI, Microsoft YaHei, Arial, sans-serif" xmlns="http://www.w3.org/2000/svg" width="600" height="660" viewBox="0 0 600 660" role="img" aria-labelledby="title desc">
+<title id="title">codex-gpt-6-astra-xhigh · 十项综合榜</title>
+<desc id="desc">第 1 名 gptweb-gpt-6pro，98 / 100；第 2 名 codex-6astra-xhigh，95 / 100；第 3 名 zcode-glm-5.3max，88 / 100；第 4 名 harnessL-ds-4.1flashmax，85 / 100；第 5 名 zcode-glm-5.3maxlinux，83 / 100；第 6 名 harnessL-qwen-3.8flashxhigh，74 / 100；第 7 名 kimiweb-k3swarm-max，72 / 100</desc>
+<rect x="1" y="1" width="598" height="658" rx="24" fill="#FFFFFF" stroke="#DDE3EC" stroke-width="2"/>
+<path d="M25 1 H575 Q599 1 599 25 V144 H1 V25 Q1 1 25 1Z" fill="#101C32"/>
+<rect x="28" y="29" width="4" height="24" rx="2" fill="#2563EB"/>
+<text x="44" y="48" fill="#DCE5F6" font-size="19" font-weight="600">codex-gpt-6-astra-xhigh</text>
+<text x="28" y="106" fill="#FFFFFF" font-size="33" font-weight="700">十项综合榜</text>
+<rect x="480" y="70" width="89" height="50" rx="13" fill="#2563EB"/>
+<text x="524" y="105" fill="#FFFFFF" font-size="31" font-weight="700" text-anchor="middle">10</text>
+<text x="28" y="177" fill="#7C879A" font-size="15" letter-spacing="2">排名</text>
+<text x="99" y="177" fill="#7C879A" font-size="15" letter-spacing="2">参赛作品</text>
+<text x="566" y="177" fill="#7C879A" font-size="15" text-anchor="end">评分 /100</text>
+<rect x="18" y="197" width="564" height="53" rx="11" fill="#EFF6FF"/>
+<rect x="29" y="207.5" width="38" height="32" rx="9" fill="#2563EB"/>
+<text x="48" y="229.5" text-anchor="middle" fill="#FFFFFF" font-size="20" font-weight="700">1</text>
+<text x="99" y="220.5" fill="#14233B" font-size="22" font-weight="600">GPT Web</text>
+<text x="99" y="240.5" fill="#7C879A" font-size="15">gpt-6pro</text>
+<text x="565" y="233.5" text-anchor="end" fill="#2563EB" font-size="31" font-weight="700">98</text>
+<rect x="18" y="253" width="564" height="53" rx="11" fill="#FFFFFF"/>
+<rect x="29" y="263.5" width="38" height="32" rx="9" fill="#EAEFF6"/>
+<text x="48" y="285.5" text-anchor="middle" fill="#617087" font-size="20" font-weight="700">2</text>
+<text x="99" y="276.5" fill="#14233B" font-size="22" font-weight="600">Codex</text>
+<text x="99" y="296.5" fill="#7C879A" font-size="15">6astra-xhigh</text>
+<text x="565" y="289.5" text-anchor="end" fill="#22314B" font-size="31" font-weight="700">95</text>
+<rect x="18" y="309" width="564" height="53" rx="11" fill="#F8FAFD"/>
+<rect x="29" y="319.5" width="38" height="32" rx="9" fill="#EAEFF6"/>
+<text x="48" y="341.5" text-anchor="middle" fill="#617087" font-size="20" font-weight="700">3</text>
+<text x="99" y="332.5" fill="#14233B" font-size="22" font-weight="600">ZCode · Windows</text>
+<text x="99" y="352.5" fill="#7C879A" font-size="15">glm-5.3max</text>
+<text x="565" y="345.5" text-anchor="end" fill="#22314B" font-size="31" font-weight="700">88</text>
+<rect x="18" y="365" width="564" height="53" rx="11" fill="#FFFFFF"/>
+<rect x="29" y="375.5" width="38" height="32" rx="9" fill="#EAEFF6"/>
+<text x="48" y="397.5" text-anchor="middle" fill="#617087" font-size="20" font-weight="700">4</text>
+<text x="99" y="388.5" fill="#14233B" font-size="22" font-weight="600">HarnessL · DeepSeek</text>
+<text x="99" y="408.5" fill="#7C879A" font-size="15">ds-4.1flashmax</text>
+<text x="565" y="401.5" text-anchor="end" fill="#22314B" font-size="31" font-weight="700">85</text>
+<rect x="18" y="421" width="564" height="53" rx="11" fill="#F8FAFD"/>
+<rect x="29" y="431.5" width="38" height="32" rx="9" fill="#EAEFF6"/>
+<text x="48" y="453.5" text-anchor="middle" fill="#617087" font-size="20" font-weight="700">5</text>
+<text x="99" y="444.5" fill="#14233B" font-size="22" font-weight="600">ZCode · Linux</text>
+<text x="99" y="464.5" fill="#7C879A" font-size="15">glm-5.3maxlinux</text>
+<text x="565" y="457.5" text-anchor="end" fill="#22314B" font-size="31" font-weight="700">83</text>
+<rect x="18" y="477" width="564" height="53" rx="11" fill="#FFFFFF"/>
+<rect x="29" y="487.5" width="38" height="32" rx="9" fill="#EAEFF6"/>
+<text x="48" y="509.5" text-anchor="middle" fill="#617087" font-size="20" font-weight="700">6</text>
+<text x="99" y="500.5" fill="#14233B" font-size="22" font-weight="600">HarnessL · Qwen</text>
+<text x="99" y="520.5" fill="#7C879A" font-size="15">qwen-3.8flashxhigh</text>
+<text x="565" y="513.5" text-anchor="end" fill="#22314B" font-size="31" font-weight="700">74</text>
+<rect x="18" y="533" width="564" height="53" rx="11" fill="#F8FAFD"/>
+<rect x="29" y="543.5" width="38" height="32" rx="9" fill="#EAEFF6"/>
+<text x="48" y="565.5" text-anchor="middle" fill="#617087" font-size="20" font-weight="700">7</text>
+<text x="99" y="556.5" fill="#14233B" font-size="22" font-weight="600">Kimi Web</text>
+<text x="99" y="576.5" fill="#7C879A" font-size="15">k3swarm-max</text>
+<text x="565" y="569.5" text-anchor="end" fill="#22314B" font-size="31" font-weight="700">72</text>
+<path d="M28 604 H572" stroke="#E8EDF4"/>
+<text x="28" y="632" fill="#64748B" font-size="15">十项等权 · 原评审分数</text>
+<text x="572" y="632" text-anchor="end" fill="#94A0B2" font-size="13">2026.09.09</text>
+</svg>

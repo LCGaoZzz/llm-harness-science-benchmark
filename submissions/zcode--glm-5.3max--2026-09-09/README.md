@@ -9,20 +9,19 @@
 - 归档日期：2026-09-09，Asia/Shanghai。
 - 运行环境：用户提供 Windows 本地文件及本地 HTTP 预览地址；原始操作系统版本、浏览器版本未提供。
 - 总耗时：未记录，不根据局部台账时间推算端到端耗时。
-- 工具和网络权限：原始会话的完整配置未提供；用户提供了战役台账及浏览器截图。
+- 工具和网络权限：原始会话的完整配置未提供。
 - 人工干预：原始生成过程是否存在人工干预未提供。本次归档没有编辑 HTML、台账或截图，没有运行或修复页面。
 - 是否为未经上传阶段修改的原始产物：是。7 个原始文件按原始字节复制；仅新增本说明和 `SHA256SUMS`。
 
 ## 提示词与过程来源
 
-本结果由用户作为本仓库 CR3BP 测试的 zcode 结果提供。该 zcode 会话的完整提示词、追加指令及完整对话未随本次产物提供，因此不将其他会话的提示词推定为本次实际输入。基准固定提示词见[仓库说明](../../README.md#固定提示词)。
+本结果由用户作为本仓库 CR3BP 测试的 zcode 结果提供。该 zcode 会话的完整提示词、追加指令及完整对话未随本次产物提供，因此不将其他会话的提示词推定为本次实际输入。基准固定提示词见[仓库说明](../../BENCHMARK.md#固定提示词)。
 
 ## 原始文件映射
 
 | 归档路径 | 用户提供的原始来源 |
 |---|---|
 | [index.html](index.html) | `G:\oomicoos\cr3bp-lab\index.html` |
-| [.campaign/conversations/cr3bp-lab-v2/campaign.jsonl](.campaign/conversations/cr3bp-lab-v2/campaign.jsonl) | `G:\oomicoos\.campaign\conversations\cr3bp-lab-v2\campaign.jsonl` |
 | [screenshots/](screenshots/) 下 5 个 `call_*.png` | `C:\Users\Administrator\.zcode\cli\artifacts\sess_a447eadf-2093-4d8a-baa8-c4ed19ce0bc0\` |
 
 截图保留原始文件名和图像字节；未裁剪、重绘或重新截图。主 HTML 为 54,274 字节。用户提供的本地预览地址是 `http://127.0.0.1:8791/index.html`，仅记录来源，不是公共部署地址。

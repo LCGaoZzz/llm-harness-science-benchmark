@@ -92,28 +92,19 @@ header += f'两部分均评阅源快照 [`{meta["reviewed_source_commit"][:7]}`]
 local = '# gptweb-gpt-6-astra-pro：10+4 评审记录\n\n' + header + body('')
 local += '\n## 原始材料与导入核对\n\n'
 for archive in sorted(meta['original_archives'], key=lambda a: -int(a['part'])):
-    local += f'- **{archive["part"]} 部分**：[原始 ZIP]({archive["path"]}) · [原样展开文件]({archive["extracted_to"]}/) · [原校验清单]({archive["extracted_to"]}/SHA256SUMS)。'
-    local += f' {archive["validation"]["archive_members_preserved"]} 个文件逐字节保留，{archive["validation"]["manifest_files_verified"]} 个清单哈希通过。\n'
+    local += f'- **{archive["part"]} 部分**：[公开 ZIP]({archive["path"]}) · [公开展开文件]({archive["extracted_to"]}/) · [公开校验清单]({archive["extracted_to"]}/SHA256SUMS)。'
+    local += f' {archive["validation"]["archive_members_preserved"]} 个公开文件与下载包一致，{archive["validation"]["manifest_files_verified"]} 个清单哈希通过。\n'
 local += '- [导入元数据](review.json)：署名、评分来源关系、原包 SHA-256、源 HTML 对应关系及核对范围。\n'
 local += '- 四强证据：[主要数值记录](science-final/new_measurements.json)、[物理声明核对](science-final/physical_claims.json)、[步长敏感性检查](science-final/refinement_check.json)。\n\n'
 local += '导入时，十项包的七份 HTML 与四强包的四份 HTML 均与指定 Git 快照一致；Kimi 的原始 HTML 从该快照的原提交 ZIP 中核对。'
-local += '已核对全部分数合计、单项及总榜并列排名、四强入选名单。此次导入未重新运行科学实验，原报告中的实验结论归属于相应评审记录。原包保留提交时的说明与路径；当前多专家展示以本记录和仓库索引为准。\n\n'
-local += '本记录按两份原包生成，未重新评分。运行 `python reviews/2026-09-09/gptweb-gpt-6-astra-pro/render.py --check` 可核对原包完整性和榜单一致性。\n\n'
+local += '已核对全部分数合计、单项及总榜并列排名、四强入选名单。此次导入未重新运行科学实验，原报告中的实验结论归属于相应评审记录。原包保留提交时的说明与路径；当前多专家展示以本记录和仓库首页为准。公开副本移除了非科学过程资料，Qwen HTML 仅缩短了一条注释；数值逻辑和评分保持不变，详见[公开资料说明](../../../PUBLIC_DATA.md)。\n\n'
+local += '本记录按两份原包生成，未重新评分。运行 `python reviews/2026-09-09/gptweb-gpt-6-astra-pro/render.py --check` 可核对公开包完整性和榜单一致性。\n\n'
 local += '[返回仓库专家索引](../../../README.md)\n'
 
-root = (repo / 'README.md').read_text(encoding='utf-8')
-start = '<!-- BEGIN REVIEW gptweb-gpt-6-astra-pro -->'
-end = '<!-- END REVIEW gptweb-gpt-6-astra-pro -->'
-assert root.count(start) == root.count(end) == 1
-prefix, remainder = root.split(start, 1)
-old, suffix = remainder.split(end, 1)
-block = '## gptweb-gpt-6-astra-pro：10+4 评审记录\n\n' + header
-block += '[完整署名记录与原始材料](reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md)。\n\n'
-block += body('reviews/2026-09-09/gptweb-gpt-6-astra-pro/')
-outputs = {review / 'README.md': local, repo / 'README.md': prefix + start + '\n' + block.rstrip() + '\n' + end + suffix}
+outputs = {review / 'README.md': local}
 for path, content in outputs.items():
     if '--check' in sys.argv:
         assert path.read_text(encoding='utf-8') == content, 'Generated document is stale: ' + str(path)
     else:
         path.write_text(content, encoding='utf-8', newline='\n')
-print('Validated both immutable archives, 86 scores, all rankings, top-four selection, score lineage metadata, and complete 10+4 displays.')
+print('Validated both public archives, 86 scores, all rankings, top-four selection, score lineage metadata, and complete 10+4 displays.')
