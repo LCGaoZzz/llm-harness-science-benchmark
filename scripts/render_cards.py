@@ -22,25 +22,25 @@ web_science = read('gptweb-gpt-6-astra-pro/science-final/scores.json')
 kimi = read('kimiweb-k3-swarmmax/scores.json')
 glm = read('zcode-glm-5.3max-win/scores.json')
 experts = [
-    dict(id='codex-gpt-6-astra-xhigh', color='#2563EB', tint='#EFF6FF',
+    dict(id='codex-gpt-6-astra-xhigh', platform='Codex', model='GPT-6 Astra（xhigh）', color='#2563EB', tint='#EFF6FF',
          ten=competition([dict(label=r['label'],score=sum(r['scores'])) for r in codex['submissions']]),
          four=competition([dict(label=r['label'],score=sum(r['scores'])) for r in codex_science['submissions']]),
          max_four=100, ten_note='十项等权 · 原评审分数', four_note='权重 20 / 15 / 25 / 25 / 15',
          ten_link='reviews/2026-09-09/codex-gpt-6-astra-xhigh/README.md#10-个单项排名',
          four_link='reviews/2026-09-09/science-final/README.md'),
-    dict(id='gptweb-gpt-6-astra-pro', color='#0F8B73', tint='#ECFDF5',
+    dict(id='gptweb-gpt-6-astra-pro', platform='ChatGPT 网页版', model='GPT-6 Astra Pro', color='#0F8B73', tint='#ECFDF5',
          ten=[dict(label=r['label'],score=r['total'],rank=r['rank']) for r in web['rows']],
          four=[dict(label=r['label'],score=r['total'],rank=r['rank']) for r in web_science['rows']],
          max_four=100, ten_note='复核后沿用既有十项评分', four_note='权重 30 / 35 / 25 / 10',
          ten_link='reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md#gptweb-gpt-6-astra-pro-ten',
          four_link='reviews/2026-09-09/gptweb-gpt-6-astra-pro/README.md#gptweb-gpt-6-astra-pro-four'),
-    dict(id='kimiweb-k3-swarmmax', color='#7C3AED', tint='#F5F3FF',
+    dict(id='kimiweb-k3-swarmmax', platform='Kimi 网页版', model='K3（Swarm Max）', color='#7C3AED', tint='#F5F3FF',
          ten=[dict(label=r['submission'],score=r['final_total'],rank=r['rank']) for r in kimi['ten']['overall']],
          four=[dict(label=r['submission'],score=r['science_total'],rank=r['rank']) for r in kimi['four']['overall']],
          max_four=80, ten_note='分数与名次按原评审展示', four_note='科学八项 /80 · 末位并列扩展至 5 份',
          ten_link='reviews/2026-09-09/kimiweb-k3-swarmmax/README.md#ten',
          four_link='reviews/2026-09-09/kimiweb-k3-swarmmax/README.md#four'),
-    dict(id='zcode-glm-5.3max-win', color='#C16A15', tint='#FFF7ED',
+    dict(id='zcode-glm-5.3max-win', platform='ZCode（Windows）', model='GLM-5.3（Max）', color='#C16A15', tint='#FFF7ED',
          ten=[dict(label=r['label'],score=r['final'],rank=r['rank']) for r in glm['submissions']],
          four=[dict(label=next(r['label'] for r in glm['submissions'] if r['id']==key),score=v['total'],rank=v['rank']) for key,v in glm['science_final']['scores'].items()],
          max_four=100, ten_note='十项等权 · 原评审分数', four_note='科学十项等权 · 原评审分数',
@@ -76,6 +76,7 @@ def svg(expert, kind):
         '<path d="M25 1 H575 Q599 1 599 25 V144 H1 V25 Q1 1 25 1Z" fill="#101C32"/>',
         f'<rect x="28" y="29" width="4" height="24" rx="2" fill="{color}"/>',
         f'<text x="44" y="48" fill="#DCE5F6" font-size="19" font-weight="600">{expert["id"]}</text>',
+        f'<text x="44" y="70" fill="#A8B7CE" font-size="14">平台：{escape(expert["platform"])} · 模型：{escape(expert["model"])}</text>',
         f'<text x="28" y="106" fill="#FFFFFF" font-size="33" font-weight="700">{title}</text>',
         f'<rect x="480" y="70" width="89" height="50" rx="13" fill="{color}"/>',
         f'<text x="524" y="105" fill="#FFFFFF" font-size="31" font-weight="700" text-anchor="middle">{badge}</text>',
@@ -105,9 +106,11 @@ def svg(expert, kind):
     return '\n'.join(parts).replace('<svg ', '<svg font-family="Segoe UI, Microsoft YaHei, Arial, sans-serif" ',1)+'\n'
 
 readme='# CR3BP 专家排行榜\n\n'
+readme+='**10 榜**按十项标准综合评价全部作品的科学、工程与交互表现；**科学榜**只对入围作品的最终数学、物理和数值结果复评，不计界面或中间工程材料。\n\n'
 outputs={}
 for expert in experts:
     readme+=f'## {expert["id"]}\n\n'
+    readme+=f'**评审平台：{expert["platform"]} · 评审模型：{expert["model"]}**\n\n'
     for kind in ['ten','four']:
         path=f'assets/leaderboards/{expert["id"]}-{kind}.svg'
         title='十项综合评分与排名' if kind=='ten' else '四强科学评分与排名'

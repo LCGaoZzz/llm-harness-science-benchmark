@@ -5,6 +5,7 @@
 <path d="M25 1 H575 Q599 1 599 25 V144 H1 V25 Q1 1 25 1Z" fill="#101C32"/>
 <rect x="28" y="29" width="4" height="24" rx="2" fill="#C16A15"/>
 <text x="44" y="48" fill="#DCE5F6" font-size="19" font-weight="600">zcode-glm-5.3max-win</text>
+<text x="44" y="70" fill="#A8B7CE" font-size="14">平台：ZCode（Windows） · 模型：GLM-5.3（Max）</text>
 <text x="28" y="106" fill="#FFFFFF" font-size="33" font-weight="700">四强科学榜</text>
 <rect x="480" y="70" width="89" height="50" rx="13" fill="#C16A15"/>
 <text x="524" y="105" fill="#FFFFFF" font-size="31" font-weight="700" text-anchor="middle">4</text>
