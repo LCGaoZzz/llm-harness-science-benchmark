@@ -70,7 +70,7 @@ submissions/<harness>--<model>--<date>/
 
 **同分并列，使用竞赛排名（如 1、2、2、4）；表内同分条目的显示顺序不代表先后。** 这些是本次产物的评分，不能据此推断模型总体能力。生成环境、迭代轮数及提示词完整性不完全一致；详见各原始提交说明。
 
-本次更新接续[先前榜单 `53010a4`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/53010a454316d39a1c2cb8c76747a685d80c8674/README.md#结果索引)，参赛文件未变；[分数差异与依据](reviews/2026-09-09/METHODS.md#与先前榜单的差异)单独列出，旧版分数仍可追溯。
+本次更新接续[先前榜单 `53010a4`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/53010a454316d39a1c2cb8c76747a685d80c8674/README.md#结果索引)，及[并行评阅 `bd4a59a`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/blob/bd4a59a83558414797c9a6dad021e9e733e954ab/LEADERBOARD.md)。参赛文件未变；[分数差异与依据](reviews/2026-09-09/METHODS.md#与先前榜单的差异)单独列出，旧版分数仍可追溯。当前榜单统一在本 README 展示。
 
 [评阅方法与限制](reviews/2026-09-09/METHODS.md) · [逐项评分证据](reviews/2026-09-09/README.md) · [机器可读评分](reviews/2026-09-09/scores.json) · [实测记录与截图](reviews/2026-09-09/evidence/)
 

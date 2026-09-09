@@ -3,6 +3,7 @@
   "date": "2026-09-09",
   "reviewed_commit": "ac5a306be9b29978ad6787903821b4a6a181ff01",
   "previous_leaderboard_commit": "53010a454316d39a1c2cb8c76747a685d80c8674",
+  "parallel_leaderboard_commit": "bd4a59a83558414797c9a6dad021e9e733e954ab",
   "reviewer": "Codex（本次单一评阅者；未盲审）",
   "ranking_method": "十项等权求和，再应用 README 封顶；单项和总分均采用竞赛排名，同分并列且跳号。",
   "criteria": ["物理模型", "数学方程", "单位与坐标", "拉格朗日点", "数值积分器", "收敛与精度", "守恒量表现", "稳定性与边界", "验证与工程质量", "交互与科学可视化"],
