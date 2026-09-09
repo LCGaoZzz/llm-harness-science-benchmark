@@ -1,0 +1,228 @@
+{
+ "reviewer": "kimiweb-k3-swarmmax",
+ "date": "2026-09-09",
+ "snapshot": "e45bd407f12140758623eb2352360435874b2afa",
+ "snapshot_note": "submissions/ 与 648dcc3 逐字节一致；评审实测基于 648dcc3 工作副本",
+ "method": "无头执行底座（Node vm + DOM stub）实际加载各 HTML 并触发其内嵌自检；从源码提取公式用 Python 独立复算（对照独立高精度真值）；横向一致性校准",
+ "ten": {
+  "scale": "10 项各 0–10 等权求和 /100；封顶规则后应用；同分竞赛排名",
+  "overall": [
+   {
+    "rank": 1,
+    "submission": "gptweb--gpt-6pro",
+    "scores": [
+     10,
+     10,
+     9.5,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     9.5
+    ],
+    "raw_total": 99,
+    "caps_triggered": [],
+    "final_total": 99
+   },
+   {
+    "rank": 2,
+    "submission": "codex--6astra-xhigh",
+    "scores": [
+     10,
+     10,
+     9,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     9.5
+    ],
+    "raw_total": 97.5,
+    "caps_triggered": [],
+    "final_total": 98.5
+   },
+   {
+    "rank": 3,
+    "submission": "zcode--glm-5.3maxlinux",
+    "scores": [
+     10,
+     10,
+     9,
+     10,
+     10,
+     10,
+     10,
+     9,
+     10,
+     9.5
+    ],
+    "raw_total": 97.5,
+    "caps_triggered": [],
+    "final_total": 97.5
+   },
+   {
+    "rank": 4,
+    "submission": "harnessL--ds-4.1flashmax",
+    "scores": [
+     10,
+     10,
+     7,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     9.5
+    ],
+    "raw_total": 96.5,
+    "caps_triggered": [],
+    "final_total": 96.5
+   },
+   {
+    "rank": 4,
+    "submission": "zcode--glm-5.3max",
+    "scores": [
+     10,
+     10,
+     8,
+     10,
+     10,
+     10,
+     10,
+     9,
+     10,
+     9.5
+    ],
+    "raw_total": 96.5,
+    "caps_triggered": [],
+    "final_total": 96.5
+   },
+   {
+    "rank": 5,
+    "submission": "kimiweb--k3swarm-max",
+    "scores": [
+     10,
+     10,
+     7,
+     10,
+     10,
+     10,
+     10,
+     9,
+     10,
+     9
+    ],
+    "raw_total": 95,
+    "caps_triggered": [],
+    "final_total": 95
+   },
+   {
+    "rank": 6,
+    "submission": "harnessL--qwen-3.8flashxhigh",
+    "scores": [
+     10,
+     10,
+     7,
+     10,
+     9.5,
+     10,
+     9.5,
+     8.5,
+     8,
+     8.5
+    ],
+    "raw_total": 89.0,
+    "caps_triggered": [],
+    "final_total": 91.0
+   }
+  ]
+ },
+ "four": {
+  "scale": "科学 8 项（原标准 1–8）各 0–10 等权 /80；纯结果导向，不计工程/可视化/过程材料",
+  "selection": "综合榜前四；第 4 名同分并列 → 两家同时入选（共 5 份）",
+  "overall": [
+   {
+    "rank": 1,
+    "submission": "zcode--glm-5.3maxlinux",
+    "science_scores": [
+     10,
+     10,
+     8.5,
+     10,
+     10,
+     7.5,
+     9.5,
+     10
+    ],
+    "science_total": 75.5
+   },
+   {
+    "rank": 2,
+    "submission": "harnessL--ds-4.1flashmax",
+    "science_scores": [
+     10,
+     10,
+     7,
+     10,
+     10,
+     9,
+     10,
+     9
+    ],
+    "science_total": 75
+   },
+   {
+    "rank": 3,
+    "submission": "codex--6astra-xhigh",
+    "science_scores": [
+     10,
+     10,
+     8.5,
+     10,
+     10,
+     7,
+     9,
+     9.5
+    ],
+    "science_total": 74.0
+   },
+   {
+    "rank": 3,
+    "submission": "gptweb--gpt-6pro",
+    "science_scores": [
+     10,
+     10,
+     8.5,
+     10,
+     10,
+     7,
+     9,
+     9.5
+    ],
+    "science_total": 74.0
+   },
+   {
+    "rank": 4,
+    "submission": "zcode--glm-5.3max",
+    "science_scores": [
+     10,
+     10,
+     7,
+     10,
+     10,
+     6.5,
+     8.5,
+     9
+    ],
+    "science_total": 71
+   }
+  ],
+  "recommendation": "zcode--glm-5.3maxlinux",
+  "recommendation_note": "辛有界性教科书级（T=100→1000 漂移精确不变）、边界五子项唯一全科干净；若专家组以 JPL 内嵌对照为硬门槛则改选 codex--6astra-xhigh，以最看重极端工况自适应精度与文献锚定则选 harnessL--ds-4.1flashmax"
+ }
+}
