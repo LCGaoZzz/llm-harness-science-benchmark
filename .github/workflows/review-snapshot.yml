@@ -1,0 +1,22 @@
+name: Review source snapshot
+on:
+  push:
+    branches: [review/seven-submissions-2026-09-09]
+    paths: [.github/workflows/review-snapshot.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Download the fixed public source snapshot without executing submissions
+        run: |
+          curl --fail --location --retry 2 'https://codeload.github.com/LCGaoZzz/llm-harness-science-benchmark/zip/ac5a306be9b29978ad6787903821b4a6a181ff01' --output source-snapshot.zip
+          sha256sum source-snapshot.zip
+      - name: Retain source snapshot for local independent audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-source-ac5a306be9b29
+          path: source-snapshot.zip
+          retention-days: 3
