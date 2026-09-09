@@ -1,0 +1,44 @@
+<svg font-family="Segoe UI, Microsoft YaHei, Arial, sans-serif" xmlns="http://www.w3.org/2000/svg" width="600" height="660" viewBox="0 0 600 660" role="img" aria-labelledby="title desc">
+<title id="title">gptweb-gpt-6-astra-pro · 四强科学榜</title>
+<desc id="desc">第 1 名 harnessL × ds-4.1flashmax，96 / 100；第 2 名 gptweb × gpt-6pro，95 / 100；第 2 名 Codex × 6astra-xhigh，95 / 100；第 4 名 zcode × glm-5.3max（Windows），91 / 100</desc>
+<rect x="1" y="1" width="598" height="658" rx="24" fill="#FFFFFF" stroke="#DDE3EC" stroke-width="2"/>
+<path d="M25 1 H575 Q599 1 599 25 V144 H1 V25 Q1 1 25 1Z" fill="#101C32"/>
+<rect x="28" y="29" width="4" height="24" rx="2" fill="#0F8B73"/>
+<text x="44" y="48" fill="#DCE5F6" font-size="19" font-weight="600">gptweb-gpt-6-astra-pro</text>
+<text x="28" y="106" fill="#FFFFFF" font-size="33" font-weight="700">四强科学榜</text>
+<rect x="480" y="70" width="89" height="50" rx="13" fill="#0F8B73"/>
+<text x="524" y="105" fill="#FFFFFF" font-size="31" font-weight="700" text-anchor="middle">4</text>
+<text x="28" y="177" fill="#7C879A" font-size="15" letter-spacing="2">排名</text>
+<text x="99" y="177" fill="#7C879A" font-size="15" letter-spacing="2">参赛作品</text>
+<text x="566" y="177" fill="#7C879A" font-size="15" text-anchor="end">评分 /100</text>
+<rect x="18" y="197" width="564" height="69" rx="11" fill="#ECFDF5"/>
+<rect x="29" y="215.5" width="38" height="32" rx="9" fill="#0F8B73"/>
+<text x="48" y="237.5" text-anchor="middle" fill="#FFFFFF" font-size="20" font-weight="700">1</text>
+<text x="99" y="228.5" fill="#14233B" font-size="22" font-weight="600">HarnessL · DeepSeek</text>
+<text x="99" y="248.5" fill="#7C879A" font-size="15">ds-4.1flashmax</text>
+<text x="565" y="241.5" text-anchor="end" fill="#0F8B73" font-size="31" font-weight="700">96</text>
+<rect x="18" y="269" width="564" height="69" rx="11" fill="#FFFFFF"/>
+<rect x="29" y="287.5" width="38" height="32" rx="9" fill="#EAEFF6"/>
+<text x="48" y="309.5" text-anchor="middle" fill="#617087" font-size="20" font-weight="700">2</text>
+<text x="99" y="300.5" fill="#14233B" font-size="22" font-weight="600">GPT Web</text>
+<text x="99" y="320.5" fill="#7C879A" font-size="15">gpt-6pro</text>
+<text x="565" y="313.5" text-anchor="end" fill="#22314B" font-size="31" font-weight="700">95</text>
+<rect x="18" y="341" width="564" height="69" rx="11" fill="#F8FAFD"/>
+<rect x="29" y="359.5" width="38" height="32" rx="9" fill="#EAEFF6"/>
+<text x="48" y="381.5" text-anchor="middle" fill="#617087" font-size="20" font-weight="700">2</text>
+<text x="99" y="372.5" fill="#14233B" font-size="22" font-weight="600">Codex</text>
+<text x="99" y="392.5" fill="#7C879A" font-size="15">6astra-xhigh</text>
+<text x="565" y="385.5" text-anchor="end" fill="#22314B" font-size="31" font-weight="700">95</text>
+<rect x="18" y="413" width="564" height="69" rx="11" fill="#FFFFFF"/>
+<rect x="29" y="431.5" width="38" height="32" rx="9" fill="#EAEFF6"/>
+<text x="48" y="453.5" text-anchor="middle" fill="#617087" font-size="20" font-weight="700">4</text>
+<text x="99" y="444.5" fill="#14233B" font-size="22" font-weight="600">ZCode · Windows</text>
+<text x="99" y="464.5" fill="#7C879A" font-size="15">glm-5.3max</text>
+<text x="565" y="457.5" text-anchor="end" fill="#22314B" font-size="31" font-weight="700">91</text>
+<rect x="28" y="510" width="544" height="65" rx="12" fill="#ECFDF5"/>
+<text x="47" y="536" fill="#0F8B73" font-size="16" font-weight="600">数学 · 物理 · 数值结果</text>
+<text x="47" y="560" fill="#64748B" font-size="15">详细指标、依据及推荐见评分页</text>
+<path d="M28 604 H572" stroke="#E8EDF4"/>
+<text x="28" y="632" fill="#64748B" font-size="15">权重 30 / 35 / 25 / 10</text>
+<text x="572" y="632" text-anchor="end" fill="#94A0B2" font-size="13">2026.09.09</text>
+</svg>

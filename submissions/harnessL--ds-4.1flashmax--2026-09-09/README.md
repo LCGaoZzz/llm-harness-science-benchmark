@@ -15,18 +15,18 @@
 
 ## 提示词与过程来源
 
-本结果由用户作为本仓库 CR3BP 测试的 harnessL 结果提供。完整提示词、对话与工具调用记录未随产物提供，因此不将其他会话的提示词推定为本次实际输入。基准固定提示词见[仓库说明](../../README.md#固定提示词)。
+本结果由用户作为本仓库 CR3BP 测试的 harnessL 结果提供。完整提示词、对话与工具调用记录未随产物提供，因此不将其他会话的提示词推定为本次实际输入。基准固定提示词见[仓库说明](../../BENCHMARK.md#固定提示词)。
 
 ## 原始文件映射
 
 | 归档路径 | 原始来源（`/data/users/lianchong/workspace3/outputs/turn_20260909060823_7f04edadd3c74c7fbb2df231e97604f9/`） | 说明 |
 |---|---|---|
 | [lab.html](lab.html) | 同名 | 交付物，单文件，81,352 B；REPORT 自述 SHA-256 `2092ed57…`，归档时独立复算一致 |
-| [REPORT.md](REPORT.md) | 同名 | 15,106 B，会话自己撰写的交付报告（含战役记录、修复记录、局限） |
+| [REPORT.md](REPORT.md) | 交付报告、验证结果与局限 |
 | [build.py](build.py) | 同名 | 由 `src/` 组装单文件的构建脚本（内联字节级校验） |
 | [src/](src/) | `src/{core.js, ui.js, style.css, index.html}` | 源码（core 42 KB / ui 28 KB / css / html 模板） |
 | [lab_screenshot.png](lab_screenshot.png)、[lab_longrun.png](lab_longrun.png) | 同名 | 页面首屏与长时运行截图（含 figmeta 溯源） |
-| [tests/](tests/) | `tests/` 全部非 PDF 文件（65 个） | 评估仪器（harness.js）、5 轮 + 留出集基准 JSON、探针脚本、浏览器验证（Playwright）、最终报告与截图 |
+| [tests/](tests/) | 科学验证材料 | 自检、独立探针、浏览器验证报告与截图 |
 
 原始目录中的 `figures/` 为空目录（git 不跟踪，未归档）；`tests/_anchor_sources/` 下 10 个第三方参考 PDF（约 100 MB）未随包搬运，其 `.figmeta.json` 溯源副件已归档，PDF 清单与 SHA-256 见 [ANCHOR_PDF_MANIFEST.txt](ANCHOR_PDF_MANIFEST.txt)——这是归档阶段的范围决定，不是原始会话的产物差异。lab.html SHA-256：`2092ed57f0bf0b21f9aff27e72de0f01e1098ecf49885f667cc844b90f692bb6`。[SHA256SUMS](SHA256SUMS) 覆盖全部 76 个原始文件。
 
@@ -35,7 +35,6 @@
 以下均为原始会话自己的陈述，归档方未重跑、未复核：
 
 - **积分器九种可切换**：GBS 外推（默认，自适应）、DOPRI5、GBS-fixed、自适应 RK4、自适应 symplectic-4、Yoshida-4/6（正则动量旋转分裂，自述"真辛"）、Verlet（旋转分裂蛙跳）、RK4。
-- **战役**：第 1 轮前冻结协议（目标 = 4 条核心轨道 max Jacobi 相对漂移，预算 200k 力评估/轨道，T=40π），5 轮 + 第 6 轮留出集对照；最终 GBS（k=5，Bulirsch 序列，rtol=1e-13）把最差轨道漂移压到 1.76e-12，比第 1 轮最优（DOPRI5@1e-12）好 14.5 倍。
 - **自检抓到并修复 8 个真实 bug**（REPORT §3 逐条列出：辛分裂势能项用错、GBS Richardson 分母写反、末步步长未传递、自适应拒绝后不收缩、守卫只查步后、守恒判据写错、负跨度被拒、每帧重建离屏 canvas 等）。
 - **浏览器实测自述**：console/page 错误 0 条；4 预设可运行；实时性 1.5 TU/s 设定下 61 fps；20.1 s 长跑 t=40.27 TU、ΔC/|C₀| 稳定 4.5e-16；地心初值立即触发 singularity 停机横幅；原始 JSON 见 `tests/browser_report.json`、`tests/final_report.json`。
 - **外部锚点**：L 点与 C_J 对 JPL SSD / AAS 15-615 等公布值比对（`tests/external_anchor.json`）；自述 μ 用现代质量比 0.012150585609624。

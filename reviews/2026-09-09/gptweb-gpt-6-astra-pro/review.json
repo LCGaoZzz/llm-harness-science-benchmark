@@ -69,14 +69,15 @@
           }
         ],
         "numerical_experiments_rerun_on_import": false
-      }
+      },
+      "distribution": "public_copy"
     },
     {
       "part": "10",
       "path": "source/CR3BP_seven_submission_review_2026-09-09.zip",
       "extracted_to": "ten-category",
-      "sha256": "287537b7c7ac55935af99434fdc8135f4ddcd9fcd06b62d97174c1069be01917",
-      "bytes": 3146964,
+      "sha256": "9ba520f98e432773e3f91cf33729c94b10fce85a0ded683c9edc39f2537fafe7",
+      "bytes": 3144554,
       "validation": {
         "manifest_files_verified": 81,
         "archive_members_preserved": 82,
@@ -136,8 +137,24 @@
           }
         ],
         "numerical_experiments_rerun_on_import": false
-      }
+      },
+      "distribution": "public_copy",
+      "received_sha256": "287537b7c7ac55935af99434fdc8135f4ddcd9fcd06b62d97174c1069be01917",
+      "received_bytes": 3146964,
+      "public_edits": [
+        {
+          "path": "inputs/harnessL_qwen-3.8flashxhigh.html",
+          "type": "non_executable_comment_only",
+          "received_sha256": "c496e3bde81beb685d321e3e2aefbaa6949a0846c0d4634e3603f389fd4663eb",
+          "public_sha256": "44211720570fa9ef149419ebc23a2658da34436c020c6c7f11ae773ef35ab96b"
+        },
+        {
+          "path": "repo/evaluations/2026-09-09-independent/reproduce.py",
+          "type": "input_digest_updated_for_public_comment_edit"
+        }
+      ]
     }
   ],
-  "top_four_selection_verified": true
+  "top_four_selection_verified": true,
+  "publication_note": "Public copies omit private process material. One non-executable HTML comment was shortened; numerical code and all expert scores are unchanged."
 }

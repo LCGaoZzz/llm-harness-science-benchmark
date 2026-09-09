@@ -163,13 +163,13 @@
 
 ## 原始材料与导入核对
 
-- **10 部分**：[原始 ZIP](source/CR3BP_seven_submission_review_2026-09-09.zip) · [原样展开文件](ten-category/) · [原校验清单](ten-category/SHA256SUMS)。 82 个文件逐字节保留，81 个清单哈希通过。
-- **4 部分**：[原始 ZIP](source/CR3BP_top4_science_only_final_review.zip) · [原样展开文件](science-final/) · [原校验清单](science-final/SHA256SUMS)。 18 个文件逐字节保留，17 个清单哈希通过。
+- **10 部分**：[公开 ZIP](source/CR3BP_seven_submission_review_2026-09-09.zip) · [公开展开文件](ten-category/) · [公开校验清单](ten-category/SHA256SUMS)。 82 个公开文件与下载包一致，81 个清单哈希通过。
+- **4 部分**：[公开 ZIP](source/CR3BP_top4_science_only_final_review.zip) · [公开展开文件](science-final/) · [公开校验清单](science-final/SHA256SUMS)。 18 个公开文件与下载包一致，17 个清单哈希通过。
 - [导入元数据](review.json)：署名、评分来源关系、原包 SHA-256、源 HTML 对应关系及核对范围。
 - 四强证据：[主要数值记录](science-final/new_measurements.json)、[物理声明核对](science-final/physical_claims.json)、[步长敏感性检查](science-final/refinement_check.json)。
 
-导入时，十项包的七份 HTML 与四强包的四份 HTML 均与指定 Git 快照一致；Kimi 的原始 HTML 从该快照的原提交 ZIP 中核对。已核对全部分数合计、单项及总榜并列排名、四强入选名单。此次导入未重新运行科学实验，原报告中的实验结论归属于相应评审记录。原包保留提交时的说明与路径；当前多专家展示以本记录和仓库索引为准。
+导入时，十项包的七份 HTML 与四强包的四份 HTML 均与指定 Git 快照一致；Kimi 的原始 HTML 从该快照的原提交 ZIP 中核对。已核对全部分数合计、单项及总榜并列排名、四强入选名单。此次导入未重新运行科学实验，原报告中的实验结论归属于相应评审记录。原包保留提交时的说明与路径；当前多专家展示以本记录和仓库首页为准。公开副本移除了非科学过程资料，Qwen HTML 仅缩短了一条注释；数值逻辑和评分保持不变，详见[公开资料说明](../../../PUBLIC_DATA.md)。
 
-本记录按两份原包生成，未重新评分。运行 `python reviews/2026-09-09/gptweb-gpt-6-astra-pro/render.py --check` 可核对原包完整性和榜单一致性。
+本记录按两份原包生成，未重新评分。运行 `python reviews/2026-09-09/gptweb-gpt-6-astra-pro/render.py --check` 可核对公开包完整性和榜单一致性。
 
 [返回仓库专家索引](../../../README.md)
