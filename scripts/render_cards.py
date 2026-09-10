@@ -15,8 +15,8 @@ def competition(rows):
         row['rank'] = 1 + sum(other['score'] > row['score'] for other in rows)
     return sorted(rows, key=lambda r: (r['rank'], r['label']))
 
-codex = read('scores.json')
-codex_science = read('science-final/scores.json')
+codex = read('../2026-09-10/codex-gpt-6-astra-xhigh/scores.json')
+codex_science = read('../2026-09-10/codex-gpt-6-astra-xhigh/science-scores.json')
 web = read('gptweb-gpt-6-astra-pro/ten-category/repo/evaluations/2026-09-09-independent/scores.json')
 web_science = read('gptweb-gpt-6-astra-pro/science-final/scores.json')
 kimi = read('kimiweb-k3-swarmmax/scores.json')
@@ -25,9 +25,10 @@ experts = [
     dict(id='codex-gpt-6-astra-xhigh', platform='Codex', model='GPT-6 Astra（xhigh）', color='#2563EB', tint='#EFF6FF',
          ten=competition([dict(label=r['label'],score=sum(r['scores'])) for r in codex['submissions']]),
          four=competition([dict(label=r['label'],score=sum(r['scores'])) for r in codex_science['submissions']]),
-         max_four=100, ten_note='十项等权 · 原评审分数', four_note='权重 20 / 15 / 25 / 25 / 15',
-         ten_link='reviews/2026-09-09/codex-gpt-6-astra-xhigh/README.md#10-个单项排名',
-         four_link='reviews/2026-09-09/science-final/README.md'),
+         max_four=100, ten_note='十项等权 · 已评 8 份', four_note='综合前五入围 · 权重 20/15/25/25/15', date='2026.09.10', card_height=716,
+         four_title='五强科学榜', four_badge='5', four_alt='五强科学评分与排名',
+         ten_link='reviews/2026-09-10/codex-gpt-6-astra-xhigh/README.md#ten',
+         four_link='reviews/2026-09-10/codex-gpt-6-astra-xhigh/science-final.md'),
     dict(id='gptweb-gpt-6-astra-pro', platform='ChatGPT 网页版', model='GPT-6 Astra Pro', color='#0F8B73', tint='#ECFDF5',
          ten=[dict(label=r['label'],score=r['total'],rank=r['rank']) for r in web['rows']],
          four=[dict(label=r['label'],score=r['total'],rank=r['rank']) for r in web_science['rows']],
@@ -67,7 +68,8 @@ def svg(expert, kind):
     rows=expert[kind]
     assert (kind=='ten' and len(rows) in (7,8)) or (kind=='four' and len(rows) in (4,5)), f'{expert["id"]} {kind}: {len(rows)} rows'
     extra=(len(rows)-7)*56 if kind=='ten' else 0
-    height=660+extra
+    height=max(660+extra,expert.get('card_height',660))
+    extra=height-660
     maximum=100 if kind=='ten' else expert['max_four']
     assert all(0<=r['score']<=maximum and r['rank']>=1 for r in rows)
     color,tint=expert['color'],expert['tint']
@@ -111,7 +113,7 @@ def svg(expert, kind):
 
 readme='''# LLM × Harness 科学计算基准
 
-同一道地月三体问题，比较不同 **Harness＋LLM** 能否交付数学正确、数值可信、可以实际操作的科学计算程序。当前收录 **8 份参赛作品、4 位 AI 评审的“10＋4”评分**（评审日期 2026-09-09；[ZCode／GLM 评审](reviews/2026-09-09/zcode-glm-5.3max-win/README.md)于 09-10 增补评阅第 8 份 `harnessL--glm5.3-max`）。
+同一道地月三体问题，比较不同 **Harness＋LLM** 能否交付数学正确、数值可信、可以实际操作的科学计算程序。当前收录 **8 份参赛作品、4 位 AI 评审的十项综合与科学终评分数**。[Codex 评审](reviews/2026-09-10/codex-gpt-6-astra-xhigh/README.md)与 [ZCode／GLM 评审](reviews/2026-09-09/zcode-glm-5.3max-win/README.md)已于 09-10 增补第 8 份 `harnessL-glm5.3-max`；其余保留 09-09 记录。
 
 ## 任务是什么
 
@@ -127,9 +129,9 @@ readme='''# LLM × Harness 科学计算基准
 
 这里的 **Harness** 指承载模型完成任务的平台、工具和执行环境。比较的是模型与这些条件共同产出的最终作品，包括科学建模、数值求解、验证与交互交付；参赛名称按提交者标注保留，Windows 与 Linux 产物分别计入。当前记录没有统一所有组合的算力、时间和工具预算，结论限于本轮作品。
 
-**10 榜**按十项标准综合评价全部参赛作品（ZCode／GLM 评审已含 8 份，其余评审仍为其评阅快照内的 7 份）；**科学榜**只对入围作品的最终数学、物理和数值结果复评，不计界面或中间工程材料。
+**10 榜**按十项标准综合评价所评快照内的全部作品；**科学榜**只对入围作品的最终数学、物理和数值结果复评，不计界面或中间工程材料。
 
-“10”指评分维度，前八项是科学与数值计算，后两项是工程验证与交互表达；“4”指每位评审综合榜的前四名。Kimi 评审因入选边界并列扩展至五份；ZCode／GLM 评审于 09-10 增补第 8 份作品后，科学榜直接改为五强。缺少中间工程文件不构成科学榜扣分理由。
+“10”指评分维度，前八项是科学与数值计算，后两项是工程验证与交互表达。**本次 Codex 按新要求改为“10＋5”：八份综合评分，综合前五进入科学五强。** ZCode／GLM 也已评八份并展示五强；Kimi 因旧入围边界并列展示五份，GPT Web 保留原七份综合与四强科学记录。缺少中间工程文件不构成科学榜扣分理由。
 
 ## 综合评价与推荐
 
@@ -138,10 +140,12 @@ readme='''# LLM × Harness 科学计算基准
 | 使用目标 | 推荐 Harness＋LLM | 现有评审支持 |
 |---|---|---|
 | 完整、严谨且便于操作的科学实验室 | **gptweb × gpt-6pro**（ChatGPT 网页版） | 四份综合榜记录均为第一，其中一次并列；单位与坐标说明、科学验证和可视化交付较完整。 |
-| 优先检验轨迹精度与自适应求解结果 | **harnessL × ds-4.1flashmax** | 四份科学榜均在前二，两份列第一；高阶固定步与自适应方法在所测工况中取得了较强的数值结果。 |
+| 优先检验轨迹精度与自适应求解结果 | **harnessL × ds-4.1flashmax** | Codex 与 GPT Web 的数值复评均推荐；本次 Codex 五强科学榜仍为 97 分第一，高阶固定步与自适应结果支持这一选择。 |
 | 综合与科学表现都稳定的另一选择 | **Codex × 6astra-xhigh** | 四份综合榜均在前二，科学榜均在前三（含并列）；方程、单位定义和独立参考核验得到多份评审肯定。 |
 
-多份评审认可领先作品的基本运动方程、Jacobi 常数和平衡点计算；主要差距出现在**轨迹误差、长期数值行为、边界处理，以及演示中的物理声明能否复算**。尤其是 GPT Web 与 Codex，两份数值复评在对齐条件后发现其共同 RK4 方法结果基本一致，不能仅凭默认演示读数不同判断谁的方程错了。比较轨迹前应对齐初值、单位、参考系与积分设置，再与独立参考解核对。[Codex 数值复评](reviews/2026-09-09/science-final/README.md) · [GPT Web 数值复评](reviews/2026-09-09/gptweb-gpt-6-astra-pro/science-final/SCIENCE_REVIEW.md)
+多份评审认可领先作品的基本运动方程、Jacobi 常数和平衡点计算；主要差距出现在**轨迹误差、长期数值行为、边界处理，以及演示中的物理声明能否复算**。尤其是 GPT Web 与 Codex，两份数值复评在对齐条件后发现其共同 RK4 方法结果基本一致，不能仅凭默认演示读数不同判断谁的方程错了。比较轨迹前应对齐初值、单位、参考系与积分设置，再与独立参考解核对。[Codex 数值复评](reviews/2026-09-10/codex-gpt-6-astra-xhigh/science-final.md) · [GPT Web 数值复评](reviews/2026-09-09/gptweb-gpt-6-astra-pro/science-final/SCIENCE_REVIEW.md)
+
+**09-10 新作品更新：** Codex 给 `harnessL-glm5.3-max` 综合 **86 分、第 4**，科学 **92 分、第 4**。它的 GBS 数值结果很强，但相对月球速率公式、固定步长精度与近场控制仍有不足；旧七份综合分和原四份科学分保持不变。新增作品的评审意见仅来自已覆盖它的专家，不能视作四位专家均已完成复评。
 
 **面向重视数学与天体力学的传统专家团队，本页建议优先送审 DS 的数值结果，同时提供 GPT Web 作为完整科学演示的对照。** 科学首选并未形成一致意见：Codex 与 GPT Web 评审选 DS；[Kimi 评审](reviews/2026-09-09/kimiweb-k3-swarmmax/README.md#four) 更重视其规定步长、长期守恒与边界测试下的表现，选 ZCode Linux × GLM-5.3max；[ZCode／GLM 评审](reviews/2026-09-09/zcode-glm-5.3max-win/science-final/README.md) 更重视单位闭合、动力学演示和科学解释，选 GPT Web。GLM Linux 只进入了 Kimi 的科学终评，其他评审未对它做同一阶段的比较。首选随测试与权重变化，少量分差不足以证明普遍优势。
 
@@ -149,7 +153,7 @@ readme='''# LLM × Harness 科学计算基准
 
 ## 各位专家的评分与排名
 
-卡片上方注明的是**评审者的模型与平台**，卡片内列出的是**参赛组合**；点击卡片或下方链接可查看单项排名、扣分理由和数值依据。后续评审也按“十项综合榜＋四强科学榜”展示。
+卡片上方注明的是**评审者的模型与平台**，卡片内列出的是**参赛组合**；点击卡片或下方链接可查看单项排名、扣分理由和数值依据。后续更新按“十项综合榜＋五强科学榜”展示，历史评审保留其原有入围范围。
 
 '''
 outputs={}
@@ -161,7 +165,8 @@ for expert in experts:
         title='十项综合评分与排名' if kind=='ten' else expert.get('four_alt','四强科学评分与排名')
         outputs[ROOT/path]=svg(expert,kind)
         readme+=f'<a href="{expert[kind+"_link"]}"><img src="{path}" width="420" alt="{expert["id"]} · {title}"></a> '
-    readme=readme.rstrip()+f'\n\n[十项具体评分与单项排名]({expert["ten_link"]}) · [四强具体评分与推荐]({expert["four_link"]})\n\n'
+    science_label='五强具体评分与推荐' if expert.get('four_badge')=='5' else '四强具体评分与推荐'
+    readme=readme.rstrip()+f'\n\n[十项具体评分与单项排名]({expert["ten_link"]}) · [{science_label}]({expert["four_link"]})\n\n'
 outputs[ROOT/'README.md']=readme.rstrip()+'\n'
 for path,content in outputs.items():
     if '--check' in sys.argv:assert path.read_text(encoding='utf-8')==content, str(path)
