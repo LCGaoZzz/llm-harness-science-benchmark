@@ -1,0 +1,21 @@
+name: GPT Web Sep10 review snapshot
+on:
+  push:
+    branches: [review/gptweb-glm-sep10]
+    paths: [.github/workflows/gptweb-review-sep10-snapshot.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Download immutable public snapshot without executing submissions
+        run: |
+          curl --fail --location --retry 2 'https://codeload.github.com/LCGaoZzz/llm-harness-science-benchmark/zip/04594df6734e5e2a3b1a7782ab2c70f29a357f30' --output source-snapshot.zip
+          sha256sum source-snapshot.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gptweb-review-source-04594df
+          path: source-snapshot.zip
+          retention-days: 3
