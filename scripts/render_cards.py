@@ -43,7 +43,8 @@ experts = [
     dict(id='zcode-glm-5.3max-win', platform='ZCode（Windows）', model='GLM-5.3（Max）', color='#C16A15', tint='#FFF7ED',
          ten=sorted([dict(label=r['label'],score=r['final'],rank=r['rank']) for r in glm['submissions']], key=lambda r:(r['rank'],r['label'])),
          four=[dict(label=next(r['label'] for r in glm['submissions'] if r['id']==key),score=v['total'],rank=v['rank']) for key,v in glm['science_final']['scores'].items()],
-         max_four=100, ten_note='十项等权 · 原评审分数 · 09.10 增补第 8 份', four_note='科学十项等权 · 原评审分数', date='2026.09.09 · 09.10 增补',
+         max_four=100, ten_note='十项等权 · 原评审分数 · 09.10 增补第 8 份', four_note='科学十项等权 · 原评审分数 · 09.10 扩至五强', date='2026.09.09 · 09.10 增补',
+         four_title='五强科学榜', four_badge='5', four_alt='五强科学评分与排名',
          ten_link='reviews/2026-09-09/zcode-glm-5.3max-win/README.md',
          four_link='reviews/2026-09-09/zcode-glm-5.3max-win/science-final/README.md'),
 ]
@@ -64,15 +65,14 @@ def number(value):
 
 def svg(expert, kind):
     rows=expert[kind]
-    assert len(rows)==(8 if kind=='ten' else (5 if expert['id'].startswith('kimi') else 4)) \
-        or (kind=='ten' and len(rows)==7), f'{expert["id"]} {kind}: {len(rows)} rows'
+    assert (kind=='ten' and len(rows) in (7,8)) or (kind=='four' and len(rows) in (4,5)), f'{expert["id"]} {kind}: {len(rows)} rows'
     extra=(len(rows)-7)*56 if kind=='ten' else 0
     height=660+extra
     maximum=100 if kind=='ten' else expert['max_four']
     assert all(0<=r['score']<=maximum and r['rank']>=1 for r in rows)
     color,tint=expert['color'],expert['tint']
-    title='十项综合榜' if kind=='ten' else '四强科学榜'
-    badge='10' if kind=='ten' else '4'
+    title='十项综合榜' if kind=='ten' else expert.get('four_title','四强科学榜')
+    badge='10' if kind=='ten' else expert.get('four_badge','4')
     parts=[f'<svg xmlns="http://www.w3.org/2000/svg" width="600" height="{height}" viewBox="0 0 600 {height}" role="img" aria-labelledby="title desc">',
         f'<title id="title">{expert["id"]} · {title}</title>',
         f'<desc id="desc">'+escape('；'.join(f'第 {r["rank"]} 名 {r["label"]}，{number(r["score"])} / {maximum}' for r in rows))+'</desc>',
@@ -129,7 +129,7 @@ readme='''# LLM × Harness 科学计算基准
 
 **10 榜**按十项标准综合评价全部参赛作品（ZCode／GLM 评审已含 8 份，其余评审仍为其评阅快照内的 7 份）；**科学榜**只对入围作品的最终数学、物理和数值结果复评，不计界面或中间工程材料。
 
-“10”指评分维度，前八项是科学与数值计算，后两项是工程验证与交互表达；“4”指每位评审综合榜的前四名，Kimi 评审因入选边界并列扩展至五份。缺少中间工程文件不构成科学榜扣分理由。
+“10”指评分维度，前八项是科学与数值计算，后两项是工程验证与交互表达；“4”指每位评审综合榜的前四名。Kimi 评审因入选边界并列扩展至五份；ZCode／GLM 评审于 09-10 增补第 8 份作品后，科学榜直接改为五强。缺少中间工程文件不构成科学榜扣分理由。
 
 ## 综合评价与推荐
 
@@ -158,7 +158,7 @@ for expert in experts:
     readme+=f'**评审平台：{expert["platform"]} · 评审模型：{expert["model"]}**\n\n'
     for kind in ['ten','four']:
         path=f'assets/leaderboards/{expert["id"]}-{kind}.svg'
-        title='十项综合评分与排名' if kind=='ten' else '四强科学评分与排名'
+        title='十项综合评分与排名' if kind=='ten' else expert.get('four_alt','四强科学评分与排名')
         outputs[ROOT/path]=svg(expert,kind)
         readme+=f'<a href="{expert[kind+"_link"]}"><img src="{path}" width="420" alt="{expert["id"]} · {title}"></a> '
     readme=readme.rstrip()+f'\n\n[十项具体评分与单项排名]({expert["ten_link"]}) · [四强具体评分与推荐]({expert["four_link"]})\n\n'

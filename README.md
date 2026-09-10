@@ -18,7 +18,7 @@
 
 **10 榜**按十项标准综合评价全部参赛作品（ZCode／GLM 评审已含 8 份，其余评审仍为其评阅快照内的 7 份）；**科学榜**只对入围作品的最终数学、物理和数值结果复评，不计界面或中间工程材料。
 
-“10”指评分维度，前八项是科学与数值计算，后两项是工程验证与交互表达；“4”指每位评审综合榜的前四名，Kimi 评审因入选边界并列扩展至五份。缺少中间工程文件不构成科学榜扣分理由。
+“10”指评分维度，前八项是科学与数值计算，后两项是工程验证与交互表达；“4”指每位评审综合榜的前四名。Kimi 评审因入选边界并列扩展至五份；ZCode／GLM 评审于 09-10 增补第 8 份作品后，科学榜直接改为五强。缺少中间工程文件不构成科学榜扣分理由。
 
 ## 综合评价与推荐
 
@@ -68,6 +68,6 @@
 
 **评审平台：ZCode（Windows） · 评审模型：GLM-5.3（Max）**
 
-<a href="reviews/2026-09-09/zcode-glm-5.3max-win/README.md"><img src="assets/leaderboards/zcode-glm-5.3max-win-ten.svg" width="420" alt="zcode-glm-5.3max-win · 十项综合评分与排名"></a> <a href="reviews/2026-09-09/zcode-glm-5.3max-win/science-final/README.md"><img src="assets/leaderboards/zcode-glm-5.3max-win-four.svg" width="420" alt="zcode-glm-5.3max-win · 四强科学评分与排名"></a>
+<a href="reviews/2026-09-09/zcode-glm-5.3max-win/README.md"><img src="assets/leaderboards/zcode-glm-5.3max-win-ten.svg" width="420" alt="zcode-glm-5.3max-win · 十项综合评分与排名"></a> <a href="reviews/2026-09-09/zcode-glm-5.3max-win/science-final/README.md"><img src="assets/leaderboards/zcode-glm-5.3max-win-four.svg" width="420" alt="zcode-glm-5.3max-win · 五强科学评分与排名"></a>
 
 [十项具体评分与单项排名](reviews/2026-09-09/zcode-glm-5.3max-win/README.md) · [四强具体评分与推荐](reviews/2026-09-09/zcode-glm-5.3max-win/science-final/README.md)

@@ -1,6 +1,6 @@
 # zcode-glm-5.3max-win · 十项评阅（10）
 
-**评审者：`zcode-glm-5.3-max-win`（ZCode / GLM-5.3max,Windows 会话）。** 单一评阅者,未盲审。本文为"10+4"中的十项部分;[四强纯科学终评见 science-final/](science-final/README.md)。这是本专家的独立评分,不是多专家共识,与其他专家的分数并行保留。
+**评审者：`zcode-glm-5.3-max-win`（ZCode / GLM-5.3max,Windows 会话）。** 单一评阅者,未盲审。本文为"10+4"中的十项部分;[五强纯科学终评见 science-final/](science-final/README.md)。这是本专家的独立评分,不是多专家共识,与其他专家的分数并行保留。
 
 - **被评 Git 快照:** [`ac5a306`](https://github.com/LCGaoZzz/llm-harness-science-benchmark/tree/ac5a306be9b29978ad6787903821b4a6a181ff01)(7 份提交的原始产物)。
 - **评阅日期:** 2026-09-09。
