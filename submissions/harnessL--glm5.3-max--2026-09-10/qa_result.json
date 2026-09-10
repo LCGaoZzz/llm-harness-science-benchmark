@@ -1,0 +1,96 @@
+{
+  "shots": {
+    "qa_tadpole": "/data/users/lianchong/workspace1/outputs/turn_20260910015519_a3291877feee4ddd8268f7f43b72c533/qa_tadpole.png",
+    "qa_assist": "/data/users/lianchong/workspace1/outputs/turn_20260910015519_a3291877feee4ddd8268f7f43b72c533/qa_assist.png"
+  },
+  "stats": {
+    "qa_tadpole": {
+      "size": "1680x1000",
+      "total_px": 1680000,
+      "nonbg_pct": 8.67,
+      "amber_px": 382,
+      "green_px": 1224,
+      "blue_px": 5884,
+      "white_px": 1252,
+      "sidebar_x348_nonbg_pct": 22.17,
+      "canvas_nonbg_pct": 5.15
+    },
+    "qa_assist": {
+      "size": "1680x1000",
+      "total_px": 1680000,
+      "nonbg_pct": 9.07,
+      "amber_px": 356,
+      "green_px": 983,
+      "blue_px": 5804,
+      "white_px": 1183,
+      "sidebar_x348_nonbg_pct": 22.27,
+      "canvas_nonbg_pct": 5.62
+    }
+  },
+  "verdicts": {
+    "qa_tadpole": [
+      [
+        "non-background > 5%",
+        "PASS",
+        "8.67%"
+      ],
+      [
+        "amber ZVC px > 200",
+        "PASS",
+        "382"
+      ],
+      [
+        "green L-point px > 10",
+        "PASS",
+        "1224"
+      ],
+      [
+        "blue px > 100",
+        "PASS",
+        "5884"
+      ],
+      [
+        "white spacecraft px > 10",
+        "PASS",
+        "1252"
+      ],
+      [
+        "sidebar(x<348) non-bg > 30%",
+        "FAIL",
+        "22.17%"
+      ]
+    ],
+    "qa_assist": [
+      [
+        "non-background > 5%",
+        "PASS",
+        "9.07%"
+      ],
+      [
+        "amber ZVC px > 200",
+        "PASS",
+        "356"
+      ],
+      [
+        "green L-point px > 10",
+        "PASS",
+        "983"
+      ],
+      [
+        "blue px > 100",
+        "PASS",
+        "5804"
+      ],
+      [
+        "white spacecraft px > 10",
+        "PASS",
+        "1183"
+      ],
+      [
+        "sidebar(x<348) non-bg > 30%",
+        "FAIL",
+        "22.27%"
+      ]
+    ]
+  }
+}
