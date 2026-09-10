@@ -2,6 +2,11 @@
   "schema": "cr3bp-review/1",
   "date": "2026-09-09",
   "reviewed_commit": "ac5a306be9b29978ad6787903821b4a6a181ff01",
+  "addendum": {
+    "date": "2026-09-10",
+    "reviewed_commit": "04594df",
+    "note": "增补评审第 8 份提交 harnessL--glm5.3-max--2026-09-10（方法与首轮一致：静态逐行 + 独立真值 + 浏览器实际加载复跑自检）。25 个原始文件 blob 哈希与 SHA256SUMS 逐一核对一致。其余 7 份分数与排名基准不变，名次按 8 份竞赛排名重排。"
+  },
   "reviewer_id": "zcode-glm-5.3max-win",
   "reviewer": "zcode-glm-5.3max-win（单一评阅者；未盲审）",
   "review_format": "10+4",
@@ -66,7 +71,7 @@
       "self_tests_rerun": "7/7",
       "source": "index.html",
       "final": 90,
-      "rank": 5,
+      "rank": 6,
       "notes": "GL4（Gauss–Legendre 二级四阶）系数正确，不动点迭代大步长有守卫；ZVC 多边形裁剪填充；μ 10 位截断、TU 惯例差 0.13%。"
     },
     {
@@ -78,7 +83,7 @@
       "self_tests_rerun": "7/7（归档记录 6/7，T4b 复跑通过）",
       "source": "cr3bp_lab.html",
       "final": 87,
-      "rank": 6,
+      "rank": 7,
       "notes": "RK4+隐式中点（2 阶辛，诚实标注）+DOPRI5；JPL+3D 晕轨道双锚点；reset 语义瑕疵；无惯性系转换。"
     },
     {
@@ -90,13 +95,27 @@
       "self_tests_rerun": "5/5（自动执行）",
       "source": "Kimi_Agent_地月三体实验室.zip 内 cr3bp-lab/index.html",
       "final": 85,
-      "rank": 7,
+      "rank": 8,
       "notes": "自检自动执行全过+页面级错误捕获条；『辛 Verlet』严格辛性存疑（500 TU 有界实测通过）；奇点阈值 1e-6 DU 过小；提交内无验证记录或截图。"
+    },
+    {
+      "id": "glm5.3maxL",
+      "directory": "harnessL--glm5.3-max--2026-09-10",
+      "label": "harnessL-glm5.3max--2026-09-10（增补）",
+      "scores": [10,10,8,10,10,10,10,9,10,10],
+      "caps": [],
+      "self_tests_rerun": "12/12（99 ms）",
+      "source": "lab.html",
+      "final": 97,
+      "rank": 5,
+      "addendum": true,
+      "notes": "GBS（Bulirsch–Stoer 自适应外推）+真·隐式中点（辛）+RK4；GBS T=2000 蝌蚪漂移 2.2e-14（复现）；Howell 组 C 值文献锚点 4.6e-7；RK4 阶 4.01/4.037 经本评审自建参考独立复现；引力辅助声明复算吻合（近月 0.0314 DU≈12 072 km、惯性系能量 +89%）。扣分：项 3 −2（状态栏 v_月 读数公式 (vx+y,vy−x) 无物理含义，实测 3.315 vs 正确 4.162；正文 TU≈4.3425 天与代码 4.3481 天不一致；无惯性系视图）；项 8 −1（无天体表面碰撞语义：RK4 dt=0.01 实测穿越月面不停机，数值局限中已诚实标注）。"
     }
   ],
   "science_final": {
     "selected": ["codex", "gptweb", "ds4", "glmwin"],
-    "tie_handling": "十项总榜第 3–4 名 ds4 与 glmwin 同为 98 分，双双入选；第 5 名 90 分在边界外。",
+    "tie_handling": "十项总榜（含 2026-09-10 增补的第 8 份）前四：codex(100)、gptweb(100)、ds4(98)、glmwin(98) 同首轮；增补提交 glm5.3maxL 97 分列第 5，在边界外（差 1 分），四强成员不变。",
+    "addendum_note": "增补提交 harnessL-glm5.3max--2026-09-10 十项 97 分未入四强，其科学面证据（GBS T=2000 漂移 2.2e-14、Howell C 值锚点、天平动周期特征方程对照）记录于十项评阅增补节，供后续轮次四强边界变动时参考。",
     "indicators": "10 项等权（每项 10 分，允许 0.5）：第 1–8 项沿用 README 科学八项；第 9 项=页面内科学验证；第 10 项=经典动力学深度（稳定性分析/ZVC 临界拓扑/参考系物理）。与样例专家 20/15/25/25/15 加权不同尺度，不混用。",
     "scores": {
       "gptweb": {"items": [10,10,10,10,10,10,10,10,10,10], "total": 100, "rank": 1},

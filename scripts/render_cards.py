@@ -41,9 +41,9 @@ experts = [
          ten_link='reviews/2026-09-09/kimiweb-k3-swarmmax/README.md#ten',
          four_link='reviews/2026-09-09/kimiweb-k3-swarmmax/README.md#four'),
     dict(id='zcode-glm-5.3max-win', platform='ZCode（Windows）', model='GLM-5.3（Max）', color='#C16A15', tint='#FFF7ED',
-         ten=[dict(label=r['label'],score=r['final'],rank=r['rank']) for r in glm['submissions']],
+         ten=sorted([dict(label=r['label'],score=r['final'],rank=r['rank']) for r in glm['submissions']], key=lambda r:(r['rank'],r['label'])),
          four=[dict(label=next(r['label'] for r in glm['submissions'] if r['id']==key),score=v['total'],rank=v['rank']) for key,v in glm['science_final']['scores'].items()],
-         max_four=100, ten_note='十项等权 · 原评审分数', four_note='科学十项等权 · 原评审分数',
+         max_four=100, ten_note='十项等权 · 原评审分数 · 09.10 增补第 8 份', four_note='科学十项等权 · 原评审分数', date='2026.09.09 · 09.10 增补',
          ten_link='reviews/2026-09-09/zcode-glm-5.3max-win/README.md',
          four_link='reviews/2026-09-09/zcode-glm-5.3max-win/science-final/README.md'),
 ]
@@ -55,6 +55,7 @@ def entrant(label):
     if 'ds-4' in low:return 'HarnessL · DeepSeek', 'ds-4.1flashmax'
     if 'qwen' in low:return 'HarnessL · Qwen', 'qwen-3.8flashxhigh'
     if 'kimi' in low:return 'Kimi Web', 'k3swarm-max'
+    if 'glm5.3' in low:return 'HarnessL · GLM', 'glm5.3-max'
     if 'linux' in low:return 'ZCode · Linux', 'glm-5.3maxlinux'
     return 'ZCode · Windows', 'glm-5.3max'
 
@@ -63,16 +64,19 @@ def number(value):
 
 def svg(expert, kind):
     rows=expert[kind]
-    assert len(rows)==(7 if kind=='ten' else (5 if expert['id'].startswith('kimi') else 4))
+    assert len(rows)==(8 if kind=='ten' else (5 if expert['id'].startswith('kimi') else 4)) \
+        or (kind=='ten' and len(rows)==7), f'{expert["id"]} {kind}: {len(rows)} rows'
+    extra=(len(rows)-7)*56 if kind=='ten' else 0
+    height=660+extra
     maximum=100 if kind=='ten' else expert['max_four']
     assert all(0<=r['score']<=maximum and r['rank']>=1 for r in rows)
     color,tint=expert['color'],expert['tint']
     title='十项综合榜' if kind=='ten' else '四强科学榜'
     badge='10' if kind=='ten' else '4'
-    parts=[f'<svg xmlns="http://www.w3.org/2000/svg" width="600" height="660" viewBox="0 0 600 660" role="img" aria-labelledby="title desc">',
+    parts=[f'<svg xmlns="http://www.w3.org/2000/svg" width="600" height="{height}" viewBox="0 0 600 {height}" role="img" aria-labelledby="title desc">',
         f'<title id="title">{expert["id"]} · {title}</title>',
         f'<desc id="desc">'+escape('；'.join(f'第 {r["rank"]} 名 {r["label"]}，{number(r["score"])} / {maximum}' for r in rows))+'</desc>',
-        '<rect x="1" y="1" width="598" height="658" rx="24" fill="#FFFFFF" stroke="#DDE3EC" stroke-width="2"/>',
+        f'<rect x="1" y="1" width="598" height="{height-2}" rx="24" fill="#FFFFFF" stroke="#DDE3EC" stroke-width="2"/>',
         '<path d="M25 1 H575 Q599 1 599 25 V144 H1 V25 Q1 1 25 1Z" fill="#101C32"/>',
         f'<rect x="28" y="29" width="4" height="24" rx="2" fill="{color}"/>',
         f'<text x="44" y="48" fill="#DCE5F6" font-size="19" font-weight="600">{expert["id"]}</text>',
@@ -100,14 +104,14 @@ def svg(expert, kind):
         parts.append(f'<rect x="28" y="510" width="544" height="65" rx="12" fill="{tint}"/>')
         parts.append(f'<text x="47" y="536" fill="{color}" font-size="16" font-weight="600">数学 · 物理 · 数值结果</text>')
         parts.append('<text x="47" y="560" fill="#64748B" font-size="15">详细指标、依据及推荐见评分页</text>')
-    parts += ['<path d="M28 604 H572" stroke="#E8EDF4"/>',
-        f'<text x="28" y="632" fill="#64748B" font-size="15">{escape(expert[kind+"_note"])}</text>',
-        '<text x="572" y="632" text-anchor="end" fill="#94A0B2" font-size="13">2026.09.09</text>', '</svg>']
+    parts += [f'<path d="M28 {604+extra} H572" stroke="#E8EDF4"/>',
+        f'<text x="28" y="{632+extra}" fill="#64748B" font-size="15">{escape(expert[kind+"_note"])}</text>',
+        f'<text x="572" y="{632+extra}" text-anchor="end" fill="#94A0B2" font-size="13">{expert.get("date","2026.09.09")}</text>', '</svg>']
     return '\n'.join(parts).replace('<svg ', '<svg font-family="Segoe UI, Microsoft YaHei, Arial, sans-serif" ',1)+'\n'
 
 readme='''# LLM × Harness 科学计算基准
 
-同一道地月三体问题，比较不同 **Harness＋LLM** 能否交付数学正确、数值可信、可以实际操作的科学计算程序。当前收录 **7 份参赛作品、4 位 AI 评审的“10＋4”评分**，评审日期为 2026-09-09。
+同一道地月三体问题，比较不同 **Harness＋LLM** 能否交付数学正确、数值可信、可以实际操作的科学计算程序。当前收录 **8 份参赛作品、4 位 AI 评审的“10＋4”评分**（评审日期 2026-09-09；[ZCode／GLM 评审](reviews/2026-09-09/zcode-glm-5.3max-win/README.md)于 09-10 增补评阅第 8 份 `harnessL--glm5.3-max`）。
 
 ## 任务是什么
 
@@ -123,7 +127,7 @@ readme='''# LLM × Harness 科学计算基准
 
 这里的 **Harness** 指承载模型完成任务的平台、工具和执行环境。比较的是模型与这些条件共同产出的最终作品，包括科学建模、数值求解、验证与交互交付；参赛名称按提交者标注保留，Windows 与 Linux 产物分别计入。当前记录没有统一所有组合的算力、时间和工具预算，结论限于本轮作品。
 
-**10 榜**按十项标准综合评价全部 7 份作品的科学、工程与交互表现；**科学榜**只对入围作品的最终数学、物理和数值结果复评，不计界面或中间工程材料。
+**10 榜**按十项标准综合评价全部参赛作品（ZCode／GLM 评审已含 8 份，其余评审仍为其评阅快照内的 7 份）；**科学榜**只对入围作品的最终数学、物理和数值结果复评，不计界面或中间工程材料。
 
 “10”指评分维度，前八项是科学与数值计算，后两项是工程验证与交互表达；“4”指每位评审综合榜的前四名，Kimi 评审因入选边界并列扩展至五份。缺少中间工程文件不构成科学榜扣分理由。
 
